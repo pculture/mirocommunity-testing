@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
 from selenium import selenium
-#import system modules
+#import system emodules
 import unittest, time, re
 import StringIO
 import sys
 import HTMLTestRunner
 # import MC Test Suite modules
 import loginlogout, sitesettings, testvars
-import testcases_customize, testcases_categories, testcases_manage, testcases_comments
+import testcases_users, testcases_customize, testcases_categories, testcases_manage, testcases_bulkedit, testcases_queue, testcases_comments
 
 # ------------------------------------------------------------------------
 # This is the main test 
@@ -30,6 +30,20 @@ class Test_HTMLTestRunner(unittest.TestCase):
         # suite of TestCases
         self.suite = unittest.TestSuite()
         self.suite.addTests([
+#-USERS-------------------------------------------------------------------------------------------------------
+            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_users.TestCase_AddNewAdmin),
+            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_users.TestCase_AddNewUser),
+            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_users.TestCase_EditUser),
+            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_users.TestCase_DeleteUser),
+            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_users.TestCase_CreateNewUserUsernameAndPassword),
+            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_users.TestCase_CreateNewUserWithoutUsername),
+            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_users.TestCase_CreateNewUserWithoutPassword),
+            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_users.TestCase_UsernameDoesntAcceptMax1Chars),
+            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_users.TestCase_NewUserUsernameMaxMax2MinChars),
+            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_users.TestCase_EditUserProfile),
+#            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_users.TestCase_ViewProfile),
+            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_users.TestCase_ViewUser),
+#-SITE-SETTINGS-----------------------------------------------------------------------------------------------
             unittest.defaultTestLoader.loadTestsFromTestCase(testcases_customize.TestCase_ChangeSiteSettings),
             unittest.defaultTestLoader.loadTestsFromTestCase(testcases_customize.TestCase_ChangeOrganization),
             unittest.defaultTestLoader.loadTestsFromTestCase(testcases_customize.TestCase_UploadLogo),
@@ -37,7 +51,7 @@ class Test_HTMLTestRunner(unittest.TestCase):
             unittest.defaultTestLoader.loadTestsFromTestCase(testcases_customize.TestCase_DeleteBackground),
             unittest.defaultTestLoader.loadTestsFromTestCase(testcases_customize.TestCase_AddCustomCSS),
             unittest.defaultTestLoader.loadTestsFromTestCase(testcases_customize.TestCase_DisplaySubmitVideo),
-#-------------------------------------------------------------------------------------------------------------
+#-CATEGORIES--------------------------------------------------------------------------------------------------
             unittest.defaultTestLoader.loadTestsFromTestCase(testcases_categories.TestCase_DeleteAllCategories),
             unittest.defaultTestLoader.loadTestsFromTestCase(testcases_categories.TestCase_AddCategories),
             unittest.defaultTestLoader.loadTestsFromTestCase(testcases_categories.TestCase_AddSubCategories),
@@ -45,7 +59,7 @@ class Test_HTMLTestRunner(unittest.TestCase):
             unittest.defaultTestLoader.loadTestsFromTestCase(testcases_categories.TestCase_AddDuplicateCategory),
             unittest.defaultTestLoader.loadTestsFromTestCase(testcases_categories.TestCase_EditCategory),
             unittest.defaultTestLoader.loadTestsFromTestCase(testcases_categories.TestCase_BulkDeleteCategories),
-# --------------------------------------------------------------------------------------------------------
+#-MANAGE-SOURCES------------------------------------------------------------------------------------------
             unittest.defaultTestLoader.loadTestsFromTestCase(testcases_manage.TestCase_AddSourceFeed),
             unittest.defaultTestLoader.loadTestsFromTestCase(testcases_manage.TestCase_AddDuplicateFeed),
             unittest.defaultTestLoader.loadTestsFromTestCase(testcases_manage.TestCase_AddSourceWithDuplicateVideos),
@@ -58,9 +72,25 @@ class Test_HTMLTestRunner(unittest.TestCase):
             unittest.defaultTestLoader.loadTestsFromTestCase(testcases_manage.TestCase_SortSources),
             unittest.defaultTestLoader.loadTestsFromTestCase(testcases_manage.TestCase_SearchInSources),
             unittest.defaultTestLoader.loadTestsFromTestCase(testcases_manage.TestCase_FilterSources),
-#----------------------------------------------------------------
+#-REVIEW-QUEUE---------------------------------------------------
+            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_queue.TestCase_ApproveVideo),
+            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_queue.TestCase_FeatureVideo),
+            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_queue.TestCase_RejectVideo),
+            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_queue.TestCase_ApprovePage),
+            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_queue.TestCase_RejectPage),
+#            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_queue.TestCase_EditVideoInQueue),
+            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_queue.TestCase_RSSVideosAwaitingModeration),
+            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_queue.TestCase_ClearQueue),
+#-BULK-EDIT------------------------------------------------------
+            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_bulkedit.testcase_BulkEdit_EditAndDelete),
+            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_bulkedit.testcase_BulkEdit_FeatureAndUnfeature),
+            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_bulkedit.testcase_BulkEdit_EditSingleVideo),
+            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_bulkedit.testcase_BulkEdit_DeleteSingleVideo),
+            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_bulkedit.testcase_BulkEdit_UnapproveCurrent),
+            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_bulkedit.testcase_BulkEdit_UnapproveFeatured),
+#-RESTORE-CATEGORIES---------------------------------------------
             unittest.defaultTestLoader.loadTestsFromTestCase(testcases_categories.TestCase_RestoreAllCategories),
-#----------------------------------------------------------------
+#-COMMENTS-------------------------------------------------------
             unittest.defaultTestLoader.loadTestsFromTestCase(testcases_comments.testcase_Comments_NoModeration_NoLogin),
             unittest.defaultTestLoader.loadTestsFromTestCase(testcases_comments.testcase_Comments_NoModeration_LoginRequired),
             unittest.defaultTestLoader.loadTestsFromTestCase(testcases_comments.testcase_Comments_ModerationRequired_NoLogin),

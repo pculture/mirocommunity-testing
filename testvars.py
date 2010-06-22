@@ -23,8 +23,13 @@ MCTestVariables = {"Browser":"*chrome", \
                    "LogoutPage":"/accounts/logout/?next=/", \
                    "ReviewQueuePage":"/admin/approve_reject", \
                    "ManageSourcesPage":"/admin/manage", \
+                   "BulkEditPage":"/admin/bulk_edit", \
                    "CategoriesPage":"/admin/categories", \
                    "SettingsPage":"/admin/settings/", \
+                   "UserPage":"/admin/users/", \
+                   "ProfilePage":"/accounts/profile/", \
+                   "ViewAdmin":"//div[@id='header']/a[2]/span", \
+                   "SaveChanges":"//div[@id='labels']/form/table/tbody/tr[2]/td[1]/div/button", \
                    "CategoriesLogoURL":"http://s3.mirocommunity.org.s3.amazonaws.com/dalmatia/localtv/category_logos", \
                    "SiteLogoURL":"http://s3.mirocommunity.org.s3.amazonaws.com/dalmatia/localtv/site_logos", \
                    "SiteBackgroundURL":"http://s3.mirocommunity.org.s3.amazonaws.com/dalmatia/localtv/site_backgrounds", \
