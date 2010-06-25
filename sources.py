@@ -59,6 +59,7 @@ import unittest, time, re, urllib
 import testvars, mclib
 
 def NavigateToManageSources(self,sel):
+    sel.set_timeout(150000)
     sel.open(testvars.MCTestVariables["ManageSourcesPage"])
     sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
     try: self.failUnless(sel.is_text_present("Manage Your Video Sources"))

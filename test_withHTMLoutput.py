@@ -78,7 +78,7 @@ class Test_HTMLTestRunner(unittest.TestCase):
             unittest.defaultTestLoader.loadTestsFromTestCase(testcases_queue.TestCase_RejectVideo),
             unittest.defaultTestLoader.loadTestsFromTestCase(testcases_queue.TestCase_ApprovePage),
             unittest.defaultTestLoader.loadTestsFromTestCase(testcases_queue.TestCase_RejectPage),
-#            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_queue.TestCase_EditVideoInQueue),
+            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_queue.TestCase_EditVideoInQueue),
             unittest.defaultTestLoader.loadTestsFromTestCase(testcases_queue.TestCase_RSSVideosAwaitingModeration),
             unittest.defaultTestLoader.loadTestsFromTestCase(testcases_queue.TestCase_ClearQueue),
 #-BULK-EDIT------------------------------------------------------

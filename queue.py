@@ -455,7 +455,7 @@ def EditVideoInQueue(self,sel,page,number,title,user,posted,thumbnail,descriptio
             print "Old date: "+oldPosted
             print "Changing posted date..."
             sel.click("//div[@id='admin_rightpane']/div/div[2]/div[2]/div[1]/span")
-            time.sleep(7)
+            time.sleep(10)
             sel.type("id_when_published", posted)
             sel.click("//button[@type='submit']")
             time.sleep(5)
@@ -514,46 +514,43 @@ def EditVideoInQueue(self,sel,page,number,title,user,posted,thumbnail,descriptio
                 else:
                     print "OK"
         if tag!="":
-            sel.click("//div[@id='tags']/ul/li[2]/div/div[1]/div/h4/a")
-            time.sleep(5)
-            oldTags = sel.get_text("id_tags")
+            tagListElement = "//div[@id='tags']/ul/li[2]/div/div[1]/div/ul"
+            if sel.is_element_present(tagListElement):
+                oldTags = sel.get_text(tagListElement)
+            else: # Tag list not found on page
+                oldTags = ""
             print "List of old tags: "+oldTags
             if tag in oldTags:
                 print "Tag "+tag+" is already associated with this video. Skipping update."
-                sel.click("//button[@type='submit']")
-                time.sleep(3)
             else:
-                if oldTags=="":
+                sel.click("//div[@id='tags']/ul/li[2]/div/div[1]/div/h4/a")
+                time.sleep(5)
+                existingTagList = sel.get_text("id_tags")
+                if existingTagList=="":
                     updatedTags = tag
                 else:
-                    # Checking how the tag list is delimited - by commas (for multi-word tags) or by space
-                    if oldTags.find(',')!=-1:
-                        delimiter = ','
+                    if existingTagList.find(',')!=-1:
+                        updatedTags = existingTagList + ", " + tag
                     else:
-                        delimiter = ' '
-                    updatedTags = oldTags+delimiter+tag
-#                print "Updated tags: "+updatedTags
+                        updatedTags = existingTagList + " " + tag
                 print "Adding new tag..."
                 sel.type("id_tags", updatedTags)
                 sel.click("//button[@type='submit']")
                 time.sleep(5)
-                newTags = sel.get_text("//div[@id='tags']/ul/li[2]/div/div[1]/div/ul")
-                print "List of new tags: "+newTags
-                if delimiter == ',':
-                    oldTagsTrimmed = oldTags.replace(',','')
+                if sel.is_element_present(tagListElement)==False:
+                    mclib.AppendErrorMessage(self,sel,"List of tags for the video not found")
                 else:
-                    oldTagsTrimmed = oldTags
-#                newTagsTrimmed = strip((newTags.replace(tag,'')).replace('  ',' '))
-#                if (newTags.replace(tag,'')).replace('  ',' ')!=oldTagsTrimmed:
-                updatedTagsTrimmed = (' '.join(sorted(updatedTags.split(delimiter)))).replace('\"','')
-                if newTags!=updatedTagsTrimmed:
-                    mclib.AppendErrorMessage(self,sel,"The video TAGS were updated incorrectly.")
-                    print "Expected tags: "+updatedTagsTrimmed
-                    print "- Actual tags: "+newTags
-                    #print (newTags.replace(tag,'')).replace('  ',' ')
-                    #print oldTagsTrimmed
-                else:
-                    print "OK"
+                    newTags = sel.get_text("//div[@id='tags']/ul/li[2]/div/div[1]/div/ul")
+                    print "List of new tags: "+newTags
+                    print "Checking if the tags were updated properly..."
+                    if oldTags!=((newTags.replace(tag,'')).replace('  ',' ')).strip() or newTags.find(tag)==-1:
+                        mclib.AppendErrorMessage(self,sel,"The video TAGS were updated incorrectly.")
+                        print "Expected tags: "+' '.join(sorted(updatedTags.split(' ')))
+                        print "- Actual tags: "+newTags
+#                        print (newTags.replace(tag,'')).replace('  ',' ')
+                    else:
+                        print "OK"
+
         if website!="":
             oldURL=sel.get_text("//div[@id='tags']/ul/li[3]/div/div[1]/div/span/a")
             print "Old website URL: "+oldURL

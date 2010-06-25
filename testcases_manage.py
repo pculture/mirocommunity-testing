@@ -21,7 +21,7 @@
 
 from selenium import selenium
 import unittest, time, re, sys
-import mclib, loginlogout, categories, sources, testvars
+import mclib, loginlogout, categories, sources, queue, testvars
 
 # ----------------------------------------------------------------------
 
@@ -249,7 +249,7 @@ class TestCase_SearchForVideos(unittest.TestCase):
             approveLink = "//div[@id='admin_videolisting_row']/div[1]/div[2]/a[2]/span"
             if sel.is_element_present(approveLink)==True:
                 sel.click(approveLink)
-                time.sleep(5)
+                time.sleep(8)
                 print "OK"
             else:
                 mclib.AppendErrorMessage(self,sel,"Approve link not found for the video")
@@ -259,7 +259,7 @@ class TestCase_SearchForVideos(unittest.TestCase):
             featureLink = "//div[@id='admin_videolisting_row']/div[1]/div[2]/a[1]/span"
             if sel.is_element_present(featureLink)==True:
                 sel.click(featureLink)
-                time.sleep(5)
+                time.sleep(8)
                 print "OK"
             else:
                 mclib.AppendErrorMessage(self,sel,"Feature link not found for the video")
@@ -274,70 +274,18 @@ class TestCase_SearchForVideos(unittest.TestCase):
                 print "OK"
             else:
                 mclib.AppendErrorMessage(self,sel,"Add to Queue link not found for the video")
-            #-------------------
-            #-------------------
-            #-------------------
+
             #Checking the new videos in the lists
-            # Navigate to Bulk Edit page
-            sel.click(testvars.MCUI["AdminBulkEdit"])
+            #Searching for the approved video
+            queue.CheckVideoStatus(self,sel,video1title,"Approved")
+            
+            # Navigate to Manage Sources page to prevent freezing if the script
+            sel.click(testvars.MCUI["AdminManageSources"])
             sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
-            print " "
-            print "Searching for the approved video..."
-            titleTruncated = video1title.split(".")    # Truncation is performed to workaround
-                                                       # the problem with Search edit field,
-                                                       # which does not process periods correctly
-            sel.type("q",titleTruncated[0])    # Item with zero index is the part of the title before the 1st period
-#            sel.type("q",video1title)
-            sel.click("//div[@id='labels']/form[1]/button")
-            sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
-#            titleLink = "//div[@id='labels']/form[2]/table/tbody/tr[1]/td[2]/span"
-#            if sel.is_element_present(titleLink)==False:
-            if sel.is_text_present(video1title)==True:    # found video?
-                print "Found Approved video \""+video1title+"\" in the list of current videos - OK"
-            else:    # not found, try again
-                lastTruncationAttempt = titleTruncated[0].split(" ")
-                sel.type("q",lastTruncationAttempt[0])
-                sel.click("//div[@id='labels']/form[1]/button")
-                sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
-                if sel.is_text_present(video1title)==False:
-                    mclib.AppendErrorMessage(self,sel,"Query did not return the video "+video1title)
-                    print "Also tried searching by: "+titleTruncated[0]
-                    print "Also tried searching by: "+lastTruncationAttempt[0]
-                else:
-#                if sel.get_text(titleLink)==video1title:
-                    print "Found Approved video \""+video1title+"\" in the list of current videos - OK"
-#                else:
-#                    mclib.AppendErrorMessage(self,sel,"Query error: query result does not match the search term")
-#                    print "Searched for: "+video1title
-#                    print "Query result: "+sel.get_text(titleLink)
 
             print " "
-            print "Searching for the featured video..."
-            titleTruncated = video2title.split(".")    # Truncation is performed to workaround
-                                                       # the problem with Search edit field,
-                                                       # which does not process periods correctly
-            sel.type("q",titleTruncated[0])
-#            sel.type("q",video2title)
-            sel.select("filter", "label=Featured Videos")
-            time.sleep(20) #the above filter is VERY slow!
-            sel.click("//div[@id='labels']/form[1]/button")
-            sel.wait_for_page_to_load("200000")
- #           titleLink = "//div[@id='labels']/form[2]/table/tbody/tr[1]/td[2]/span"
- #           if sel.is_element_present(titleLink)==False:
-            if sel.is_text_present(video2title)==True:
-                print "Found Featured video \""+video2title+"\" in the list of current videos - OK"
-            else:
-                lastTruncationAttempt = titleTruncated[0].split(" ")
-                sel.type("q",lastTruncationAttempt[0])
-                sel.click("//div[@id='labels']/form[1]/button")
-                sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
-                if sel.is_text_present(video2title)==False:
-                    mclib.AppendErrorMessage(self,sel,"Query did not return the video "+video2title)
-                    print "Also tried searching by: "+titleTruncated[0]
-                    print "Also tried searching by: "+lastTruncationAttempt[0]
-                else:
-#                if sel.get_text(titleLink)==video1title:
-                    print "Found Featured video \""+video2title+"\" in the list of current videos - OK"
+            #Searching for the featured video
+            queue.CheckVideoStatus(self,sel,video2title,"Featured")
 
             print " "
             print "Searching for the video in the queue..."
@@ -407,64 +355,19 @@ class TestCase_SearchVideoByNonASCIITerm(unittest.TestCase):
                 print "OK"
             else:
                 mclib.AppendErrorMessage(self,sel,"Add to Queue link not found for the video")
-            #-------------------
-            #-------------------
-            #-------------------
-            #Checking the new videos in the lists
-            # Navigate to Bulk Edit page
-            sel.click(testvars.MCUI["AdminBulkEdit"])
-            sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
-            print ""
-            print "Searching for the approved video..."
-            titleTruncated = video1title.split(".")    # Truncation is performed to workaround
-                                                       # the problem with Search edit field,
-                                                       # which does not process periods correctly
-            sel.type("q",titleTruncated[0])
-#            sel.type("q",video1title)
-            sel.click("//div[@id='labels']/form[1]/button")
-            sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
-#            titleLink = "//div[@id='labels']/form[2]/table/tbody/tr[1]/td[2]/span"
-            if sel.is_text_present(video1title)==True:
-                print "Found Approved video \""+video1title+"\" in the list of current videos - OK"
-            else:
-                lastTruncationAttempt = titleTruncated[0].split(" ")
-                sel.type("q",lastTruncationAttempt[0])
-                sel.click("//div[@id='labels']/form[1]/button")
-                sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
-                if sel.is_text_present(video1title)==False:
-                    mclib.AppendErrorMessage(self,sel,"Query did not return the video "+video1title)
-                    print "Also tried searching by: "+titleTruncated[0]
-                    print "Also tried searching by: "+lastTruncationAttempt[0]
-                else:
-#                if sel.get_text(titleLink)==video1title:
-                    print "Found Approved video \""+video1title+"\" in the list of current videos - OK"
 
-            print ""
-            print "Searching for the featured video..."
-            titleTruncated = video2title.split(".")    # Truncation is performed to workaround
-                                                       # the problem with Search edit field,
-                                                       # which does not process periods correctly
-            sel.type("q",titleTruncated[0])
-#            sel.type("q",video2title)
-            sel.select("filter", "label=Featured Videos")
-            time.sleep(20) #the above filter is VERY slow!
-            sel.click("//div[@id='labels']/form[1]/button")
-            sel.wait_for_page_to_load("200000")
-#            titleLink = "//div[@id='labels']/form[2]/table/tbody/tr[1]/td[2]/span"
-            if sel.is_text_present(video2title)==False:
-                print "Found Featured video \""+video2title+"\" in the list of current videos - OK"
-            else:
-                lastTruncationAttempt = titleTruncated[0].split(" ")
-                sel.type("q",lastTruncationAttempt[0])
-                sel.click("//div[@id='labels']/form[1]/button")
-                sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
-                if sel.is_text_present(video2title)==False:
-                    mclib.AppendErrorMessage(self,sel,"Query did not return the video "+video2title)
-                    print "Also tried searching by: "+titleTruncated[0]
-                    print "Also tried searching by: "+lastTruncationAttempt[0]
-                else:
-#                if sel.get_text(titleLink)==video1title:
-                    print "Found Featured video \""+video2title+"\" in the list of current videos - OK"
+            #Checking the new videos in the lists
+            #Searching for the approved video
+            queue.CheckVideoStatus(self,sel,video1title,"Approved")
+            
+            # Navigate to Manage Sources page to prevent freezing if the script
+            sel.click(testvars.MCUI["AdminManageSources"])
+            sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
+
+            print " "
+            #Searching for the featured video
+            queue.CheckVideoStatus(self,sel,video2title,"Featured")
+
             print ""
             print "Searching for the video in the queue..."
             # Looking for the last page in the queue
