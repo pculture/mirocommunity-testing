@@ -23,6 +23,9 @@
 #   * subroutine CheckRequireLoginToSubmitVideo(self,sel,theme) - checks 'Require Users to
 #           Login to Submit a Video' check box and checks that Submit a Video button is
 #           shown only to logged users
+#   * subroutine UncheckRequireLoginToSubmitVideo(self,sel) - unchecks Require Users
+#           to Login to Submit a Video check box
+
 
 
 from selenium import selenium
@@ -206,10 +209,10 @@ def ModifySiteSettings(self,sel,theme):
         print testvars.preE+"Tagline is not present on the Main site"
 
 # Check that the FOOTER on the main site is present, visible and correct
-    if theme == 4:
-        elementFooter="//div[@id='footer']/div[2]/div/span"
-    else:
-        elementFooter="//div[@id='footer']/div[1]/div/span"
+#    if theme == 4:
+    elementFooter="//div[@id='footer']/div[2]/div/span"
+#    else:
+#        elementFooter="//div[@id='footer']/div[1]"
     if sel.is_element_present(elementFooter)==True:
         if sel.is_visible(elementFooter)==True:
             if sel.get_text(elementFooter)!=vFooter:
@@ -686,3 +689,24 @@ def CheckRequireLoginToSubmitVideo(self,sel,theme):
                     sel.key_press("submit_video","\\27")
                     print "OK"
 
+
+
+# =========================================
+# = UNCHECK REQUIRE LOGIN TO SUBMIT VIDEO =
+# =========================================
+ 
+# This subroutine unchecks Require Users to Login to Submit a Video check box
+
+def UncheckRequireLoginToSubmitVideo(self,sel):
+    NavigateToSettingsPage(self,sel)
+    print "Unchecking 'Require Users to Login to Submit a Video' check box..."
+    if sel.is_element_present("id_display_submit_button")==False:
+        mclib.AppendErrorMessage(self,sel,"Display 'Submit a Video' button check box not found")
+    else:
+        if sel.is_element_present("id_submission_requires_login")==False:
+            mclib.AppendErrorMessage(self,sel,"'Require Users to Login to Submit a Video' check box not found")
+        else:
+            sel.check("id_display_submit_button")
+            sel.uncheck("id_submission_requires_login")
+            sel.click("submit_settings")
+            sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
