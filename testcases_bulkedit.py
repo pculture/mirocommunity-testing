@@ -1,16 +1,20 @@
 #=======================================================================
 #
-#                             BULK EDIT TESTS
+#                             COMMENTS TESTS
 #
 #=======================================================================
 #
 # Includes the following test cases:
 #     1. testcase_BulkEdit_EditAndDelete
-#     2. testcase_BulkEdit_FeatureAndUnfeature
+#     2. testcase_BulkEdit_DeleteSingleVideo
 #     3. testcase_BulkEdit_EditSingleVideo
-#     4. testcase_BulkEdit_DeleteSingleVideo
-#     5. testcase_BulkEdit_UnapproveCurrent
-#     6. testcase_BulkEdit_UnapproveFeatured
+#     4. testcase_BulkEdit_UnapproveCurrent
+#     5. testcase_BulkEdit_UnapproveFeatured
+#     6. testcase_BulkEdit_SortByTitle
+#     7. testcase_BulkEdit_SortBySource
+#     8. testcase_BulkEdit_SortByDatePublished
+#     9. testcase_BulkEdit_SortByDateImported
+
 
 from selenium import selenium
 import unittest, time, re, loginlogout, sitesettings, categories, testvars, random
@@ -254,11 +258,55 @@ gFirstVideoOriginalName = "best of judo"
 
 global gSecondVideoOriginalName
 gSecondVideoOriginalName = "legends of judo"
+
 #-----
 
+global gVideoTitleOnBulkEditPagePart1
+gVideoTitleOnBulkEditPagePart1 = "XPath=id('labels')/form[2]/table/tbody/tr["
+
+global gVideoTitleOnBulkEditPagePart2
+gVideoTitleOnBulkEditPagePart2 = "]/td[2]/span"
+
+global gSourceTitleOnBulkEditPagePart1
+gSourceTitleOnBulkEditPagePart1 = "XPath=id('labels')/form[2]/table/tbody/tr["
+
+global gSourceTitleOnBulkEditPagePart2
+gSourceTitleOnBulkEditPagePart2 = "]/td[3]"
+
+global gDatePublishedTitleOnBulkEditPagePart1
+gDatePublishedTitleOnBulkEditPagePart1 = "XPath=id('labels')/form[2]/table/tbody/tr["
+
+global gDatePublishedTitleOnBulkEditPagePart2
+gDatePublishedTitleOnBulkEditPagePart2 = "]/td[5]/span"
+
+global gDateImportedTitleOnBulkEditPagePart1
+gDateImportedTitleOnBulkEditPagePart1 = "XPath=id('labels')/form[2]/table/tbody/tr["
+
+global gDateImportedTitleOnBulkEditPagePart2
+gDateImportedTitleOnBulkEditPagePart2 = "]/td[6]/span"
+
+global gPageLinkPart1
+gPageLinkPart1 = "XPath=id('labels')/form[2]/div[3]/ul/li["
+
+global gPageLinkPart2
+gPageLinkPart2 = "]/a/span"
+
+global gSortByVideoTitleLink
+gSortByVideoTitleLink = "XPath=id('labels')/form[2]/table/thead/tr/th[2]/a"
+
+global gSortBySource
+gSortBySource = "XPath=id('labels')/form[2]/table/thead/tr/th[3]/a"
+
+global gSortByDatePublished
+gSortByDatePublished = "XPath=id('labels')/form[2]/table/thead/tr/th[5]/a"
+
+global gSortByDateImported
+gSortByDateImported = "XPath=id('labels')/form[2]/table/thead/tr/th[6]/a"
+
+#-----
 
 global gSeleniumServerPort
-gSeleniumServerPort = 4444
+gSeleniumServerPort = 4445
 
 global gTimeOut
 gTimeOut = 20
@@ -458,8 +506,6 @@ class testcase_BaseClassForBulkEdit(testcase_BaseTestCase):
         self.SubmitVideo(gVideo1Url)
         print "Submitting the second video..."
         self.SubmitVideo(gVideo2Url)
-        
-            
             
 
 #Tests AUT for edititng and deleting videos by 'Bulk Edit'
@@ -697,12 +743,12 @@ class testcase_BulkEdit_UnapproveCurrent(testcase_BaseClassForBulkEdit):
         sel.click(gReviewQueueOnAdminPage)
         sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
 
-        print "Clearing the queue"
-        sel.click(gClearQueueButtonOnReviewQueuePage)
-        sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
-
-        sel.click(gYesClearQueueButton)
-        sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])        
+        print "Clearing the queue..."
+        if sel.is_element_present(gClearQueueButtonOnReviewQueuePage):
+            sel.click(gClearQueueButtonOnReviewQueuePage)
+            sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
+            sel.click(gYesClearQueueButton)
+            sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])        
 
         print "Opening 'Bulk Edit' page..."        
         sel.click(gBulkEditOnAdminPage)
@@ -761,4 +807,355 @@ class testcase_BulkEdit_UnapproveFeatured(testcase_BulkEdit_UnapproveCurrent):
         sel.click(gToggleAll)
         sel.select(gActionSelector, gFeatureOption)
         sel.click(gApplyButton)
-        sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])            
+        sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
+
+#Tests AUT for sorting videos by 'Video Title' on 'Bulk Edit page'
+class testcase_BulkEdit_SortByTitle(testcase_BaseClassForBulkEdit):
+
+    cFirstPage = True
+    cFirstVideoTitleLower = ""
+    cSecondVideoTitleLower = ""
+    cFirstVideoTitleOridinal = ""
+    cSecondVideoTitleOriginal = ""
+    cPreviousComparison = ""
+    cPageNumber = 0
+
+    cGetElementMethod = None
+    cCompareMethod = None
+    cSortingLink = None
+
+    
+    cMonths = ["jan, ","feb, ","mar, ","apr, ","may, ","jun, ","jul, ","aug, ","sep, ","oct, ","nov, ","dec, "]            
+
+    #function that compares two strings
+    def compareTwoStrings_(self, in_Str1, in_Str2):
+        if in_Str1 > in_Str2:
+            return ">"
+        elif in_Str1 < in_Str2:
+            return "<"
+        else:
+            return "=="
+        
+    #function that compares two Dates, the blank Date is lower that any other that has value
+    def compareTwoDates(self, in_Str1, in_Str2):
+
+        in_Str1 = in_Str1.lower()
+        in_Str2 = in_Str2.lower()        
+
+        if in_Str1 == "":
+            if in_Str2 != "":
+                return "<"
+            else:
+                return "=="
+        elif in_Str2 =="":
+            return ">"
+        
+        lMonth1 = -1
+        lMonth2 = -1
+        lYear1 = -1
+        lYear2 = -1
+        lDay1 = -1
+        lDay2 = -1
+        
+        for i in range(0, len(self.cMonths)):
+            if in_Str1.find(self.cMonths[i]) != -1:
+                in_Str1 = in_Str1.replace(self.cMonths[i], "")
+                lMonth1 = i
+        in_Str1.replace(" ", "")
+        lTempStr = in_Str1.partition(" ")
+        lDay1 = long(lTempStr[0])
+        lYear1 = long(lTempStr[2])
+
+        for i in range(0, len(self.cMonths)):
+            if in_Str2.find(self.cMonths[i]) != -1:
+                in_Str2 = in_Str2.replace(self.cMonths[i], "")
+                lMonth2 = i
+        in_Str2.replace(" ", "")
+        lTempStr = in_Str2.partition(" ")
+        lDay2 = long(lTempStr[0])
+        lYear2 = long(lTempStr[2])        
+
+        lResultStr1 = lYear1*500 + lMonth1*40 + long(lDay1)
+        lResultStr2 = lYear2*500 + lMonth2*40 + long(lDay2)
+
+        if lResultStr1 > lResultStr2:
+            return ">"
+        elif lResultStr1 < lResultStr2:
+            return "<"
+        else:
+            return "=="        
+
+    #returns XPath to a page link with specified number from 'Bulk Edit' page
+    def getPageLink_(self, in_Number):
+        return gPageLinkPart1+str(in_Number)+gPageLinkPart2        
+
+    #returns XPath for a Video's 'Video Title', needed row(video) specified by number
+    def getVideoTitlePath_(self, in_Number):
+        return gVideoTitleOnBulkEditPagePart1+str(in_Number)+gVideoTitleOnBulkEditPagePart2
+
+    #returns XPath for a Video's 'Source', needed row(video) specified by number
+    def getSourceTitlePath_(self, in_Number):
+        return gSourceTitleOnBulkEditPagePart1+str(in_Number)+gSourceTitleOnBulkEditPagePart2
+
+    #returns XPath for a Video's 'Date Published', needed row(video) specified by number
+    def getDatePublishedTitlePath(self, in_Number):
+        return gDatePublishedTitleOnBulkEditPagePart1+str(in_Number)+gDatePublishedTitleOnBulkEditPagePart2
+
+    #returns XPath for a Video's 'Date Imported', needed row(video) specified by number
+    def getDateImportedTitlePath(self, in_Number):
+        return gDateImportedTitleOnBulkEditPagePart1+str(in_Number)+gDateImportedTitleOnBulkEditPagePart2
+
+    #checks if page is sorted, it does not check if it's sorted in ascending or descending order, it just check if it's sorted in any way
+    def checkIfPageIsSorted(self, in_GetElementMethod, in_CompareMethod):
+        sel = self.selenium
+        self.cPageNumber = self.cPageNumber + 1
+        print ""
+        lNoErrorsIndicator = True
+        print ""
+        if self.cFirstPage:
+
+            if sel.is_element_present(in_GetElementMethod(1)):
+                self.cFirstVideoTitleOridinal = sel.get_text(in_GetElementMethod(1))
+                self.cFirstVideoTitleLower = self.cFirstVideoTitleOridinal.lower()
+
+            i = 1            
+            while sel.is_element_present(in_GetElementMethod(i+1)):
+
+                self.cSecondVideoTitleOriginal = sel.get_text(in_GetElementMethod(i+1))
+                self.cSecondVideoTitleLower = self.cSecondVideoTitleOriginal.lower()
+
+                lCurrentComparison = in_CompareMethod(self.cFirstVideoTitleLower, self.cSecondVideoTitleLower)                
+                
+                if (lCurrentComparison != "=="):
+                    if (self.cPreviousComparison != ""):
+                        if (lCurrentComparison != self.cPreviousComparison):
+                            print ""
+                            print "ERROR: Elements #", i, "and #", i+1, "on page #", self.cPageNumber, " are not sorted properly!"
+                            print "Value of element #", i, " is ", self.cFirstVideoTitleOridinal
+                            print "Value of element #", i+1, " is ", self.cSecondVideoTitleOriginal
+                            print "Previous comparison is ", self.cPreviousComparison
+                            print "Current comparison is ", lCurrentComparison
+                            print "Char's listing in lower case of element #", i
+                            print "-----"
+                            lStr_ = ""
+                            for j in range(0, len(self.cFirstVideoTitleLower)):
+                                lStr_ = lStr_ + str(ord(self.cFirstVideoTitleLower[j])) + " ,"
+                            print lStr_
+                            print "-----"
+                            print "Char's listing in lower case of element #", i+1
+                            print "-----"
+                            lStr_ = ""
+                            for j in range(0, len(self.cSecondVideoTitleLower)):
+                                lStr_ = lStr_ + str(ord(self.cSecondVideoTitleLower[j])) + " ,"
+                            print lStr_
+                            print "-----"
+                            lNoErrorsIndicator = False
+                            #self.assertEqual(False, True)
+                            try: self.failUnless(False)
+                            except AssertionError, e: self.verificationErrors = "For ERRORs check logs above )))"
+                            #except AssertionError, e: None
+                    self.cPreviousComparison = lCurrentComparison
+                        
+                i = i+1
+                self.cFirstVideoTitleOridinal = self.cSecondVideoTitleOriginal
+                self.cFirstVideoTitleLower = self.cSecondVideoTitleLower
+                
+            return lNoErrorsIndicator
+        
+        else:
+
+            if sel.is_element_present(in_GetElementMethod(1)):
+                self.cSecondVideoTitleOriginal = sel.get_text(in_GetElementMethod(1))
+                self.cSecondVideoTitleLower = self.cSecondVideoTitleOriginal.lower()            
+
+            lCurrentComparison = in_CompareMethod(self.cFirstVideoTitleLower, self.cSecondVideoTitleLower)
+            if lCurrentComparison != "==":
+                if (self.cPreviousComparison != ""):
+                    if (lCurrentComparison != self.cPreviousComparison):
+                        print ""
+                        print "ERROR: The last element from page #", self.cPageNumber-1, "and the first element from page #", self.cPageNumber, " are not sorted properly!"
+                        print "Value of the last element from page #", self.cPageNumber-1, " is ", self.cFirstVideoTitleOridinal
+                        print "Value of the first element from page #", self.cPageNumber, " is ", self.cSecondVideoTitleOriginal
+                        print "Previous comparison is ", self.cPreviousComparison
+                        print "Current comparison is ", lCurrentComparison
+                        print "Char's listing in lower case of The last element from page #", self.cPageNumber-1
+                        print "-----"
+                        lStr_ = ""
+                        for j in range(0, len(self.cFirstVideoTitleLower)):
+                            lStr_ = lStr_ + str(ord(self.cFirstVideoTitleLower[j])) + " ,"
+                        print lStr_
+                        print "-----"
+                        print "Char's listing in lower case of the first element from page #", self.cPageNumber
+                        print "-----"
+                        lStr_ = ""
+                        for j in range(0, len(self.cSecondVideoTitleLower)):
+                            lStr_ = lStr_ + str(ord(self.cSecondVideoTitleLower[j])) + " ,"
+                        print lStr_
+                        print "-----"
+                        lNoErrorsIndicator = False
+                        #self.assertEqual(False, True)
+                        try: self.failUnless(False)
+                        except AssertionError, e: self.verificationErrors = "For ERRORs check logs above )))"
+                self.cPreviousComparison = lCurrentComparison
+
+            self.cFirstVideoTitleOridinal = self.cSecondVideoTitleOriginal
+            self.cFirstVideoTitleLower = self.cSecondVideoTitleLower
+                    
+            i = 1            
+            while sel.is_element_present(in_GetElementMethod(i+1)):
+
+                self.cSecondVideoTitleOriginal = sel.get_text(in_GetElementMethod(i+1))
+                self.cSecondVideoTitleLower = self.cSecondVideoTitleOriginal.lower()
+
+                lCurrentComparison = in_CompareMethod(self.cFirstVideoTitleLower, self.cSecondVideoTitleLower)                
+                
+                if (lCurrentComparison != "=="):
+                    if (self.cPreviousComparison != ""):
+                        if (lCurrentComparison != self.cPreviousComparison):
+                            print ""
+                            print "ERROR: Elements #", i, "and #", i+1, "on page #", self.cPageNumber, " are not sorted properly!"
+                            print "Value of element #", i, " is ", self.cFirstVideoTitleOridinal
+                            print "Value of element #", i+1, " is ", self.cSecondVideoTitleOriginal
+                            print "Previous comparison is ", self.cPreviousComparison
+                            print "Current comparison is ", lCurrentComparison
+                            print "Char's listing in lower case of element #", i
+                            print "-----"
+                            lStr_ = ""
+                            for j in range(0, len(self.cFirstVideoTitleLower)):
+                                lStr_ = lStr_ + str(ord(self.cFirstVideoTitleLower[j])) + " ,"
+                            print lStr_
+                            print "-----"
+                            print "Char's listing in lower case of element #", i+1
+                            print "-----"
+                            lStr_ = ""
+                            for j in range(0, len(self.cSecondVideoTitleLower)):
+                                lStr_ = lStr_ + str(ord(self.cSecondVideoTitleLower[j])) + " ,"
+                            print lStr_
+                            print "-----"
+                            lNoErrorsIndicator = False
+                            #self.assertEqual(False, True)
+                            try: self.failUnless(False)
+                            except AssertionError, e: self.verificationErrors = "For ERRORs check logs above )))"
+                            #except AssertionError, e: None
+                    self.cPreviousComparison = lCurrentComparison
+                        
+                i = i+1
+                self.cFirstVideoTitleOridinal = self.cSecondVideoTitleOriginal
+                self.cFirstVideoTitleLower = self.cSecondVideoTitleLower
+                
+            return lNoErrorsIndicator
+
+    #should be called after one of the links to sort videos has been clicked
+    def zeroVariables(self):
+        self.cFirstPage = True
+        self.cFirstVideoTitleLower = ""
+        self.cSecondVideoTitleLower = ""
+        self.cFirstVideoTitleOridinal = ""
+        self.cSecondVideoTitleOriginal = ""
+        self.cPreviousComparison = ""
+        self.cPageNumber = 0  
+
+    #this funcion has to be redefined in inherited classes, it defines methods to be used during checking of sorting results
+    def initialize(self):
+        print ""
+        print "Starting 'testcase_BulkEdit_SortByTitle' test case..."
+        self.cGetElementMethod = self.getVideoTitlePath_
+        self.cCompareMethod = self.compareTwoStrings_
+        self.cSortingLink = gSortByVideoTitleLink
+        
+
+    #code of the test case
+    def test_case(self):
+        
+        self.initialize()
+        
+        sel = self.selenium
+        print "Loging in..."
+        LogIn(sel, testvars.MCTestVariables["AdminLogin"], testvars.MCTestVariables["AdminPassword"])
+        WaitUntilElementOnTheScreen(sel, gViewAdmin, gTimeOut)
+        print "Cliking 'View Admin' link..."
+        sel.click(gViewAdmin)
+        sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
+        print "Going on 'Bulk Edit' page..."
+        sel.click(gBulkEditOnAdminPage)
+        sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
+
+        #-------------------------------------------------------------------------------------------------------------------------------
+        print "Sorting Videos by one of the attributes..."
+        sel.click(self.cSortingLink)
+        sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
+
+        print "Checking if the first page is sorted..."        
+        self.checkIfPageIsSorted(self.cGetElementMethod, self.cCompareMethod)
+        self.cFirstPage = False
+        i = 2
+        while sel.is_element_present(self.getPageLink_(i)):
+            print "Checking if the page #", i, " is sorted..."
+            sel.click(self.getPageLink_(i))
+            sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
+            self.checkIfPageIsSorted(self.cGetElementMethod, self.cCompareMethod)
+            i = i + 1
+            
+        #-------------------------------------------------------------------------------------------------------------------------------
+
+        print "Set start values to variables..."
+        self.zeroVariables()          
+
+        print "Checking if there is a first page..."
+        if sel.is_element_present(self.getPageLink_(1)):
+            print "Going back to the first page..."
+            sel.click(self.getPageLink_(1))
+            sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
+
+        print "Sorting Videos by one of the attributes..."
+
+        sel.click(self.cSortingLink)            
+        sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
+
+        print "Checking if the first page is sorted..."        
+        self.checkIfPageIsSorted(self.cGetElementMethod, self.cCompareMethod)
+        self.cFirstPage = False
+        i = 2
+        while sel.is_element_present(self.getPageLink_(i)):
+            print "Checking if the page #", i, " is sorted..."
+            sel.click(self.getPageLink_(i))
+            sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
+            self.checkIfPageIsSorted(self.cGetElementMethod, self.cCompareMethod)
+            i = i + 1
+
+        print "Algorithm, that is used to check if page is sorted, is based on checking if previous pair of elements has the same results as current pair,\n\
+              it does not know which way page is supposed to be sorted. Thus, single error on the page will result into two error reports."
+
+#Tests AUT for sorting videos by 'Source' on 'Bulk Edit page'
+class testcase_BulkEdit_SortBySource(testcase_BulkEdit_SortByTitle):
+
+    def initialize(self):
+        
+        print ""
+        print "Starting 'testcase_BulkEdit_SortBySource' test case..."
+        self.cGetElementMethod = self.getSourceTitlePath_
+        self.cCompareMethod = self.compareTwoStrings_
+        self.cSortingLink = gSortBySource
+
+#Tests AUT for sorting videos by 'Date Published' on 'Bulk Edit page'
+class testcase_BulkEdit_SortByDatePublished(testcase_BulkEdit_SortByTitle):
+
+    def initialize(self):
+        
+        print ""
+        print "Starting 'testcase_BulkEdit_SortByDatePublished' test case..."
+        self.cGetElementMethod = self.getDatePublishedTitlePath
+        self.cCompareMethod = self.compareTwoDates
+        self.cSortingLink = gSortByDatePublished
+
+#Tests AUT for sorting videos by 'Date Imported' on 'Bulk Edit page'
+class testcase_BulkEdit_SortByDateImported(testcase_BulkEdit_SortByTitle):
+
+    def initialize(self):
+        
+        print ""
+        print "Starting 'testcase_BulkEdit_SortByDateImported' test case..."
+        self.cGetElementMethod = self.getDateImportedTitlePath
+        self.cCompareMethod = self.compareTwoDates
+        self.cSortingLink = gSortByDateImported
+    
