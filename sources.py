@@ -240,8 +240,8 @@ def SearchForVideos(self,sel,searchterm,sortby):
 # This subroutine checks the check box for the desired category on the source feed submission page
 
 def AttributeCategoryToSource(self,sel,category):
-    if sel.is_element_present("//div[@id='content']/form/div[2]/ul/li[1]/ul")==True:
-        catCaption = "//div[@id='content']/form/div[2]/ul/li[1]/ul/li[1]/label/span"
+    if sel.is_element_present("//div[@id='content']/form/div[3]/ul/li[1]/ul")==True:
+        catCaption = "//div[@id='content']/form/div[3]/ul/li[1]/ul/li[1]/label/span"
         no=1
         catBox=""
         while sel.is_element_present(catCaption)==True:
@@ -250,7 +250,7 @@ def AttributeCategoryToSource(self,sel,category):
                 sel.check(catBox)
                 break
             no = no+1
-            catCaption = "//div[@id='content']/form/div[2]/ul/li[1]/ul/li["+str(no)+"]/label/span"
+            catCaption = "//div[@id='content']/form/div[3]/ul/li[1]/ul/li["+str(no)+"]/label/span"
         if catBox=="":
             mclib.AppendErrorMessage(self,sel,"Category not found: "+category)
     else:
@@ -265,8 +265,8 @@ def AttributeCategoryToSource(self,sel,category):
 # This subroutine checks the check box for the desired user on the source feed submission page
 
 def AttributeUserToSource(self,sel,username):
-    if sel.is_element_present("//div[@id='content']/form/div[2]/ul/li[2]/ul")==True:
-        userCaption = "//div[@id='content']/form/div[2]/ul/li[2]/ul/li[1]/label/span"
+    if sel.is_element_present("//div[@id='content']/form/div[3]/ul/li[2]/ul")==True:
+        userCaption = "//div[@id='content']/form/div[3]/ul/li[2]/ul/li[1]/label/span"
         no=1
         userBox=""
         while sel.is_element_present(userCaption)==True:
@@ -275,7 +275,7 @@ def AttributeUserToSource(self,sel,username):
                 sel.check(userBox)
                 break
             no = no+1
-            userCaption = "//div[@id='content']/form/div[2]/ul/li[2]/ul/li["+str(no)+"]/label/span"
+            userCaption = "//div[@id='content']/form/div[3]/ul/li[2]/ul/li["+str(no)+"]/label/span"
         if userBox=="":
             mclib.AppendErrorMessage(self,sel,"User not found: "+username)
     else:
@@ -356,14 +356,14 @@ def AddSource(self,sel,sourceURL,autoApprove,category,user):
                 mclib.AppendErrorMessage(self,sel,"Review Feed Before Adding page not found at step 2")
             else:
                 # Get the title of the feed
-                feedName = "//div[@id='content']/form/div[1]/h3"
+                feedName = "//div[@id='content']/form/div[2]/h3"
                 if sel.is_element_present(feedName)==True:
                     sourceName = sel.get_text(feedName)
                     print "Preparing to import feed: "+sourceName
                 else:
                     mclib.AppendErrorMessage(self,sel,"Feed name is not displayed at Review Feed page")
                 # Get the estimated number of videos
-                print "Pre-import estimate: "+sel.get_text("//div[@id='content']/form/div[1]/div/span")
+                print "Pre-import estimate: "+sel.get_text("//div[@id='content']/form/div[2]/div/span")
                 # Set Approve All, if appropriate
                 if autoApprove==1:
                     if sel.is_element_present("id_auto_approve_0")==True:
@@ -934,7 +934,8 @@ def SortSources(self,sel,parameter,order):
                 if order=="Asc":
                     link=sel.get_attribute(header+"@href")
 #                    print link
-                    expectedLink="?sort=name__lower"
+#                    expectedLink="?sort=name__lower"
+                    expectedLink=""
                     if link.find(expectedLink)==-1:
                         mclib.AppendErrorMessage(self,sel,"Expected link for sorting by NAME ASCENDING not found")
                         print "Expected link: "+expectedLink
