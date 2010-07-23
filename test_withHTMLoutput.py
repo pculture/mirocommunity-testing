@@ -56,7 +56,7 @@ class Test_HTMLTestRunner(unittest.TestCase):
             unittest.defaultTestLoader.loadTestsFromTestCase(testcases_categories.TestCase_AddCategories),
             unittest.defaultTestLoader.loadTestsFromTestCase(testcases_categories.TestCase_AddSubCategories),
             unittest.defaultTestLoader.loadTestsFromTestCase(testcases_categories.TestCase_AddNonASCIICategories),
-            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_categories.TestCase_AddDuplicateCategory),
+#            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_categories.TestCase_AddDuplicateCategory),
             unittest.defaultTestLoader.loadTestsFromTestCase(testcases_categories.TestCase_EditCategory),
             unittest.defaultTestLoader.loadTestsFromTestCase(testcases_categories.TestCase_BulkDeleteCategories),
 #-MANAGE-SOURCES------------------------------------------------------------------------------------------
