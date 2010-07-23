@@ -147,7 +147,7 @@ def AddCategory(self,sel,cat,slug,description,sub,parent):
         buttonAddCategory = "//div[@id='content']/a/span"
         if sel.is_element_present(buttonAddCategory)==True:
             sel.click(buttonAddCategory)
-            time.sleep(2)
+            time.sleep(3)
             if sel.is_visible("//div[@id='label_sidebar']")==False:
                 self.verificationErrors.append("Add category pop-up does not display")
                 print testvars.preE+"Add category pop-up does not display"
@@ -472,4 +472,4 @@ def RestoreAllCategoriesFromBackup(self,sel,categoriesList):
         else:
             pass # Ignoring all categories at level 4 and below
                 
-    
+        
