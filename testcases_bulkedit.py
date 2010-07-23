@@ -461,24 +461,24 @@ class testcase_BaseClassForBulkEdit(testcase_BaseTestCase):
         #XPath=id('main')/div[1]/div/div/div[1]/h2[contains(.,'BulkEditTestTitleJudo')]
 
         if (not sel.is_element_present(gTitlePathOnViewVideoPage + gEditTitle + "')]") ):
-            print "ERROR: Title was not fount or it is incorrect"
+            print "ERROR: Title was not found or it is incorrect"
             self.failUnless(False)
 
         if (not sel.is_element_present(gUserPathOnViewVideoPage + gBulkEditUserName + "')]") ):
-            print "ERROR: User's Name was not fount or it is incorrect"
+            print "ERROR: User's Name was not found or it is incorrect"
             self.failUnless(False)
 
         if (not sel.is_element_present(gDescriptionPathOnViewVideoPage + gEditDescription + "')]") ):
-            print "ERROR: Description was not fount or it is incorrect"
+            print "ERROR: Description was not found or it is incorrect"
             self.failUnless(False)
 
         if (not sel.is_element_present(gCategoryPathOnViewVideoPage + gCategoryName + "')]") ):
-            print "ERROR: Category was not fount or it is incorrect"
+            print "ERROR: Category was not found or it is incorrect"
             self.failUnless(False)
 
         if in_CheckTags:
             if (not sel.is_element_present(gTagsPathOnViewVideoPage + gEditTag + "')]") ):
-                print "ERROR: Tag was not fount or it is incorrect"
+                print "ERROR: Tag was not found or it is incorrect"
                 self.failUnless(False)
         
         return 1
