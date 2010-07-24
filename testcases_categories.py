@@ -15,7 +15,7 @@
 #     8. TestCase_RestoreAllCategories
 
 from selenium import selenium
-import unittest, time, re, loginlogout, sitesettings, categories, testvars
+import unittest, time, re, mclib, loginlogout, sitesettings, categories, testvars
 import sys
 
 # ----------------------------------------------------------------------
