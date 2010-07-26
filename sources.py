@@ -78,7 +78,7 @@ def NavigateToManageSources(self,sel):
 
 def SourceLocation(self,sel,source):
     page = 1 # page number
-    tempsource = ""
+    tempSource = ""
     try:
         sel.open(testvars.MCTestVariables["ManageSourcesPage"]+"/?page="+str(page))
         sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
