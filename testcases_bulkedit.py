@@ -306,7 +306,7 @@ gSortByDateImported = "XPath=id('labels')/form[2]/table/thead/tr/th[6]/a"
 #-----
 
 global gSeleniumServerPort
-gSeleniumServerPort = 4445
+gSeleniumServerPort = testvars.MCTestVariables["Port"]
 
 global gTimeOut
 gTimeOut = 20
@@ -420,8 +420,10 @@ class testcase_BaseClassForBulkEdit(testcase_BaseTestCase):
 
         time.sleep(2)
 
+        sel.type(gCategoryNameEditField, "")
         sel.type(gCategoryNameEditField, gCategoryName)
 
+        sel.type(gCategorySlugEditField, "")
         sel.type(gCategorySlugEditField, gCategoryName)
         sel.click(gAddCategoryButton)
 
@@ -536,9 +538,13 @@ class testcase_BulkEdit_EditAndDelete(testcase_BaseClassForBulkEdit):
 
         print "Editing selected videos..."
         WaitUntilElementOnTheScreen(sel, gEditCategoryXPath, gTimeOut)
+        sel.type(gEditPageTitleEditField, "")
         sel.type(gEditPageTitleEditField, gEditTitle)
+        sel.type(gEditPageDateEditField, "")
         sel.type(gEditPageDateEditField, gEditDate)
+        sel.type(gEditPageDescriptionEditField, "")
         sel.type(gEditPageDescriptionEditField, gEditDescription)
+        sel.type(gEditPageTagsEditField, "")
         sel.type(gEditPageTagsEditField, gEditTag)
 
         sel.check(gEditCategoryXPath)
