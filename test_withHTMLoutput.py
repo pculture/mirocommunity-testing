@@ -7,7 +7,7 @@ import sys
 import HTMLTestRunner
 # import MC Test Suite modules
 import loginlogout, sitesettings, testvars
-import testcases_users, testcases_customize, testcases_categories, testcases_manage, testcases_bulkedit, testcases_queue, testcases_comments
+import testcases_users, testcases_customize, testcases_categories, testcases_manage, testcases_bulkedit, testcases_queue, testcases_comments, testcases_submit
 
 # ------------------------------------------------------------------------
 # This is the main test 
@@ -41,7 +41,7 @@ class Test_HTMLTestRunner(unittest.TestCase):
             unittest.defaultTestLoader.loadTestsFromTestCase(testcases_users.TestCase_UsernameDoesntAcceptMax1Chars),
             unittest.defaultTestLoader.loadTestsFromTestCase(testcases_users.TestCase_NewUserUsernameMaxMax2MinChars),
             unittest.defaultTestLoader.loadTestsFromTestCase(testcases_users.TestCase_EditUserProfile),
-#            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_users.TestCase_ViewProfile),
+            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_users.TestCase_ViewProfile),
             unittest.defaultTestLoader.loadTestsFromTestCase(testcases_users.TestCase_ViewUser),
 #-SITE-SETTINGS-----------------------------------------------------------------------------------------------
             unittest.defaultTestLoader.loadTestsFromTestCase(testcases_customize.TestCase_ChangeSiteSettings),
@@ -88,6 +88,17 @@ class Test_HTMLTestRunner(unittest.TestCase):
             unittest.defaultTestLoader.loadTestsFromTestCase(testcases_bulkedit.testcase_BulkEdit_DeleteSingleVideo),
             unittest.defaultTestLoader.loadTestsFromTestCase(testcases_bulkedit.testcase_BulkEdit_UnapproveCurrent),
             unittest.defaultTestLoader.loadTestsFromTestCase(testcases_bulkedit.testcase_BulkEdit_UnapproveFeatured),
+            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_bulkedit.testcase_BulkEdit_SortByTitle),
+            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_bulkedit.testcase_BulkEdit_SortBySource),
+            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_bulkedit.testcase_BulkEdit_SortByDatePublished),
+            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_bulkedit.testcase_BulkEdit_SortByDateImported),
+#-SUBMIT-VIDEO---------------------------------------------------
+            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_submit.TestCase_SubmitVideoAsAdmin),
+            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_submit.TestCase_SubmitVideoAsLoggedUser),
+            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_submit.TestCase_SubmitVideoAsUnloggedUser),
+            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_submit.TestCase_SubmitVideoFromAdminPage),
+            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_submit.TestCase_SubmitDuplicateVideo),
+            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_submit.TestCase_SubmitVideoWithEmbedCode),
 #-RESTORE-CATEGORIES---------------------------------------------
             unittest.defaultTestLoader.loadTestsFromTestCase(testcases_categories.TestCase_RestoreAllCategories),
 #-COMMENTS-------------------------------------------------------

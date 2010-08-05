@@ -41,6 +41,11 @@
 #   * function FindVideoInQueue(self,sel,title) - returns page number and video number
 #                for a video in the premoderation queue
 #                If not found, the function returns [0,0]
+#   * subroutine RejectVideoFromQueue(self,sel,title) - checks if the video being
+#                submitted is in the premoderation queue ("Unapproved") 
+#                If yes, rejects it
+#                <title> should be in Unicode format
+#                Created for extensive use in Submit Video test cases
 
 from selenium import selenium
 
@@ -134,7 +139,6 @@ def ProcessVideo(self,sel,page,number,action):
     featureLink = baseLink+"]/div[2]/a[1]/span"
     approveLink = baseLink+"]/div[2]/a[2]/span"
     rejectLink = baseLink+"]/div[2]/a[3]/span"
-    videoTitle = ""
     # Memorize the title of the chosen video
     if sel.is_element_present(titleLink)==True:
         videoTitle = sel.get_text(titleLink)
@@ -153,10 +157,7 @@ def ProcessVideo(self,sel,page,number,action):
     else:
         actionDesc = action[:(len(action)-1)]   
         mclib.AppendErrorMessage(self,sel,actionDesc+" link not found for the video")
-    if videoTitle!="":
-        print CheckVideoStatus(self,sel,videoTitle,action)
-    else:
-        mclib.AppendErrorMessage(self,sel,"Could not retrieve the video title while processing the video")
+    print CheckVideoStatus(self,sel,videoTitle,action)
 
 
 
@@ -257,8 +258,7 @@ def RejectVideoPage(self,sel,page):
     print "Found the following videos on the queue page "+page+":"
     print videoList
     # Reject page
-#    rejectButton = "//div[@id='content']/a[2]/span"
-    rejectButton = "css=.reject_button"
+    rejectButton = "//div[@id='content']/a[2]/span"
     sel.click(rejectButton)
     sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
     print "Rejected page"
@@ -345,8 +345,7 @@ def ClearQueue(self,sel):
     print "Found the following videos on the first and last pages of the queue:"
     print videoList
     # Clear queue
-    clearButton = "//div[@id='content']/a[3]"
-#    clearButton = "css = .plain_button"
+    clearButton = "//div[@id='content']/a[3]/span"
     sel.click(clearButton)
     sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
     sel.click("confirm")
@@ -744,4 +743,26 @@ def FindVideoInQueue(self,sel,title):
         titleElement = "//div[@id='admin_videolisting_row']/div["+str(row)+"]/div[1]/h3/a"
         firstVideoOnPreviousPage = firstVideoOnCurrentPage
         firstVideoOnCurrentPage = sel.get_text(titleElement)
-    return [resPage,resRow]        
+    return [resPage,resRow]
+
+
+
+# =======================================
+# =       REJECT VIDEO FROM QUEUE       =
+# =======================================
+
+# This subroutine checks if the video being submitted is in the premoderation queue ("Unapproved") 
+# If yes, rejects it
+# <title> should be in Unicode format
+
+def RejectVideoFromQueue(self,sel,title):
+    videoLocation = FindVideoInQueue(self,sel,title)
+    if videoLocation!=[0,0]:
+        print "Found video '"+title+"' in the review queue. Preparing to reject it..."
+        page = str(videoLocation[0])
+        number = videoLocation[1]
+        action = "Rejected"
+        ProcessVideo(self,sel,page,number,action)
+    else:
+        print "Could not find video '"+title+"' in the premoderation queue"
+

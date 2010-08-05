@@ -472,4 +472,4 @@ def RestoreAllCategoriesFromBackup(self,sel,categoriesList):
         else:
             pass # Ignoring all categories at level 4 and below
                 
-        
+    

@@ -299,6 +299,7 @@ def DeleteSource(self,sel,source):
         else:
             row = "["+str(rowNo)+"]"
         print "Deleting source "+source+"..."
+        sel.set_timeout("150000")
         sel.open(testvars.MCTestVariables["ManageSourcesPage"]+"/?page="+str(page))
         sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
         deleteLink="//div[@id='labels']/form[2]/table/tbody/tr"+str(row)+"/td[2]/div/a[2]"

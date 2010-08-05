@@ -1,5 +1,5 @@
 # Module SITESETTINGS.PY
-# includes:
+# includes: 
 #   * subroutine ChangeTheme(self,sel,theme) - sets the desired theme
 #   * function ThemeScanner(self,sel,theme) - detects the currently set theme
 #   * subroutine ModifySiteSettings(self,sel,theme) - changes the site settings
@@ -60,7 +60,7 @@ def ChangeTheme(self,sel,theme):
     elif theme==4:
         sel.open(testvars.MCTestVariables["BlueThemeLink"])
     else:
-        self.verificationErrors.append("Incorrect theme passed to ChangeTheme subroutine. theme="+theme)
+        self.verificationErrors.append("Incorrect theme passed to ChangeTheme subroutine. theme="+str(theme))
 
 
 # =======================================
