@@ -17,7 +17,7 @@
 
 from selenium import selenium
 import unittest, time, re, sys
-import mclib, loginlogout, queue, testvars
+import mclib, loginlogout, queue, sitesettings, testvars
 
 # ----------------------------------------------------------------------
 
@@ -152,7 +152,11 @@ class TestCase_RejectPage(unittest.TestCase):
                 sel.click(testvars.MCUI["AdminReviewQueue"])
                 sel.click(testvars.MCTestVariables["ViewMainSiteLink"])
                 sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
-                sel.click(testvars.MCTestVariables["ViewAdmin"])
+                theme = sitesettings.ThemeScanner(self,sel)
+                if theme==4:
+                    sel.click(testvars.MCTestVariables["ViewAdminBlueTheme"])
+                else:
+                    sel.click(testvars.MCTestVariables["ViewAdmin"])
                 sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
             else:
                 print "None__________None"
@@ -201,7 +205,11 @@ class TestCase_ClearQueue(unittest.TestCase):
                 sel.click(testvars.MCUI["AdminReviewQueue"])
                 sel.click(testvars.MCTestVariables["ViewMainSiteLink"])
                 sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
-                sel.click(testvars.MCTestVariables["ViewAdmin"])
+                theme = sitesettings.ThemeScanner(self,sel)
+                if theme==4:
+                    sel.click(testvars.MCTestVariables["ViewAdminBlueTheme"])
+                else:
+                    sel.click(testvars.MCTestVariables["ViewAdmin"])
                 sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
             else:
                 print "None__________None"
