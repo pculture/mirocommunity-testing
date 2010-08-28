@@ -179,6 +179,9 @@ def ApproveVideoPage(self,sel,page):
         sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
     except: pass
     time.sleep(5)
+    # Check if there are any videos in the queue for the test to run
+    if sel.is_element_present("//div[@id='admin_videolisting_row']/div[1]")==False:
+        self.fail("No videos found on the queue page. Not enough test data to run the test.")
     # Memorize the list of video titles on the page
     print "Memorizing the list of videos found on the page..."
     videoList = ['']
@@ -194,24 +197,26 @@ def ApproveVideoPage(self,sel,page):
     print videoList
     # Approve page
     approveButton = "//div[@id='content']/a[1]/span"
-#    approveButton = "css=.approve_button"
-    sel.click(approveButton)
-    sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
-    print "Approved page"
-    # Check that all the videos were approved
-    print "Checking that all the videos were successfully approved..."
-    sel.open("/listing/new/")
-    sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
-    for item in videoList:
-        if item!="None":
-            itemLink = "//a[text()='"+item+"']"
-            if sel.is_element_present("link="+item)==True:
-                videoLink = sel.get_attribute("link="+item+"@href")
-                print "Found video *"+item+"* at URL: "+videoLink
+    if sel.is_element_present(approveButton)==False: # If approve button not found
+        mclib.AppendErrorMessage(self,sel,"'Approve All the Videos on This Page' button not found")
+    else:
+        sel.click(approveButton)
+        sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
+        print "Approved page"
+        # Check that all the videos were approved
+        print "Checking that all the videos were successfully approved..."
+        sel.open("/listing/new/")
+        sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
+        for item in videoList:
+            if item!="None":
+                itemLink = "//a[text()='"+item+"']"
+                if sel.is_element_present("link="+item)==True:
+                    videoLink = sel.get_attribute("link="+item+"@href")
+                    print "Found video *"+item+"* at URL: "+videoLink
+                else:
+                    mclib.AppendErrorMessage(self,sel,"Could not find video "+item+" in the list of new videos.")
             else:
-                mclib.AppendErrorMessage(self,sel,"Could not find video "+item+" in the list of new videos.")
-        else:
-            print "N/A"
+                print "N/A"
 # THIS CRASHES FIREFOX AFTER 6 OR 7 (OUT OF 10) ITERATIONS
 #    for item in videoList:
 #        if item!="None":
@@ -244,6 +249,9 @@ def RejectVideoPage(self,sel,page):
         sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
     except: pass
     time.sleep(5)
+    # Check if there are any videos in the queue for the test to run
+    if sel.is_element_present("//div[@id='admin_videolisting_row']/div[1]")==False:
+        self.fail("No videos found on the queue page. Not enough test data to run the test.")
     # Memorize the list of video titles on the page
     print "Memorizing the list of videos found on the page..."
     videoList = ['']
@@ -259,10 +267,13 @@ def RejectVideoPage(self,sel,page):
     print videoList
     # Reject page
     rejectButton = "//div[@id='content']/a[2]/span"
-    sel.click(rejectButton)
-    sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
-    print "Rejected page"
-    return videoList
+    if sel.is_element_present(rejectButton)==False: # If reject button not found
+        mclib.AppendErrorMessage(self,sel,"'Reject All the Videos on This Page' button not found")
+    else:
+        sel.click(rejectButton)
+        sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
+        print "Rejected page"
+        return videoList
 
     # Check that all the videos were rejected
 #    print "Checking that all the videos were successfully rejected..."
@@ -327,6 +338,9 @@ def ClearQueue(self,sel):
             videoList.append(newTitle)
         else:
             pass
+    # Check if there are any videos in the queue for the test to run
+    if sel.is_element_present("//div[@id='admin_videolisting_row']/div[1]")==False:
+        self.fail("No videos found on the queue page. Not enough test data to run the test.")
     print "Memorizing the list of videos found on the last page..."
     pageLink = testvars.MCTestVariables["ReviewQueuePage"]+"/?page=1000000"
     try:
@@ -346,22 +360,25 @@ def ClearQueue(self,sel):
     print videoList
     # Clear queue
     clearButton = "//div[@id='content']/a[3]/span"
-    sel.click(clearButton)
-    sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
-    sel.click("confirm")
-    sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
-    print "Cleared queue"
-    # Checking that the queue contains no videos for moderation
-    print "Checking that the queue is cleared..."
-    titleLink = "//div[@id='admin_videolisting_row']/div[1]/div[1]/h3/a"
-    if sel.is_element_present(titleLink)==True:
-        mclib.AppendErrorMessage(self,sel,"Found a video in the queue")
+    if sel.is_element_present(clearButton)==False: # If clear button not found
+        mclib.AppendErrorMessage(self,sel,"'Clear Queue' button not found")
     else:
-        if sel.is_text_present("You have no videos that need reviewing")==False:
-            mclib.AppendErrorMessage(self,sel,"Expected text message 'You have no videos that need reviewing' not found")
+        sel.click(clearButton)
+        sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
+        sel.click("confirm")
+        sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
+        print "Cleared queue" 
+        # Checking that the queue contains no videos for moderation
+        print "Checking that the queue is cleared..."
+        titleLink = "//div[@id='admin_videolisting_row']/div[1]/div[1]/h3/a"
+        if sel.is_element_present(titleLink)==True:
+            mclib.AppendErrorMessage(self,sel,"Found a video in the queue")
         else:
-            print "OK"
-    return videoList
+            if sel.is_text_present("You have no videos that need reviewing")==False:
+                mclib.AppendErrorMessage(self,sel,"Expected text message 'You have no videos that need reviewing' not found")
+            else:
+                print "OK"
+        return videoList
     
 
 
@@ -403,7 +420,7 @@ def EditVideoInQueue(self,sel,page,number,title,user,posted,thumbnail,descriptio
     titleLink = "//div[@id='admin_videolisting_row']/div["+str(number)+"]/div[1]/h3/a"
 #    print titleLink
     if sel.is_element_present(titleLink)==False:
-        mclib.AppendErrorMessage(self,sel,"Link to selected video not found")
+        self.fail("Link to selected video not found. Not enough data to run the test")
     else:
         oldTitle = ""
         oldTitle = sel.get_text(titleLink)
