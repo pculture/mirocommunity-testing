@@ -39,12 +39,15 @@ class TestCase_AddSourceFeed(unittest.TestCase):
         sel = self.selenium
         loginlogout.LogInAsAdmin(self,sel)
         # Check if the source exists. If yes, delete it
-        source = "Al Jazeera Arts World - Video"
+        # source = "Al Jazeera Arts World - Video"
+        # sourceURL = "http://feeds2.feedburner.com/video/artsworld"
+        source = "Alaska HDTV | Discover the Great Land"
+        sourceURL = "http://feeds.feedburner.com/alaskapodshow"
         if sources.SourceLocation(self,sel,source)!=[0,0]:
             sources.DeleteSource(self,sel,source)
         # Add the source with the specified URL and Approve All parameter set to true
-        # Associate it with "a-feminist-view" category and "Selene Test-Admin" user
-        sources.AddSource(self,sel,"http://feeds2.feedburner.com/video/artsworld",1,"art","Selene Test-Admin")
+        # Associate it with a category and "Selene Test-Admin" user
+        sources.AddSource(self,sel,sourceURL,1,testvars.newCategories[3],"Selene Test-Admin")
 
 # Close the browser, log errors, perform cleanup    
     def tearDown(self):
@@ -65,7 +68,9 @@ class TestCase_AddDuplicateFeed(unittest.TestCase):
     def test_AddDuplicateFeed(self):
         sel = self.selenium
         loginlogout.LogInAsAdmin(self,sel)
-        sources.AddDuplicateSource(self,sel,"http://feeds2.feedburner.com/video/artsworld")
+        #sourceURL = "http://feeds2.feedburner.com/video/artsworld"
+        sourceURL = "http://feeds.feedburner.com/alaskapodshow"
+        sources.AddDuplicateSource(self,sel,sourceURL)
 
 # Close the browser, log errors, perform cleanup    
     def tearDown(self):
@@ -136,11 +141,13 @@ class TestCase_EditSource(unittest.TestCase):
     def test_EditSource(self):
         sel = self.selenium
         loginlogout.LogInAsAdmin(self,sel)
-        oldSourceName = "Al Jazeera Arts World - Video"
+        #oldSourceName = "Al Jazeera Arts World - Video"
+        oldSourceName = "Alaska HDTV | Discover the Great Land"
+        oldSourceURL = "http://feeds.feedburner.com/alaskapodshow"
         # Does source to be edited exist? If not, add it
         if sources.SourceLocation(self,sel,oldSourceName)==[0,0]:
             print oldSourceName+" feed not found - adding it..."
-            sources.AddSource(self,sel,"http://feeds2.feedburner.com/video/artsworld",0,"","")
+            sources.AddSource(self,sel,oldSourceURL,0,"","")
         newSourceName = "Best of Attenborough"
         # Does the target source exist? If yes, delete it
         if sources.SourceLocation(self,sel,newSourceName)!=[0,0]:
@@ -148,7 +155,7 @@ class TestCase_EditSource(unittest.TestCase):
             sources.DeleteSource(self,sel,newSourceName)
         # If the pre-defined category is missing in the system,
         # pick the first category from the list of existing categories
-        newcat = "art"
+        newcat = testvars.newCategories[6]
         if categories.CategoryRow(self,sel,newcat)==0:
             newcat = categories.GetCategoryList(self,sel)[0]
         print "New category: "+newcat
