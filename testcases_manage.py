@@ -47,7 +47,7 @@ class TestCase_AddSourceFeed(unittest.TestCase):
             sources.DeleteSource(self,sel,source)
         # Add the source with the specified URL and Approve All parameter set to true
         # Associate it with a category and "Selene Test-Admin" user
-        sources.AddSource(self,sel,sourceURL,1,testvars.newCategories[3],"Selene Test-Admin")
+        sources.AddSource(self,sel,sourceURL,0,testvars.newCategories[3],"Selene Test-Admin")
 
 # Close the browser, log errors, perform cleanup    
     def tearDown(self):
