@@ -378,7 +378,10 @@ def BulkDeleteCategories(self,sel,categoryList):
 
 def EditCategory(self,sel,cat,newname,newslug,newdescription,newlogo):
     catRow = CategoryRow(self,sel,cat)
-    if catRow!=0:
+    if catRow==0:
+        print testvars.preE+"Could not find category "+cat
+        print "Current list of categories: "+GetCategoryList(self,sel)
+    else:
         sel.open(testvars.MCTestVariables["CategoriesPage"])
         elementEdit = "//div[@id='labels']/form/table/tbody/tr["+str(catRow)+"]/td[2]/div/a[1]"
         if sel.is_element_present(elementEdit):
@@ -429,8 +432,6 @@ def EditCategory(self,sel,cat,newname,newslug,newdescription,newlogo):
         sel.click(buttonUpdate)
         sel.refresh()
         sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
-    else:
-        print testvars.preE+"Could not find category "+cat
 
 
 # =======================================

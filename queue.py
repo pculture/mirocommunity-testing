@@ -636,7 +636,7 @@ def ViewRSSFeeds(self,sel,feed):
     else:
         sel.click(RSSFeedLink)
         sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
-        expectedTitle = siteTitle + ":"+ " Unapproved User Submissions"
+        expectedTitle = siteTitle + ":"+ " Videos Awaiting Moderation"
         print "Checking the feed title..."
         if sel.is_element_present("feedTitleText")==True:
             actualTitle = sel.get_text("feedTitleText")

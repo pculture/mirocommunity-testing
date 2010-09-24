@@ -1,3 +1,5 @@
+import os
+
 preE="********ERROR: "
 
 global initialCategories
@@ -5,8 +7,8 @@ initialCategories = [""]
 
 MCTestVariables = {"Browser":"*chrome", \
                    "TestSite":"http://dalmatia.mirocommunity.org/", \
-                   "ResultOutputDirectory":r"/var/www/localtv_dev/djangoproject/dalmatia_project/selenium/sel-rc/MiroCommunity/TestResults/file_", \
-                   "GraphicFilesDirectory":r"/var/www/localtv_dev/djangoproject/dalmatia_project/selenium/sel-rc/MiroCommunity/TestInput/", \
+                   "ResultOutputDirectory":os.path.join(os.getcwd(), "TestResults"), \
+                   "GraphicFilesDirectory":os.path.join(os.getcwd(), "TestInput"), \
                    "TimeOut":"150000", \
                    "AdminLink":"View Admin", \
                    "AdminLogin":"seleniumTestAdmin", \
@@ -35,8 +37,8 @@ MCTestVariables = {"Browser":"*chrome", \
                    "CategoriesLogoURL":"http://s3.mirocommunity.org.s3.amazonaws.com/dalmatia/localtv/category_logos", \
                    "SiteLogoURL":"http://s3.mirocommunity.org.s3.amazonaws.com/dalmatia/localtv/site_logos", \
                    "SiteBackgroundURL":"http://s3.mirocommunity.org.s3.amazonaws.com/dalmatia/localtv/site_backgrounds", \
-                   "Port":4444,
-                  }
+                   "Port":4444, 
+                   }
 
 # The following data dictionary contains the references to
 # the major user interface controls

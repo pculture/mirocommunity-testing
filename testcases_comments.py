@@ -43,7 +43,7 @@ global gCommentModerationText
 gCommentModerationText = 'Your comment has been sent to the moderators.'
 
 global gSeleniumServerPort
-gSeleniumServerPort = 4444
+gSeleniumServerPort = testvars.MCTestVariables["Port"]
 
 global gTimeOut
 gTimeOut = 20

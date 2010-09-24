@@ -31,7 +31,7 @@ class TestCase_AddSourceFeed(unittest.TestCase):
 # Open the desired browser and set up the test
     def setUp(self):
         self.verificationErrors = []
-        self.selenium = selenium("localhost", 4444, testvars.MCTestVariables["Browser"], testvars.MCTestVariables["TestSite"])
+        self.selenium = selenium("localhost", testvars.MCTestVariables["Port"], testvars.MCTestVariables["Browser"], testvars.MCTestVariables["TestSite"])
         self.selenium.start()
 
 # The user actions executed in the test scenario
@@ -61,7 +61,7 @@ class TestCase_AddDuplicateFeed(unittest.TestCase):
 # Open the desired browser and set up the test
     def setUp(self):
         self.verificationErrors = []
-        self.selenium = selenium("localhost", 4444, testvars.MCTestVariables["Browser"], testvars.MCTestVariables["TestSite"])
+        self.selenium = selenium("localhost", testvars.MCTestVariables["Port"], testvars.MCTestVariables["Browser"], testvars.MCTestVariables["TestSite"])
         self.selenium.start()
 
 # The user actions executed in the test scenario
@@ -84,7 +84,7 @@ class TestCase_AddSourceWithDuplicateVideos(unittest.TestCase):
 # Open the desired browser and set up the test
     def setUp(self):
         self.verificationErrors = []
-        self.selenium = selenium("localhost", 4444, testvars.MCTestVariables["Browser"], testvars.MCTestVariables["TestSite"])
+        self.selenium = selenium("localhost", testvars.MCTestVariables["Port"], testvars.MCTestVariables["Browser"], testvars.MCTestVariables["TestSite"])
         self.selenium.start()
 
 # The user actions executed in the test scenario
@@ -133,7 +133,7 @@ class TestCase_EditSource(unittest.TestCase):
 # Open the desired browser and set up the test
     def setUp(self):
         self.verificationErrors = []
-        self.selenium = selenium("localhost", 4444, testvars.MCTestVariables["Browser"], testvars.MCTestVariables["TestSite"])
+        self.selenium = selenium("localhost", testvars.MCTestVariables["Port"], testvars.MCTestVariables["Browser"], testvars.MCTestVariables["TestSite"])
         self.selenium.start()
 
 # The user actions executed in the test scenario
@@ -173,7 +173,7 @@ class TestCase_BulkEditSources(unittest.TestCase):
 # Open the desired browser and set up the test
     def setUp(self):
         self.verificationErrors = []
-        self.selenium = selenium("localhost", 4444, testvars.MCTestVariables["Browser"], testvars.MCTestVariables["TestSite"])
+        self.selenium = selenium("localhost", testvars.MCTestVariables["Port"], testvars.MCTestVariables["Browser"], testvars.MCTestVariables["TestSite"])
         self.selenium.start()
 
 # The user actions executed in the test scenario
@@ -209,7 +209,7 @@ class TestCase_BulkDeleteSources(unittest.TestCase):
 # Open the desired browser and set up the test
     def setUp(self):
         self.verificationErrors = []
-        self.selenium = selenium("localhost", 4444, testvars.MCTestVariables["Browser"], testvars.MCTestVariables["TestSite"])
+        self.selenium = selenium("localhost", testvars.MCTestVariables["Port"], testvars.MCTestVariables["Browser"], testvars.MCTestVariables["TestSite"])
         self.selenium.start()
 
 # The user actions executed in the test scenario
@@ -237,7 +237,7 @@ class TestCase_SearchForVideos(unittest.TestCase):
 # Open the desired browser and set up the test
     def setUp(self):
         self.verificationErrors = []
-        self.selenium = selenium("localhost", 4444, testvars.MCTestVariables["Browser"], testvars.MCTestVariables["TestSite"])
+        self.selenium = selenium("localhost", testvars.MCTestVariables["Port"], testvars.MCTestVariables["Browser"], testvars.MCTestVariables["TestSite"])
         self.selenium.start()
 
 # The user actions executed in the test scenario
@@ -318,7 +318,7 @@ class TestCase_SearchVideoByNonASCIITerm(unittest.TestCase):
 # Open the desired browser and set up the test
     def setUp(self):
         self.verificationErrors = []
-        self.selenium = selenium("localhost", 4444, testvars.MCTestVariables["Browser"], testvars.MCTestVariables["TestSite"])
+        self.selenium = selenium("localhost", testvars.MCTestVariables["Port"], testvars.MCTestVariables["Browser"], testvars.MCTestVariables["TestSite"])
         self.selenium.start()
 
 # The user actions executed in the test scenario
@@ -399,7 +399,7 @@ class TestCase_AddSearchFeed(unittest.TestCase):
 # Open the desired browser and set up the test
     def setUp(self):
         self.verificationErrors = []
-        self.selenium = selenium("localhost", 4444, testvars.MCTestVariables["Browser"], testvars.MCTestVariables["TestSite"])
+        self.selenium = selenium("localhost", testvars.MCTestVariables["Port"], testvars.MCTestVariables["Browser"], testvars.MCTestVariables["TestSite"])
         self.selenium.start()
 
 # The user actions executed in the test scenario
@@ -430,7 +430,7 @@ class TestCase_SortSources(unittest.TestCase):
 # Open the desired browser and set up the test
     def setUp(self):
         self.verificationErrors = []
-        self.selenium = selenium("localhost", 4444, testvars.MCTestVariables["Browser"], testvars.MCTestVariables["TestSite"])
+        self.selenium = selenium("localhost", testvars.MCTestVariables["Port"], testvars.MCTestVariables["Browser"], testvars.MCTestVariables["TestSite"])
         self.selenium.start()
 
 # Auxiliary subroutine which retrieves the list of values for the selected parameter
@@ -564,7 +564,7 @@ class TestCase_SearchInSources(unittest.TestCase):
 # Open the desired browser and set up the test
     def setUp(self):
         self.verificationErrors = []
-        self.selenium = selenium("localhost", 4444, testvars.MCTestVariables["Browser"], testvars.MCTestVariables["TestSite"])
+        self.selenium = selenium("localhost", testvars.MCTestVariables["Port"], testvars.MCTestVariables["Browser"], testvars.MCTestVariables["TestSite"])
         self.selenium.start()
 
 
@@ -602,7 +602,7 @@ class TestCase_FilterSources(unittest.TestCase):
 # Open the desired browser and set up the test
     def setUp(self):
         self.verificationErrors = []
-        self.selenium = selenium("localhost", 4444, testvars.MCTestVariables["Browser"], testvars.MCTestVariables["TestSite"])
+        self.selenium = selenium("localhost", testvars.MCTestVariables["Port"], testvars.MCTestVariables["Browser"], testvars.MCTestVariables["TestSite"])
         self.selenium.start()
 
 # The user actions executed in the test scenario

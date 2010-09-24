@@ -1,4 +1,4 @@
-# Module SUBMITVIDEOS.PY
+ # Module SUBMITVIDEOS.PY
 # includes:
 #   * function CheckTextPresent(self, sel, Text1, Time1, ErrorText1) - checks for text Text1
 #              during Time1 seconds and prints error ErrorText1 if not found
@@ -83,7 +83,7 @@ def SubmitVideo(self, sel, video_url, theme, role):
             print "OK. Clicking the button..."
             sel.click(submitVideoButton)
             if CheckTextPresent(self, sel, "Enter the URL of your video", 30, "Time out")==False:
-                mclib.AppendErrorMessage(self,el,"Could not find the prompt to enter the video URL")
+                mclib.AppendErrorMessage(self,sel,"Could not find the prompt to enter the video URL")
             else:
                 "OK. Entering the video URL..."
                 sel.type("id_url", video_url)
@@ -96,6 +96,11 @@ def SubmitVideo(self, sel, video_url, theme, role):
                     mclib.AppendErrorMessage(self,sel,"Could not find the expected pop-up with the video attributes")
                 else:
                     print "OK. Reading the video attributes..."
+                    video_title = ""
+                    video_author = ""
+                    video_date = ""
+                    video_tags = ""
+                    video_description = ""
                     if sel.is_element_present("//form[@id='submit_video']/table/tbody/tr[1]/td/div/h2/a"):
                         video_title = sel.get_text("//form[@id='submit_video']/table/tbody/tr[1]/td/div/h2/a")
                         print "Title: "+video_title
@@ -226,7 +231,7 @@ def SubmitVideoWithEmbed(self, sel, video_url, video_title, video_embed, video_t
             print "OK. Clicking the button..."
             sel.click(submitVideoButton)
             if CheckTextPresent(self, sel, "Enter the URL of your video", 30, "Time out")==False:
-                mclib.AppendErrorMessage(self,el,"Could not find the prompt to enter the video URL")
+                mclib.AppendErrorMessage(self,sel,"Could not find the prompt to enter the video URL")
             else:
                 "OK. Entering the video URL..."
                 sel.type("id_url", video_url)
