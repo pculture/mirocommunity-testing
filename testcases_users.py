@@ -35,9 +35,10 @@ class TestCase_AddNewAdmin(unittest.TestCase):
         # Log in as Admin
         loginlogout.LogInAsAdmin(self,sel)
         # This is information for add user edit fields
-        username = "vitalii1"
+#        username = "vitalii1"
+        username = "newTestAdmin"
         password = "123456"
-        email = "netvetal@ua.fm"
+        email = "admin1@test.com"
         # To select User role type "0"
         # To select Admin role type "1"
         role = "1" 
@@ -48,7 +49,6 @@ class TestCase_AddNewAdmin(unittest.TestCase):
             print "Duplicate user found. Deleting it..."
             # This function delete user
             users.DeleteUser(self,sel,username)
-            print "User deleted: "+username
         # This function add user
         users.AddUser(self,sel,username,email,role,password)
         print "Logging out..."
@@ -57,12 +57,11 @@ class TestCase_AddNewAdmin(unittest.TestCase):
         print "Logging in as user: "+username
         # This function login as just created user
         loginlogout.LogInBasic(self,sel,username,password)
-        # Cheek user logon as admin
+        # Check user logon as admin
         if sel.is_element_present(testvars.MCTestVariables["ViewAdmin"])==True:
             print "Logged as Admin"
         else:
-            self.verificationErrors.append("Log in user "+username+" as Admin fail")
-            print testvars.preE+"Log in user "+username+" as Admin fail"
+            mclib.AppendErrorMessage(self,sel,"Log in user "+username+" as Admin fail")
     # Close the browser, log errors, perform cleanup   
     def tearDown(self):
         self.selenium.stop()
@@ -81,9 +80,10 @@ class TestCase_AddNewUser(unittest.TestCase):
         # Log in as Admin
         loginlogout.LogInAsAdmin(self,sel)
         # This is information for add user edit fields
-        username = "vitalii"
+#        username = "vitalii"
+        username = "newTestUser"
         password = "123456"
-        email = "netvetal@ua.fm"
+        email = "user1@test.com"
         # To select User role type "0"
         # To select Admin role type "1"
         role = "0" 
@@ -94,7 +94,6 @@ class TestCase_AddNewUser(unittest.TestCase):
             print "Duplicate user found. Deleting it..."
             # This function delete user
             users.DeleteUser(self,sel,username)
-            print "User deleted: "+username
         # This function add user
         users.AddUser(self,sel,username,email,role,password)
         print "Logging out..."
@@ -103,9 +102,9 @@ class TestCase_AddNewUser(unittest.TestCase):
         print "Logging in as user: "+username
         # This function login as just created user
         loginlogout.LogInBasic(self,sel,username,password)
-        # Cheek user logon as user
+        # Check user logon as user
         if sel.is_element_present(testvars.MCTestVariables["ViewAdmin"])==True:
-            print "Log in as User fail"
+            print "Log in as User failed"
         else:
             print "Logged as User"
     # Close the browser, log errors, perform cleanup   
@@ -126,38 +125,31 @@ class TestCase_EditUser(unittest.TestCase):
         # Log in as Admin
         loginlogout.LogInAsAdmin(self,sel)
         # This is information for add user edit fields
-        username = "vitalii4"
+#        username = "vitalii4"
+        username = "newTestUser2"
+        newusername = "modifiedTestUser2"
         password = "123456"
-        name = "Vitalii Kozeratskyi"
-        email = "kozeratskyi@gmail.com"
+        name = "John Doe"
+        email = "john.doe@test.com"
         # To select User role type "0"
         # To select Admin role type "1"
         role = "1"
-        location = "B.C."  
+        location = "Greenland"  
         website = "www.google.ca"
         description = "Hello"
-        # Cheek if user appeared
+        # Check if user appeared
         if users.UserRow(self,sel,username)!=0:
-            print "User finded start to edit"
-            # This function edit user
-            users.EditUser(self,sel,username,name,email,role,location,website,description,password)
+            print "User found. Deleting it..."
+            users.DeleteUser(self,sel,username)
+        users.AddUser(self,sel,username,email,role,password)
+        users.EditUser(self,sel,username,newusername,name,email,role,location,website,description,password)
+        if (newusername!="" and users.UserRow(self,sel,newusername)!=0) or (newusername=="" and users.UserRow(self,sel,username)!=0):
             print "User "+username+" edited"
-        else:
-            users.AddUser(self,sel,username,email,role,password)
-            print "User "+username+" created"
-            users.EditUser(self,sel,username,name,email,role,location,website,description,password)
-            print "User "+username+" edited"
-        # This function log out
-        loginlogout.LogOut(self,sel)
-        print "Logging in as user: "+username
-        # This function login as just created user
-        loginlogout.LogInBasic(self,sel,username,password)
-        # Cheek user logon as admin
-        if sel.is_element_present(testvars.MCTestVariables["ViewAdmin"])==True:
-            print "Logged as Admin"
-        else:
-            self.verificationErrors.append("Log in user "+username+" as Admin fail")
-            print testvars.preE+"Log in user "+username+" as Admin fail"
+            # Log out
+            loginlogout.LogOut(self,sel)
+            print "Logging in as user: "+username+"..."
+            # Log in as just created user
+            loginlogout.LogInBasic(self,sel,username,password)
     # Close the browser, log errors, perform cleanup   
     def tearDown(self):
         self.selenium.stop()
@@ -175,40 +167,18 @@ class TestCase_DeleteUser(unittest.TestCase):
         sel = self.selenium
         # Log in as Admin
         loginlogout.LogInAsAdmin(self,sel)
-        # This is information for add user edit fields
-        username = "vitalii5"
+        # Adding a new user withe the following parameters
+#        username = "vitalii5"
+        username = "newTestUser3"
         password = "123456"
-        email = "kozeratskyi@gmail.com"
+        email = "user3@test.com"
         # To select User role type "0"
         # To select Admin role type "1"
         role = "0"        
-        print "Adding user: "+username
         # This function add user
         users.AddUser(self,sel,username,email,role,password)
-        # This function delete user
-        print "Deleting user: "+username
+        # Now deleting the recently created user
         users.DeleteUser(self,sel,username)
-        print "User "+username+" deleted."
-        print "Logging out..."
-        # This function log out
-        time.sleep(2)
-        loginlogout.LogOut(self,sel)
-        print "Logging in as user: "+username
-        # This function login as just created user
-        sel.open(testvars.MCTestVariables["LoginPage"])
-        sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
-        sel.window_maximize()
-        sel.click("id_username")
-        sel.type("id_username", username)
-        sel.click("id_password")
-        sel.type("id_password", password)
-        sel.click("//input[@value='Log In']")
-        sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
-        if sel.is_element_present("//input[@value='Log In']")==True:
-            print "Login fail"
-        else:
-            self.verificationErrors.append("Deleting user fail")
-            print testvars.preE+"Deleting user fail"
         # Close the browser, log errors, perform cleanup   
     def tearDown(self):
         self.selenium.stop()
@@ -276,7 +246,7 @@ class TestCase_CreateNewUserWithoutUsername(unittest.TestCase):
         website = "www.google.ca"
         # This function add user
         users.AddUser(self,sel,username,email,role,password)
-        # Cheek if user appeared
+        # Check if user appeared
         if users.UserRow(self,sel,username)!=0:
             print "User added successfuly"
         else:
@@ -316,7 +286,7 @@ class TestCase_CreateNewUserWithoutPassword(unittest.TestCase):
             print "User deleted: "+username
         # This function add user
         users.AddUser(self,sel,username,email,role,password)
-        # Cheek if user appeared
+        # Check if user appeared
         if users.UserRow(self,sel,username)!=0:
             print "User added successfuly"
         else:
@@ -391,7 +361,7 @@ class TestCase_NewUserUsernameMaxMax2MinChars(unittest.TestCase):
         # This function add user
         users.AddUser(self,sel,username,email,role,password)
         print "Logging out..."
-        # This function cheek and log out
+        # This function check and log out
         if users.UserRow(self,sel,username)!=0:
             loginlogout.LogOut(self,sel)
         else:
@@ -478,7 +448,7 @@ class TestCase_EditUserProfile(unittest.TestCase):
         loginlogout.LogInBasic(self,sel,username,password)
         print "Starting edit profile "+username
         users.EditUserProfile(self,sel,name,username,email,location,website,description)
-        users.ViewUserCheek(self,sel,username,name,location,website,description)
+        users.ViewUserCheck(self,sel,username,name,location,website,description)
 # Close the browser, log errors, perform cleanup   
     def tearDown(self):
         self.selenium.stop()
@@ -501,10 +471,10 @@ class TestCase_ViewProfile(unittest.TestCase):
         description = "Miro"
         location = "BC"
         website = "www.google.ca"
-        # Cheek profile edited successful
+        # Check profile edited successful
         users.ViewProfile(self,sel)
-        print "Cheeking profile"
-        users.ViewUserCheek(self,sel,username,name,location,website,description)
+        print "Checking profile"
+        users.ViewUserCheck(self,sel,username,name,location,website,description)
 # Close the browser, log errors, perform cleanup   
     def tearDown(self):
         self.selenium.stop()
@@ -540,12 +510,12 @@ class TestCase_ViewUser(unittest.TestCase):
             print "User finded, view user"
             # This function view user
             users.ViewUser(self,sel,username)
-            users.ViewUserCheek(self,sel,username,name,location,website,description)
+            users.ViewUserCheck(self,sel,username,name,location,website,description)
         else:
             # This function add user
             users.AddUser(self,sel,username,email,role,password)
             users.ViewUser(self,sel,username)
-            users.ViewUserCheek(self,sel,username,name,location,website,description)
+            users.ViewUserCheck(self,sel,username,name,location,website,description)
             # Check view user
         time.sleep(3)
         # Close the browser, log errors, perform cleanup   

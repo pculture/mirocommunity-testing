@@ -1,3 +1,18 @@
+# Module USERS.PY
+# includes:
+#   * function UserRow(self,sel,username) - returns the row number for the desired username
+#              on /users page, zero if the user not found
+#   * subroutine DeleteUser(self,sel,username) - deletes user <username> from the list
+#   * subroutine AddUser(self,sel,username,email,role,password) - adds a user with <username>
+#                and password <password>. Role can take values 1 for Admin or 0 for User
+#   * subroutine EditUser(self,sel,username,name,email,role,location,website,description,password) -
+#                modifies the user profile, inserting new values for all the fields
+#   * subroutine EditUserProfile(self,sel,name,username,email,location,website,description)
+#   * subroutine ViewProfile(self,sel)
+#   * subroutine ViewUserCheck(self,sel,username,name,location,website,description)
+
+
+
 from selenium import selenium
 
 import unittest, time, re
@@ -28,24 +43,29 @@ def UserRow(self,sel,username):
         return no
     else:
         return 0
+    
 # =======================================
 # =             DELETE USER             =
 # =======================================
+
 def DeleteUser(self,sel,username):
     usRow = UserRow(self,sel,username)
-    if usRow!=0:
+    if usRow==0:
+        print testvars.preE+"Username "+username+" not found. Cannot delete it."
+    else:
         sel.open(testvars.MCTestVariables["UserPage"])
         elementDelete = "//div[@id='labels']/form/table/tbody/tr["+str(usRow)+"]/td[2]/div/a[2]"
-        if sel.is_element_present(elementDelete):
-            sel.click(elementDelete)
+        if sel.is_element_present(elementDelete)==False:
+            mclib.AppendErrorMessage(self,sel,"Delete link not found for username "+username)
         else:
-            self.verificationErrors.append("Delete link not found for username")
-            print testvars.preE+"Delete link not found for username "+username
-            time.sleep(2)
-        if UserRow(self, sel, username)==0:
-            print testvars.preE+"Could not delete username "+username
-    else:
-        print testvars.preE+"Could not find username "+username
+            print "Deleting user "+username+"..."
+            sel.click(elementDelete)
+            sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
+            print "Checking that the user was deleted..."
+            if UserRow(self,sel,username)==0:
+                print "OK"
+            else:
+                print mclib.AppendErrorMessage(self,sel,"Could not delete username "+username)
 
 # =======================================
 # =             ADD USER                =
@@ -53,7 +73,7 @@ def DeleteUser(self,sel,username):
 def AddUser(self,sel,username,email,role,password):
     #Check if the username already exists
     if UserRow(self,sel,username)!=0:
-        print "user already exists. Skipping add user procedure"
+        print "User already exists. Skipping add user procedure"
         return 0
     else:
         print "Adding a new username "+username
@@ -72,16 +92,14 @@ def AddUser(self,sel,username,email,role,password):
                     #sel.type_keys("id_username", us)
                     sel.type("id_username",username)
                 else:
-                    self.verificationErrors.append("Edit field for user's username not found")
-                    print testvars.preE+"Edit field for user's username not found"
+                    mclib.AppendErrorMessage(self,sel,"Edit field for user's username not found")
                     # Enter user's email address
                 if sel.is_element_present("id_email")==True:
                     sel.click("id_email")
                     #sel.type_keys("id_email", email)
                     sel.type("id_email",email)
                 else:
-                    self.verificationErrors.append("Edit field for user's email not found")
-                    print testvars.preE+"Edit field for user's email not found"
+                    mclib.AppendErrorMessage(self,sel,"Edit field for user's email not found")
                     # Enter user's role
                 if sel.is_element_present("id_role_0")==True:
                     if role=="":
@@ -89,139 +107,154 @@ def AddUser(self,sel,username,email,role,password):
                     else:
                         sel.click("id_role_"+role)
                 else:
-                    self.verificationErrors.append("Edit field for user's role not found")
-                    print testvars.preE+"Edit field for user's role not found"
+                    mclib.AppendErrorMessage(self,sel,"Radio buttons for user's role not found")
                     # Enter user's password
                 if sel.is_element_present("id_password_f")==True:
                     sel.click("id_password_f")
                     #sel.type_keys("id_password_f", password)
                     sel.type("id_password_f",password)
                 else:
-                    self.verificationErrors.append("Edit field for user's passwordf not found")
-                    print testvars.preE+"Edit field for user's passwordf not found"
-                    # Enter user's password confirm
+                    mclib.AppendErrorMessage(self,sel,"Edit field for user's password not found")
+                    # Enter user's password confirmation
                 if sel.is_element_present("id_password_f2")==True:
                     sel.click("id_password_f2")
                     #sel.type_keys("id_password_f2", password)
                     sel.type("id_password_f2",password)
                 else:
-                    self.verificationErrors.append("Edit field for user's passwordf2 not found")
-                    print testvars.preE+"Edit field for user's passwordf2 not found"
+                    mclib.AppendErrorMessage(self,sel,"Edit field for user's password confirmation not found")
                     # Save changes
                 buttonSubmit = "submit"
                 if sel.is_element_present(buttonSubmit)==True:
                     sel.click("submit")
                 else:
-                    self.verificationErrors.append("Save button on Add User pop-up not found")
-                    print testvars.preE+"Save button on Add User pop-up not found"
-        sel.refresh()
-        sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
-        # Check if the new user is present in the list
-        rowNo = UserRow(self,sel,username)
-        if rowNo==0:   # not found
-            print testvars.preE+username+"user was not added to the list"
-        else:
-            print "User added to the list"
+                    mclib.AppendErrorMessage(self,sel,"Save button on Add User pop-up not found")
+                sel.refresh()
+                sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
+                # Check if the new user is present in the list
+                rowNo = UserRow(self,sel,username)
+                if rowNo==0:   # not found
+                    mclib.AppendErrorMessage(self,sel,username+"user was not added to the list")
+                else:
+                    print "User was successfully added to the list"
+                    
 # =======================================
 # =             EDIT USER               =
 # =======================================
-def EditUser(self,sel,username,name,email,role,location,website,description,password):
+def EditUser(self,sel,username,newusername,name,email,role,location,website,description,password):
     usRow = UserRow(self,sel,username)
     if usRow!=0:
         sel.open(testvars.MCTestVariables["UserPage"])
         elementEdit = "//div[@id='labels']/form/table/tbody/tr["+str(usRow)+"]/td[2]/div/a[1]"
+        basicLink = "id_form-"+str(usRow-1)
         if sel.is_element_present(elementEdit):
             sel.click(elementEdit)
-            print "Start to edit field"
+            print "Editing profile for user "+username
             # Enter username
-            if sel.is_element_present("id_form-1-username")==True:
-                sel.click("id_form-1-username")
-                #sel.type_keys("id_form-1-username", username)
-                sel.type("id_form-1-username",username)
-            else:
-                self.verificationErrors.append("Edit field for user's username not found")
-                print testvars.preE+"Edit field for user's username not found"
+            if newusername!="":
+                if sel.is_element_present(basicLink+"-username")==True:
+                    sel.click(basicLink+"-username")
+                    sel.type(basicLink+"-username",newusername)
+                else:
+                    mclib.AppendErrorMessage(self,sel,"Edit field for USERNAME not found")
             # Enter name
-            if sel.is_element_present("id_form-1-name")==True:
-                sel.click("id_form-1-name")
-                #sel.type_keys("id_form-1-name", name)
-                sel.type("id_form-1-name",name)
-            else:
-                self.verificationErrors.append("Edit field for user's name not found")
-                print testvars.preE+"Edit field for user's name not found"
+            if name!="":
+                if sel.is_element_present(basicLink+"-name")==True:
+                    sel.click(basicLink+"-name")
+                    sel.type(basicLink+"-name",name)
+                else:
+                    mclib.AppendErrorMessage(self,sel,"Edit field for NAME not found")
             # Enter user's email address
-            if sel.is_element_present("id_form-1-email")==True:
-                sel.click("id_form-1-email")
-                #sel.type_keys("id_form-1-email", email)
-                sel.type("id_form-1-email",email)
-            else:
-                self.verificationErrors.append("Edit field for user's email not found")
-                print testvars.preE+"Edit field for user's email not found"
+            if email!="":
+                if sel.is_element_present(basicLink+"-email")==True:
+                    sel.click(basicLink+"-email")
+                    sel.type(basicLink+"-email",email)
+                else:
+                    mclib.AppendErrorMessage(self,sel,"Edit field for EMAIL not found")
             # Enter user's role
-            if sel.is_element_present("id_form-1-role_0")==True:
-                sel.click("id_form-1-role_"+role)
+            if sel.is_element_present(basicLink+"-role_0")==True:
+                sel.click(basicLink+"-role_"+role)
             else:
-                self.verificationErrors.append("Edit field for user's role not found")
-                print testvars.preE+"Edit field for user's role not found"
+                mclib.AppendErrorMessage(self,sel,"Edit field for ROLE not found")
             # Enter user's location
-            if sel.is_element_present("id_form-1-location")==True:
-                sel.click("id_form-1-location")
-                #sel.type_keys("id_form-1-location", location)
-                sel.type("id_form-1-location",location)
-            else:
-                self.verificationErrors.append("Edit field for user's location not found")
-                print testvars.preE+"Edit field for user's location not found"
+            if location!="":
+                if sel.is_element_present(basicLink+"-location")==True:
+                    sel.click(basicLink+"-location")
+                    sel.type(basicLink+"-location",location)
+                else:
+                    mclib.AppendErrorMessage(self,sel,"Edit field for LOCATION not found")
             # Enter user's website
-            if sel.is_element_present("id_form-1-website")==True:
-                sel.click("id_form-1-website")
-                #sel.type_keys("id_form-3-website", website)
-                sel.type("id_form-1-website",website)
-            else:
-                self.verificationErrors.append("Edit field for user's website not found")
-                print testvars.preE+"Edit field for user's website not found"
+            if website!="":
+                if sel.is_element_present(basicLink+"-website")==True:
+                    sel.click(basicLink+"-website")
+                    sel.type(basicLink+"-website",website)
+                else:
+                    mclib.AppendErrorMessage(self,sel,"Edit field for WEBSITE not found")
             # Enter user's description
-            if sel.is_element_present("id_form-1-description")==True:
-                sel.click("id_form-1-description")
-                #sel.type_keys("id_form-1-description", description)
-                sel.type("id_form-1-description",description)
-            else:
-                self.verificationErrors.append("Edit field for user's description not found")
-                print testvars.preE+"Edit field for user's description not found"
+            if description!="":
+                if sel.is_element_present(basicLink+"-description")==True:
+                    sel.click(basicLink+"-description")
+                    sel.type(basicLink+"-description",description)
+                else:
+                    mclib.AppendErrorMessage(self,sel,"Edit field for DESCRIPTION not found")
             # Enter user's password
-            if sel.is_element_present("id_form-1-password_f")==True:
-                sel.click("id_form-1-password_f")
-                #sel.type_keys("id_form-1-password_f", password)
-                sel.type("id_form-1-password_f",password)
+            if sel.is_element_present(basicLink+"-password_f")==True:
+                sel.click(basicLink+"-password_f")
+                sel.type(basicLink+"-password_f",password)
             else:
-                self.verificationErrors.append("Edit field for user's passwordf not found")
-                print testvars.preE+"Edit field for user's passwordf not found"
+                mclib.AppendErrorMessage(self,sel,"Edit field for PASSWORD not found")
                 # Enter user's password confirm
-            if sel.is_element_present("id_form-1-password_f2")==True:
-                sel.click("id_form-1-password_f2")
-                #sel.type_keys("id_form-1-password_f2", password)
-                sel.type("id_form-1-password_f2",password)
+            if sel.is_element_present(basicLink+"-password_f2")==True:
+                sel.click(basicLink+"-password_f2")
+                sel.type(basicLink+"-password_f2",password)
             else:
-                self.verificationErrors.append("Edit field for user's passwordf2 not found")
-                print testvars.preE+"Edit field for user's passwordf2 not found"
+                mclib.AppendErrorMessage(self,sel,"Edit field for CONFIRMATION PASSWORD not found")
             # Save changes
             buttonSubmit = testvars.MCTestVariables["SaveChanges"]
-            if sel.is_element_present(buttonSubmit)==True:
-                sel.click(buttonSubmit)
+            if sel.is_element_present(buttonSubmit)==False:
+                mclib.AppendErrorMessage(self,sel,"Save button on Add User pop-up not found")
             else:
-                self.verificationErrors.append("Save button on Add User pop-up not found")
-                print testvars.preE+"Save button on Add User pop-up not found"
-                sel.refresh()
+                sel.click(buttonSubmit)
                 sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
+                # Checking that the user profile was updated correctly
+                if newusername!="":
+                    usRow = UserRow(self,sel,newusername)
+                else:
+                    usRow = UserRow(self,sel,username)
+                if usRow==0:
+                    mclib.AppendErrorMessage(self,sel,"Updated user profile not found in the list of users.")
+                else:
+                    # Check the values for particular fields
+                    if email!="":
+                        print "Checking user's email..."
+                        newEmail = sel.get_text("//div[@id='labels']/form/table/tbody/tr["+str(usRow)+"]/td[3]")
+                        if newEmail==email:
+                            print "OK"
+                        else:
+                            mclib.AppendErrorMessage(self,sel,"The email found for this user did not match the expected value")
+                            print "Expected email: "+email
+                            print "- Actual email: "+newEmail
+                    print "Checking user's role..."
+                    newRole = sel.get_text("//div[@id='labels']/form/table/tbody/tr["+str(usRow)+"]/td[4]")
+                    if (role==0 and newRole=="User") or (role==1 and newRole=="Admin"):
+                        print "OK"
+                    else:
+                        mclib.AppendErrorMessage(self,sel,"The role displayed for the user did not match the assigned role")
+                        if role==1: print "Expected role: Admin"
+                        else: print "Expected role: User"
+                        print "- Actual role: "+newrole
+                #===============================
+                # When 12728 is fixed, add viewing user profiles
+                # to check that other parameters were successfully
+                # updated
+                #===================================
         else:
-            self.verificationErrors.append("Edit link not found for username")
-            print testvars.preE+"Edit link not found for username "+username
+            mclib.AppendErrorMessage(self,sel,"Edit link not found for username")
         if UserRow(self, sel, username)==0:
-            self.verificationErrors.append("Could not edit username")
-            print testvars.preE+"Could not edit username "+username
+            mclib.AppendErrorMessage(self,sel,"Could not edit username "+username)
     else:
-        print testvars.preE+"Could not find username "+username
+        mclib.AppendErrorMessage(self,sel,"Could not find username "+username)
 
-        sel.get_text("//a[contains(text(),'Email')]")
+#        sel.get_text("//a[contains(text(),'Email')]")
 
 # =======================================
 # =         EDIT USER PROFILE           =
@@ -334,7 +367,7 @@ def ViewUser(self,sel,username):
 # =======================================
 # =             VIEW USER CHECK         =
 # =======================================
-def ViewUserCheek(self,sel,username,name,location,website,description):
+def ViewUserCheck(self,sel,username,name,location,website,description):
     # Check profile username
     if sel.is_element_present("//div[@id='author_info']/h1")==True:
         currentProfile = sel.get_text("//div[@id='author_info']/h1")
@@ -348,34 +381,34 @@ def ViewUserCheek(self,sel,username,name,location,website,description):
     if sel.is_element_present("//div[@id='author_info']/h1")==True:
         currentProfile = sel.get_text("//div[@id='author_info']/h1")
         if currentProfile.find(name)!=-1:
-            print "View profile name successful"
+            print "View profile name was successful"
         else:
-            print "View profile name fail"
-            mclib.AppendErrorMessage(self,sel,"View profile name fail")
+            print "View profile name failed"
+            mclib.AppendErrorMessage(self,sel,"View profile name failed")
     # Check profile location
     time.sleep(1)
     if sel.is_element_present("//div[@id='location']")==True:
         currentProfile = sel.get_text("//div[@id='location']")
         if currentProfile.find(location)!=-1:
-            print "View profile location successful"
+            print "View profile location was successful"
         else:
-            print "View profile location fail"
-            mclib.AppendErrorMessage(self,sel,"View profile location fail")
+            print "View profile location failed"
+            mclib.AppendErrorMessage(self,sel,"View profile location failed")
     # Check profile website
     time.sleep(1)
     if sel.is_element_present("//div[@id='link']/a")==True:
         currentProfile = sel.get_text("//div[@id='link']/a")
         if currentProfile.find(website)!=-1:
-            print "View profile website successful"
+            print "View profile website was successful"
         else:
-            print "View profile website fail"
-            mclib.AppendErrorMessage(self,sel,"View profile website fail")
+            print "View profile website failed"
+            mclib.AppendErrorMessage(self,sel,"View profile website failed")
     # Check profile description
     time.sleep(1)
     if sel.is_element_present("//div[@id='author_info']/div[3]")==True:
         currentProfile = sel.get_text("//div[@id='author_info']/div[3]")
         if currentProfile.find(description)!=-1:
-            print "View profile description successful"
+            print "View profile description was successful"
         else:
-            print "View profile description fail"
-            mclib.AppendErrorMessage(self,sel,"View profile description fail")
+            print "View profile description failed"
+            mclib.AppendErrorMessage(self,sel,"View profile description failed")
