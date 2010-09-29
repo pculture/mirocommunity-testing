@@ -121,12 +121,14 @@ class Test_HTMLTestRunner(unittest.TestCase):
         # check out the output
         byte_output = buf.getvalue()
         # output the main test results
-        filename=os.path.join(testvars.MCTestVariables["ResultOutputDirectory"],'MC_test_results_'+time.strftime("%d-%m-%Y_%H-%M", time.gmtime())+'_GMT.html')
+
+        results_path = os.path.join(os.getcwd(), "TestResults")
+        filename = os.path.join(results_path, 'unisubs_'+time.strftime("%Y%m%d_%H%M", time.gmtime())+'_GMT.html')
         f = open(filename, 'w')
         f.write(byte_output)
         f.close()
-        # copy the results to a file called last_run.html
-        lastrun = os.path.join(testvars.MCTestVariables["ResultOutputDirectory"],'last_run.html')
+        #copy the results to a file called last_run.html
+        lastrun = os.path.join(results_path, 'last_run.html')
         shutil.copyfile(filename,lastrun)
         
 ##############################################################################
