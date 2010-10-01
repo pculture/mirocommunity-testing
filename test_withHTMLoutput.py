@@ -123,7 +123,7 @@ class Test_HTMLTestRunner(unittest.TestCase):
         # output the main test results
 
         results_path = os.path.join(os.getcwd(), "TestResults")
-        filename = os.path.join(results_path, 'unisubs_'+time.strftime("%Y%m%d_%H%M", time.gmtime())+'_GMT.html')
+        filename = os.path.join(results_path, 'file_MC_test_results_'+time.strftime("%Y%m%d_%H%M", time.gmtime())+'_GMT.html')
         f = open(filename, 'w')
         f.write(byte_output)
         f.close()
