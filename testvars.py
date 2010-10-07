@@ -13,8 +13,10 @@ MCTestVariables = {"Browser":"*chrome", \
                    "AdminLink":"View Admin", \
                    "AdminLogin":"seleniumTestAdmin", \
                    "AdminPassword":"TestAdmin", \
+                   "AdminName":"Selene Test-Admin ", \
                    "UserLogin":"seleniumTestUser", \
                    "UserPassword":"selenium", \
+                   "UserName":"selene test-user", \
                    "LogoutFootlink":"//ul[@id='footer_links']/li[5]/a", \
                    "ListThemeLink":"/admin/themes/set_default/1", \
                    "ScrollingThemeLink":"/admin/themes/set_default/2", \
