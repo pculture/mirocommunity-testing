@@ -1,5 +1,5 @@
 # Module SITESETTINGS.PY
-# includes: 
+# includes:
 #   * subroutine ChangeTheme(self,sel,theme) - sets the desired theme
 #   * function ThemeScanner(self,sel,theme) - detects the currently set theme
 #   * subroutine ModifySiteSettings(self,sel,theme) - changes the site settings
@@ -30,7 +30,7 @@
 
 from selenium import selenium
 
-import unittest, time, re, platform
+import unittest, time, re, platform, os
 import testvars, loginlogout, mclib
 
 def NavigateToSettingsPage(self,sel):
@@ -105,11 +105,16 @@ def ModifySiteSettings(self,sel,theme):
     vFooter=vTitle+' is powered by Miro Community'
 #    vFooter=vTitle+' is powered by Miro Community Logout '+testvars.MCTestVariables["AdminLogin"]
 # Type the values into edit fields
+    sel.click("id_title")
     sel.type("id_title", vTitle)
+    sel.click("id_tagline")
     sel.type("id_tagline", vTagLine)
+    sel.click("id_about_html")
     sel.type("id_about_html", vAboutUs)
 # Click Save
     sel.click("submit_settings")
+    sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
+    sel.open(testvars.MCTestVariables["SettingsPage"])
     sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
     print "Changed site title, tagline, about text"
     
@@ -120,32 +125,26 @@ def ModifySiteSettings(self,sel,theme):
     if sel.is_element_present(elementTitle)==True:
         if sel.is_visible(elementTitle)==True:
             if sel.get_text(elementTitle)!=vTitle:
-                self.verificationErrors.append("Wrong site title in the administrator interface.")
-                print testvars.preE+"Wrong site title in the administrator interface."
+                mclib.AppendErrorMessage(self,sel,"Wrong site title in the administrator interface.")
                 print "Expected title is "+vTitle
                 print "- Actual title is "+sel.get_text(elementTitle)
         else:
-            self.verificationErrors.append("Title is not visible in the Administrator interface")
-            print testvars.preE+"Title is not visible in the Administrator interface"
+            mclib.AppendErrorMessage(self,sel,"Title is not visible in the Administrator interface")
     else:
-        self.verificationErrors.append("Title is not present in the Administrator interface")
-        print testvars.preE+"Title is not present in the Administrator interface"
+        mclib.AppendErrorMessage(self,sel,"Title is not present in the Administrator interface")
     
 # Check that the TAGLINE in the admin interface is present, visible and correct
     elementTagline="//div[@id='logo']/h1/span"
     if sel.is_element_present(elementTagline)==True:
         if sel.is_visible(elementTagline)==True:
             if sel.get_text(elementTagline)!=vTagLine:
-                self.verificationErrors.append("Wrong tagline in the administrator interface.")
-                print testvars.preE+"Wrong tagline in the administrator interface."
+                mclib.AppendErrorMessage(self,sel,"Wrong tagline in the administrator interface.")
                 print "Expected tagline is "+VTagLine
                 print "- Actual tagline is "+sel.get_text(elementTagline)
         else:
-            self.verificationErrors.append("Tagline is not visible in the Administrator interface")
-            print "Tagline is not visible in the Administrator interface"
+            mclib.AppendErrorMessage(self,sel,"Tagline is not visible in the Administrator interface")
     else:
-        self.verificationErrors.append("Tagline is not present in the Administrator interface")
-        print "Tagline is not present in the Administrator interface"
+        mclib.AppendErrorMessage(self,sel,"Tagline is not present in the Administrator interface")
 
 # FOOTER was removed from Admin on Apr 6, 2010
 # Check that the FOOTER in the admin interface is present, visible and correct
@@ -182,31 +181,25 @@ def ModifySiteSettings(self,sel,theme):
     if sel.is_element_present(elementTitle)==True:
         if sel.is_visible(elementTitle)==True:
             if sel.get_text(elementTitle)!=vTitle:
-                self.verificationErrors.append("Wrong site title on the main site.")
-                print testvars.preE+"Wrong site title on the main site"
+                mclib.AppendErrorMessage(self,sel,"Wrong site title on the main site.")
                 print "Expected title is "+vTitle
                 print "- Actual title is "+sel.get_text(elementTitle)
         else:
-            self.verificationErrors.append("Title is not visible on the Main site")
-            print testvars.preE+"Title is not visible on the Main site"
+            mclib.AppendErrorMessage(self,sel,"Title is not visible on the Main site")
     else:
-        self.verificationErrors.append("Title is not present on the Main site")
-        print testvars.preE+"Title is not present on the Main site"
+        mclib.AppendErrorMessage(self,sel,"Title is not present on the Main site")
         
 # Check that the TAGLINE on the main site is present, visible and correct
     if sel.is_element_present(elementTagline)==True:
         if sel.is_visible(elementTagline)==True:
             if sel.get_text(elementTagline)!=vTagLine:
-                self.verificationErrors.append("Wrong tagline on the main site.")
-                print testvars.preE+"Wrong tagline on the main site"
+                mclib.AppendErrorMessage(self,sel,"Wrong tagline on the main site.")
                 print "Expected tagline is "+VTagLine
                 print "- Actual tagline is "+sel.get_text(elementTagline)
         else:
-            self.verificationErrors.append("Tagline is not visible on the Main site")
-            print testvars.preE+"Tagline is not visible on the Main site"
+            mclib.AppendErrorMessage(self,sel,"Tagline is not visible on the Main site")
     else:
-        self.verificationErrors.append("Tagline is not present on the Main site")
-        print testvars.preE+"Tagline is not present on the Main site"
+        mclib.AppendErrorMessage(self,sel,"Tagline is not present on the Main site")
 
 # Check that the FOOTER on the main site is present, visible and correct
 #    if theme == 4:
@@ -216,16 +209,13 @@ def ModifySiteSettings(self,sel,theme):
     if sel.is_element_present(elementFooter)==True:
         if sel.is_visible(elementFooter)==True:
             if sel.get_text(elementFooter)!=vFooter:
-                self.verificationErrors.append("Wrong footer text on the Main site.")
-                print testvars.preE+"Wrong footer text on the Main site"
+                mclib.AppendErrorMessage(self,sel,"Wrong footer text on the Main site.")
                 print "Expected footer text is "+vFooter
                 print "- Actual footer text is "+sel.get_text(elementFooter)
         else:
-            self.verificationErrors.append("Footer is not visible on the Main site")
-            print testvars.preE+"Footer is not visible on the Main site"
+            mclib.AppendErrorMessage(self,sel,"Footer is not visible on the Main site")
     else:
-        self.verificationErrors.append("Footer is not present on the Main site")
-        print testvars.preE+"Footer is not present on the Main site"
+        mclib.AppendErrorMessage(self,sel,"Footer is not present on the Main site")
 
     print "Checked title, tagline, footer on the front end"
 
@@ -246,17 +236,14 @@ def ModifySiteSettings(self,sel,theme):
     if sel.is_element_present(elementAbout)==True:
 # Verify text in elementAbout
         if sel.get_text(elementAbout)!=("About " + vTitle):
-            self.verificationErrors.append("Wrong About text on About page.")
-            print testvars.preE+"Wrong About text on About page"
+            mclib.AppendErrorMessage(self,sel,"Wrong About text on About page.")
             print "Expected text is About " + vTitle
             print "- Actual text is "+sel.get_text(elementAbout)
     else:
-        self.verificationErrors.append("About element is not present on About page")
-        print testvars.preE+"About element is not present on About page"
+        mclib.AppendErrorMessage(self,sel,"About element is not present on About page")
 # Check that vAboutUs text is present
     if sel.is_text_present(vAboutUs)!=True:
-        self.verificationErrors.append("AboutUs text is not found on About page")
-        print testvars.preE+"AboutUs text is not found on About page"
+        mclib.AppendErrorMessage(self,sel,"AboutUs text is not found on About page")
     print "Checked title, about text on About page"
 
 
@@ -354,16 +341,15 @@ time.strftime("%d-%m-%Y %H:%M:%S", time.localtime())
 
 def UploadSiteLogo(self,sel,theme,newlogo):
     NavigateToSettingsPage(self,sel)
-    if platform.system()=='Windows':        # for Windows
-        logofile = testvars.MCTestVariables["GraphicFilesDirectory"] + "\\" + newlogo
-    else:    # for Linux
-        logofile = testvars.MCTestVariables["GraphicFilesDirectory"] + newlogo
-    print "**** DEBUG: filename: "+logofile
+    logofile = os.path.join(testvars.MCTestVariables["GraphicFilesDirectory"],newlogo)
+    print "Uploading logo from file: "+logofile
     if sel.is_element_present("id_logo")==True:
         sel.type("id_logo", logofile)
     else:
         mclib.AppendErrorMessage(self,sel,"Edit field for site logo file name not found")
     sel.click("submit_settings")
+    sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
+    sel.open(testvars.MCTestVariables["SettingsPage"])
     sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
     # For the purpose of checking actual site logo file name 
     # we truncate the last 4 chars from the file name because an umpteenth copy of the same
@@ -416,16 +402,13 @@ def UploadSiteLogo(self,sel,theme,newlogo):
 
 def UploadBackgroundImage(self,sel,theme,background):
     NavigateToSettingsPage(self,sel)
-    print "Uploading a new background image..."+background
-    # Construct pathname for the graphic file depending on OS type (Windows/Linux)
-    if platform.system()=='Windows':        # for Windows
-        bkgrfile = testvars.MCTestVariables["GraphicFilesDirectory"] + "\\" + background
-    else:    # for Linux
-        bkgrfile = testvars.MCTestVariables["GraphicFilesDirectory"] + background
-    print "**** DEBUG: filename: "+bkgrfile
+    bkgrfile = os.path.join(testvars.MCTestVariables["GraphicFilesDirectory"],background)
+    print "Uploading a new background image... "+bkgrfile
     if sel.is_element_present("id_background")==True:
         sel.type("id_background", bkgrfile)
         sel.click("submit_settings")
+        sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
+        sel.open(testvars.MCTestVariables["SettingsPage"])
         sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
     else:
         mclib.AppendErrorMessage(self,sel,"Input field for uploading new background image not found")
@@ -490,6 +473,8 @@ def AddCustomCSS(self,sel,customcss):
         sel.type("id_css",customcss)
         sel.click("submit_settings")
         sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
+        sel.open(testvars.MCTestVariables["SettingsPage"])
+        sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
         # Looking for custom CSS in HTML source - admin
         sel.click(testvars.MCUI["AdminVideos"])
         sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
@@ -528,6 +513,8 @@ def DeleteCustomCSS(self,sel):
         sel.type("id_css","")
         sel.click("submit_settings")
         sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
+        sel.open(testvars.MCTestVariables["SettingsPage"])
+        sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
         # Looking for custom CSS in HTML source - admin
         sel.click(testvars.MCUI["AdminVideos"])
         sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
@@ -559,6 +546,8 @@ def DisplaySubmitVideo(self,sel,theme):
     else:
         sel.check("id_display_submit_button")
         sel.click("submit_settings")
+        sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
+        sel.open(testvars.MCTestVariables["SettingsPage"])
         sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
         # Go to Main Site
         sel.click(testvars.MCTestVariables["ViewMainSiteLink"])
@@ -592,6 +581,8 @@ def HideSubmitVideo(self,sel,theme):
     else:
         sel.uncheck("id_display_submit_button")
         sel.click("submit_settings")
+        sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
+        sel.open(testvars.MCTestVariables["SettingsPage"])
         sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
         # Go to Main Site
         sel.click(testvars.MCTestVariables["ViewMainSiteLink"])
