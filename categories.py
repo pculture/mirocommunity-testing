@@ -26,7 +26,7 @@
 
 from selenium import selenium
 
-import unittest, time, re
+import unittest, time, re, os
 import testvars, mclib
 
 # =======================================
@@ -377,61 +377,69 @@ def BulkDeleteCategories(self,sel,categoryList):
 # This procedure modifies the parameters of a category
 
 def EditCategory(self,sel,cat,newname,newslug,newdescription,newlogo):
+    print "Checking that the source category exists..."
     catRow = CategoryRow(self,sel,cat)
-    if catRow==0:
-        print testvars.preE+"Could not find category "+cat
-        print "Current list of categories: "+GetCategoryList(self,sel)
-    else:
+    if catRow==0: # Source category to be edited not found
+        print mclib.AppendErrorMessage(self,sel,"Could not find category "+cat)
+        print "Current list of categories: "
+        print GetCategoryList(self,sel)
+    else: # Source category found - now looking for Edit link
+        print "OK"
         sel.open(testvars.MCTestVariables["CategoriesPage"])
+        print "Looking for the relevant Edit link..."
         elementEdit = "//div[@id='labels']/form/table/tbody/tr["+str(catRow)+"]/td[2]/div/a[1]"
-        if sel.is_element_present(elementEdit):
+        if sel.is_element_present(elementEdit)==False:
+            mclib.AppendErrorMessage(self,sel,"Edit link for category "+cat+" not found")
+        else: # Start editing
+            print "OK"
             sel.click(elementEdit)
             time.sleep(2)
             if sel.is_visible("//div[@id='labels']/form/table/tbody/tr["+str(catRow)+"]/td[1]/div/h2")==False:
-                self.verificationErrors.append("Edit category pop-up does not display")
-                print testvars.preE+"Edit category pop-up does not display"
+                mclib.AppendErrorMessage(self,sel,"Edit category pop-up does not display")
             else:
                 # Enter category name
                 categoryField="id_form-"+str(catRow-1)+"-name"
                 if sel.is_element_present(categoryField)==True:
                     #sel.click(categoryField)
+                    print "Entering new category name: "+newname
                     sel.type(categoryField, newname)
                 else:
-                    self.verificationErrors.append("Edit field for category name not found")
-                    print testvars.preE+"Edit field for category name not found"
+                    mclib.AppendErrorMessage(self,sel,"Edit field for category name not found")
                 # Enter category slug
                 slugField="id_form-"+str(catRow-1)+"-slug"
                 if sel.is_element_present(slugField)==True:
                     if newslug!="":
+                        print "Entering new slug: "+newslug
                         sel.type(slugField, newslug)
                     else:
                         if newname!="":
+                            print "Entering new slug: "+newname
                             sel.type(slugField, newname)
                 else:
-                    self.verificationErrors.append("Edit field for category slug not found")
-                    print testvars.preE+"Edit field for category slug not found"
+                    mclib.AppendErrorMessage(self,sel,"Edit field for category slug not found")
                 # Enter category description
                 descriptionField="id_form-"+str(catRow-1)+"-description"
                 if sel.is_element_present(descriptionField)==True:
                     if newdescription!="":
+                        print "Entering new description: "+newdescription
                         sel.type(descriptionField, newdescription)
                 else:
-                    self.verificationErrors.append("Edit field for category description not found")
-                    print testvars.preE+"Edit field for category description not found"
+                    mclib.AppendErrorMessage(self,sel,"Edit field for category description not found")
                 logoField="id_form-"+str(catRow-1)+"-logo"
                 if sel.is_element_present(logoField):
                     if newlogo!="":
-                        sel.type(logoField,testvars.MCTestVariables["GraphicFilesDirectory"]+"\\"+newlogo)
+                        print "Selecting new logo image file: "+newlogo
+                        sel.type(logoField,os.path.join(testvars.MCTestVariables["GraphicFilesDirectory"],newlogo))
+                # Now save changes
+                print "Saving changes..."
+                buttonUpdate="//div[@id='labels']/form/table/tbody/tr["+str(catRow)+"]/td[1]/div/button"
+                if sel.is_element_present(buttonUpdate)==False:
+                    mclib.AppendErrorMessage(self,sel,"Save Changes button on Edit Category pop-up not found")
                 else:
-                    self.verificationErrors.append("Edit field for category logo filename not found")
-                    print testvars.preE+"Edit field for category logo filename not found"
-        else:
-            self.verificationErrors.append("Edit link not found for category")
-            print testvars.preE+"Edit link not found for category "+cat
-        buttonUpdate="//div[@id='labels']/form/table/tbody/tr["+str(catRow)+"]/td[1]/div/button"
-        sel.click(buttonUpdate)
-        sel.refresh()
-        sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
+                    sel.click(buttonUpdate)
+                    print "OK"
+                    sel.refresh()
+                    sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
 
 
 # =======================================
