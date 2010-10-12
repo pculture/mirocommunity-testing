@@ -16,7 +16,7 @@
 
 
 from selenium import selenium
-import unittest, time, re, sys
+import unittest, time, re, sys, os
 import mclib, loginlogout, queue, sitesettings, testvars
 
 # ----------------------------------------------------------------------
@@ -239,7 +239,7 @@ class TestCase_EditVideoInQueue(unittest.TestCase):
         title = "Test "+time.strftime("%d-%m-%Y %H:%M:%S", time.localtime())
         user = "Selene Test-Admin"
         posted = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
-        thumbnail = testvars.MCTestVariables["GraphicFilesDirectory"]+"\\"+"background3.jpg"
+        thumbnail = os.path.join(testvars.MCTestVariables["GraphicFilesDirectory"],"background3.jpg")
         description = "Test Description"
         category = "art"
         tag = "test"
