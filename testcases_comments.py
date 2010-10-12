@@ -534,6 +534,10 @@ class testcase_BaseComments(testcase_BaseTestCase):
             self.failIf(True)
         sel.click('submit_settings')
         sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
+        # ----- Added to make up for blank page bug
+        sel.open(testvars.MCTestVariables["SettingsPage"])
+        sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
+        # --------------------
         sel.click('link=View Main Site')
         sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
         sel.click('link=Logout seleniumTestAdmin')
