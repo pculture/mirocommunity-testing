@@ -114,8 +114,12 @@ def ModifySiteSettings(self,sel,theme):
 # Click Save
     sel.click("submit_settings")
     sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
+    # ------ Workaround for blank page bug
+    sel.open(testvars.MCTestVariables["CategoriesPage"])
+    time.sleep(3)
     sel.open(testvars.MCTestVariables["SettingsPage"])
     sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
+    # --------- End of workaround insert
     print "Changed site title, tagline, about text"
     
 # ==========CHECKS ON ADMIN INTERFACE===========
@@ -277,6 +281,9 @@ time.strftime("%d-%m-%Y %H:%M:%S", time.localtime())
     sel.click("submit_settings")
     sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
     print "Changed organization settings (SideBarBlurb, FooterBlurb)"
+    # ------ Workaround for blank page bug
+    sel.open(testvars.MCTestVariables["CategoriesPage"])
+    sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
     
 # Check footbar at the administrator interface - UPDATE: FOOTER REMOVED FROM ADMIN PAGES
     elementFooterBlurb="//div[@id='footer']/div[1]"
@@ -441,9 +448,15 @@ def DeleteBackgroundImage(self,sel):
     else:
         sel.click("delete_background")
         sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
+        sel.open(testvars.MCTestVariables["CategoriesPage"])
+        time.sleep(2)
+        sel.open(testvars.MCTestVariables["SettingsPage"])
+        sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
         sel.click("submit_settings")
         sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
         # Go to Main Site
+        sel.open(testvars.MCTestVariables["CategoriesPage"])
+        sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
         print "Checking that Home page does not have a background image"
         sel.click(testvars.MCTestVariables["ViewMainSiteLink"])
         sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])

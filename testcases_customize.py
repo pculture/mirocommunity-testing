@@ -134,7 +134,7 @@ class TestCase_UploadBackground(unittest.TestCase):
     def UploadBackground(self,sel,theme):
         print ""
         print "Running UploadBackground test... with theme No."+str(theme)
-        newbkgr = "background5.jpg"
+        newbkgr = "background4.jpg"
         print "Uploading file: "+newbkgr
 #       Upload new background image
         sitesettings.UploadBackgroundImage(self,sel,theme,newbkgr)
