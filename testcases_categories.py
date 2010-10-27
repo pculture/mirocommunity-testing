@@ -6,13 +6,14 @@
 #
 # Includes the following test cases:
 #     1. TestCase_DeleteAllCategories
-#     2. TestCase_AddCategories
-#     3. TestCase_AddSubCategories
-#     4. TestCase_AddNonASCIICategories
-#     5. TestCase_AddDuplicateCategory
-#     6. TestCase_EditCategory
-#     7. TestCase_BulkDeleteCategories
-#     8. TestCase_RestoreAllCategories
+#     2. TestCase_AddCategories_296
+#     3. TestCase_AddSubCategories_297
+#     4. TestCase_AddNonASCIICategories_477
+#     5. TestCase_AddDuplicateCategory_478
+#     6. TestCase_EditCategory_299
+#     7. TestCase_DeleteSingleCategory_298
+#     8. TestCase_BulkDeleteCategories_301
+#     9. TestCase_RestoreAllCategories
 
 from selenium import selenium
 import unittest, time, re, mclib, loginlogout, sitesettings, categories, testvars
@@ -47,7 +48,7 @@ class TestCase_DeleteAllCategories(unittest.TestCase):
 
 
 
-class TestCase_AddCategories(unittest.TestCase):
+class TestCase_AddCategories_296(unittest.TestCase):
     
 # Open the desired browser and set up the test
     def setUp(self):
@@ -55,7 +56,7 @@ class TestCase_AddCategories(unittest.TestCase):
         self.selenium = selenium("localhost", testvars.MCTestVariables["Port"], testvars.MCTestVariables["Browser"], testvars.MCTestVariables["TestSite"])
         self.selenium.start()
 
-    def test_AddCategories(self):
+    def test_AddCategories_296(self):
         sel = self.selenium
 #       Log in as Admin
         loginlogout.LogInAsAdmin(self,sel)
@@ -70,7 +71,7 @@ class TestCase_AddCategories(unittest.TestCase):
 
 
 
-class TestCase_AddSubCategories(unittest.TestCase):
+class TestCase_AddSubCategories_297(unittest.TestCase):
     
 # Open the desired browser and set up the test
     def setUp(self):
@@ -78,7 +79,7 @@ class TestCase_AddSubCategories(unittest.TestCase):
         self.selenium = selenium("localhost", testvars.MCTestVariables["Port"], testvars.MCTestVariables["Browser"], testvars.MCTestVariables["TestSite"])
         self.selenium.start()
 
-    def test_AddSubCategories(self):
+    def test_AddSubCategories_297(self):
         sel = self.selenium
 #       Log in as Admin
         loginlogout.LogInAsAdmin(self,sel)
@@ -92,7 +93,7 @@ class TestCase_AddSubCategories(unittest.TestCase):
         self.assertEqual([], self.verificationErrors)
 
 
-class TestCase_AddNonASCIICategories(unittest.TestCase):
+class TestCase_AddNonASCIICategories_477(unittest.TestCase):
     
 # Open the desired browser and set up the test
     def setUp(self):
@@ -100,7 +101,7 @@ class TestCase_AddNonASCIICategories(unittest.TestCase):
         self.selenium = selenium("localhost", testvars.MCTestVariables["Port"], testvars.MCTestVariables["Browser"], testvars.MCTestVariables["TestSite"])
         self.selenium.start()
 
-    def test_AddNonASCIICategories(self):
+    def test_AddNonASCIICategories_477(self):
         sel = self.selenium
 #       Log in as Admin
         loginlogout.LogInAsAdmin(self,sel)
@@ -114,7 +115,7 @@ class TestCase_AddNonASCIICategories(unittest.TestCase):
         self.assertEqual([], self.verificationErrors)
 
 
-class TestCase_AddDuplicateCategory(unittest.TestCase):
+class TestCase_AddDuplicateCategory_478(unittest.TestCase):
     
 # Open the desired browser and set up the test
     def setUp(self):
@@ -123,7 +124,7 @@ class TestCase_AddDuplicateCategory(unittest.TestCase):
         self.selenium.start()
 
 # The user actions executed in the test scenario
-    def test_AddDuplicateCategory(self):
+    def test_AddDuplicateCategory_478(self):
         sel = self.selenium
 #       Log in as Admin
         loginlogout.LogInAsAdmin(self,sel)
@@ -137,7 +138,7 @@ class TestCase_AddDuplicateCategory(unittest.TestCase):
         self.assertEqual([], self.verificationErrors)
 
 
-class TestCase_EditCategory(unittest.TestCase):
+class TestCase_EditCategory_299(unittest.TestCase):
     
 # Open the desired browser and set up the test
     def setUp(self):
@@ -145,7 +146,7 @@ class TestCase_EditCategory(unittest.TestCase):
         self.selenium = selenium("localhost", testvars.MCTestVariables["Port"], testvars.MCTestVariables["Browser"], testvars.MCTestVariables["TestSite"])
         self.selenium.start()
 
-    def test_EditCategory(self):
+    def test_EditCategory_299(self):
         sel = self.selenium
 #       Log in as Admin
         loginlogout.LogInAsAdmin(self,sel)
@@ -205,7 +206,7 @@ class TestCase_EditCategory(unittest.TestCase):
 
 
 
-class TestCase_BulkDeleteCategories(unittest.TestCase):
+class TestCase_DeleteSingleCategory_298(unittest.TestCase):
     
 # Open the desired browser and set up the test
     def setUp(self):
@@ -213,7 +214,28 @@ class TestCase_BulkDeleteCategories(unittest.TestCase):
         self.selenium = selenium("localhost", testvars.MCTestVariables["Port"], testvars.MCTestVariables["Browser"], testvars.MCTestVariables["TestSite"])
         self.selenium.start()
 
-    def test_BulkDeleteCategories(self):
+    def test_DeleteSingleCategory_298(self):
+        sel = self.selenium
+#       Log in as Admin
+        loginlogout.LogInAsAdmin(self,sel)
+        categories.DeleteCategory(self,sel,testvars.newCategories[len(testvars.newCategories)-1])
+
+# Close the browser, log errors, perform cleanup    
+    def tearDown(self):
+        self.selenium.stop()
+# the command on the previous line should close the browser
+        self.assertEqual([], self.verificationErrors)
+
+
+class TestCase_BulkDeleteCategories_301(unittest.TestCase):
+    
+# Open the desired browser and set up the test
+    def setUp(self):
+        self.verificationErrors = []
+        self.selenium = selenium("localhost", testvars.MCTestVariables["Port"], testvars.MCTestVariables["Browser"], testvars.MCTestVariables["TestSite"])
+        self.selenium.start()
+
+    def test_BulkDeleteCategories_301(self):
         sel = self.selenium
 #       Log in as Admin
         loginlogout.LogInAsAdmin(self,sel)

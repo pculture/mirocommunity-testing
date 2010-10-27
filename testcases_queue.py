@@ -5,14 +5,14 @@
 #=======================================================================
 #
 # Includes the following test cases:
-#     1. TestCase_ApproveVideo
-#     2. TestCase_FeatureVideo
-#     3. TestCase_RejectVideo
-#     4. TestCase_ApprovePage
-#     5. TestCase_RejectPage
-#     6. TestCase_ClearQueue
-#     7. TestCase_EditVideoInQueue
-#     8. TestCase_RSSVideosAwaitingModeration
+#     1. TestCase_ApproveVideo_480
+#     2. TestCase_FeatureVideo_481
+#     3. TestCase_RejectVideo_482
+#     4. TestCase_ApprovePage_483
+#     5. TestCase_RejectPage_484
+#     6. TestCase_ClearQueue_511
+#     7. TestCase_EditVideoInQueue_512
+#     8. TestCase_RSSVideosAwaitingModeration_513
 
 
 from selenium import selenium
@@ -22,7 +22,7 @@ import mclib, loginlogout, queue, sitesettings, testvars
 # ----------------------------------------------------------------------
 
 
-class TestCase_ApproveVideo(unittest.TestCase):
+class TestCase_ApproveVideo_480(unittest.TestCase):
     
 # Open the desired browser and set up the test
     def setUp(self):
@@ -32,7 +32,7 @@ class TestCase_ApproveVideo(unittest.TestCase):
 
 
 # The user actions executed in the test scenario
-    def test_ApproveVideo(self):
+    def test_ApproveVideo_480(self):
         sel = self.selenium
         loginlogout.LogInAsAdmin(self,sel)
         page = "Last"
@@ -47,7 +47,7 @@ class TestCase_ApproveVideo(unittest.TestCase):
 
 
 
-class TestCase_FeatureVideo(unittest.TestCase):
+class TestCase_FeatureVideo_481(unittest.TestCase):
     
 # Open the desired browser and set up the test
     def setUp(self):
@@ -56,7 +56,7 @@ class TestCase_FeatureVideo(unittest.TestCase):
         self.selenium.start()
 
 # The user actions executed in the test scenario
-    def test_FeatureVideo(self):
+    def test_FeatureVideo_481(self):
         sel = self.selenium
         loginlogout.LogInAsAdmin(self,sel)
         page = "1"
@@ -70,7 +70,7 @@ class TestCase_FeatureVideo(unittest.TestCase):
         self.assertEqual([], self.verificationErrors)
 
 
-class TestCase_RejectVideo(unittest.TestCase):
+class TestCase_RejectVideo_482(unittest.TestCase):
     
 # Open the desired browser and set up the test
     def setUp(self):
@@ -79,7 +79,7 @@ class TestCase_RejectVideo(unittest.TestCase):
         self.selenium.start()
 
 # The user actions executed in the test scenario
-    def test_RejectVideo(self):
+    def test_RejectVideo_482(self):
         sel = self.selenium
         loginlogout.LogInAsAdmin(self,sel)
         page = "1"
@@ -94,7 +94,7 @@ class TestCase_RejectVideo(unittest.TestCase):
 
 
 
-class TestCase_ApprovePage(unittest.TestCase):
+class TestCase_ApprovePage_483(unittest.TestCase):
     
 # Open the desired browser and set up the test
     def setUp(self):
@@ -103,7 +103,7 @@ class TestCase_ApprovePage(unittest.TestCase):
         self.selenium.start()
 
 # The user actions executed in the test scenario
-    def test_ApprovePage(self):
+    def test_ApprovePage_483(self):
         sel = self.selenium
         loginlogout.LogInAsAdmin(self,sel)
         page = "1"
@@ -116,7 +116,7 @@ class TestCase_ApprovePage(unittest.TestCase):
         self.assertEqual([], self.verificationErrors)
 
 
-class TestCase_RejectPage(unittest.TestCase):
+class TestCase_RejectPage_484(unittest.TestCase):
     
 # Open the desired browser and set up the test
     def setUp(self):
@@ -125,7 +125,7 @@ class TestCase_RejectPage(unittest.TestCase):
         self.selenium.start()
 
 # The user actions executed in the test scenario
-    def test_RejectPage(self):
+    def test_RejectPage_484(self):
         sel = self.selenium
         loginlogout.LogInAsAdmin(self,sel)
         page = "1"
@@ -168,7 +168,7 @@ class TestCase_RejectPage(unittest.TestCase):
         self.assertEqual([], self.verificationErrors)
 
 
-class TestCase_ClearQueue(unittest.TestCase):
+class TestCase_ClearQueue_511(unittest.TestCase):
     
 # Open the desired browser and set up the test
     def setUp(self):
@@ -177,7 +177,7 @@ class TestCase_ClearQueue(unittest.TestCase):
         self.selenium.start()
 
 # The user actions executed in the test scenario
-    def test_ClearQueue(self):
+    def test_ClearQueue_511(self):
         sel = self.selenium
         loginlogout.LogInAsAdmin(self,sel)
         # Memorizing 
@@ -222,7 +222,7 @@ class TestCase_ClearQueue(unittest.TestCase):
         self.assertEqual([], self.verificationErrors)
 
 
-class TestCase_EditVideoInQueue(unittest.TestCase):
+class TestCase_EditVideoInQueue_512(unittest.TestCase):
     
 # Open the desired browser and set up the test
     def setUp(self):
@@ -231,7 +231,7 @@ class TestCase_EditVideoInQueue(unittest.TestCase):
         self.selenium.start()
 
 # The user actions executed in the test scenario
-    def test_EditVideoInQueue(self):
+    def test_EditVideoInQueue_512(self):
         sel = self.selenium
         loginlogout.LogInAsAdmin(self,sel)
         page = "Last"
@@ -253,7 +253,7 @@ class TestCase_EditVideoInQueue(unittest.TestCase):
         self.assertEqual([], self.verificationErrors)
 
 
-class TestCase_RSSVideosAwaitingModeration(unittest.TestCase):
+class TestCase_RSSVideosAwaitingModeration_513(unittest.TestCase):
     
 # Open the desired browser and set up the test
     def setUp(self):
@@ -262,7 +262,7 @@ class TestCase_RSSVideosAwaitingModeration(unittest.TestCase):
         self.selenium.start()
 
 # The user actions executed in the test scenario
-    def test_RSSVideosAwaitingModeration(self):
+    def test_RSSVideosAwaitingModeration_513(self):
         sel = self.selenium
         loginlogout.LogInAsAdmin(self,sel)
         currentLink="Unapproved RSS"

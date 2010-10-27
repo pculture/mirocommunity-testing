@@ -5,18 +5,18 @@
 #=======================================================================
 #
 # Includes the following test cases:
-#     1. TestCase_AddSourceFeed
-#     2. TestCase_AddDuplicateFeed
-#     3. TestCase_AddSourceWithDuplicateVideos
-#     4. TestCase_EditSource
-#     5. TestCase_BulkEditSources
-#     6. TestCase_BulkDeleteSources
-#     7. TestCase_SearchForVideos
-#     8. TestCase_SearchVideoByNonASCIITerm
-#     9. TestCase_AddSearchFeed
-#     10. TestCase_SortSources
-#     11. TestCase_SearchInSources
-#     12. TestCase_FilterSources
+#     1. TestCase_AddSourceFeed_257
+#     2. TestCase_AddDuplicateFeed_258
+#     3. TestCase_AddSourceWithDuplicateVideos_259
+#     4. TestCase_EditSource_479
+#     5. TestCase_BulkEditSources_264
+#     6. TestCase_BulkDeleteSources_265
+#     7. TestCase_SearchForVideos_260
+#     8. TestCase_SearchVideoByNonASCIITerm_261
+#     9. TestCase_AddSearchFeed_262
+#     10. TestCase_SortSources_266
+#     11. TestCase_SearchInSources_267
+#     12. TestCase_FilterSources_268
 
 
 from selenium import selenium
@@ -26,7 +26,7 @@ import mclib, loginlogout, categories, sources, queue, testvars
 # ----------------------------------------------------------------------
 
 
-class TestCase_AddSourceFeed(unittest.TestCase):
+class TestCase_AddSourceFeed_257(unittest.TestCase):
     
 # Open the desired browser and set up the test
     def setUp(self):
@@ -35,7 +35,7 @@ class TestCase_AddSourceFeed(unittest.TestCase):
         self.selenium.start()
 
 # The user actions executed in the test scenario
-    def test_AddSourceFeed(self):
+    def test_AddSourceFeed_257(self):
         sel = self.selenium
         loginlogout.LogInAsAdmin(self,sel)
         # Check if the source exists. If yes, delete it
@@ -56,7 +56,7 @@ class TestCase_AddSourceFeed(unittest.TestCase):
         self.assertEqual([], self.verificationErrors)
 
 
-class TestCase_AddDuplicateFeed(unittest.TestCase):
+class TestCase_AddDuplicateFeed_258(unittest.TestCase):
     
 # Open the desired browser and set up the test
     def setUp(self):
@@ -65,7 +65,7 @@ class TestCase_AddDuplicateFeed(unittest.TestCase):
         self.selenium.start()
 
 # The user actions executed in the test scenario
-    def test_AddDuplicateFeed(self):
+    def test_AddDuplicateFeed_258(self):
         sel = self.selenium
         loginlogout.LogInAsAdmin(self,sel)
         #sourceURL = "http://feeds2.feedburner.com/video/artsworld"
@@ -79,7 +79,7 @@ class TestCase_AddDuplicateFeed(unittest.TestCase):
         self.assertEqual([], self.verificationErrors)
 
 
-class TestCase_AddSourceWithDuplicateVideos(unittest.TestCase):
+class TestCase_AddSourceWithDuplicateVideos_259(unittest.TestCase):
     
 # Open the desired browser and set up the test
     def setUp(self):
@@ -88,7 +88,7 @@ class TestCase_AddSourceWithDuplicateVideos(unittest.TestCase):
         self.selenium.start()
 
 # The user actions executed in the test scenario
-    def test_AddSourceWithDuplicateVideos(self):
+    def test_AddSourceWithDuplicateVideos_259(self):
         sel = self.selenium
         loginlogout.LogInAsAdmin(self,sel)
         # Delete existing source, if appropriate
@@ -128,7 +128,7 @@ class TestCase_AddSourceWithDuplicateVideos(unittest.TestCase):
 
 
 
-class TestCase_EditSource(unittest.TestCase):
+class TestCase_EditSource_479(unittest.TestCase):
     
 # Open the desired browser and set up the test
     def setUp(self):
@@ -138,7 +138,7 @@ class TestCase_EditSource(unittest.TestCase):
 
 # The user actions executed in the test scenario
 
-    def test_EditSource(self):
+    def test_EditSource_479(self):
         sel = self.selenium
         loginlogout.LogInAsAdmin(self,sel)
         #oldSourceName = "Al Jazeera Arts World - Video"
@@ -168,7 +168,7 @@ class TestCase_EditSource(unittest.TestCase):
         self.assertEqual([], self.verificationErrors)
 
 
-class TestCase_BulkEditSources(unittest.TestCase):
+class TestCase_BulkEditSources_264(unittest.TestCase):
     
 # Open the desired browser and set up the test
     def setUp(self):
@@ -177,7 +177,7 @@ class TestCase_BulkEditSources(unittest.TestCase):
         self.selenium.start()
 
 # The user actions executed in the test scenario
-    def test_BulkEditSources(self):
+    def test_BulkEditSources_264(self):
         sel = self.selenium
         loginlogout.LogInAsAdmin(self,sel)
         # List all the available sources
@@ -204,7 +204,7 @@ class TestCase_BulkEditSources(unittest.TestCase):
         self.assertEqual([], self.verificationErrors)
 
 
-class TestCase_BulkDeleteSources(unittest.TestCase):
+class TestCase_BulkDeleteSources_265(unittest.TestCase):
     
 # Open the desired browser and set up the test
     def setUp(self):
@@ -213,7 +213,7 @@ class TestCase_BulkDeleteSources(unittest.TestCase):
         self.selenium.start()
 
 # The user actions executed in the test scenario
-    def test_BulkDeleteSources(self):
+    def test_BulkDeleteSources_265(self):
         sel = self.selenium
         loginlogout.LogInAsAdmin(self,sel)
         sourcelist = sources.GetSourceList(self,sel)
@@ -232,7 +232,7 @@ class TestCase_BulkDeleteSources(unittest.TestCase):
 
 
 
-class TestCase_SearchForVideos(unittest.TestCase):
+class TestCase_SearchForVideos_260(unittest.TestCase):
     
 # Open the desired browser and set up the test
     def setUp(self):
@@ -241,7 +241,7 @@ class TestCase_SearchForVideos(unittest.TestCase):
         self.selenium.start()
 
 # The user actions executed in the test scenario
-    def test_SearchForVideos(self):
+    def test_SearchForVideos_260(self):
         sel = self.selenium
         loginlogout.LogInAsAdmin(self,sel)
         
@@ -313,7 +313,7 @@ class TestCase_SearchForVideos(unittest.TestCase):
         self.assertEqual([], self.verificationErrors)
 
 
-class TestCase_SearchVideoByNonASCIITerm(unittest.TestCase):
+class TestCase_SearchVideoByNonASCIITerm_261(unittest.TestCase):
     
 # Open the desired browser and set up the test
     def setUp(self):
@@ -322,7 +322,7 @@ class TestCase_SearchVideoByNonASCIITerm(unittest.TestCase):
         self.selenium.start()
 
 # The user actions executed in the test scenario
-    def test_SearchVideoByNonASCIITerm(self):
+    def test_SearchVideoByNonASCIITerm_261(self):
         sel = self.selenium
         loginlogout.LogInAsAdmin(self,sel)
         searchterm = u"\u0442\u0443\u0440\u0438\u0437\u043C"  #'tourism' in Cyrillic alphabet
@@ -394,7 +394,7 @@ class TestCase_SearchVideoByNonASCIITerm(unittest.TestCase):
         self.assertEqual([], self.verificationErrors)
 
 
-class TestCase_AddSearchFeed(unittest.TestCase):
+class TestCase_AddSearchFeed_262(unittest.TestCase):
     
 # Open the desired browser and set up the test
     def setUp(self):
@@ -403,7 +403,7 @@ class TestCase_AddSearchFeed(unittest.TestCase):
         self.selenium.start()
 
 # The user actions executed in the test scenario
-    def test_AddSearchFeed(self):
+    def test_AddSearchFeed_262(self):
         sel = self.selenium
         loginlogout.LogInAsAdmin(self,sel)
         # Add search feed with sorting by date
@@ -425,7 +425,7 @@ class TestCase_AddSearchFeed(unittest.TestCase):
 
 
 
-class TestCase_SortSources(unittest.TestCase):
+class TestCase_SortSources_266(unittest.TestCase):
     
 # Open the desired browser and set up the test
     def setUp(self):
@@ -488,7 +488,7 @@ class TestCase_SortSources(unittest.TestCase):
 
 
 # The user actions executed in the test scenario
-    def test_SortSources(self):
+    def test_SortSources_266(self):
         sel = self.selenium
         loginlogout.LogInAsAdmin(self,sel)
 
@@ -559,7 +559,7 @@ class TestCase_SortSources(unittest.TestCase):
         self.assertEqual([], self.verificationErrors)
 
 
-class TestCase_SearchInSources(unittest.TestCase):
+class TestCase_SearchInSources_267(unittest.TestCase):
     
 # Open the desired browser and set up the test
     def setUp(self):
@@ -569,7 +569,7 @@ class TestCase_SearchInSources(unittest.TestCase):
 
 
 # The user actions executed in the test scenario
-    def test_SearchInSources(self):
+    def test_SearchInSources_267(self):
         sel = self.selenium
         loginlogout.LogInAsAdmin(self,sel)
         # Search by query in particular user and category
@@ -597,7 +597,7 @@ class TestCase_SearchInSources(unittest.TestCase):
 
 
 
-class TestCase_FilterSources(unittest.TestCase):
+class TestCase_FilterSources_268(unittest.TestCase):
     
 # Open the desired browser and set up the test
     def setUp(self):
@@ -606,7 +606,7 @@ class TestCase_FilterSources(unittest.TestCase):
         self.selenium.start()
 
 # The user actions executed in the test scenario
-    def test_FilterSources(self):
+    def test_FilterSources_268(self):
         sel = self.selenium
         loginlogout.LogInAsAdmin(self,sel)
         print "Show All sources"

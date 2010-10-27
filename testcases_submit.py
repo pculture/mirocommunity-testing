@@ -5,12 +5,12 @@
 #=======================================================================
 #
 # Includes the following test cases:
-#     1. TestCase_SubmitVideoAsAdmin
-#     2. TestCase_SubmitVideoAsLoggedUser
-#     3. TestCase_SubmitVideoAsUnloggedUser
-#     4. TestCase_SubmitVideoFromAdminPage
-#     5. TestCase_SubmitDuplicateVideo
-#     6. TestCase_SubmitVideoWithEmbedCode
+#     1. TestCase_SubmitVideoAsAdmin_471
+#     2. TestCase_SubmitVideoAsLoggedUser_472
+#     3. TestCase_SubmitVideoAsUnloggedUser_473
+#     4. TestCase_SubmitVideoFromAdminPage_474
+#     5. TestCase_SubmitDuplicateVideo_475
+#     6. TestCase_SubmitVideoWithEmbedCode_476
 
 
 from selenium import selenium
@@ -19,7 +19,7 @@ import sys
 
 # ----------------------------------------------------------------------
 
-class TestCase_SubmitVideoAsAdmin(unittest.TestCase):
+class TestCase_SubmitVideoAsAdmin_471(unittest.TestCase):
     
 # Open the desired browser and set up the test
     def setUp(self):
@@ -27,7 +27,7 @@ class TestCase_SubmitVideoAsAdmin(unittest.TestCase):
         self.selenium = selenium("localhost", testvars.MCTestVariables["Port"], testvars.MCTestVariables["Browser"], testvars.MCTestVariables["TestSite"])
         self.selenium.start()
 
-    def test_SubmitVideoAsAdmin(self):
+    def test_SubmitVideoAsAdmin_471(self):
         sel = self.selenium
         # Log in as an Administrator
         loginlogout.LogInAsAdmin(self,sel)
@@ -66,7 +66,7 @@ class TestCase_SubmitVideoAsAdmin(unittest.TestCase):
         self.assertEqual([], self.verificationErrors)
 
 
-class TestCase_SubmitVideoAsLoggedUser(unittest.TestCase):
+class TestCase_SubmitVideoAsLoggedUser_472(unittest.TestCase):
     
 # Open the desired browser and set up the test
     def setUp(self):
@@ -75,7 +75,7 @@ class TestCase_SubmitVideoAsLoggedUser(unittest.TestCase):
         self.selenium.start()
 
 # The user actions executed in the test scenario
-    def test_SubmitVideoAsLoggedUser(self):
+    def test_SubmitVideoAsLoggedUser_472(self):
         sel = self.selenium
         # Set video parameters
         testVideoURL = "http://www.youtube.com/watch?v=MFREixTg4eI"
@@ -125,7 +125,7 @@ class TestCase_SubmitVideoAsLoggedUser(unittest.TestCase):
         self.assertEqual([], self.verificationErrors)
 
 
-class TestCase_SubmitVideoAsUnloggedUser(unittest.TestCase):
+class TestCase_SubmitVideoAsUnloggedUser_473(unittest.TestCase):
     
 # Open the desired browser and set up the test
     def setUp(self):
@@ -134,7 +134,7 @@ class TestCase_SubmitVideoAsUnloggedUser(unittest.TestCase):
         self.selenium.start()
 
 # The user actions executed in the test scenario
-    def test_SubmitVideoAsUnloggedUser(self):
+    def test_SubmitVideoAsUnloggedUser_473(self):
         sel = self.selenium
         # Log in as an Administrator
         loginlogout.LogInAsAdmin(self,sel)
@@ -181,7 +181,7 @@ class TestCase_SubmitVideoAsUnloggedUser(unittest.TestCase):
         self.assertEqual([], self.verificationErrors)
 
 
-class TestCase_SubmitVideoFromAdminPage(unittest.TestCase):
+class TestCase_SubmitVideoFromAdminPage_474(unittest.TestCase):
     
 # Open the desired browser and set up the test
     def setUp(self):
@@ -190,7 +190,7 @@ class TestCase_SubmitVideoFromAdminPage(unittest.TestCase):
         self.selenium.start()
 
 # The user actions executed in the test scenario
-    def test_SubmitVideoFromAdminPage(self):
+    def test_SubmitVideoFromAdminPage_474(self):
         sel = self.selenium
         # Log in as an Administrator
         loginlogout.LogInAsAdmin(self,sel)
@@ -219,7 +219,7 @@ class TestCase_SubmitVideoFromAdminPage(unittest.TestCase):
         self.assertEqual([], self.verificationErrors)
 
 
-class TestCase_SubmitDuplicateVideo(unittest.TestCase):
+class TestCase_SubmitDuplicateVideo_475(unittest.TestCase):
     
 # Open the desired browser and set up the test
     def setUp(self):
@@ -238,7 +238,7 @@ class TestCase_SubmitDuplicateVideo(unittest.TestCase):
         loginlogout.LogInAsAdmin(self,sel)
     
 # The user actions executed in the test scenario
-    def test_SubmitDuplicateVideo(self):
+    def test_SubmitDuplicateVideo_475(self):
         sel = self.selenium
         # Log in as an Administrator
         loginlogout.LogInAsAdmin(self,sel)
@@ -254,7 +254,7 @@ class TestCase_SubmitDuplicateVideo(unittest.TestCase):
         if queue.FindVideoInQueue(self,sel,testVideoTitle)!=[0,0]:
             print "Found the video in the premoderation queue"
             for theme in range(1,5):
-                TestCase_SubmitDuplicateVideo.ChangeThemeAndSubmitDuplicateVideo(self,sel,theme,testVideoURL)
+                TestCase_SubmitDuplicateVideo_475.ChangeThemeAndSubmitDuplicateVideo(self,sel,theme,testVideoURL)
         else:
             print "Could not find the video in the premoderation queue"
             # Check if the video is in the current ("Approved") set of videos
@@ -264,7 +264,7 @@ class TestCase_SubmitDuplicateVideo(unittest.TestCase):
             else:
                 print "Found the video among the approved videos"
                 for theme in range(1,5):
-                    TestCase_SubmitDuplicateVideo.ChangeThemeAndSubmitDuplicateVideo(self,sel,theme,testVideoURL)
+                    TestCase_SubmitDuplicateVideo_475.ChangeThemeAndSubmitDuplicateVideo(self,sel,theme,testVideoURL)
 
 # Close the browser, log errors, perform cleanup    
     def tearDown(self):
@@ -273,7 +273,7 @@ class TestCase_SubmitDuplicateVideo(unittest.TestCase):
         self.assertEqual([], self.verificationErrors)
 
 
-class TestCase_SubmitVideoWithEmbedCode(unittest.TestCase):
+class TestCase_SubmitVideoWithEmbedCode_476(unittest.TestCase):
     
 # Open the desired browser and set up the test
     def setUp(self):
@@ -282,7 +282,7 @@ class TestCase_SubmitVideoWithEmbedCode(unittest.TestCase):
         self.selenium.start()
 
 # The user actions executed in the test scenario
-    def test_SubmitVideoWithEmbedCode(self):
+    def test_SubmitVideoWithEmbedCode_476(self):
         sel = self.selenium
         # Log in as an Administrator
         loginlogout.LogInAsAdmin(self,sel)

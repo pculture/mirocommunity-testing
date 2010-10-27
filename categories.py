@@ -179,7 +179,7 @@ def AddCategory(self,sel,cat,slug,description,sub,parent):
                         testDescription = description
                     sel.type("id_description", testDescription)
                 else:
-                    self.verificationErrors.append("Edit field for category description not found")
+                    mclib.AppendErrorMessage(self,sel,"Edit field for category description not found")
                     print testvars.preE+"Edit field for category description not found"
                 # Check if it is a subcategory; if yes, specify parent
                 if sub==1:
@@ -194,34 +194,28 @@ def AddCategory(self,sel,cat,slug,description,sub,parent):
                 if sel.is_element_present(buttonSubmit)==True:
                     sel.click("submit")
                 else:
-                    self.verificationErrors.append("Save button on Add Category pop-up not found")
-                    print testvars.preE+"Save button on Add Category pop-up not found"
+                    mclib.AppendErrorMessage(self,sel,"Save button on Add Category pop-up not found")
         sel.refresh()
         sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
 # Check if the new category is present in the list
         rowNo = CategoryRow(self,sel,testCat)
         if rowNo==0:   # not found
-            self.verificationErrors.append("New category not found in the list")
-            print testvars.preE+testCat+"category was not added to the list"
+            mclib.AppendErrorMessage(self,sel,testCat+" category was not added to the list")
         else:
             labelDescription = "//div[@id='labels']/form/table/tbody/tr["+str(rowNo)+"]/td[3]"
             labelSlug = "//div[@id='labels']/form/table/tbody/tr["+str(rowNo)+"]/td[4]"
             #Check category description
             if sel.is_element_present(labelDescription)!=True:
-                self.verificationErrors.append("Category description not found")
-                print testvars.preE+"Category description not found"
+                mclib.AppendErrorMessage(self,sel,"Category description not found")
             elif sel.get_text(labelDescription)!=mclib.remove_html_tags(testDescription):
-                self.verificationErrors.append("Wrong category description text displayed")
-                print testvars.preE+"Wrong category description text displayed"
+                mclib.AppendErrorMessage(self,sel,"Wrong category description text displayed")
                 print "Expected category description: "+mclib.remove_html_tags(testDescription)
                 print "- Actual category description: "+sel.get_text(labelDescription)
             #Check category slug
             if sel.is_element_present(labelSlug)!=True:
-                self.verificationErrors.append("Category slug not found")
-                print testvars.preE+"Category slug not found"
+                mclib.AppendErrorMessage(self,sel,"Category slug not found")
             elif sel.get_text(labelSlug)!=testSlug:
-                self.verificationErrors.append("Wrong category slug text displayed")
-                print testvars.preE+"Wrong category slug text displayed"
+                mclib.AppendErrorMessage(self,sel,"Wrong category slug text displayed")
                 print "Expected category slug: "+testSlug
                 print "- Actual category slug: "+sel.get_text(labelSlug)
         return 1
@@ -312,20 +306,22 @@ def DeleteCategory(self,sel,cat):
     catRow = CategoryRow(self, sel,cat)
     if catRow!=0:
         sel.open(testvars.MCTestVariables["CategoriesPage"])
+        sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
         elementDelete = "//div[@id='labels']/form/table/tbody/tr["+str(catRow)+"]/td[2]/div/a[2]"
+        print "Deleting category "+cat+"..."
         if sel.is_element_present(elementDelete):
             sel.click(elementDelete)
         else:
-            self.verificationErrors.append("Delete link not found for category")
-            print testvars.preE+"Delete link not found for category "+cat
+            mclib.AppendErrorMessage(self,sel,"Delete link not found for category")
         sel.click("//button[@name='submit' and @value='Save']")
         sel.refresh()
         sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
-        if CategoryRow(self, sel,cat)==0:
-            self.verificationErrors.append("Could not delete category")
-            print testvars.preE+"Could not delete category "+cat
+        if CategoryRow(self, sel,cat)!=0:
+            mclib.AppendErrorMessage(self,sel,"Could not delete category "+cat)
+        else:
+            print "OK"
     else:
-        print testvars.preE+"Could not find category "+cat
+        mclib.AppendErrorMessage(self,sel,"Could not find category "+cat)
     
 
 

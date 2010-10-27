@@ -31,74 +31,76 @@ class Test_HTMLTestRunner(unittest.TestCase):
         self.suite = unittest.TestSuite()
         self.suite.addTests([
 #-USERS-------------------------------------------------------------------------------------------------------
-            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_users.TestCase_AddNewAdmin),
-            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_users.TestCase_AddNewUser),
-            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_users.TestCase_EditUser),
-            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_users.TestCase_DeleteUser),
-            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_users.TestCase_CreateNewUserUsernameAndPassword),
-            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_users.TestCase_CreateNewUserWithoutUsername),
-# bug           unittest.defaultTestLoader.loadTestsFromTestCase(testcases_users.TestCase_CreateNewUserWithoutPassword),
-            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_users.TestCase_UsernameDoesntAcceptMax1Chars),
-            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_users.TestCase_NewUserUsernameMaxMax2MinChars),
-            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_users.TestCase_EditUserProfile),
-            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_users.TestCase_ViewProfile),
-            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_users.TestCase_ViewUser),
+            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_users.TestCase_AddNewAdmin_271),
+            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_users.TestCase_AddNewUser_270),
+            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_users.TestCase_EditUser_291),
+            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_users.TestCase_DeleteUser_272),
+            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_users.TestCase_CreateNewUserUsernameAndPassword_280),
+            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_users.TestCase_CreateNewUserWithoutUsername_274),
+# bug        unittest.defaultTestLoader.loadTestsFromTestCase(testcases_users.TestCase_CreateNewUserWithoutPassword_273),
+            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_users.TestCase_UsernameDoesntAcceptMax1Chars_283),
+            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_users.TestCase_NewUserUsernameMaxMax2MinChars_281),
+            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_users.TestCase_EditUserProfile_539),
+            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_users.TestCase_ViewProfile_540),
+            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_users.TestCase_ViewUser_290),
 #-SITE-SETTINGS-----------------------------------------------------------------------------------------------
-            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_customize.TestCase_ChangeSiteSettings),
-            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_customize.TestCase_ChangeOrganization),
-            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_customize.TestCase_UploadLogo),
-            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_customize.TestCase_UploadBackground),
-            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_customize.TestCase_DeleteBackground),
-            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_customize.TestCase_AddCustomCSS),
-            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_customize.TestCase_DisplaySubmitVideo),
+            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_customize.TestCase_ChangeSiteSettings_303),
+            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_customize.TestCase_ChangeOrganization_253),
+            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_customize.TestCase_UploadLogo_243),
+            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_customize.TestCase_UploadBackground_244),
+            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_customize.TestCase_DeleteBackground_245),
+            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_customize.TestCase_AddCustomCSS_251),
+            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_customize.TestCase_DisplaySubmitVideo_249),
+            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_customize.TestCase_CheckRequireLoginToSubmitVideo_250),
 #-CATEGORIES--------------------------------------------------------------------------------------------------
             unittest.defaultTestLoader.loadTestsFromTestCase(testcases_categories.TestCase_DeleteAllCategories),
-            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_categories.TestCase_AddCategories),
-            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_categories.TestCase_AddSubCategories),
-            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_categories.TestCase_AddNonASCIICategories),
-# bug           unittest.defaultTestLoader.loadTestsFromTestCase(testcases_categories.TestCase_AddDuplicateCategory),
-            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_categories.TestCase_EditCategory),
-            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_categories.TestCase_BulkDeleteCategories),
+            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_categories.TestCase_AddCategories_296),
+            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_categories.TestCase_AddSubCategories_297),
+            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_categories.TestCase_AddNonASCIICategories_477),
+# bug           unittest.defaultTestLoader.loadTestsFromTestCase(testcases_categories.TestCase_AddDuplicateCategory_478),
+            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_categories.TestCase_EditCategory_299),
+            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_categories.TestCase_DeleteSingleCategory_298),
+            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_categories.TestCase_BulkDeleteCategories_301),
 #-MANAGE-SOURCES------------------------------------------------------------------------------------------
-            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_manage.TestCase_AddSourceFeed),
-            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_manage.TestCase_AddDuplicateFeed),
-            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_manage.TestCase_AddSourceWithDuplicateVideos),
-            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_manage.TestCase_EditSource),
-            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_manage.TestCase_BulkEditSources),
-            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_manage.TestCase_BulkDeleteSources),
-            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_manage.TestCase_SearchForVideos),
-            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_manage.TestCase_SearchVideoByNonASCIITerm),
-            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_manage.TestCase_AddSearchFeed),
-            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_manage.TestCase_SortSources),
-            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_manage.TestCase_SearchInSources),
-            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_manage.TestCase_FilterSources),
+            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_manage.TestCase_AddSourceFeed_257),
+            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_manage.TestCase_AddDuplicateFeed_258),
+            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_manage.TestCase_AddSourceWithDuplicateVideos_259),
+            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_manage.TestCase_EditSource_479),
+            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_manage.TestCase_BulkEditSources_264),
+            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_manage.TestCase_BulkDeleteSources_265),
+            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_manage.TestCase_SearchForVideos_260),
+            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_manage.TestCase_SearchVideoByNonASCIITerm_261),
+            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_manage.TestCase_AddSearchFeed_262),
+            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_manage.TestCase_SortSources_266),
+            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_manage.TestCase_SearchInSources_267),
+            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_manage.TestCase_FilterSources_268),
 #-REVIEW-QUEUE---------------------------------------------------
-            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_queue.TestCase_ApproveVideo),
-            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_queue.TestCase_FeatureVideo),
-            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_queue.TestCase_RejectVideo),
-            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_queue.TestCase_ApprovePage),
-            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_queue.TestCase_RejectPage),
-            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_queue.TestCase_EditVideoInQueue),
-# bug            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_queue.TestCase_RSSVideosAwaitingModeration),
-            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_queue.TestCase_ClearQueue),
+            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_queue.TestCase_ApproveVideo_480),
+            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_queue.TestCase_FeatureVideo_481),
+            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_queue.TestCase_RejectVideo_482),
+            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_queue.TestCase_ApprovePage_483),
+            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_queue.TestCase_RejectPage_484),
+            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_queue.TestCase_EditVideoInQueue_512),
+# bug            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_queue.TestCase_RSSVideosAwaitingModeration_513),
+            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_queue.TestCase_ClearQueue_511),
 #-BULK-EDIT------------------------------------------------------
             unittest.defaultTestLoader.loadTestsFromTestCase(testcases_bulkedit.testcase_BulkEdit_EditAndDelete),
             unittest.defaultTestLoader.loadTestsFromTestCase(testcases_bulkedit.testcase_BulkEdit_FeatureAndUnfeature),
-            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_bulkedit.testcase_BulkEdit_EditSingleVideo),
-            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_bulkedit.testcase_BulkEdit_DeleteSingleVideo),
-            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_bulkedit.testcase_BulkEdit_UnapproveCurrent),
-            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_bulkedit.testcase_BulkEdit_UnapproveFeatured),
-            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_bulkedit.testcase_BulkEdit_SortByTitle),
-            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_bulkedit.testcase_BulkEdit_SortBySource),
-            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_bulkedit.testcase_BulkEdit_SortByDatePublished),
-            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_bulkedit.testcase_BulkEdit_SortByDateImported),
+            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_bulkedit.testcase_BulkEdit_EditSingleVideo_452),
+            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_bulkedit.testcase_BulkEdit_DeleteSingleVideo_453),
+            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_bulkedit.testcase_BulkEdit_UnapproveCurrent_450),
+            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_bulkedit.testcase_BulkEdit_UnapproveFeatured_451),
+            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_bulkedit.testcase_BulkEdit_SortByTitle_454),
+            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_bulkedit.testcase_BulkEdit_SortBySource_455),
+            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_bulkedit.testcase_BulkEdit_SortByDatePublished_456),
+            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_bulkedit.testcase_BulkEdit_SortByDateImported_457),
 #-SUBMIT-VIDEO---------------------------------------------------
-            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_submit.TestCase_SubmitVideoAsAdmin),
-            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_submit.TestCase_SubmitVideoAsLoggedUser),
-            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_submit.TestCase_SubmitVideoAsUnloggedUser),
-            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_submit.TestCase_SubmitVideoFromAdminPage),
-            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_submit.TestCase_SubmitDuplicateVideo),
-            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_submit.TestCase_SubmitVideoWithEmbedCode),
+            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_submit.TestCase_SubmitVideoAsAdmin_471),
+            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_submit.TestCase_SubmitVideoAsLoggedUser_472),
+            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_submit.TestCase_SubmitVideoAsUnloggedUser_473),
+            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_submit.TestCase_SubmitVideoFromAdminPage_474),
+            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_submit.TestCase_SubmitDuplicateVideo_475),
+            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_submit.TestCase_SubmitVideoWithEmbedCode_476),
 #-RESTORE-CATEGORIES---------------------------------------------
             unittest.defaultTestLoader.loadTestsFromTestCase(testcases_categories.TestCase_RestoreAllCategories),
 #-COMMENTS-------------------------------------------------------
@@ -121,14 +123,12 @@ class Test_HTMLTestRunner(unittest.TestCase):
         # check out the output
         byte_output = buf.getvalue()
         # output the main test results
-
-        results_path = os.path.join(os.getcwd(), "TestResults")
-        filename = os.path.join(results_path, 'file_MC_test_results_'+time.strftime("%Y%m%d_%H%M", time.gmtime())+'_GMT.html')
+        filename=os.path.join(testvars.MCTestVariables["ResultOutputDirectory"],'MC_test_results_'+time.strftime("%d-%m-%Y_%H-%M", time.gmtime())+'_GMT.html')
         f = open(filename, 'w')
         f.write(byte_output)
         f.close()
-        #copy the results to a file called last_run.html
-        lastrun = os.path.join(results_path, 'last_run.html')
+        # copy the results to a file called last_run.html
+        lastrun = os.path.join(testvars.MCTestVariables["ResultOutputDirectory"],'last_run.html')
         shutil.copyfile(filename,lastrun)
         
 ##############################################################################

@@ -1,19 +1,20 @@
 #=======================================================================
 #
-#                             COMMENTS TESTS
+#                             BULK EDIT TESTS
 #
 #=======================================================================
 #
 # Includes the following test cases:
 #     1. testcase_BulkEdit_EditAndDelete
-#     2. testcase_BulkEdit_DeleteSingleVideo
-#     3. testcase_BulkEdit_EditSingleVideo
-#     4. testcase_BulkEdit_UnapproveCurrent
-#     5. testcase_BulkEdit_UnapproveFeatured
-#     6. testcase_BulkEdit_SortByTitle
-#     7. testcase_BulkEdit_SortBySource
-#     8. testcase_BulkEdit_SortByDatePublished
-#     9. testcase_BulkEdit_SortByDateImported
+#     2. testcase_BulkEdit_FeatureAndUnfeature
+#     3. testcase_BulkEdit_DeleteSingleVideo_453
+#     4. testcase_BulkEdit_EditSingleVideo_452
+#     5. testcase_BulkEdit_UnapproveCurrent_450
+#     6. testcase_BulkEdit_UnapproveFeatured_451
+#     7. testcase_BulkEdit_SortByTitle_454
+#     8. testcase_BulkEdit_SortBySource_455
+#     9. testcase_BulkEdit_SortByDatePublished_456
+#     10. testcase_BulkEdit_SortByDateImported_457
 
 
 from selenium import selenium
@@ -656,7 +657,7 @@ class testcase_BulkEdit_FeatureAndUnfeature(testcase_BaseClassForBulkEdit):
 
 
 #Tests AUT for editing a single video
-class testcase_BulkEdit_EditSingleVideo(testcase_BaseClassForBulkEdit):
+class testcase_BulkEdit_EditSingleVideo_452(testcase_BaseClassForBulkEdit):
     #The body of test case     
      def test_case(self):
          
@@ -696,7 +697,7 @@ class testcase_BulkEdit_EditSingleVideo(testcase_BaseClassForBulkEdit):
         time.sleep(10)        
                 
 #Tests AUT for deleting a single video
-class testcase_BulkEdit_DeleteSingleVideo(testcase_BaseClassForBulkEdit):
+class testcase_BulkEdit_DeleteSingleVideo_453(testcase_BaseClassForBulkEdit):
     
     def test_case(self):
         print ""
@@ -724,7 +725,7 @@ class testcase_BulkEdit_DeleteSingleVideo(testcase_BaseClassForBulkEdit):
 
 
 #Tests AUT for unapproving current videos
-class testcase_BulkEdit_UnapproveCurrent(testcase_BaseClassForBulkEdit):
+class testcase_BulkEdit_UnapproveCurrent_450(testcase_BaseClassForBulkEdit):
 
     #dummy function
     def FeaturingVideos(self):
@@ -784,7 +785,7 @@ class testcase_BulkEdit_UnapproveCurrent(testcase_BaseClassForBulkEdit):
             self.failUnless(False)
 
 #Tests AUT for unapproving featured videos
-class testcase_BulkEdit_UnapproveFeatured(testcase_BulkEdit_UnapproveCurrent):
+class testcase_BulkEdit_UnapproveFeatured_451(testcase_BulkEdit_UnapproveCurrent_450):
 
     #This function searches videos
     def SearchingVideos(self):
@@ -816,7 +817,7 @@ class testcase_BulkEdit_UnapproveFeatured(testcase_BulkEdit_UnapproveCurrent):
         sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
 
 #Tests AUT for sorting videos by 'Video Title' on 'Bulk Edit page'
-class testcase_BulkEdit_SortByTitle(testcase_BaseClassForBulkEdit):
+class testcase_BulkEdit_SortByTitle_454(testcase_BaseClassForBulkEdit):
 
     cFirstPage = True
     cFirstVideoTitleLower = ""
@@ -1133,7 +1134,7 @@ class testcase_BulkEdit_SortByTitle(testcase_BaseClassForBulkEdit):
               it does not know which way page is supposed to be sorted. Thus, single error on the page will result into two error reports."
 
 #Tests AUT for sorting videos by 'Source' on 'Bulk Edit page'
-class testcase_BulkEdit_SortBySource(testcase_BulkEdit_SortByTitle):
+class testcase_BulkEdit_SortBySource_455(testcase_BulkEdit_SortByTitle_454):
 
     def initialize(self):
         
@@ -1144,7 +1145,7 @@ class testcase_BulkEdit_SortBySource(testcase_BulkEdit_SortByTitle):
         self.cSortingLink = gSortBySource
 
 #Tests AUT for sorting videos by 'Date Published' on 'Bulk Edit page'
-class testcase_BulkEdit_SortByDatePublished(testcase_BulkEdit_SortByTitle):
+class testcase_BulkEdit_SortByDatePublished_456(testcase_BulkEdit_SortByTitle_454):
 
     def initialize(self):
         
@@ -1155,7 +1156,7 @@ class testcase_BulkEdit_SortByDatePublished(testcase_BulkEdit_SortByTitle):
         self.cSortingLink = gSortByDatePublished
 
 #Tests AUT for sorting videos by 'Date Imported' on 'Bulk Edit page'
-class testcase_BulkEdit_SortByDateImported(testcase_BulkEdit_SortByTitle):
+class testcase_BulkEdit_SortByDateImported_457(testcase_BulkEdit_SortByTitle_454):
 
     def initialize(self):
         

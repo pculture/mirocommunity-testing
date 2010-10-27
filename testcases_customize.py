@@ -5,14 +5,14 @@
 #=======================================================================
 #
 # Includes the following test cases:
-#     1. TestCase_ChangeSiteSettings
-#     2. TestCase_ChangeOrganization
-#     3. TestCase_UploadLogo
-#     4. TestCase_UploadBackground
-#     5. TestCase_DeleteBackground
-#     6. TestCase_AddCustomCSS
-#     7. TestCase_DisplaySubmitVideo
-#     8. TestCase_CheckRequireLoginToSubmitVideo
+#     1. TestCase_ChangeSiteSettings_303
+#     2. TestCase_ChangeOrganization_253
+#     3. TestCase_UploadLogo_243
+#     4. TestCase_UploadBackground_244
+#     5. TestCase_DeleteBackground_245
+#     6. TestCase_AddCustomCSS_251
+#     7. TestCase_DisplaySubmitVideo_249
+#     8. TestCase_CheckRequireLoginToSubmitVideo_250
 
 
 from selenium import selenium
@@ -22,7 +22,7 @@ import sys
 # ----------------------------------------------------------------------
 
 
-class TestCase_ChangeSiteSettings(unittest.TestCase):
+class TestCase_ChangeSiteSettings_303(unittest.TestCase):
     
 # Open the desired browser and set up the test
     def setUp(self):
@@ -37,14 +37,14 @@ class TestCase_ChangeSiteSettings(unittest.TestCase):
 #       Change site settings
         sitesettings.ModifySiteSettings(self,sel,theme)
 
-    def test_ChangeSiteSettings(self):
+    def test_ChangeSiteSettings_303(self):
         sel = self.selenium
 #       Log in as Admin
         loginlogout.LogInAsAdmin(self,sel)
 #       Repeat for each theme from No.1 to No.4
         for theme in range(1,5):
             sitesettings.ChangeTheme(self,sel,theme)
-            TestCase_ChangeSiteSettings.ChangeSiteSettings(self,sel,theme)
+            TestCase_ChangeSiteSettings_303.ChangeSiteSettings(self,sel,theme)
         
 # Close the browser, log errors, perform cleanup    
     def tearDown(self):
@@ -53,7 +53,7 @@ class TestCase_ChangeSiteSettings(unittest.TestCase):
         self.assertEqual([], self.verificationErrors)
 
 
-class TestCase_ChangeOrganization(unittest.TestCase):
+class TestCase_ChangeOrganization_253(unittest.TestCase):
     
 # Open the desired browser and set up the test
     def setUp(self):
@@ -67,7 +67,7 @@ class TestCase_ChangeOrganization(unittest.TestCase):
 #       Change site settings
         sitesettings.ModifyOrganizationSettings(self,sel,theme)
 
-    def test_ChangeOrganizationSettings(self):
+    def test_ChangeOrganizationSettings_253(self):
         sel = self.selenium
 #       Log in as Admin
         loginlogout.LogInAsAdmin(self,sel)
@@ -75,7 +75,7 @@ class TestCase_ChangeOrganization(unittest.TestCase):
         for theme in range(1,5):
             sitesettings.ChangeTheme(self,sel,theme)
             # Change site settings
-            TestCase_ChangeOrganization.ChangeOrganizationSettings(self,sel,theme)
+            TestCase_ChangeOrganization_253.ChangeOrganizationSettings(self,sel,theme)
 
 # Close the browser, log errors, perform cleanup    
     def tearDown(self):
@@ -84,7 +84,7 @@ class TestCase_ChangeOrganization(unittest.TestCase):
         self.assertEqual([], self.verificationErrors)
 
 
-class TestCase_UploadLogo(unittest.TestCase):
+class TestCase_UploadLogo_243(unittest.TestCase):
     
 # Open the desired browser and set up the test
     def setUp(self):
@@ -106,14 +106,14 @@ class TestCase_UploadLogo(unittest.TestCase):
 #       Upload new site logo
         sitesettings.UploadSiteLogo(self,sel,theme,newlogo)
         
-    def test_UploadLogo(self):
+    def test_UploadLogo_243(self):
         sel = self.selenium
 #       Log in as Admin
         loginlogout.LogInAsAdmin(self,sel)
 #       Repeat for each theme from No.1 to No.4
         for theme in range(1,5):
             sitesettings.ChangeTheme(self,sel,theme)
-            TestCase_UploadLogo.UploadLogo(self,sel,theme)
+            TestCase_UploadLogo_243.UploadLogo(self,sel,theme)
         
 # Close the browser, log errors, perform cleanup    
     def tearDown(self):
@@ -122,7 +122,7 @@ class TestCase_UploadLogo(unittest.TestCase):
         self.assertEqual([], self.verificationErrors)
 
 
-class TestCase_UploadBackground(unittest.TestCase):
+class TestCase_UploadBackground_244(unittest.TestCase):
     
 # Open the desired browser and set up the test
     def setUp(self):
@@ -139,14 +139,14 @@ class TestCase_UploadBackground(unittest.TestCase):
 #       Upload new background image
         sitesettings.UploadBackgroundImage(self,sel,theme,newbkgr)
         
-    def test_UploadBackground(self):
+    def test_UploadBackground_244(self):
         sel = self.selenium
 #       Log in as Admin
         loginlogout.LogInAsAdmin(self,sel)
 #       Repeat for each theme from No.1 to No.4
         for theme in range(1,5):
             sitesettings.ChangeTheme(self,sel,theme)
-            TestCase_UploadBackground.UploadBackground(self,sel,theme)
+            TestCase_UploadBackground_244.UploadBackground(self,sel,theme)
         
 
 # Close the browser, log errors, perform cleanup    
@@ -156,7 +156,7 @@ class TestCase_UploadBackground(unittest.TestCase):
         self.assertEqual([], self.verificationErrors)
 
 
-class TestCase_DeleteBackground(unittest.TestCase):
+class TestCase_DeleteBackground_245(unittest.TestCase):
     
 # Open the desired browser and set up the test
     def setUp(self):
@@ -171,11 +171,11 @@ class TestCase_DeleteBackground(unittest.TestCase):
 #       Delete background
         sitesettings.DeleteBackgroundImage(self,sel)
         
-    def test_DeleteBackground(self):
+    def test_DeleteBackground_245(self):
         sel = self.selenium
 #       Log in as Admin
         loginlogout.LogInAsAdmin(self,sel)
-        TestCase_DeleteBackground.DeleteBackground(self,sel)
+        TestCase_DeleteBackground_245.DeleteBackground(self,sel)
         
 
 # Close the browser, log errors, perform cleanup    
@@ -186,7 +186,7 @@ class TestCase_DeleteBackground(unittest.TestCase):
 
 
 
-class TestCase_AddCustomCSS(unittest.TestCase):
+class TestCase_AddCustomCSS_251(unittest.TestCase):
     
 # Open the desired browser and set up the test
     def setUp(self):
@@ -205,11 +205,11 @@ class TestCase_AddCustomCSS(unittest.TestCase):
         print "Deleting custom CSS"
         sitesettings.DeleteCustomCSS(self,sel)
         
-    def test_AddCustomCSS(self):
+    def test_AddCustomCSS_251(self):
         sel = self.selenium
 #       Log in as Admin
         loginlogout.LogInAsAdmin(self,sel)
-        TestCase_AddCustomCSS.AddCustomCSS(self,sel)
+        TestCase_AddCustomCSS_251.AddCustomCSS(self,sel)
 
 # Close the browser, log errors, perform cleanup    
     def tearDown(self):
@@ -219,7 +219,7 @@ class TestCase_AddCustomCSS(unittest.TestCase):
 
 
 
-class TestCase_DisplaySubmitVideo(unittest.TestCase):
+class TestCase_DisplaySubmitVideo_249(unittest.TestCase):
     
 # Open the desired browser and set up the test
     def setUp(self):
@@ -236,14 +236,14 @@ class TestCase_DisplaySubmitVideo(unittest.TestCase):
 #       Uncheck Display Submit a Video check box 
         sitesettings.HideSubmitVideo(self,sel,theme)
         
-    def test_DisplaySubmitVideo(self):
+    def test_DisplaySubmitVideo_249(self):
         sel = self.selenium
 #       Log in as Admin
         loginlogout.LogInAsAdmin(self,sel)
 #       Repeat for each theme from No.1 to No.4
         for theme in range(1,5):
             sitesettings.ChangeTheme(self,sel,theme)
-            TestCase_DisplaySubmitVideo.DisplaySubmitVideo(self,sel,theme)
+            TestCase_DisplaySubmitVideo_249.DisplaySubmitVideo(self,sel,theme)
 
 # Close the browser, log errors, perform cleanup    
     def tearDown(self):
@@ -252,7 +252,7 @@ class TestCase_DisplaySubmitVideo(unittest.TestCase):
         self.assertEqual([], self.verificationErrors)
 
 
-class TestCase_CheckRequireLoginToSubmitVideo(unittest.TestCase):
+class TestCase_CheckRequireLoginToSubmitVideo_250(unittest.TestCase):
     
 # Open the desired browser and set up the test
     def setUp(self):
@@ -266,16 +266,18 @@ class TestCase_CheckRequireLoginToSubmitVideo(unittest.TestCase):
 #       Change site settings
         sitesettings.CheckRequireLoginToSubmitVideo(self,sel,theme)
 
-    def test_CheckRequireLoginToSubmitVideo(self):
+    def test_CheckRequireLoginToSubmitVideo_250(self):
         sel = self.selenium
 #       Repeat for each theme from No.1 to No.4
         for theme in range(1,5):
+            print ""
+            print ""
             # Log in as Admin
             loginlogout.LogInAsAdmin(self,sel)
             # Change theme
             sitesettings.ChangeTheme(self,sel,theme)
             # Change site settings
-            TestCase_CheckRequireLoginToSubmitVideo.CheckRequireLoginToSubmitVideo(self,sel,theme)
+            TestCase_CheckRequireLoginToSubmitVideo_250.CheckRequireLoginToSubmitVideo(self,sel,theme)
 
 # Close the browser, log errors, perform cleanup    
     def tearDown(self):

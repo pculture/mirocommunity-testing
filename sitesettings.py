@@ -635,6 +635,8 @@ def CheckRequireLoginToSubmitVideo(self,sel,theme):
             sel.check("id_submission_requires_login")
             sel.click("submit_settings")
             sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
+            sel.open(testvars.MCTestVariables["SettingsPage"])
+            sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
             # Go to Main Site
             sel.click(testvars.MCTestVariables["ViewMainSiteLink"])
             sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
@@ -713,4 +715,6 @@ def UncheckRequireLoginToSubmitVideo(self,sel):
             sel.check("id_display_submit_button")
             sel.uncheck("id_submission_requires_login")
             sel.click("submit_settings")
+            sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
+            sel.open(testvars.MCTestVariables["SettingsPage"])
             sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
