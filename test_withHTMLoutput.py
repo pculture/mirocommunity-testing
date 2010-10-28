@@ -2,12 +2,40 @@
 from selenium import selenium
 #import system emodules
 import unittest, time, re, os, shutil
+import litmusresult
 import StringIO
 import sys
 import HTMLTestRunner
 # import MC Test Suite modules
 import loginlogout, sitesettings, testvars
 import testcases_users, testcases_customize, testcases_categories, testcases_manage, testcases_bulkedit, testcases_queue, testcases_comments, testcases_submit
+
+
+#================================
+from optparse import OptionParser
+parser = OptionParser()
+parser.add_option("-s", "--sauce", action="store_true", dest="sauce",
+                  help='Runs the test on saucelabs.com using specified browser')
+parser.add_option("-b", "--browser", action="store",
+                  choices=('firefox','chrome','opera', 'safari', 'iexplore', 'googlechrome'),type="choice",
+                  dest="browser", default="firefox",
+                  help='Possible browser choices: firefox,chrome,opera, safari, iexplore, googlechrome'
+                  )
+
+parser.add_option("-p", "--port", action="store", type="int", dest="port")
+parser.add_option("-l", "--litmus",action="store_true",dest="litmus",
+                  help='Sends test output directly to litmus.pculture.org')
+parser.add_option("-i", "--buildid", action="store", dest="buildid",
+                  default=time.strftime("%Y%m%d", time.gmtime()) + "99",
+                  help="specify the build id of the litmus testrun results to display there")
+
+(options, args) = parser.parse_args()
+testbrowser = options.browser
+testport = options.port
+testsauce = options.sauce
+#testsite = options.site
+testbuildid = options.buildid
+testlitmus = options.litmus
 
 # ------------------------------------------------------------------------
 # This is the main test 
@@ -111,25 +139,41 @@ class Test_HTMLTestRunner(unittest.TestCase):
             ])
 
         # Invoke TestRunner
-        buf = StringIO.StringIO()
-        #runner = unittest.TextTestRunner(buf)       #DEBUG: this is the unittest baseline
-        runner = HTMLTestRunner.HTMLTestRunner(
-                    stream=buf,
-                    title='Miro Community Test Suite',
-                    description='Results of test run'
-                    )
-        runner.run(self.suite)
+        # Post the output directly to Litmus
+        if testlitmus == True:
+            buf = StringIO.StringIO()
+            runner = unittest.TextTestRunner(stream=buf)
+            for x in self.suite:
+                runner.run(x)
+                # check out the output
+                byte_output = buf.getvalue()
+                id_string = str(x)
+                stat = byte_output[0]
+                try:
+                    litmusresult.write_log(id_string,stat,testbuildid,byte_output)
+                    litmusresult.send_result()
+                finally:
+                    buf.truncate(0)
 
-        # check out the output
-        byte_output = buf.getvalue()
-        # output the main test results
-        filename=os.path.join(testvars.MCTestVariables["ResultOutputDirectory"],'MC_test_results_'+time.strftime("%d-%m-%Y_%H-%M", time.gmtime())+'_GMT.html')
-        f = open(filename, 'w')
-        f.write(byte_output)
-        f.close()
-        # copy the results to a file called last_run.html
-        lastrun = os.path.join(testvars.MCTestVariables["ResultOutputDirectory"],'last_run.html')
-        shutil.copyfile(filename,lastrun)
+        else: # Post results to HTML page
+            buf = StringIO.StringIO()
+            runner = HTMLTestRunner.HTMLTestRunner(
+                        stream=buf,
+                        title='Miro Community Test Suite',
+                        description='Results of test run'
+                        )
+            runner.run(self.suite)
+
+            # check out the output
+            byte_output = buf.getvalue()
+            # output the main test results
+            filename=os.path.join(testvars.MCTestVariables["ResultOutputDirectory"],'MC_test_results_'+time.strftime("%d-%m-%Y_%H-%M", time.gmtime())+'_GMT.html')
+            f = open(filename, 'w')
+            f.write(byte_output)
+            f.close()
+            # copy the results to a file called last_run.html
+            lastrun = os.path.join(testvars.MCTestVariables["ResultOutputDirectory"],'last_run.html')
+            shutil.copyfile(filename,lastrun)
         
 ##############################################################################
 # Executing this module from the command line
@@ -137,10 +181,10 @@ class Test_HTMLTestRunner(unittest.TestCase):
 
 import unittest
 if __name__ == "__main__":
-    if len(sys.argv) > 1:
-        argv = sys.argv
-    else:
-        argv=['test_HTMLTestRunner.py', 'Test_HTMLTestRunner']
+#    if len(sys.argv) > 1:
+#        argv = sys.argv
+#    else:
+    argv=['test_HTMLTestRunner.py', 'Test_HTMLTestRunner']
     theme=1
     unittest.main(argv=argv)
     #HTMLTestRunner.main(argv=argv)

@@ -5,6 +5,7 @@ import os
 import httplib
 import urllib
 import time
+import testvars
 #import selvars
 
 
@@ -26,6 +27,12 @@ def set_test_browser():
     """Returns the browser name for the litmus platform field"
 
 """
+    if testvars.MCTestVariables["Browser"] == "*firefox":
+        return "Firefox"
+    elif testvars.MCTestVariables["Browser"] == "*chrome":
+        return "Firefox"
+    elif testvars.MCTestVariables["Browser"] == "*safari":
+        return "Safari"
     """
     if selvars.vbrowser == "*firefox":
         return "Firefox"
@@ -43,8 +50,8 @@ def set_test_browser():
         return "Google Chrome"
     else:
         print "no idea what the browser is"
-    
-"""
+    """
+
 
 def set_test_id(test_id):
     
