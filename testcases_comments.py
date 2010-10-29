@@ -5,10 +5,10 @@
 #=======================================================================
 #
 # Includes the following test cases:
-#     1. testcase_Comments_NoModeration_NoLogin
-#     2. testcase_Comments_NoModeration_LoginRequired
-#     3. testcase_Comments_ModerationRequired_NoLogin
-#     4. testcase_Comments_ModerationRequired_LoginRequired
+#     1. testcase_Comments_NoModeration_NoLogin_254
+#     2. testcase_Comments_NoModeration_LoginRequired_256
+#     3. testcase_Comments_ModerationRequired_NoLogin_541
+#     4. testcase_Comments_ModerationRequired_LoginRequired_542
 
 from selenium import selenium
 import unittest, time, re, loginlogout, sitesettings, categories, testvars
@@ -588,7 +588,7 @@ class testcase_BaseComments(testcase_BaseTestCase):
 
 
 #tests AUT without 'Hold comments for moderation' and 'Require Login' with List theme
-class testcase_Comments_NoModeration_NoLogin(testcase_BaseComments):
+class testcase_Comments_NoModeration_NoLogin_254(testcase_BaseComments):
 
     def logTestDescription(self):
         print ""
@@ -602,7 +602,7 @@ class testcase_Comments_NoModeration_NoLogin(testcase_BaseComments):
         self.AdminTest = self.LoggedAsAdmin_CommentPosted
 
 #tests AUT without 'Hold comments for moderation' and with 'Require Login' with List theme
-class testcase_Comments_NoModeration_LoginRequired(testcase_BaseComments):
+class testcase_Comments_NoModeration_LoginRequired_256(testcase_BaseComments):
 
     def logTestDescription(self):
         print ""
@@ -616,7 +616,7 @@ class testcase_Comments_NoModeration_LoginRequired(testcase_BaseComments):
         self.AdminTest = self.LoggedAsAdmin_CommentPosted
 
 #tests AUT with 'Hold comments for moderation' and without 'Require Login' with List theme
-class testcase_Comments_ModerationRequired_NoLogin(testcase_BaseComments):
+class testcase_Comments_ModerationRequired_NoLogin_541(testcase_BaseComments):
 
     def logTestDescription(self):
         print ""
@@ -630,7 +630,7 @@ class testcase_Comments_ModerationRequired_NoLogin(testcase_BaseComments):
         self.AdminTest = self.LoggedAsAdmin_CommentPosted
 
 #tests AUT with 'Hold comments for moderation' and 'Require Login' with List theme
-class testcase_Comments_ModerationRequired_LoginRequired(testcase_BaseComments):
+class testcase_Comments_ModerationRequired_LoginRequired_542(testcase_BaseComments):
 
     def logTestDescription(self):
         print ""

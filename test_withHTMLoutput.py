@@ -112,8 +112,10 @@ class Test_HTMLTestRunner(unittest.TestCase):
 # bug            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_queue.TestCase_RSSVideosAwaitingModeration_513),
             unittest.defaultTestLoader.loadTestsFromTestCase(testcases_queue.TestCase_ClearQueue_511),
 #-BULK-EDIT------------------------------------------------------
-            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_bulkedit.testcase_BulkEdit_EditAndDelete),
-            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_bulkedit.testcase_BulkEdit_FeatureAndUnfeature),
+            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_bulkedit.testcase_BulkEdit_BulkEdit_446),
+            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_bulkedit.testcase_BulkEdit_BulkDelete_447),
+            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_bulkedit.testcase_BulkEdit_BulkFeature_448),
+            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_bulkedit.testcase_BulkEdit_BulkUnfeature_449),
             unittest.defaultTestLoader.loadTestsFromTestCase(testcases_bulkedit.testcase_BulkEdit_EditSingleVideo_452),
             unittest.defaultTestLoader.loadTestsFromTestCase(testcases_bulkedit.testcase_BulkEdit_DeleteSingleVideo_453),
             unittest.defaultTestLoader.loadTestsFromTestCase(testcases_bulkedit.testcase_BulkEdit_UnapproveCurrent_450),
@@ -132,10 +134,10 @@ class Test_HTMLTestRunner(unittest.TestCase):
 #-RESTORE-CATEGORIES---------------------------------------------
             unittest.defaultTestLoader.loadTestsFromTestCase(testcases_categories.TestCase_RestoreAllCategories),
 #-COMMENTS-------------------------------------------------------
-            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_comments.testcase_Comments_NoModeration_NoLogin),
-            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_comments.testcase_Comments_NoModeration_LoginRequired),
-            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_comments.testcase_Comments_ModerationRequired_NoLogin),
-            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_comments.testcase_Comments_ModerationRequired_LoginRequired),
+            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_comments.testcase_Comments_NoModeration_NoLogin_254),
+            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_comments.testcase_Comments_NoModeration_LoginRequired_256),
+            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_comments.testcase_Comments_ModerationRequired_NoLogin_541),
+            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_comments.testcase_Comments_ModerationRequired_LoginRequired_542),
             ])
 
         # Invoke TestRunner

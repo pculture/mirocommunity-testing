@@ -5,16 +5,18 @@
 #=======================================================================
 #
 # Includes the following test cases:
-#     1. testcase_BulkEdit_EditAndDelete
-#     2. testcase_BulkEdit_FeatureAndUnfeature
-#     3. testcase_BulkEdit_DeleteSingleVideo_453
-#     4. testcase_BulkEdit_EditSingleVideo_452
-#     5. testcase_BulkEdit_UnapproveCurrent_450
-#     6. testcase_BulkEdit_UnapproveFeatured_451
-#     7. testcase_BulkEdit_SortByTitle_454
-#     8. testcase_BulkEdit_SortBySource_455
-#     9. testcase_BulkEdit_SortByDatePublished_456
-#     10. testcase_BulkEdit_SortByDateImported_457
+#     1. testcase_BulkEdit_BulkEdit_446
+#     2. testcase_BulkEdit_BulkDelete_447
+#     3. testcase_BulkEdit_BulkFeature_448
+#     4. testcase_BulkEdit_BulkUnfeature_449
+#     5. testcase_BulkEdit_DeleteSingleVideo_453
+#     6. testcase_BulkEdit_EditSingleVideo_452
+#     7. testcase_BulkEdit_UnapproveCurrent_450
+#     8. testcase_BulkEdit_UnapproveFeatured_451
+#     9. testcase_BulkEdit_SortByTitle_454
+#     10. testcase_BulkEdit_SortBySource_455
+#     11. testcase_BulkEdit_SortByDatePublished_456
+#     12. testcase_BulkEdit_SortByDateImported_457
 
 
 from selenium import selenium
@@ -512,7 +514,7 @@ class testcase_BaseClassForBulkEdit(testcase_BaseTestCase):
             
 
 #Tests AUT for edititng and deleting videos by 'Bulk Edit'
-class testcase_BulkEdit_EditAndDelete(testcase_BaseClassForBulkEdit):
+class testcase_BulkEdit_BulkEdit_446(testcase_BaseClassForBulkEdit):
         
     #The body of test case
     def test_case(self):
@@ -572,12 +574,32 @@ class testcase_BulkEdit_EditAndDelete(testcase_BaseClassForBulkEdit):
         print "Checking changes in the second video..."                
         self.checkChanges(gLinkToViewSecondVideo, True)
         
+
+class testcase_BulkEdit_BulkDelete_447(testcase_BaseClassForBulkEdit):
+        
+    #The body of test case
+    def test_case(self):
+
+        print ""
+        print "Starting 'testcase_BulkEdit_BulkDelete' test case..."
+        sel = self.selenium
+        self.LoginDeleteVideosAddUserAddCategoryAddVideos()
+
+        print "Opening 'Bulk Edit' page..."
+        sel.click(gBulkEditOnAdminPage)
+        sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
+
+        print "Searching all videos with 'gVideosLabel'..."
+        sel.type(gSearchEditBoxOnBulkEditPage, gVideosLabel)
+        sel.click(gSearchButtonOnBulkEditPage)
+        sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
+
+        print "Checking all found videos..."
+        sel.click(gToggleAll)
+
         # Delete
 
         print "Deleting videos..."                
-        sel.click(gViewAdmin)
-        sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
-
         self.DeleteVideos()
 
         print "Verifying if videos have been deleted..."                
@@ -597,13 +619,13 @@ class testcase_BulkEdit_EditAndDelete(testcase_BaseClassForBulkEdit):
             self.failUnless(False)                            
 
 #Tests AUT for featuring and unfeaturing videos by 'Bulk Edit'
-class testcase_BulkEdit_FeatureAndUnfeature(testcase_BaseClassForBulkEdit):
+class testcase_BulkEdit_BulkFeature_448(testcase_BaseClassForBulkEdit):
 
      #The body of test case     
      def test_case(self):
          
         print ""
-        print "Starting 'testcase_BulkEdit_FeatureAndUnfeature' test case..."
+        print "Starting 'testcase_BulkEdit_BulkFeature' test case..."
         sel = self.selenium
         self.LoginDeleteVideosAddVideos()
 
@@ -635,6 +657,26 @@ class testcase_BulkEdit_FeatureAndUnfeature(testcase_BaseClassForBulkEdit):
             print "ERROR: Video was not featured"
             self.failUnless(False)
 
+
+class testcase_BulkEdit_BulkUnfeature_449(testcase_BaseClassForBulkEdit):
+
+     #The body of test case     
+     def test_case(self):
+         
+        print ""
+        print "Starting 'testcase_BulkEdit_BulkUnfeature' test case..."
+        sel = self.selenium
+        self.LoginDeleteVideosAddVideos()
+
+        print "Opening 'Bulk Edit' page..."        
+        sel.click(gBulkEditOnAdminPage)
+        sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
+
+        print "Searching all videos with 'gVideosLabel'..."
+        sel.type(gSearchEditBoxOnBulkEditPage, gVideosLabel)
+        sel.click(gSearchButtonOnBulkEditPage)
+        sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
+
         #---
         print "Unfeaturing videos..."
         sel.click(gToggleAll)
@@ -654,7 +696,6 @@ class testcase_BulkEdit_FeatureAndUnfeature(testcase_BaseClassForBulkEdit):
         if (sel.is_element_present(gVideoPathOnBulkEditPage + gSecondVideoOriginalName + "')]") ):
             print "ERROR: Video was not unfeatured"
             self.failUnless(False)        
-
 
 #Tests AUT for editing a single video
 class testcase_BulkEdit_EditSingleVideo_452(testcase_BaseClassForBulkEdit):
