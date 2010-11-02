@@ -8,6 +8,7 @@ current_dir = os.getcwd()
 
 MCTestVariables = {"Browser":"*chrome", \
                    "TestSite":"http://dalmatia.mirocommunity.org/", \
+                   "ResultOutputDirectory":os.path.join(os.getcwd(), "TestResults"), \
                    "GraphicFilesDirectory":os.path.join(current_dir, "TestInput"), \
                    "TimeOut":"150000", \
                    "AdminLink":"View Admin", \
