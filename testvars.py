@@ -40,6 +40,7 @@ MCTestVariables = {"Browser":"*chrome", \
                    "CategoriesLogoURL":"http://s3.mirocommunity.org.s3.amazonaws.com/dalmatia/localtv/category_logos", \
                    "SiteLogoURL":"http://s3.mirocommunity.org.s3.amazonaws.com/dalmatia/localtv/site_logos", \
                    "SiteBackgroundURL":"http://s3.mirocommunity.org.s3.amazonaws.com/dalmatia/localtv/site_backgrounds", \
+                   "MaxSiteTitle":50, \
                    "Port":4444, 
                    }
 
