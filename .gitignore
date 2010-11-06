@@ -1,0 +1,5 @@
+#ignore .pyc files
+*.pyc
+
+#ignore Results .html files
+TestResults/*.html
