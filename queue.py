@@ -468,6 +468,8 @@ def EditVideoInQueue(self,sel,page,number,title,user,posted,thumbnail,descriptio
                     mclib.AppendErrorMessage(self,sel,"Author "+author+" not found")
                 sel.click("//button[@type='submit']")
                 time.sleep(8)
+                sel.refresh()
+                sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
                 newUsers = sel.get_text("//div[@id='admin_rightpane']/div/div[2]/div[1]/div[1]")
                 print "List of new authors: "+newUsers.replace('Edit','')
                 if newUsers.find(user)==-1:

@@ -494,7 +494,7 @@ class TestCase_SortSources_266(unittest.TestCase):
 
         print ""
         sources.SortSources(self,sel,"Name","Asc")
-        resultList = TestCase_SortSources.GetSourceParameterList(self,sel,"Name")
+        resultList = TestCase_SortSources_266.GetSourceParameterList(self,sel,"Name")
         print resultList
         sortedList = sorted(resultList,key=unicode.lower)
         if resultList==sortedList:
@@ -504,7 +504,7 @@ class TestCase_SortSources_266(unittest.TestCase):
 
         print ""
         sources.SortSources(self,sel,"Name","Desc")
-        resultList = TestCase_SortSources.GetSourceParameterList(self,sel,"Name")
+        resultList = TestCase_SortSources_266.GetSourceParameterList(self,sel,"Name")
         print resultList
         sortedList = sorted(resultList,key=unicode.lower,reverse=True)
         if resultList==sortedList:
@@ -514,7 +514,7 @@ class TestCase_SortSources_266(unittest.TestCase):
             
         print ""
         sources.SortSources(self,sel,"Type","Asc")
-        resultList = TestCase_SortSources.GetSourceParameterList(self,sel,"Type")
+        resultList = TestCase_SortSources_266.GetSourceParameterList(self,sel,"Type")
         print resultList
         sortedList = sorted(resultList,key=unicode.lower)
         if resultList==sortedList:
@@ -524,7 +524,7 @@ class TestCase_SortSources_266(unittest.TestCase):
         
         print ""
         sources.SortSources(self,sel,"Type","Desc")
-        resultList = TestCase_SortSources.GetSourceParameterList(self,sel,"Type")
+        resultList = TestCase_SortSources_266.GetSourceParameterList(self,sel,"Type")
         print resultList
         sortedList = sorted(resultList,key=unicode.lower,reverse=True)
         if resultList==sortedList:
@@ -534,7 +534,7 @@ class TestCase_SortSources_266(unittest.TestCase):
 
         print ""
         sources.SortSources(self,sel,"AutoApprove","Asc")
-        resultList = TestCase_SortSources.GetSourceParameterList(self,sel,"AutoApprove")
+        resultList = TestCase_SortSources_266.GetSourceParameterList(self,sel,"AutoApprove")
         print resultList
         sortedList = sorted(resultList,key=str.lower)
         if resultList==sortedList:
@@ -544,7 +544,7 @@ class TestCase_SortSources_266(unittest.TestCase):
         
         print ""
         sources.SortSources(self,sel,"AutoApprove","Desc")
-        resultList = TestCase_SortSources.GetSourceParameterList(self,sel,"AutoApprove")
+        resultList = TestCase_SortSources_266.GetSourceParameterList(self,sel,"AutoApprove")
         print resultList
         sortedList = sorted(resultList,key=str.lower,reverse=True)
         if resultList==sortedList:
