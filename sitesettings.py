@@ -2,6 +2,9 @@
 # includes:
 #   * subroutine ChangeTheme(self,sel,theme) - sets the desired theme
 #   * function ThemeScanner(self,sel,theme) - detects the currently set theme
+#   * subroutine EditSiteTitle(self,sel,theme,newtitle) - changes the site title to <newtitle>
+#   * subroutine EditSiteTagline(self,sel,theme,newtagline) - changes the site tagline to <newtagline>
+#   * subroutine EditAboutUs(self,sel,theme,newabouttext) - changes About Us text to <newabouttext>
 #   * subroutine ModifySiteSettings(self,sel,theme) - changes the site settings
 #          (title, tagline, about) and verifies that they save and display correctly
 #   * subroutine ModifyOrganizationSettings(self,sel,theme) - changes organization
@@ -87,6 +90,197 @@ def ThemeScanner(self,sel):
         res=1
     return res
     
+# ===================================
+# =          EDIT SITE TITLE        =
+# ===================================
+ 
+# This subroutine changes the site title to <newtitle>
+
+def EditSiteTitle(self,sel,theme,newtitle):
+    NavigateToSettingsPage(self,sel)
+# Type the values into edit fields
+    if sel.is_element_present("id_title")==False:
+        mclib.AppendErrorMessage(self,sel,"Site Title edit field not found")
+    else:
+        sel.click("id_title")
+        sel.type("id_title", newtitle)
+        if sel.is_element_present("submit_settings")==False:
+            mclib.AppendErrorMessage(self,sel,"Save Changes button not found")
+        else:
+            # Click Save
+            sel.click("submit_settings")
+            sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
+    # ------ Workaround for blank page bug
+            sel.open(testvars.MCTestVariables["CategoriesPage"])
+            time.sleep(3)
+            sel.open(testvars.MCTestVariables["SettingsPage"])
+            sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
+    # --------- End of workaround insert
+            print "Changed site title to: "+newtitle
+           # Check that the TITLE in the admin interface is present, visible and correct
+            elementTitle="//div[@id='logo']/h1/a"
+            print "Checking site title in the administrator interface..."
+            if sel.is_element_present(elementTitle)==False:
+                mclib.AppendErrorMessage(self,sel,"Title is not present in the Administrator interface")
+            elif sel.is_visible(elementTitle)==False:
+                mclib.AppendErrorMessage(self,sel,"Title is not visible in the Administrator interface")
+            elif sel.get_text(elementTitle)!=newtitle:
+                mclib.AppendErrorMessage(self,sel,"Wrong site title in the administrator interface.")
+                print "Expected title is "+newtitle
+                print "- Actual title is "+sel.get_text(elementTitle)
+            else:
+                print "OK"
+        
+# Click View Main Site
+            sel.click(testvars.MCTestVariables["ViewMainSiteLink"])
+            sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
+# Check that the TITLE on the main site is present, visible and correct
+            if theme==4:
+                elementTitle="//div[@id='wrapper']/div[1]/div/div[1]/h1/a"
+            else:
+                elementTitle="//div[@id='logo']/h1/a/span"
+            if sel.is_element_present(elementTitle)==False:
+                mclib.AppendErrorMessage(self,sel,"Title is not present on the main site")
+            elif sel.is_visible(elementTitle)==False:
+                mclib.AppendErrorMessage(self,sel,"Title is not visible on the main site")
+            elif sel.get_text(elementTitle)!=newtitle:
+                mclib.AppendErrorMessage(self,sel,"Wrong site title on the main site.")
+                print "Expected title is "+newtitle
+                print "- Actual title is "+sel.get_text(elementTitle)
+            else:
+                print "OK"
+
+
+# ===================================
+# =        EDIT SITE TAGLINE        =
+# ===================================
+ 
+# This subroutine changes the site tagline to <newtagline>
+
+def EditSiteTagline(self,sel,theme,newtagline):
+    NavigateToSettingsPage(self,sel)
+# Type the values into edit fields
+    if sel.is_element_present("id_tagline")==False:
+        mclib.AppendErrorMessage(self,sel,"Site Tagline edit field not found")
+    else:
+        sel.click("id_tagline")
+        sel.type("id_tagline", newtagline)
+        if sel.is_element_present("submit_settings")==False:
+            mclib.AppendErrorMessage(self,sel,"Save Changes button not found")
+        else:
+            # Click Save
+            sel.click("submit_settings")
+            sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
+    # ------ Workaround for blank page bug
+            sel.open(testvars.MCTestVariables["CategoriesPage"])
+            time.sleep(3)
+            sel.open(testvars.MCTestVariables["SettingsPage"])
+            sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
+    # --------- End of workaround insert
+            print "Changed site tagline to: "+newtagline
+           # Check that the TAGLINE in the admin interface is present, visible and correct
+            elementTagline="//div[@id='logo']/h1/span"
+            print "Checking site tagline in the administrator interface..."
+            if sel.is_element_present(elementTagline)==False:
+                mclib.AppendErrorMessage(self,sel,"Tagline is not present in the Administrator interface")
+            elif sel.is_visible(elementTagline)==False:
+                mclib.AppendErrorMessage(self,sel,"Tagline is not visible in the Administrator interface")
+            elif sel.get_text(elementTagline)!=newtagline:
+                mclib.AppendErrorMessage(self,sel,"Wrong site tagline in the administrator interface.")
+                print "Expected tagline is "+newtagline
+                print "- Actual tagline is "+sel.get_text(elementTagline)
+            else:
+                print "OK"
+        
+# Click View Main Site
+            sel.click(testvars.MCTestVariables["ViewMainSiteLink"])
+            sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
+# Check that the TAGLINE on the main site is present, visible and correct
+            if theme==4:
+                elementTagline="//div[@id='wrapper']/div[1]/div/div[1]/p"
+            else:
+                elementTagline="//div[@id='logo']/h1/span"
+            print "Checking site tagline on the main site..."
+            if sel.is_element_present(elementTagline)==False:
+                mclib.AppendErrorMessage(self,sel,"Tagline is not present on the main site")
+            elif sel.is_visible(elementTagline)==False:
+                mclib.AppendErrorMessage(self,sel,"Tagline is not visible on the main site")
+            elif sel.get_text(elementTagline)!=newtagline:
+                mclib.AppendErrorMessage(self,sel,"Wrong site tagline on the main site.")
+                print "Expected tagline is "+newtagline
+                print "- Actual tagline is "+sel.get_text(elementTagline)
+            else:
+                print "OK"
+
+
+# ===================================
+# =        EDIT ABOUT US INFO       =
+# ===================================
+ 
+# This subroutine changes About Us information to <newabouttext>
+
+def EditAboutUs(self,sel,theme,newabouttext):
+    NavigateToSettingsPage(self,sel)
+# Type the values into edit fields
+    if sel.is_element_present("id_about_html")==False:
+        mclib.AppendErrorMessage(self,sel,"About Us edit field not found")
+    else:
+        sel.click("id_about_html")
+        sel.type("id_about_html", newabouttext)
+        if sel.is_element_present("submit_settings")==False:
+            mclib.AppendErrorMessage(self,sel,"Save Changes button not found")
+        else:
+            # Click Save
+            sel.click("submit_settings")
+            sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
+    # ------ Workaround for blank page bug
+            sel.open(testvars.MCTestVariables["CategoriesPage"])
+            time.sleep(3)
+            sel.open(testvars.MCTestVariables["SettingsPage"])
+            sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
+    # --------- End of workaround insert
+            print "Changed About Us text to: "+newabouttext
+        
+            # Click View Main Site
+            sel.click(testvars.MCTestVariables["ViewMainSiteLink"])
+            sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
+            # CHECK ABOUT PAGE
+            # Navigate to About page
+            sel.open("/about")
+            sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
+            # Verify About text
+            print "Verifying About Us text..."
+            trimmedAboutText = mclib.remove_html_tags(newabouttext)
+#            print trimmedAboutText
+            mainText = str(sel.get_text("//div[@id='main']"))
+            #for i in mainText:
+            #    print str(ord(i))+","
+            if theme==4:
+                elementAbout="//div[@id='main']/p[1]"
+#                elementAbout="//div[@id='main']/div[1]/h2"
+#            else:
+#                elementAbout="//div[@id='main']/h2[1]"
+                mainText = mainText.replace('\n','')
+            # Check that elementAbout exists
+                if sel.is_element_present(elementAbout)==False:
+                    mclib.AppendErrorMessage(self,sel,"About Us information is not present on About Us page")
+                elif sel.is_visible(elementAbout)==False:
+                    mclib.AppendErrorMessage(self,sel,"About Us information is not visible on the About Us page")
+                elif sel.get_text(elementAbout)!=newabouttext and mainText.find(trimmedAboutText)==-1:
+                    mclib.AppendErrorMessage(self,sel,"Wrong About Us text on About page.")
+                    print "Expected text is "+trimmedAboutText
+                    print "- Actual text is "+mainText
+                else:
+                    print "OK"
+            else:
+                if mainText.find(newabouttext)==-1 and mainText.find(trimmedAboutText)==-1:
+                    mclib.AppendErrorMessage(self,sel,"Updated About Us text not found on About page")
+                    print "Expected text: "+trimmedAboutText
+                    print "Actual text on the main page"+mainText
+                else:
+                    print "OK"
+
+
 # ===================================
 # =      MODIFY SITE SETTINGS       =
 # ===================================
