@@ -118,7 +118,7 @@ def EditSiteTitle(self,sel,theme,newtitle):
     # --------- End of workaround insert
             print "Changed site title to: "+newtitle
            # Check that the TITLE in the admin interface is present, visible and correct
-            elementTitle="//div[@id='logo']/h1/a"
+            elementTitle="//div[@id='logo']/a/span"
             print "Checking site title in the administrator interface..."
             if sel.is_element_present(elementTitle)==False:
                 mclib.AppendErrorMessage(self,sel,"Title is not present in the Administrator interface")
@@ -132,7 +132,8 @@ def EditSiteTitle(self,sel,theme,newtitle):
                 print "OK"
         
 # Click View Main Site
-            sel.click(testvars.MCTestVariables["ViewMainSiteLink"])
+            #sel.click(testvars.MCTestVariables["ViewMainSiteLink"])
+            sel.open(testvars.MCTestVariables["TestSite"])
             sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
 # Check that the TITLE on the main site is present, visible and correct
             if theme==4:
@@ -178,22 +179,24 @@ def EditSiteTagline(self,sel,theme,newtagline):
             sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
     # --------- End of workaround insert
             print "Changed site tagline to: "+newtagline
+#----- As of Dec.2010, tagline is no longer displayed in the admin interface
            # Check that the TAGLINE in the admin interface is present, visible and correct
-            elementTagline="//div[@id='logo']/h1/span"
-            print "Checking site tagline in the administrator interface..."
-            if sel.is_element_present(elementTagline)==False:
-                mclib.AppendErrorMessage(self,sel,"Tagline is not present in the Administrator interface")
-            elif sel.is_visible(elementTagline)==False:
-                mclib.AppendErrorMessage(self,sel,"Tagline is not visible in the Administrator interface")
-            elif sel.get_text(elementTagline)!=newtagline:
-                mclib.AppendErrorMessage(self,sel,"Wrong site tagline in the administrator interface.")
-                print "Expected tagline is "+newtagline
-                print "- Actual tagline is "+sel.get_text(elementTagline)
-            else:
-                print "OK"
+#            elementTagline="//div[@id='logo']/h1/span"
+#            print "Checking site tagline in the administrator interface..."
+#            if sel.is_element_present(elementTagline)==False:
+#                mclib.AppendErrorMessage(self,sel,"Tagline is not present in the Administrator interface")
+#            elif sel.is_visible(elementTagline)==False:
+#                mclib.AppendErrorMessage(self,sel,"Tagline is not visible in the Administrator interface")
+#            elif sel.get_text(elementTagline)!=newtagline:
+#                mclib.AppendErrorMessage(self,sel,"Wrong site tagline in the administrator interface.")
+#                print "Expected tagline is "+newtagline
+#                print "- Actual tagline is "+sel.get_text(elementTagline)
+#            else:
+#                print "OK"
         
 # Click View Main Site
-            sel.click(testvars.MCTestVariables["ViewMainSiteLink"])
+            #sel.click(testvars.MCTestVariables["ViewMainSiteLink"])
+            sel.open(testvars.MCTestVariables["TestSite"])
             sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
 # Check that the TAGLINE on the main site is present, visible and correct
             if theme==4:
@@ -242,7 +245,8 @@ def EditAboutUs(self,sel,theme,newabouttext):
             print "Changed About Us text to: "+newabouttext
         
             # Click View Main Site
-            sel.click(testvars.MCTestVariables["ViewMainSiteLink"])
+            #sel.click(testvars.MCTestVariables["ViewMainSiteLink"])
+            sel.open(testvars.MCTestVariables["TestSite"])
             sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
             # CHECK ABOUT PAGE
             # Navigate to About page
@@ -365,7 +369,8 @@ def ModifySiteSettings(self,sel,theme):
         
 #=============CHECKS ON MAIN SITE===============
 # Click View Main Site
-    sel.click(testvars.MCTestVariables["ViewMainSiteLink"])
+    #sel.click(testvars.MCTestVariables["ViewMainSiteLink"])
+    sel.open(testvars.MCTestVariables["TestSite"])
     sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
 # Check that the TITLE on the main site is present, visible and correct
     if theme==4:
@@ -492,7 +497,8 @@ time.strftime("%d-%m-%Y %H:%M:%S", time.localtime())
 #        print testvars.preE+"Footer blurb is not present in Administrator interface"
     
 # Check at the Main site
-    sel.click(testvars.MCTestVariables["ViewMainSiteLink"])
+    #sel.click(testvars.MCTestVariables["ViewMainSiteLink"])
+    sel.open(testvars.MCTestVariables["TestSite"])
     sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
     #SideBarBlurb is displayed only on List Theme (No.1)
     elementSideBarBlurb="about"
@@ -570,7 +576,8 @@ def UploadSiteLogo(self,sel,theme,newlogo):
             print "- Actual image source:"+logoAttr
     # Go to Main Site
     print "Checking site logo image on Home page"
-    sel.click(testvars.MCTestVariables["ViewMainSiteLink"])
+    #sel.click(testvars.MCTestVariables["ViewMainSiteLink"])
+    sel.open(testvars.MCTestVariables["TestSite"])
     sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
     # This image is not available in Blue Theme (No.4)
     if theme!=4:
@@ -615,7 +622,8 @@ def UploadBackgroundImage(self,sel,theme,background):
         mclib.AppendErrorMessage(self,sel,"Input field for uploading new background image not found")
     # Go to Main Site
     print "Checking background image on Home page"
-    sel.click(testvars.MCTestVariables["ViewMainSiteLink"])
+    #sel.click(testvars.MCTestVariables["ViewMainSiteLink"])
+    sel.open(testvars.MCTestVariables["TestSite"])
     sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
     # Looking for a background image in HTML source
     stringSource = sel.get_html_source()
@@ -652,7 +660,8 @@ def DeleteBackgroundImage(self,sel):
         sel.open(testvars.MCTestVariables["CategoriesPage"])
         sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
         print "Checking that Home page does not have a background image"
-        sel.click(testvars.MCTestVariables["ViewMainSiteLink"])
+        #sel.click(testvars.MCTestVariables["ViewMainSiteLink"])
+        sel.open(testvars.MCTestVariables["TestSite"])
         sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
         # Looking for a background image in HTML source
         stringSource = sel.get_html_source()
@@ -683,7 +692,8 @@ def AddCustomCSS(self,sel,customcss):
         sel.open(testvars.MCTestVariables["SettingsPage"])
         sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
         # Looking for custom CSS in HTML source - admin
-        sel.click(testvars.MCUI["AdminVideos"])
+        #sel.click(testvars.MCUI["AdminVideos"])
+        sel.open(testvars.MCTestVariables["ReviewQueuePage"])
         sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
         print "Checking that admin page does not have custom CSS"
         stringSource = sel.get_html_source()
@@ -692,7 +702,8 @@ def AddCustomCSS(self,sel,customcss):
         else:
             mclib.AppendErrorMessage(self,sel,"Custom CSS was added to admin pages")
         # Go to Main Site
-        sel.click(testvars.MCTestVariables["ViewMainSiteLink"])
+        #sel.click(testvars.MCTestVariables["ViewMainSiteLink"])
+        sel.open(testvars.MCTestVariables["TestSite"])
         sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
         # Looking for custom CSS in HTML source - front pages
         print "Checking that Home page has custom CSS"
@@ -723,10 +734,12 @@ def DeleteCustomCSS(self,sel):
         sel.open(testvars.MCTestVariables["SettingsPage"])
         sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
         # Looking for custom CSS in HTML source - admin
-        sel.click(testvars.MCUI["AdminVideos"])
+#        sel.click(testvars.MCUI["AdminVideos"])
+        sel.open(testvars.MCTestVariables["ReviewQueuePage"])
         sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
         # Go to Main Site
-        sel.click(testvars.MCTestVariables["ViewMainSiteLink"])
+        #sel.click(testvars.MCTestVariables["ViewMainSiteLink"])
+        sel.open(testvars.MCTestVariables["TestSite"])
         sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
         # Looking for custom CSS in HTML source - front pages
         print "Checking that Home page does not have custom CSS"
@@ -757,7 +770,8 @@ def DisplaySubmitVideo(self,sel,theme):
         sel.open(testvars.MCTestVariables["SettingsPage"])
         sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
         # Go to Main Site
-        sel.click(testvars.MCTestVariables["ViewMainSiteLink"])
+        #sel.click(testvars.MCTestVariables["ViewMainSiteLink"])
+        sel.open(testvars.MCTestVariables["TestSite"])
         sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
         # Looking for Submit a Video button on the front pages
         if theme==4:
@@ -792,7 +806,8 @@ def HideSubmitVideo(self,sel,theme):
         sel.open(testvars.MCTestVariables["SettingsPage"])
         sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
         # Go to Main Site
-        sel.click(testvars.MCTestVariables["ViewMainSiteLink"])
+        #sel.click(testvars.MCTestVariables["ViewMainSiteLink"])
+        sel.open(testvars.MCTestVariables["TestSite"])
         sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
         # Looking for Submit a Video button on the front pages
         if theme==4:
@@ -832,7 +847,8 @@ def CheckRequireLoginToSubmitVideo(self,sel,theme):
             sel.open(testvars.MCTestVariables["SettingsPage"])
             sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
             # Go to Main Site
-            sel.click(testvars.MCTestVariables["ViewMainSiteLink"])
+            #sel.click(testvars.MCTestVariables["ViewMainSiteLink"])
+            sel.open(testvars.MCTestVariables["TestSite"])
             sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
             print "Logged as Admin - navigating to Home page"
             # Looking for Submit a Video button on the front pages - logged as Admin

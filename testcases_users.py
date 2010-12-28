@@ -29,13 +29,13 @@ class TestCase_AddNewAdmin_271(unittest.TestCase):
         self.verificationErrors = []
         self.selenium = selenium("localhost", testvars.MCTestVariables["Port"], testvars.MCTestVariables["Browser"], testvars.MCTestVariables["TestSite"])
         self.selenium.start()
+        
     # The user actions executed in the test scenario
     def test_AddNewAdmin_271(self):
         sel = self.selenium
         # Log in as Admin
         loginlogout.LogInAsAdmin(self,sel)
         # This is information for add user edit fields
-#        username = "vitalii1"
         username = "newTestAdmin"
         password = "123456"
         email = "admin1@test.com"
@@ -72,13 +72,13 @@ class TestCase_AddNewUser_270(unittest.TestCase):
         self.verificationErrors = []
         self.selenium = selenium("localhost", testvars.MCTestVariables["Port"], testvars.MCTestVariables["Browser"], testvars.MCTestVariables["TestSite"])
         self.selenium.start()
+
 # The user actions executed in the test scenario
     def test_AddNewUser_270(self):
         sel = self.selenium
         # Log in as Admin
         loginlogout.LogInAsAdmin(self,sel)
         # This is information for add user edit fields
-#        username = "vitalii"
         username = "newTestUser"
         password = "123456"
         email = "user1@test.com"
@@ -117,6 +117,7 @@ class TestCase_EditUser_291(unittest.TestCase):
         self.verificationErrors = []
         self.selenium = selenium("localhost", testvars.MCTestVariables["Port"], testvars.MCTestVariables["Browser"], testvars.MCTestVariables["TestSite"])
         self.selenium.start()
+
     # The user actions executed in the test scenario
     def test_EditUser_291(self):
         sel = self.selenium
@@ -171,13 +172,13 @@ class TestCase_DeleteUser_272(unittest.TestCase):
         self.verificationErrors = []
         self.selenium = selenium("localhost", testvars.MCTestVariables["Port"], testvars.MCTestVariables["Browser"], testvars.MCTestVariables["TestSite"])
         self.selenium.start()
+
     # The user actions executed in the test scenario
     def test_DeleteUser_272(self):
         sel = self.selenium
         # Log in as Admin
         loginlogout.LogInAsAdmin(self,sel)
         # Adding a new user withe the following parameters
-#        username = "vitalii5"
         username = "newTestUser3"
         password = "123456"
         email = "user3@test.com"
@@ -194,6 +195,7 @@ class TestCase_DeleteUser_272(unittest.TestCase):
 # the command on the previous line should close the browser
         self.assertEqual([], self.verificationErrors)
 
+
 class TestCase_CreateNewUserUsernameAndPassword_280(unittest.TestCase):
     def setUp(self):
         self.verificationErrors = []
@@ -206,7 +208,6 @@ class TestCase_CreateNewUserUsernameAndPassword_280(unittest.TestCase):
         # Log in as Admin
         loginlogout.LogInAsAdmin(self,sel)
         # This is information for add user edit fields
-#        username = "vitalii"
         username = "newTestUser3"
         password = "123456"
         email = ""
@@ -235,12 +236,14 @@ class TestCase_CreateNewUserUsernameAndPassword_280(unittest.TestCase):
 # the command on the previous line should close the browser
         self.assertEqual([], self.verificationErrors)
 
+
 class TestCase_CreateNewUserWithoutUsername_274(unittest.TestCase):
    # Open the desired browser and set up the test
     def setUp(self):
         self.verificationErrors = []
         self.selenium = selenium("localhost", testvars.MCTestVariables["Port"], testvars.MCTestVariables["Browser"], testvars.MCTestVariables["TestSite"])
         self.selenium.start()
+
     # The user actions executed in the test scenario
     def test_CreateNewUserWithoutUsername_274(self):
         sel = self.selenium
@@ -265,19 +268,20 @@ class TestCase_CreateNewUserWithoutUsername_274(unittest.TestCase):
 # the command on the previous line should close the browser
         self.assertEqual([], self.verificationErrors)
 
+
 class TestCase_CreateNewUserWithoutPassword_273(unittest.TestCase):
     # Open the desired browser and set up the test
     def setUp(self):
         self.verificationErrors = []
         self.selenium = selenium("localhost", testvars.MCTestVariables["Port"], testvars.MCTestVariables["Browser"], testvars.MCTestVariables["TestSite"])
         self.selenium.start()
+
     # The user actions executed in the test scenario
     def test_CreateNewUserWithoutPassword_273(self):
         sel = self.selenium
         # Log in as Admin
         loginlogout.LogInAsAdmin(self,sel)
         # This is information for add user edit fields
-#        username = "vitalii2"
         username = "newTestUser4"
         password = ""
         email = "test6@test.com"
@@ -320,12 +324,14 @@ class TestCase_CreateNewUserWithoutPassword_273(unittest.TestCase):
 # the command on the previous line should close the browser
         self.assertEqual([], self.verificationErrors)
 
+
 class TestCase_UsernameDoesntAcceptMax1Chars_283(unittest.TestCase):
     # Open the desired browser and set up the test
     def setUp(self):
         self.verificationErrors = []
         self.selenium = selenium("localhost", testvars.MCTestVariables["Port"], testvars.MCTestVariables["Browser"], testvars.MCTestVariables["TestSite"])
         self.selenium.start()
+
     # The user actions executed in the test scenario
     def test_UsernameDoesntAcceptMax1Chars_283(self):
         sel = self.selenium
@@ -412,12 +418,14 @@ class TestCase_UsernameDoesntAcceptMax1Chars_283(unittest.TestCase):
 # the command on the previous line should close the browser
         self.assertEqual([], self.verificationErrors)
 
+
 class TestCase_NewUserUsernameMaxMax2MinChars_281(unittest.TestCase):
     # Open the desired browser and set up the test
     def setUp(self):
         self.verificationErrors = []
         self.selenium = selenium("localhost", testvars.MCTestVariables["Port"], testvars.MCTestVariables["Browser"], testvars.MCTestVariables["TestSite"])
         self.selenium.start()
+
     # The user actions executed in the test scenario
     def test_NewUserUsernameMaxMax2MinChars_281(self):
         sel = self.selenium
@@ -498,7 +506,7 @@ class TestCase_EditUserProfile_539(unittest.TestCase):
         self.verificationErrors = []
         self.selenium = selenium("localhost", testvars.MCTestVariables["Port"], testvars.MCTestVariables["Browser"], testvars.MCTestVariables["TestSite"])
         self.selenium.start()
-# The user actions executed in the test scenario
+
     # The user actions executed in the test scenario
     def test_EditUserProfile_539(self):
         sel = self.selenium
@@ -519,7 +527,8 @@ class TestCase_EditUserProfile_539(unittest.TestCase):
         photo = "photo5.jpg"
         email = "user2@test.com"
         # Detect current theme
-        sel.click(testvars.MCTestVariables["ViewMainSiteLink"])
+#        sel.click(testvars.MCTestVariables["ViewMainSiteLink"])
+        sel.open(testvars.MCTestVariables["TestSite"])
         sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
         theme = sitesettings.ThemeScanner(self,sel)
         print "Logging out..."
@@ -535,12 +544,14 @@ class TestCase_EditUserProfile_539(unittest.TestCase):
 # the command on the previous line should close the browser
         self.assertEqual([], self.verificationErrors)
 
+
 class TestCase_ViewProfile_540(unittest.TestCase):
 # Open the desired browser and set up the test
     def setUp(self):
         self.verificationErrors = []
         self.selenium = selenium("localhost", testvars.MCTestVariables["Port"], testvars.MCTestVariables["Browser"], testvars.MCTestVariables["TestSite"])
         self.selenium.start()
+
 # The user actions executed in the test scenario
     def test_ViewProfile_540(self):
         sel = self.selenium
@@ -571,12 +582,14 @@ class TestCase_ViewProfile_540(unittest.TestCase):
 # the command on the previous line should close the browser
         self.assertEqual([], self.verificationErrors)
 
+
 class TestCase_ViewUser_290(unittest.TestCase):
 # Open the desired browser and set up the test
     def setUp(self):
         self.verificationErrors = []
         self.selenium = selenium("localhost", testvars.MCTestVariables["Port"], testvars.MCTestVariables["Browser"], testvars.MCTestVariables["TestSite"])
         self.selenium.start()
+
 # The user actions executed in the test scenario
     def test_ViewUser_290(self):
         sel = self.selenium

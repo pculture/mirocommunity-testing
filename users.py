@@ -412,7 +412,8 @@ def ViewProfile(self,sel):
 
 def ViewUser(self,sel,username,name,location,website,description,image):
     # Detect current theme
-    sel.click(testvars.MCTestVariables["ViewMainSiteLink"])
+#    sel.click(testvars.MCTestVariables["ViewMainSiteLink"])
+    sel.open(testvars.MCTestVariables["TestSite"])
     sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
     theme = sitesettings.ThemeScanner(self,sel)
     # Return back to /admin/users page and attempt to view the user's page
