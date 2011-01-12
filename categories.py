@@ -448,33 +448,34 @@ def RestoreAllCategoriesFromBackup(self,sel,categoriesList):
     print "Preparing to restore categories from the following backup list: "
     print categoriesList
     sel.open(testvars.MCTestVariables["CategoriesPage"])
-    for Item in categoriesList:
-        oldCategory=Item[0]
-        oldDescription=Item[1]
-        oldSlug=Item[2]
+    if categoriesList!=['']:
+        for Item in categoriesList:
+            oldCategory=Item[0]
+            oldDescription=Item[1]
+            oldSlug=Item[2]
 #        print oldCategory+"  "+oldDescription+"  "+oldSlug
-        if oldCategory[0:1]==u"\u2014\u2014":
-            Level=2
-            newCategory=oldCategory[2:]
-        else:
-            if oldCategory[0]==u"\u2014":
-                Level=1
-                newCategory=oldCategory[1:]
-            else:    
-                Level=0
-                newCategory=oldCategory
-        newDescription=oldDescription
-        newSlug=oldSlug
-        print newCategory+"  "+newDescription+"  "+newSlug
-        if Level==0: 
-            AddCategory(self,sel,newCategory,newSlug,newDescription,0,"")
-            Parent0=newCategory
-        elif Level==1:
-            AddCategory(self,sel,newCategory,newSlug,newDescription,1,Parent0)
-            Parent1=newCategory
-        elif Level==2:
-            AddCategory(self,sel,newCategory,newSlug,newDescription,1,Parent1)
-        else:
-            pass # Ignoring all categories at level 4 and below
+            if oldCategory[0:1]==u"\u2014\u2014":
+                Level=2
+                newCategory=oldCategory[2:]
+            else:
+                if oldCategory[0]==u"\u2014":
+                    Level=1
+                    newCategory=oldCategory[1:]
+                else:    
+                    Level=0
+                    newCategory=oldCategory
+            newDescription=oldDescription
+            newSlug=oldSlug
+            print newCategory+"  "+newDescription+"  "+newSlug
+            if Level==0: 
+                AddCategory(self,sel,newCategory,newSlug,newDescription,0,"")
+                Parent0=newCategory
+            elif Level==1:
+                AddCategory(self,sel,newCategory,newSlug,newDescription,1,Parent0)
+                Parent1=newCategory
+            elif Level==2:
+                AddCategory(self,sel,newCategory,newSlug,newDescription,1,Parent1)
+            else:
+                pass # Ignoring all categories at level 4 and below
                 
     

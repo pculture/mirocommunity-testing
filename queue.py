@@ -75,7 +75,8 @@ def CheckVideoStatus(self,sel,title,status):
     if (status!="Approved" and status!="Featured" and status!="Rejected"):
         self.fail("Wrong value of Status parameter passed to CheckVideoStatus subroutine")
     # Navigate to Bulk Edit page
-    sel.click(testvars.MCUI["AdminBulkEdit"])
+    sel.open(testvars.MCTestVariables["BulkEditPage"])
+#    sel.click(testvars.MCUI["AdminBulkEdit"])
     sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
     print " "
     print "Searching for the "+status+" video..."

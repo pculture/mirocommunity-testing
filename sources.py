@@ -77,6 +77,7 @@ def NavigateToManageSources(self,sel):
 # Returns [page number,row number] if the source is found and [0,0] otherwise.
 
 def SourceLocation(self,sel,source):
+    sel.set_timeout(150000)
     page = 1 # page number
     tempSource = ""
     try:
@@ -122,6 +123,7 @@ def SourceLocation(self,sel,source):
 # This function returns the list of all the sources in the system
 
 def GetSourceList(self,sel):
+    sel.set_timeout(testvars.MCTestVariables["TimeOut"])
     print "Retrieving the current list of sources..."
     page = 1 # page number
     sel.open(testvars.MCTestVariables["ManageSourcesPage"]+"/?page="+str(page))
@@ -516,6 +518,7 @@ def AddSearchFeed(self,sel,searchterm,sortby):
         if sel.is_text_present("Searched Video Sites for \""+searchterm+"\"")==False:
             mclib.AppendErrorMessage(self,sel,"Wrong title on search results page")
             print "Expected title: "+"Searched Video Sites for \""+searchterm+"\""
+            print "- Actual title: "+sel.get_text("//div[@id='content']/h2[2]")
         else:
             print "OK"
             if sel.is_text_present("This search is saved")==False:
@@ -728,7 +731,7 @@ def MarkListedSources(self,sel,sourcelist):
     # Mark each source in sourcelist
     for item in range(0,len(sourceIndex)):
         if sourceIndex[item]==[0,0]:
-            mclib.AppendErrorMessage(self,sel,"Source not found: "+item)
+            mclib.AppendErrorMessage(self,sel,"Source not found: "+str(sourceIndex[item]))
         else:
             sourceLoc = sourceIndex[item]
             page = sourceLoc[0]

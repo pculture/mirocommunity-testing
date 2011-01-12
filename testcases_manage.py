@@ -43,8 +43,9 @@ class TestCase_AddSourceFeed_257(unittest.TestCase):
         # sourceURL = "http://feeds2.feedburner.com/video/artsworld"
         source = "Alaska HDTV | Discover the Great Land"
         sourceURL = "http://feeds.feedburner.com/alaskapodshow"
-        if sources.SourceLocation(self,sel,source)!=[0,0]:
-            sources.DeleteSource(self,sel,source)
+        currentSourceLocation = sources.SourceLocation(self,sel,source)
+#        if currentSourceLocation!=[0,0]:
+        sources.DeleteSource(self,sel,source)
         # Add the source with the specified URL and Approve All parameter set to true
         # Associate it with a category and "Selene Test-Admin" user
         sources.AddSource(self,sel,sourceURL,0,testvars.newCategories[3],"Selene Test-Admin")
@@ -412,7 +413,7 @@ class TestCase_AddSearchFeed_262(unittest.TestCase):
             sources.DeleteSource(self,sel,searchterm)
         sources.AddSearchFeed(self,sel,searchterm,0)
         # Add search feed with sorting by relevance
-        searchterm = "Dalmatian resorts"
+        searchterm = "Dalmatia"
         if sources.SourceLocation(self,sel,searchterm)!=[0,0]:
             sources.DeleteSource(self,sel,searchterm)
         sources.AddSearchFeed(self,sel,searchterm,1)
