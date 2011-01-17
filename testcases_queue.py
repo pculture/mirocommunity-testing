@@ -149,8 +149,10 @@ class TestCase_RejectPage_484(unittest.TestCase):
                 print item+"__________"+str(newResult)
                 if newResult==False:
                     mclib.AppendErrorMessage(self,sel,"Could not find video "+item+" in the list of rejected videos.")
-                sel.click(testvars.MCUI["AdminReviewQueue"])
-                sel.click(testvars.MCTestVariables["ViewMainSiteLink"])
+#                sel.click(testvars.MCUI["AdminReviewQueue"])
+                sel.open(testvars.MCTestVariables["ReviewQueuePage"])
+#                sel.click(testvars.MCTestVariables["ViewMainSiteLink"])
+                sel.open(testvars.MCTestVariables["TestSite"])
                 sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
                 theme = sitesettings.ThemeScanner(self,sel)
                 if theme==4:
@@ -203,7 +205,8 @@ class TestCase_ClearQueue_511(unittest.TestCase):
                 if newResult==False:
                     mclib.AppendErrorMessage(self,sel,"Could not find video "+item+" in the list of rejected videos.")
                 sel.click(testvars.MCUI["AdminReviewQueue"])
-                sel.click(testvars.MCTestVariables["ViewMainSiteLink"])
+#                sel.click(testvars.MCTestVariables["ViewMainSiteLink"])
+                sel.open(testvars.MCTestVariables["TestSite"])
                 sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
                 theme = sitesettings.ThemeScanner(self,sel)
                 if theme==4:

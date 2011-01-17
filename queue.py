@@ -72,6 +72,8 @@ def NavigateToReviewQueue(self,sel):
 # and False otherwise
 
 def CheckVideoStatus(self,sel,title,status):
+#    sel.set_timeout(testvars.MCTestVariables["TimeOut"])
+    sel.set_timeout("300000")
     if (status!="Approved" and status!="Featured" and status!="Rejected"):
         self.fail("Wrong value of Status parameter passed to CheckVideoStatus subroutine")
     # Navigate to Bulk Edit page
@@ -144,6 +146,7 @@ def ProcessVideo(self,sel,page,number,action):
     if sel.is_element_present(titleLink)==True:
         videoTitle = sel.get_text(titleLink)
     else:
+        videoTitle = testvars.preE+" Unknown"
         mclib.AppendErrorMessage(self,sel,"Video title not found")
     # Now determining what to do with the video
     if action=="Featured":    actionLink=featureLink
