@@ -301,7 +301,8 @@ class testcase_BaseComments(testcase_BaseTestCase):
 
         #assert comment is present on the page 
         print 'Returning to the main page...'
-        sel.click('link=View Main Site')
+#        sel.click('link=View Main Site')
+        sel.open(testvars.MCTestVariables["TestSite"])
         sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
         print 'Logging out...'
         loginlogout.LogOut(self,sel)
@@ -342,7 +343,8 @@ class testcase_BaseComments(testcase_BaseTestCase):
         #assert comment is not present on the page
         print 'Going back on main page...'
         sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
-        sel.click('link=View Main Site')
+#        sel.click('link=View Main Site')
+        sel.open(testvars.MCTestVariables["TestSite"])
         sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
         print 'Logging out...'
         sel.click('link=Logout seleniumTestAdmin')
@@ -420,7 +422,8 @@ class testcase_BaseComments(testcase_BaseTestCase):
 
         #login as a user and assert that the comment is present on the page
         print "Going back on the main page..."
-        sel.click('link=View Main Site')
+#        sel.click('link=View Main Site')
+        sel.open(testvars.MCTestVariables["TestSite"])
         sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
         print "Logging out..."
         loginlogout.LogOut(self,sel)
@@ -466,7 +469,8 @@ class testcase_BaseComments(testcase_BaseTestCase):
         #assert comment does not present on the page
         print "Going back on the main page..."
         sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
-        sel.click('link=View Main Site')
+#        sel.click('link=View Main Site')
+        sel.open(testvars.MCTestVariables["TestSite"])
         sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
         print "Logging out"
         loginlogout.LogOut(self,sel)
@@ -538,7 +542,8 @@ class testcase_BaseComments(testcase_BaseTestCase):
         sel.open(testvars.MCTestVariables["SettingsPage"])
         sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
         # --------------------
-        sel.click('link=View Main Site')
+        sel.open(testvars.MCTestVariables["TestSite"])
+        #sel.click('link=View Main Site')
         sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
         sel.click('link=Logout seleniumTestAdmin')
         sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
