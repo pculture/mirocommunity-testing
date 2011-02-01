@@ -43,7 +43,8 @@ class TestCase_SubmitVideoAsAdmin_471(unittest.TestCase):
         # If yes, reject it
         queue.RejectVideoFromQueue(self,sel,titleUnicode)            
         # Navigate to the front page
-        sel.click(testvars.MCTestVariables["ViewMainSiteLink"])
+#        sel.click(testvars.MCTestVariables["ViewMainSiteLink"])
+        sel.open(testvars.MCTestVariables["TestSite"])
         sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
         for theme in range(1,5):
             print ""
@@ -54,7 +55,8 @@ class TestCase_SubmitVideoAsAdmin_471(unittest.TestCase):
             # Set the theme
             sitesettings.ChangeTheme(self,sel,theme)
             # Navigate to the front page
-            sel.click(testvars.MCTestVariables["ViewMainSiteLink"])
+#            sel.click(testvars.MCTestVariables["ViewMainSiteLink"])
+            sel.open(testvars.MCTestVariables["TestSite"])
             sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
             # Submit a video and check the results
             submitvideos.SubmitVideo(self,sel,testVideoURL,theme,"Admin")  # as Admin 
@@ -91,7 +93,8 @@ class TestCase_SubmitVideoAsLoggedUser_472(unittest.TestCase):
         # If yes, reject it
         queue.RejectVideoFromQueue(self,sel,titleUnicode)            
         # Navigate to the front page
-        sel.click(testvars.MCTestVariables["ViewMainSiteLink"])
+#        sel.click(testvars.MCTestVariables["ViewMainSiteLink"])
+        sel.open(testvars.MCTestVariables["TestSite"])
         sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
         # Check if the video is in the current ("Approved") set of videos
         # If yes, delete it
@@ -102,7 +105,8 @@ class TestCase_SubmitVideoAsLoggedUser_472(unittest.TestCase):
             # Set the theme
             sitesettings.ChangeTheme(self,sel,theme)
             # Navigate to the front page
-            sel.click(testvars.MCTestVariables["ViewMainSiteLink"])
+#            sel.click(testvars.MCTestVariables["ViewMainSiteLink"])
+            sel.open(testvars.MCTestVariables["TestSite"])
             sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
             # Log out
             loginlogout.LogOut(self,sel)
@@ -150,7 +154,8 @@ class TestCase_SubmitVideoAsUnloggedUser_473(unittest.TestCase):
         # If yes, reject it
         queue.RejectVideoFromQueue(self,sel,titleUnicode)            
         # Navigate to the front page
-        sel.click(testvars.MCTestVariables["ViewMainSiteLink"])
+#        sel.click(testvars.MCTestVariables["ViewMainSiteLink"])
+        sel.open(testvars.MCTestVariables["TestSite"])
         sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
         # Check if the video is in the current ("Approved") set of videos
         # If yes, delete it
@@ -161,7 +166,8 @@ class TestCase_SubmitVideoAsUnloggedUser_473(unittest.TestCase):
             # Set the theme
             sitesettings.ChangeTheme(self,sel,theme)
             # Navigate to the front page
-            sel.click(testvars.MCTestVariables["ViewMainSiteLink"])
+#            sel.click(testvars.MCTestVariables["ViewMainSiteLink"])
+            sel.open(testvars.MCTestVariables["TestSite"])
             sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
             # Log out
             loginlogout.LogOut(self,sel)
@@ -203,7 +209,8 @@ class TestCase_SubmitVideoFromAdminPage_474(unittest.TestCase):
         # If yes, reject it
         queue.RejectVideoFromQueue(self,sel,titleUnicode)            
         # Navigate to the front page
-        sel.click(testvars.MCTestVariables["ViewMainSiteLink"])
+#        sel.click(testvars.MCTestVariables["ViewMainSiteLink"])
+        sel.open(testvars.MCTestVariables["TestSite"])
         sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
         # Check if the video is in the current ("Approved") set of videos
         # If yes, delete it
@@ -230,7 +237,8 @@ class TestCase_SubmitDuplicateVideo_475(unittest.TestCase):
     def ChangeThemeAndSubmitDuplicateVideo(self,sel,theme,testVideoURL):
         print "Changing theme "+str(theme)
         sitesettings.ChangeTheme(self,sel,theme)
-        sel.click(testvars.MCTestVariables["ViewMainSiteLink"])
+#        sel.click(testvars.MCTestVariables["ViewMainSiteLink"])
+        sel.open(testvars.MCTestVariables["TestSite"])
         sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
         loginlogout.LogOut(self,sel)
         # Submit a video and check the results
@@ -319,7 +327,8 @@ class TestCase_SubmitVideoWithEmbedCode_476(unittest.TestCase):
         # If yes, reject it
         queue.RejectVideoFromQueue(self,sel,titleUnicode)            
         # Navigate to the front page
-        sel.click(testvars.MCTestVariables["ViewMainSiteLink"])
+#        sel.click(testvars.MCTestVariables["ViewMainSiteLink"])
+        sel.open(testvars.MCTestVariables["TestSite"])
         sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
         for theme in range(1,5):
             print ""
@@ -330,7 +339,8 @@ class TestCase_SubmitVideoWithEmbedCode_476(unittest.TestCase):
             # Set the theme
             sitesettings.ChangeTheme(self,sel,theme)
             # Navigate to the front page
-            sel.click(testvars.MCTestVariables["ViewMainSiteLink"])
+#            sel.click(testvars.MCTestVariables["ViewMainSiteLink"])
+            sel.open(testvars.MCTestVariables["TestSite"])
             sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
             # Submit a video and check the results
             submitvideos.SubmitVideoWithEmbed(self,sel,testVideoURL,testVideoTitle,testVideoEmbedCode,testVideoThumbfile,testVideoThumbURL,testVideoDescription,testVideoTags, theme, role)
