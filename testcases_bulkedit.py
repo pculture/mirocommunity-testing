@@ -129,7 +129,7 @@ global gEditTitle
 gEditTitle = "BulkEditTestTitleJudo"
 
 global gEditDate
-gEditDate = "1666-06-11 00:00:00"
+gEditDate = "1999-06-11 00:00:00"
 
 global gEditDescription
 gEditDescription = "BulkEditTestDescription"
@@ -358,6 +358,7 @@ class testcase_BaseTestCase(unittest.TestCase):
         self.verificationErrors = []
         self.selenium = selenium("localhost", gSeleniumServerPort, testvars.MCTestVariables["Browser"], testvars.MCTestVariables["TestSite"])
         self.selenium.start()
+        self.selenium.set_timeout(testvars.MCTestVariables["TimeOut"])
 
     def test_case(self):
         return 1
@@ -375,12 +376,15 @@ class testcase_BaseClassForBulkEdit(testcase_BaseTestCase):
         LogIn(sel, testvars.MCTestVariables["AdminLogin"], testvars.MCTestVariables["AdminPassword"])
         sel.open(testvars.MCTestVariables["ListThemeLink"])
         sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
-        sel.click(gVideosSectionOnAdminPage)
+#        sel.click(gVideosSectionOnAdminPage)
+        sel.open(testvars.MCTestVariables["ReviewQueuePage"])
         sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
 
     #Submits video with given URL, works if video was submitted before
     def SubmitVideo(self, in_VideoUrl):
         sel = self.selenium
+        sel.open(testvars.MCTestVariables["ReviewQueuePage"])
+        sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
         sel.click(gSubmitVideoButtonOnAdminPage)
         if (not WaitUntilElementOnTheScreen(sel, gSubmitButtonOnSubmitVideoPage, gTimeOut)):
              return False
@@ -400,13 +404,17 @@ class testcase_BaseClassForBulkEdit(testcase_BaseTestCase):
     #Searches videos with 'gVideosLabel' and deletes them
     def DeleteVideos(self):
         sel = self.selenium
-        sel.click(gBulkEditOnAdminPage)
+        sel.open(testvars.MCTestVariables["BulkEditPage"])
+#        sel.click(gBulkEditOnAdminPage)
         sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
 
+        time.sleep(5)
         sel.type(gSearchEditBoxOnBulkEditPage, gVideosLabel)
+        time.sleep(5)
         sel.click(gSearchButtonOnBulkEditPage)
         sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
 
+        time.sleep(5)
         sel.click(gToggleAll)
         sel.select(gActionSelector, gDeleteOption)
         sel.click(gApplyButton)
@@ -415,7 +423,8 @@ class testcase_BaseClassForBulkEdit(testcase_BaseTestCase):
     #Adds new category with name defined in 'gCategoryName', works if category was added before
     def AddCategory(self):
         sel = self.selenium
-        sel.click(gCategoriesOnAdminPage)
+ #       sel.click(gCategoriesOnAdminPage)
+        sel.open(testvars.MCTestVariables["CategoriesPage"])
         sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
 
         sel.click(gAddCategoryButtonOnCategoryPage)
@@ -439,7 +448,8 @@ class testcase_BaseClassForBulkEdit(testcase_BaseTestCase):
         
         sel = self.selenium
 
-        sel.click(gUsersSectionOnAdminPage)
+#        sel.click(gUsersSectionOnAdminPage)
+        sel.open(testvars.MCTestVariables["UserPage"])
         sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
 
         sel.click(gAddUserButtonOnUsersPage)
@@ -453,8 +463,8 @@ class testcase_BaseClassForBulkEdit(testcase_BaseTestCase):
         sel.click(gAddUserButtonInAddUserWindow)
         sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
 
-        sel.click(gVideosSectionOnAdminPage)
-        sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
+#        sel.click(gVideosSectionOnAdminPage)
+#        sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
 
     #Checks if changes that were made during editing of bulk of videos were saved and they are correct 
     def checkChanges(self, in_ViewLink, in_CheckTags):
@@ -499,18 +509,24 @@ class testcase_BaseClassForBulkEdit(testcase_BaseTestCase):
         self.SubmitVideo(gVideo2Url)
         
     def LoginDeleteVideosAddUserAddCategoryAddVideos(self):
-        print "Loging in as admin and going to 'View Admin' page..."
+        print "Logging in as admin and going to 'View Admin' page..."
         self.LoginAsAdminSetThemeGoToViewAdmin()
+        #time.sleep(20)
         print "Deleting videos..."
         self.DeleteVideos()
+        #time.sleep(20)
         print "Adding a user..."
         self.AddUser()
+        #time.sleep(20)
         print "Adding a category..."
         self.AddCategory()
+        #time.sleep(20)
         print "Submitting the first video..."
         self.SubmitVideo(gVideo1Url)
+        #time.sleep(20)
         print "Submitting the second video..."
         self.SubmitVideo(gVideo2Url)
+        #time.sleep(20)
             
 
 #Tests AUT for edititng and deleting videos by 'Bulk Edit'
@@ -525,22 +541,29 @@ class testcase_BulkEdit_BulkEdit_446(testcase_BaseClassForBulkEdit):
         self.LoginDeleteVideosAddUserAddCategoryAddVideos()
 
         print "Opening 'Bulk Edit' page..."
-        sel.click(gBulkEditOnAdminPage)
+#        sel.click(gBulkEditOnAdminPage)
+        sel.open(testvars.MCTestVariables["BulkEditPage"])
         sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
 
         print "Searching all videos with 'gVideosLabel'..."
+        time.sleep(5)
         sel.type(gSearchEditBoxOnBulkEditPage, gVideosLabel)
+        time.sleep(5)
         sel.click(gSearchButtonOnBulkEditPage)
         sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
 
         print "Checking all found videos..."
+        time.sleep(5)
         sel.click(gToggleAll)
+        time.sleep(5)
         print "Choosing 'Edit' option and clicking 'Apply' button..."
         sel.select(gActionSelector, gEditOption)
+        time.sleep(10)
         sel.click(gApplyButton)
 
         print "Editing selected videos..."
         WaitUntilElementOnTheScreen(sel, gEditCategoryXPath, gTimeOut)
+        time.sleep(10)
         sel.type(gEditPageTitleEditField, "")
         sel.type(gEditPageTitleEditField, gEditTitle)
         sel.type(gEditPageDateEditField, "")
@@ -553,10 +576,13 @@ class testcase_BulkEdit_BulkEdit_446(testcase_BaseClassForBulkEdit):
         sel.check(gEditCategoryXPath)
         sel.check(gEditUserXPath)
 
+        #time.sleep(60)        
         print "Saving changes..."        
         sel.click(gSaveChangesButtonInEditWindow)
 
         sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
+
+        #time.sleep(60)        
 
         print "Checking changes in the first video..."        
         self.checkChanges(gLinkToViewFirstVideo, True)
@@ -564,12 +590,14 @@ class testcase_BulkEdit_BulkEdit_446(testcase_BaseClassForBulkEdit):
         sel.click(gViewAdmin)
         sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
 
-        sel.click(gBulkEditOnAdminPage)
+        #sel.click(gBulkEditOnAdminPage)
+        sel.open(testvars.MCTestVariables["BulkEditPage"])
         sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
 
         sel.type(gSearchEditBoxOnBulkEditPage, gVideosLabel)
         sel.click(gSearchButtonOnBulkEditPage)
-        sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])        
+#        sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
+        sel.wait_for_page_to_load("300000")
 
         print "Checking changes in the second video..."                
         self.checkChanges(gLinkToViewSecondVideo, True)
@@ -586,7 +614,8 @@ class testcase_BulkEdit_BulkDelete_447(testcase_BaseClassForBulkEdit):
         self.LoginDeleteVideosAddUserAddCategoryAddVideos()
 
         print "Opening 'Bulk Edit' page..."
-        sel.click(gBulkEditOnAdminPage)
+#        sel.click(gBulkEditOnAdminPage)
+        sel.open(testvars.MCTestVariables["BulkEditPage"])
         sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
 
         print "Searching all videos with 'gVideosLabel'..."
@@ -603,7 +632,8 @@ class testcase_BulkEdit_BulkDelete_447(testcase_BaseClassForBulkEdit):
         self.DeleteVideos()
 
         print "Verifying if videos have been deleted..."                
-        sel.click(gBulkEditOnAdminPage)
+#        sel.click(gBulkEditOnAdminPage)
+        sel.open(testvars.MCTestVariables["BulkEditPage"])
         sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
 
         sel.type(gSearchEditBoxOnBulkEditPage, gVideosLabel)
@@ -630,7 +660,8 @@ class testcase_BulkEdit_BulkFeature_448(testcase_BaseClassForBulkEdit):
         self.LoginDeleteVideosAddVideos()
 
         print "Opening 'Bulk Edit' page..."        
-        sel.click(gBulkEditOnAdminPage)
+#        sel.click(gBulkEditOnAdminPage)
+        sel.open(testvars.MCTestVariables["BulkEditPage"])
         sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
 
         print "Searching all videos with 'gVideosLabel'..."
@@ -669,7 +700,8 @@ class testcase_BulkEdit_BulkUnfeature_449(testcase_BaseClassForBulkEdit):
         self.LoginDeleteVideosAddVideos()
 
         print "Opening 'Bulk Edit' page..."        
-        sel.click(gBulkEditOnAdminPage)
+#        sel.click(gBulkEditOnAdminPage)
+        sel.open(testvars.MCTestVariables["BulkEditPage"])
         sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
 
         print "Searching all videos with 'gVideosLabel'..."
@@ -708,7 +740,8 @@ class testcase_BulkEdit_EditSingleVideo_452(testcase_BaseClassForBulkEdit):
         self.LoginDeleteVideosAddUserAddCategoryAddVideos()
 
         print "Opening 'Bulk Edit' page..."        
-        sel.click(gBulkEditOnAdminPage)
+#        sel.click(gBulkEditOnAdminPage)
+        sel.open(testvars.MCTestVariables["BulkEditPage"])
         sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
 
         print "Searching all videos with 'gVideosLabel'..."
@@ -724,8 +757,10 @@ class testcase_BulkEdit_EditSingleVideo_452(testcase_BaseClassForBulkEdit):
         sel.type(gEditPageDateEditFieldSingleVideo, gEditDate)
         sel.type(gEditPageDescriptionEditFieldSingleVideo, gEditDescription)
         sel.type(gEditPageTagsEditFieldSingleVideo, gEditTag)
-
         sel.check(gEditCategoryXPathSingleVideo)
+#        sel.click("//div[@id='labels']/form[0]/table/tbody/tr[2]/td[1]/div/div[2]/ul/li[9]/a]")
+        sel.click("link=Click to edit the users associated with this video")
+        time.sleep(15)
         sel.check(gEditUserXPathSingleVideo)
 
         print "Saving changes..."        
@@ -747,7 +782,8 @@ class testcase_BulkEdit_DeleteSingleVideo_453(testcase_BaseClassForBulkEdit):
         self.LoginDeleteVideosAddVideos()
 
         print "Opening 'Bulk Edit' page..."        
-        sel.click(gBulkEditOnAdminPage)
+#        sel.click(gBulkEditOnAdminPage)
+        sel.open(testvars.MCTestVariables["BulkEditPage"])
         sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
 
         print "Searching all videos with 'gVideosLabel'..."
@@ -788,7 +824,8 @@ class testcase_BulkEdit_UnapproveCurrent_450(testcase_BaseClassForBulkEdit):
         self.FeaturingVideos()        
 
         print "Opening 'Review Queue' page..."        
-        sel.click(gReviewQueueOnAdminPage)
+#        sel.click(gReviewQueueOnAdminPage)
+        sel.open(testvars.MCTestVariables["ReviewQueuePage"])
         sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
 
         print "Clearing the queue..."
@@ -799,7 +836,8 @@ class testcase_BulkEdit_UnapproveCurrent_450(testcase_BaseClassForBulkEdit):
             sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])        
 
         print "Opening 'Bulk Edit' page..."        
-        sel.click(gBulkEditOnAdminPage)
+#        sel.click(gBulkEditOnAdminPage)
+        sel.open(testvars.MCTestVariables["BulkEditPage"])
         sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
 
         #Searches videos    
@@ -843,7 +881,8 @@ class testcase_BulkEdit_UnapproveFeatured_451(testcase_BulkEdit_UnapproveCurrent
         sel = self.selenium        
 
         print "Opening 'Bulk Edit' page..."        
-        sel.click(gBulkEditOnAdminPage)
+#        sel.click(gBulkEditOnAdminPage)
+        sel.open(testvars.MCTestVariables["BulkEditPage"])
         sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])        
         
         print "Searching all videos with 'gVideosLabel'..."
@@ -1125,7 +1164,8 @@ class testcase_BulkEdit_SortByTitle_454(testcase_BaseClassForBulkEdit):
         sel.click(gViewAdmin)
         sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
         print "Going on 'Bulk Edit' page..."
-        sel.click(gBulkEditOnAdminPage)
+#        sel.click(gBulkEditOnAdminPage)
+        sel.open(testvars.MCTestVariables["BulkEditPage"])
         sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
 
         #-------------------------------------------------------------------------------------------------------------------------------
