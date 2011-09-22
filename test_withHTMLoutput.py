@@ -137,6 +137,10 @@ class Test_HTMLTestRunner(unittest.TestCase):
             unittest.defaultTestLoader.loadTestsFromTestCase(testcases_submit.TestCase_SubmitVideoFromAdminPage_474),
             unittest.defaultTestLoader.loadTestsFromTestCase(testcases_submit.TestCase_SubmitDuplicateVideo_475),
             unittest.defaultTestLoader.loadTestsFromTestCase(testcases_submit.TestCase_SubmitVideoWithEmbedCode_476),
+#-VIDEOPAGE---------------------------------------------------
+            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_videopage.TestCase_FeatureVideo_566),
+            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_videopage.TestCase_UnfeatureVideo_567),
+            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_videopage.TestCase_RejectVideo_568),
 #-RESTORE-CATEGORIES---------------------------------------------
             unittest.defaultTestLoader.loadTestsFromTestCase(testcases_categories.TestCase_RestoreAllCategories),
 #-COMMENTS-------------------------------------------------------
