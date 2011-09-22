@@ -268,18 +268,23 @@ def AttributeCategoryToSource(self,sel,category):
 
 def AttributeUserToSource(self,sel,username):
     if sel.is_element_present("//div[@id='content']/form/div[3]/ul/li[2]/ul")==True:
-        userCaption = "//div[@id='content']/form/div[3]/ul/li[2]/ul/li[1]/label/span"
-        no=1
-        userBox=""
-        while sel.is_element_present(userCaption)==True:
-            if sel.get_text(userCaption)==username:
-                userBox = "id_auto_authors_"+str(no-1)
-                sel.check(userBox)
-                break
-            no = no+1
-            userCaption = "//div[@id='content']/form/div[3]/ul/li[2]/ul/li["+str(no)+"]/label/span"
-        if userBox=="":
-            mclib.AppendErrorMessage(self,sel,"User not found: "+username)
+        userBox = "//li/label[span='"+username+"']/input[@name='auto_authors']"
+        if sel.is_element_present(userBox)==0:
+            mclib.AppendErrorMessage(self,sel,"Checkbox for user "+username+" not found")
+        else:
+            sel.check(userBox)
+#        userCaption = "//div[@id='content']/form/div[3]/ul/li[2]/ul/li[1]/label/span"
+#        no=1
+#        userBox=""
+#        while sel.is_element_present(userCaption)==True:
+#            if sel.get_text(userCaption)==username:
+#                userBox = "id_auto_authors_"+str(no-1)
+#                sel.check(userBox)
+#                break
+#            no = no+1
+#            userCaption = "//div[@id='content']/form/div[3]/ul/li[2]/ul/li["+str(no)+"]/label/span"
+#        if userBox=="":
+#            mclib.AppendErrorMessage(self,sel,"User not found: "+username)
     else:
         mclib.AppendErrorMessage(self,sel,"List of users not found")
 
@@ -392,10 +397,10 @@ def AddSource(self,sel,sourceURL,autoApprove,category,user):
                 while sel.is_text_present(nextLink)==False and sel.is_text_present("Just a Moment")==True:
                     time.sleep(1)
                     timeElapsed = timeElapsed + 1
-                    if timeElapsed > 300: # more than 5 mins
+                    if timeElapsed > 3600: # more than 60 mins
                         break
                 if sel.is_text_present(nextLink)==False:
-                    mclib.AppendErrorMessage(self,sel,"Import was not successfully finished in 5 minutes")
+                    mclib.AppendErrorMessage(self,sel,"Import was not successfully finished in 60 minutes")
                     return -1
                 linkBackToManage = "link=go back to Manage Sources"
                 if sel.is_element_present(linkBackToManage)==True:
@@ -770,6 +775,7 @@ def BulkEditSource(self,sel,sourcelist,autoApprove,category,user):
     if sourceCount>15: sourceCount = 15 # if the list of sources is longer than one page
     print sourceCount
     # Check the checkboxes opposite the sources to be edited
+    NavigateToManageSources(self,sel)
     MarkListedSources(self,sel,sourcelist)
     # Apply edit to all the marked sources
     sel.select("bulk_action_selector", "label=Edit")

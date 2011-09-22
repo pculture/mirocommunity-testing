@@ -46,7 +46,7 @@ class TestCase_SubmitVideoAsAdmin_471(unittest.TestCase):
 #        sel.click(testvars.MCTestVariables["ViewMainSiteLink"])
         sel.open(testvars.MCTestVariables["TestSite"])
         sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
-        for theme in range(1,5):
+        for theme in range(1,2):
             print ""
             print "The current theme is "+str(theme)
             # Check if the video is in the current ("Approved") set of videos

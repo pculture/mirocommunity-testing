@@ -1,0 +1,1547 @@
+{\rtf1\ansi\ansicpg1251\deff0{\fonttbl{\f0\fswiss\fprq2\fcharset0 Calibri;}{\f1\fswiss\fprq2\fcharset204 Calibri;}}
+{\colortbl ;\red0\green0\blue255;\red155\green187\blue89;\red0\green176\blue80;}
+{\*\generator Msftedit 5.41.21.2509;}\viewkind4\uc1\pard\sa200\sl276\slmult1\qc\lang4105\f0\fs56 Miro Community \lang1049\f1 Testcases\par
+\pard\sa200\sl276\slmult1\lang4105\b\f0\fs36 Login/Signup\lang1049\f1\par
+\pard\lang4105\f0\fs22 #1. /accounts/login - Login as user\par
+\pard\sl276\slmult1\b0{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=593"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=593}}}\f0\fs22\par
+\b\i NOT IMPLEMENTED\par
+\pard\b0\i0 1. Navigate  to /accounts/login page.\par
+2. Type user-level username and password in the appropriate edit boxes.\par
+3. Click "Log in" button.\par
+\par
+\b #2. /accounts/login - Login as admin\par
+\pard\sl276\slmult1\b0{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=594"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=594}}}\f0\fs22\par
+\b\i NOT IMPLEMENTED\par
+\pard\b0\i0 1. Navigate  to /accounts/login page.\par
+2. Type admin-level username and password in the appropriate edit boxes.\par
+3. Click "Log in" button.\par
+4. On Home page, click "View Admin" link.\par
+\par
+\b #3. Login through pop-up\par
+\pard\sl276\slmult1\b0{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=595"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=595}}}\f0\fs22\par
+\b\i NOT IMPLEMENTED\par
+\pard\b0\i0 1. On home page, click "Login" link at the bottom\par
+2. Type user-level username and password in the appropriate edit boxes.\par
+3. Click "Log in" button.\par
+\par
+\b #4. /accounts/login - Login with Facebook account\par
+\pard\sl276\slmult1\b0{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=596"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=596}}}\f0\fs22\par
+\b\i NOT IMPLEMENTED\par
+\pard\b0\i0 1. Navigate  to /accounts/login page.\par
+2. Click "Facebook" tab.\par
+3. Click "Login with Facebook" button.\par
+4. Type  "pculture.qa@gmail.com" for E-mail and "MiroCommunity" for password.\par
+5. Click "Log in" button.\par
+6. On Home page, click "Your Profile" link and check that Name and Username were retrieved from the Facebook account.\par
+\par
+\b #5. /accounts/login - Login with Twitter account\par
+\pard\sl276\slmult1\b0{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=597"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=597}}}\f0\fs22\par
+\b\i NOT IMPLEMENTED\par
+\pard\b0\i0 1. Navigate  to /accounts/login page.\par
+2. Click "Twitter" tab.\par
+3. Click "Sign in with Twitter" button.\par
+4. Type  "PCFQA" for username and "MiroCommunity" for password.\par
+5. Click "Log in" button.\par
+6. On Home page, click "Your Profile" link and check that Name and Username were retrieved from the Twitter account.\par
+\par
+\b #6. /accounts/login - Login with OpenID account\par
+\pard\sl276\slmult1\b0{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=598"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=598}}}\f0\fs22\par
+\b\i NOT IMPLEMENTED\par
+\pard\b0\i0 1. Navigate  to /accounts/login page.\par
+2. Click "OpenID" tab.\par
+3. Type "PCFQA.myopenid.com" into "Sign in with your OpenID" edit field and click "Sign in" button.\par
+4. If prompted for password, type in "MiroCommunity".\par
+5. If prompted, click "Continue" button.\par
+6. On Home page, click "Your Profile" link and check that fictitious username and e-mail address were created for the OpenID account.\par
+\par
+\b #7. /accounts/login - Login with Google account\par
+\pard\sl276\slmult1\b0{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=599"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=599}}}\f0\fs22\par
+\b\i NOT IMPLEMENTED\par
+\pard\b0\i0 1. Navigate  to /accounts/login page.\par
+2. Click "Google" tab.\par
+3. Click "Sign in" button.\par
+4. If prompted to sign in to gmail.com, type "pculture.qa@gmail.com" for Email and "MiroCommunity" for Password.\par
+5. On Home page, click "Your Profile" link and check that name, username and e-mail address were retrieved from your Google account.\par
+\par
+\b #8. /accounts/login - Sign up and login\par
+\pard\sl276\slmult1\b0{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=600"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=600}}}\f0\fs22\par
+\b\i NOT IMPLEMENTED\par
+\pard\b0\i0 1. Navigate  to /accounts/login page.\par
+2. In the "Sign up" section, enter a user name, a valid e-mail address for registration, password and password confirmation.\par
+3. Click "Sign up" button.\par
+4. Click "Login" link at the bottom of Home page and attempt to log in with the use of the new account.\par
+5. Open the account activation e-mail at the address you specified at step 2 and click the activation link.\par
+6. Click "Login" link and log in with the use of the new username and password.\par
+7. Click "Your Profile" link at the bottom of the Home page and verify that the user profile includes the correct username and e-mail address.\par
+\pard\sa200\sl276\slmult1\lang1049\b\f1\fs36\par
+\lang4105\f0 Listings\lang1049\f1\par
+\pard\lang4105\f0\fs22 #1. /listing/new/ - View the list of new videos\par
+\pard\sl276\slmult1\b0{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=584"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=584}}}\f0\fs22\par
+\b\i NOT IMPLEMENTED\par
+\pard\sl240\slmult1\b0\i0 1. Navigate to /listing/new page.\par
+\pard 2. If pagination is available, check pages 2, <LAST>/2,<LAST>-1,<LAST>\par
+3. Click RSS symbol.\par
+\par
+\b #2. /listing/featured/ - View the list of featured videos\par
+\pard\sl276\slmult1\b0{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=585"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=585}}}\f0\fs22\par
+\b\i NOT IMPLEMENTED\par
+\pard\sl240\slmult1\b0\i0 1. Navigate to /listing/featured page.\par
+\pard 2. If pagination is available, check pages 2, <LAST>/2,<LAST>-1,<LAST>\par
+3. Click RSS symbol.\par
+\par
+\b #3. /listing/popular/ - View the list of popular videos\par
+\pard\sl276\slmult1\b0{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=586"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=586}}}\f0\fs22\par
+\b\i NOT IMPLEMENTED\par
+\pard\sl240\slmult1\b0\i0 1. Navigate to /listing/popular page.\par
+\pard 2. If pagination is available, check pages 2, <LAST>/2,<LAST>-1,<LAST>\par
+3. Click RSS symbol.\par
+\par
+\b #4. /category - View the list of videos under a category\par
+\pard\sl276\slmult1\b0{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=587"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=587}}}\f0\fs22\par
+\b\i NOT IMPLEMENTED\par
+\pard\sl240\slmult1\b0\i0 1. On Home page, hover the mouse pointer over "Categories" button and click a category name from the drop-down list.\par
+2. Check the category name, description, logo.\par
+\pard 3. If pagination is available, check pages 2, <LAST>/2,<LAST>-1,<LAST>\par
+4. Click RSS symbol.\par
+\par
+\b #5. /author - View the list of videos attributed to an author\par
+\pard\sl276\slmult1\b0{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=588"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=588}}}\f0\fs22\par
+\b\i NOT IMPLEMENTED\par
+\pard\b0\i0 1. On Home page, click any link next to a video thumbnail with an author name.\par
+\pard\sl240\slmult1 2. Check the author name, description, logo.\par
+\pard 3. If pagination is available, check pages 2, <LAST>/2,<LAST>-1,<LAST>\par
+4. Click RSS symbol.\par
+\par
+\b #6. /listing/tag - View videos labelled with a specific tag\par
+\pard\sl276\slmult1\b0{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=589"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=589}}}\f0\fs22\par
+\b\i NOT IMPLEMENTED\par
+\pard\b0\i0 1. Navigate to /listing/tag/test page.\par
+\pard\sl240\slmult1 2. Check that all the videos on the page are labelled with tag "test".\par
+\pard 3. If pagination is available, check pages 2, <LAST>/2,<LAST>-1,<LAST>\par
+4. Click RSS symbol.\par
+\par
+\b #7. /search - Basic search by keyword\par
+\pard\sl276\slmult1\b0{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=590"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=590}}}\f0\fs22\par
+\b\i NOT IMPLEMENTED\par
+\pard\b0\i0 1. On home page, type a keyword in "Search" edit field and click "Search" button.\par
+\pard\sl240\slmult1 2. Check that all the videos on the page match the search criteria.\par
+\pard 3. If pagination is available, check pages 2, <LAST>/2,<LAST>-1,<LAST>\par
+4. Click RSS symbol.\par
+\par
+\b #8. /search - Search by non-ascii keyword\par
+\pard\sl276\slmult1\b0{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=591"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=591}}}\f0\fs22\par
+\b\i NOT IMPLEMENTED\par
+\pard\b0\i0 1. On home page, type a non-ascii keyword in "Search" edit field (e.g. "\lang1049\f1\'f2\'f3\'f0\'e8\'e7\'ec\lang4105\f0 ") and click "Search" button.\par
+\pard\sl240\slmult1 2. Check that all the videos on the page match the search criteria (contain the search term).\par
+\pard 3. If pagination is available, check pages 2, <LAST>/2,<LAST>-1,<LAST>\par
+4. Click RSS symbol.\par
+\par
+\b #9. /search - Search by composite criteria\par
+\pard\sl276\slmult1\b0{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=592"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=592}}}\f0\fs22\par
+\b\i NOT IMPLEMENTED\par
+\pard\b0\i0 1. On home page, type a search query in "Search" edit field in accordance with the following rules:\par
+\i <keyword> \i0 includes a keyword in search results\par
+\i -<keyword> \i0 excludes a keyword from search results\par
+\i category:<category_name> \i0 includes a category/keyword/tag/user in search results\par
+\i -category:<category_name> \i0 excludes a category/keyword/tag/user from search results\par
+\i tag:<tag_value> \i0 includes a tag in search results\par
+\i -tag:<tag_value> \i0 excludes a tag from search results\par
+\i user:<user_name> \i0 includes a user in search results\par
+\i -user:<user_name> \i0 excludes a user from search results\par
+Listing a few criteria delimited by space (e.g. "\i category:nature category:art\i0 ") acts as logical AND, i.e. the resulting videos must fall both in art and nature category.\par
+Listing a few criteria inside curved brackets (e.g.  "\i\{category:nature category:art\}\i0 ") acts as logical OR, i.e. search query returns all the videos in art and nature categories.\par
+Example:\par
+\i "villa -hotel category:tourism \{tag:Croatia tag:Dalmatia\} user:seleniumTestUser"\par
+\i0 2. Click "Search" button.\par
+\pard\sl240\slmult1 3. Check that all the videos on the page match the search criteria (contain the search term).\lang1049\f1\fs24\par
+\pard\par
+\par
+\pard\sa200\sl276\slmult1\b\fs36 Video \lang4105\f0 Page\lang1049\f1\par
+\pard\lang4105\f0\fs22 #1. /video - Feature video\par
+\pard\sl276\slmult1\b0{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=566"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=566}}}\f0\fs22\par
+\pard\sl240\slmult1\b\i testcases_videopage.TestCase_FeatureVideo_566\par
+\b0\i0 1. Log in as admin.\par
+2. Navigate to /listing/new page.\par
+3. Click on one of the videos.\par
+4. Click "Feature This Video" button.\par
+5. Navigate to /listing/featured page and check that the video has been placed in the list of featured videos.\par
+\pard\par
+\b #2. /video - Unfeature video\par
+\pard\sl276\slmult1\b0{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=567"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=567}}}\f0\fs22\par
+\b\i testcases_videopage.TestCase_UnfeatureVideo_567\par
+\pard\sl240\slmult1\b0\i0 1. Log in as admin.\par
+2. Navigate to /listing/featured page.\par
+3. Click on one of the videos.\par
+4. Click "Unfeature This Video" button.\par
+5. Navigate to /listing/featured page and check that the video has disappeared from the list of featured videos.\par
+\pard\par
+\b #3. /video - Reject video\par
+\pard\sl276\slmult1\b0{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=568"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=568}}}\f0\fs22\par
+\b\i testcases_videopage.TestCase_RejectVideo_568\par
+\pard\sl240\slmult1\b0\i0 1. Log in as admin.\par
+2. Navigate to /listing/new page.\par
+3. Click on one of the videos.\par
+4. Click "Reject This Video" button.\par
+5. Navigate to /listing/new page and check that the video has disappeared from the list.\par
+\pard\par
+\b #4. /video - Approve video\par
+\pard\sl276\slmult1\b0{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=569"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=569}}}\f0\fs22\par
+\b\i NOT IMPLEMENTED\par
+\pard\sl240\slmult1\b0\i0 1. Log in as admin.\par
+2. Navigate to /listing/new page.\par
+3. Click on one of the videos.\par
+4. Click "Reject This Video" button.\par
+5. Click "Approve This Video" button.\par
+6. Navigate to /listing/new page and check that this video is present in the list.\par
+\pard\par
+\b #5. /video - Upload thumbnail\par
+\pard\sl276\slmult1\b0{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=570"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=570}}}\f0\fs22\par
+\b\i NOT IMPLEMENTED\par
+\pard\sl240\slmult1\b0\i0 1. Log in as admin.\par
+2. Navigate to /listing/new page.\par
+3. Click on one of the videos.\par
+4. Click "Upload/Replace Thumbnail" button.\par
+5. Specify an image file from your computer or a URL for the new thumbnail. Click "Save Changes" button.\par
+6. Navigate to /listing/new page and check that the video thumbnail was updated appropriately.\par
+\pard\par
+\b #6. /video - Edit in place, title\par
+\pard\sl276\slmult1\b0{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=571"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=571}}}\f0\fs22\par
+\b\i NOT IMPLEMENTED\par
+\pard\sl240\slmult1\b0\i0 1. Log in as admin.\par
+2. Navigate to /listing/new page.\par
+3. Click on one of the videos.\par
+4. Click "Edit" link next to the video title.  \par
+5. Type a new video title and click "Save Changes" button.\par
+\pard\par
+\b #7. /video - Edit in place, publication date \par
+\pard\sl276\slmult1\b0{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=572"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=572}}}\f0\fs22\par
+\b\i NOT IMPLEMENTED\par
+\pard\sl240\slmult1\b0\i0 1. Log in as admin.\par
+2. Navigate to /admin/settings page.\par
+3. Check "Use Original Date?" checkbox and click "Save Changes" button.\par
+4. Navigate to /listing/new page.\par
+5. Click on one of the videos.\par
+6. Click "Edit" link next to the publication date.  \par
+7. Type a new date following the date format template provided and click "Save Changes" button.\par
+\pard\par
+\b #8. /video - Edit in place, author\par
+\pard\sl276\slmult1\b0{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=573"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=573}}}\f0\fs22\par
+\b\i NOT IMPLEMENTED\par
+\pard\sl240\slmult1\b0\i0 1. Log in as admin.\par
+2. Navigate to /listing/new page.\par
+3. Click on one of the videos.\par
+4. Click "Edit" link next to the video author ("By <author>").  \par
+5. Check/uncheck checkboxes as appropriate and click "Save Changes" button.\par
+\pard\par
+\b #9. /video - Edit in place, description\par
+\pard\sl276\slmult1\b0{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=574"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=574}}}\f0\fs22\par
+\b\i NOT IMPLEMENTED\par
+\pard\sl240\slmult1\b0\i0 1. Log in as admin.\par
+2. Navigate to /listing/new page.\par
+3. Click on one of the videos.\par
+4. Click "Edit" link next to the description.  \par
+5. Type a new video description and click "Save Changes" button.\par
+\pard\par
+\b #10. /video - Edit in place, category\par
+\pard\sl276\slmult1\b0{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=575"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=575}}}\f0\fs22\par
+\b\i NOT IMPLEMENTED\par
+\pard\sl240\slmult1\b0\i0 1. Log in as admin.\par
+2. Navigate to /listing/new page.\par
+3. Click on one of the videos.\par
+4. Click "Edit" link next to the Category section.  \par
+5. Check/uncheck checkboxes as appropriate and click "Save Changes" button.\par
+\pard\par
+\b #11. /video - Edit in place, tags\par
+\pard\sl276\slmult1\b0{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=576"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=576}}}\f0\fs22\par
+\b\i NOT IMPLEMENTED\par
+\pard\sl240\slmult1\b0\i0 1. Log in as admin.\par
+2. Navigate to /listing/new page.\par
+3. Click on one of the videos.\par
+4. Click "Edit" link next to the Tags section.  \par
+5. Edit the list of tags and click "Save Changes" button.\par
+\pard\par
+\b #12. /video - Edit in place, website\par
+\pard\sl276\slmult1\b0{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=577"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=577}}}\f0\fs22\par
+\b\i NOT IMPLEMENTED\par
+\pard\sl240\slmult1\b0\i0 1. Log in as admin.\par
+2. Navigate to /listing/new page.\par
+3. Click on one of the videos.\par
+4. Click "Edit" link next to the Website section.  \par
+5. Edit the website URL and click "Save Changes" button.\par
+\pard\par
+\b #13. /video - Add Editor's comment\par
+\pard\sl276\slmult1\b0{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=578"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=578}}}\f0\fs22\par
+\b\i NOT IMPLEMENTED\par
+\pard\sl240\slmult1\b0\i0 1. Log in as admin.\par
+2. Navigate to /admin/themes page.\par
+3. If the current theme is different from Blue Theme, find Blue Theme in Additional Settings section and make it active by clicking "Activate" link next to the theme.\par
+4. Navigate to /listing/new page.\par
+5. Click on one of the videos.\par
+6. Click "Add Editors Comment" link.  \par
+7. Type the text of the comment, formatting it with the use of HTML tags, and click "Save Changes" button.\par
+\pard\par
+\b #14. /video - Post to Facebook\par
+\pard\sl276\slmult1\b0{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=579"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=579}}}\f0\fs22\par
+\b\i NOT IMPLEMENTED\par
+\pard\sl240\slmult1\b0\i0 1. Log in as admin.\par
+2. Navigate to /listing/new page.\par
+3. Click on one of the videos.\par
+4. Click "Post to Facebook" link.  \par
+5. If prompted to log in, type "pculture.qa@gmail.com" for E-mail Account and "MiroCommunity" for Password.\par
+6. Click "Share" button.\par
+7. Open PCulture profile on Facebook and check that the video had been posted.\par
+\pard\par
+\b #15. /video - Tweet video\par
+\pard\sl276\slmult1\b0{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=580"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=580}}}\f0\fs22\par
+\b\i NOT IMPLEMENTED\par
+\pard\sl240\slmult1\b0\i0 1. Log in as admin.\par
+2. Navigate to /listing/new page.\par
+3. Click on one of the videos.\par
+4. Click "Tweet This Video" link.  \par
+5. If prompted to sign in, type "PCFQA" for Username and "MiroCommunity" for Password.\par
+6. On Twitter page, click "Tweet" button under the text "I'm watching... <video_title> <video_URL>".\par
+\pard\par
+\b #16. /video - E-mail to friends\par
+\pard\sl276\slmult1\b0{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=581"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=581}}}\f0\fs22\par
+\b\i NOT IMPLEMENTED\par
+\pard\sl240\slmult1\b0\i0 1. Log in as admin.\par
+2. Navigate to /listing/new page.\par
+3. Click on one of the videos.\par
+4. Click "Email to Friends" link.  \par
+5. Leave the default value in "From:" field.\par
+6. Type any e-mail address, e.g. "pculture.qa@gmail.com", into "To:" field.\par
+7. Type some text into "Message" field and click "Share!" button.\par
+8. Open the addressee mail box (for pculture.qa, go to {\field{\*\fldinst{HYPERLINK "www.gmail.com"}}{\fldrslt{\ul\cf1 www.gmail.com}}}\f0\fs22  and sign in with "MiroCommunity" password) and verify that the message has arrived and that it contains the correct sender, message text, video title, URL and thumbnail.\par
+\pard\par
+\b #17. /video - Add to playlist\par
+\pard\sl276\slmult1\b0{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=582"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=582}}}\f0\fs22\par
+\b\i NOT IMPLEMENTED\par
+\pard\sl240\slmult1\b0\i0 1. Log in as admin.\par
+2. Navigate to /admin/settings/ page.\par
+3. Select "Yes" from "Enable Playlists?" drop-down list and click "Save Changes" button.\par
+4. Navigate to /listing/new page.\par
+5. Click on one of the videos.\par
+6. Select a playlist from "Add video to your playlist!" drop-down list and click "Add" button.\par
+7. Click the link with the playlist name to view its content.\par
+\pard\lang1049\f1\fs24\par
+\lang4105\b\f0\fs22 #18. /video - Delete comment\par
+\pard\sl276\slmult1\b0{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=583"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=583}}}\f0\fs22\par
+\b\i NOT IMPLEMENTED\par
+\pard\sl240\slmult1\b0\i0 1. Log in as admin.\par
+2. Navigate to /listing/new page.\par
+3. Click on one of the videos.\par
+\pard 4. Type some text into "Post a Comment" field and click "Post" button.\par
+5. Click "Delete" button next to the comment.\par
+\lang1049\f1\fs24\par
+\pard\sa200\sl276\slmult1\b\fs36\par
+Admin - Review Queue\par
+\pard\sl276\slmult1\lang4105\f0\fs22 #1. /admin/approve_reject/ - approve a video\par
+\lang1049\b0\f1\fs24{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=480"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=480}}}\f1\fs24\par
+\pard\sa200\sl276\slmult1\lang4105\b\i\f0\fs22  testcases_queue.TestCase_ApproveVideo\par
+\pard\lang1049\b0\i0\f1 1.\lang4105\f0  \lang1049\f1 Login as admin\lang4105\f0 .\lang1049\f1\fs24\par
+\fs22 2.\lang4105\f0  Navigate to /admin/approve_reject/ page.\lang1049\f1\fs24\par
+\fs22 3.\lang4105\f0  Choose a video in the premoderation queue and hover the mouse over the relevant thumbnail.\lang1049\f1\fs24\par
+\fs22 4.\lang4105\f0  \lang1049\f1 Click \lang4105\f0 Approve button.\lang1049\f1\fs24\par
+\pard\sa200\lang4105\f0\fs22 5. Navigate to /listing/new/ page and check that the approved video appeared in the list of new videos.\par
+\pard\sl276\slmult1\b #2. /admin/approve_reject/ - feature a video\par
+\lang1049\b0\f1\fs24{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=481"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=481}}}\f1\fs24\par
+\pard\sa200\sl276\slmult1\lang4105\b\i\f0\fs22  testcases_queue.TestCase_FeatureVideo\b0\i0\par
+\pard\lang1049\f1 1.\lang4105\f0  \lang1049\f1 Login as admin\lang4105\f0 .\lang1049\f1\fs24\par
+\fs22 2.\lang4105\f0  Navigate to /admin/approve_reject/ page.\lang1049\f1\fs24\par
+\fs22 3.\lang4105\f0  Choose a video in the premoderation queue and hover the mouse over the relevant thumbnail.\lang1049\f1\fs24\par
+\fs22 4.\lang4105\f0  \lang1049\f1 Click \lang4105\f0 Feature button.\lang1049\f1\fs24\par
+\pard\sa200\lang4105\f0\fs22 5. Navigate to /listing/featured/ page and check that the approved video appeared in the list of new videos.\par
+\pard\sl276\slmult1\b #3. /admin/approve_reject/ - reject a video\par
+\lang1049\b0\f1\fs24{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=482"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=482}}}\f1\fs24\par
+\pard\sa200\sl276\slmult1\lang4105\b\i\f0\fs22  testcases_queue.TestCase_RejectVideo\par
+\pard\lang1049\b0\i0\f1 1.\lang4105\f0  \lang1049\f1 Login as admin\lang4105\f0 .\lang1049\f1\fs24\par
+\fs22 2.\lang4105\f0  Navigate to /admin/approve_reject/ page.\lang1049\f1\fs24\par
+\fs22 3.\lang4105\f0  Choose a video in the premoderation queue and hover the mouse over the relevant thumbnail.\lang1049\f1\fs24\par
+\fs22 4.\lang4105\f0  \lang1049\f1 Click \lang4105\f0 Reject button.\lang1049\f1\fs24\par
+\lang4105\f0\fs22 5. Navigate to /admin/bulk_edit/ page\par
+\pard\sa200 6. Switch from Current Videos view to Rejected Videos view by selecting Rejected Videos from the drop-down list and clicking Search button.\par
+\pard\sl276\slmult1\b #4. /admin/approve_reject/ - approve all videos on a page\par
+\lang1049\b0\f1\fs24{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=483"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=483}}}\f1\fs24\par
+\pard\sa200\sl276\slmult1\lang4105\b\i\f0\fs22  testcases_queue.TestCase_ApprovePage\par
+\pard\lang1049\b0\i0\f1 1.\lang4105\f0  \lang1049\f1 Login as admin\lang4105\f0 .\lang1049\f1\fs24\par
+\fs22 2.\lang4105\f0  Navigate to /admin/approve_reject/ page.\lang1049\f1\fs24\par
+\lang4105\f0\fs22 3\lang1049\f1 .\lang4105\f0  \lang1049\f1 Click \lang4105\f0 Approve All Videos on This Page button.\lang1049\f1\fs24\par
+\pard\sa200\lang4105\f0\fs22 4. Navigate to /listing/new/ page and check that the approved videos appeared in the list of new videos.\par
+\pard\sl276\slmult1\b #5. /admin/approve_reject/ - reject all videos on a page\par
+\lang1049\b0\f1\fs24{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=484"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=484}}}\f1\fs24\par
+\pard\sa200\sl276\slmult1\lang4105\b\i\f0\fs22 testcases_queue.TestCase_RejectPage\par
+\pard\sl276\slmult1\b0\i0 1. Login as admin.\par
+\pard 2. Navigate to /admin/approve_reject/ page.\lang1049\f1\fs24\par
+\lang4105\f0\fs22 3. Click Reject All Videos on This Page button.\lang1049\f1\fs24\par
+\lang4105\f0\fs22 4. Navigate to /admin/bulk_edit/ page\lang1049\f1\fs24\par
+\pard\sa200\sl276\slmult1\lang4105\f0\fs22 5. Switch from Current Videos view to Rejected Videos view by selecting Rejected Videos from the drop-down list and clicking Search button. Check that the videos from the rejected page are now present in the list.\par
+\pard\sl276\slmult1\b #6. /admin/approve_reject/ - clear the entire queue\par
+\lang1049\b0\f1\fs24{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=511"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=511}}}\f1\fs24\par
+\pard\sa200\sl276\slmult1\lang4105\b\i\f0\fs22  testcases_queue.TestCase_ClearQueue\par
+\pard\sl240\slmult1\b0\i0 1. Login as admin.\par
+\pard 2. Navigate to /admin/approve_reject/ page.\lang1049\f1\fs24\par
+\lang4105\f0\fs22 3. Click Clear Entire Queue button.\lang1049\f1\fs24\par
+\lang4105\f0\fs22 4. Navigate to /admin/bulk_edit/ page.\lang1049\f1\fs24\par
+\pard\sa200\sl276\slmult1\lang4105\f0\fs22 5. Switch from Current Videos view to Rejected Videos view by selecting Rejected Videos from the drop-down list and clicking Search button. Check that the videos from the queue are now present in the list.\par
+\pard\sl276\slmult1\b #7. /admin/approve_reject/ - edit a video\par
+\lang1049\b0\f1\fs24{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=512"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=512}}}\f1\fs24\par
+\pard\sa200\sl276\slmult1\lang4105\b\i\f0\fs22  testcases_queue.TestCase_EditVideoInQueue\par
+\pard\sl240\slmult1\b0\i0 1. Login as admin.\par
+\pard 2. Navigate to /admin/approve_reject/ page.\lang1049\f1\fs24\par
+\lang4105\f0\fs22 3. Choose a video in the queue to be edited and click on its thumbnail.\lang1049\f1\fs24\par
+\lang4105\f0\fs22 4. Click Edit link next to the video title in the video preview frame. In the pop-up, modify the title and save your changes.\lang1049\f1\fs24\par
+\lang4105\f0\fs22 5. By clicking appropriate Edit links and making changes in Editing pop-ups, modify:\lang1049\f1\fs24\par
+          \lang4105\f0\fs22 * the video author\lang1049\f1\fs24\par
+          \lang4105\f0\fs22 * publication date\lang1049\f1\fs24\par
+          \lang4105\f0\fs22 * thumbnail\lang1049\f1\fs24\par
+          \lang4105\f0\fs22 * description\lang1049\f1\fs24\par
+          \lang4105\f0\fs22 * category\lang1049\f1\fs24\par
+          \lang4105\f0\fs22 * tags\lang1049\f1\fs24\par
+\pard\sa200\sl276\slmult1\lang4105\f0\fs22              * website URL\par
+\pard\sl276\slmult1\b #8. /admin/approve_reject/ - view RSS feed\par
+\lang1049\b0\f1\fs24{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=513"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=513}}}\f1\fs24\par
+\pard\sa200\sl276\slmult1\lang4105\b\i\f0\fs22 testcases_queue.TestCase_RSSVideosAwaitingModeration\par
+\pard\sl240\slmult1\b0\i0 1. Login as admin.\par
+\pard 2. Navigate to /admin/approve_reject/ page.\lang1049\f1\fs24\par
+\lang4105\f0\fs22 3. Click Unapproved RSS link.\lang1049\f1\fs24\par
+\lang4105\f0\fs22 4. Return to /admin/approve_reject/ page.\lang1049\f1\fs24\par
+\pard\sa200\sl276\slmult1\lang4105\f0\fs22 5. Click Unapproved User RSS link.\par
+\lang1049\b\f1\fs36 Admin - Manage Sources\par
+\pard\lang1033\f0\fs24 #\lang1049\f1  1. /admin/manage - add feedburner rss feed\lang4105\f0\fs22  \lang1049\f1\fs24\par
+\b0{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=257"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=257}}}\f1\fs24\par
+\lang4105\b\i\f0 testcases_manage.TestCase_AddSourceFeed\par
+\lang1049\b0\i0\f1\par
+\pard\fi-360\li360\sl240\slmult1\fs22 1.\tab Login as admin. \par
+\fs24 2.\tab Navigate to /admin/manage/ page. \par
+3.\tab On the Manage Sources page, click Add Feed button. \par
+4.\tab In the pop-up, enter the url of a valid feedburner rss feed (e.g. {\field{\*\fldinst{HYPERLINK "http://feeds2.feedburner.com/video/artsworld"}}{\fldrslt{\ul\cf1 http://feeds2.feedburner.com/video/artsworld}}}\f1\fs24 ) and click Add. \par
+5.\tab On Review Feed before Adding page, choose to Review them first, select a category and click Submit. \par
+6.\tab Click Review Videos link. \par
+\pard\li2130\cf2\fs22\par
+\pard\cf0\lang1033\b\f0\fs24 #\lang1049\f1  2. /admin/manage - add duplicate rss feed\lang4105\f0\fs22   \lang1049\f1\fs24\par
+\b0{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=258"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=258}}}\f1\fs24\par
+\lang4105\b\i\f0 testcases_manage.TestCase_AddDuplicateFeed\par
+\lang1049\b0\i0\f1\par
+\fs22 1. Login as admin.\par
+2. Navigate to /admin/manage/ page.\par
+3. On the Manage Sources page, click Add Feed button.\par
+4. Enter the URL of a valid RSS feed already added (e.g. {\field{\*\fldinst{HYPERLINK "http://feeds2.feedburner.com/video/artsworld"}}{\fldrslt{\ul\cf1 http://feeds2.feedburner.com/video/artsworld}}}\f1\fs22 ) and click Add button.\par
+\par
+\lang1033\b\f0\fs24 # \lang1049\f1 3. /admin/manage - add feed with duplicate items\lang4105\f0\fs22  \lang1049\f1\fs24\par
+\b0{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=259"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=259}}}\f1\fs24\par
+\lang4105\b\i\f0 testcases_manage.TestCase_AddSourceWithDuplicateVideos\par
+\lang1049\b0\i0\f1\par
+\fs22 1. Login as admin.\par
+2. Navigate to /admin/manage/ page.\par
+3. On the Manage Sources page, click Add Feed button.\par
+4. Enter the following URL: {\field{\*\fldinst{HYPERLINK "http://participatoryculture.org/feeds_test/feed1.rss"}}{\fldrslt{\ul\cf1 http://participatoryculture.org/feeds_test/feed1.rss}}}\f1\fs22  and click Add button.\par
+5. On Review Feed before Adding page, choose Approve All and click Submit.\par
+6. When import is finished, check the message on the screen.\par
+7. Click See These Videos link.\par
+\cf2\par
+\cf0\lang1033\b\f0\fs24 #\lang1049\f1  4. /admin/manage - search for videos, by date\lang4105\f0\fs22  \lang1049\f1\fs24\par
+\b0{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=260"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=260}}}\f1\fs24\par
+\lang4105\b\i\f0 testcases_manage.TestCase_SearchForVideos\par
+\lang1049\b0\i0\f1\par
+\fs22 1. Login as admin.\par
+2. Navigate to /admin/manage/ page.\par
+3. Click Search for Video button.\par
+4. Enter a search term in the Search Video Sites edit box and choose Sort by Latest from the drop-down list. Click Search button.\par
+5. In the list of videos for review, hover a mouse over a video thumbnail and click Approve.\par
+6. Hover a mouse over another video and click Feature.\par
+7. Hover a mouse over one more video and click Add to Queue.\par
+8. Click View Main Site link.\par
+9. Navigate to /admin/approve_reject/ page.\par
+\fs24\par
+\lang1033\b\f0 # \lang1049\f1 5. /admin/manage - search for videos, non ascii chars\lang4105\f0\fs22  \lang1049\f1\fs24\par
+\b0{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=261"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=261}}}\f1\fs24\par
+\lang4105\b\i\f0 testcases_manage.TestCase_SearchVideoByNonASCIITerm\par
+\lang1049\b0\i0\f1\par
+\fs22 1. Login as admin.\par
+2. Navigate to /admin/manage/ page.\par
+3. Click Search for Video button.\par
+4. Enter in the Search Video Sites edit field a search term that contains non-ASCII (e.g. accented or Cyrillic) characters. Select Sort by Relevance from the drop-down list and click Search button.\par
+5. In the list of videos for review, hover a mouse over a video thumbnail and click Approve.\par
+6. Hover a mouse over another video and click Feature.\par
+7. Hover a mouse over one more video and click Add to Queue.\par
+8. Click View Main Site link.\par
+9. Navigate to /admin/approve_reject/ page.\par
+\fs24\par
+\lang1033\b\f0 #\lang1049\f1  6. /admin/manage - search for videos, save as a source\lang4105\f0\fs22  \lang1049\f1\fs24\par
+\b0{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=262"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=262}}}\f1\fs24\par
+\lang4105\b\i\f0 testcases_manage.TestCase_AddSearchFeed\par
+\lang1049\b0\i0\f1\par
+\lang4105\f0\fs22 1. \lang1049\f1  Login as admin.\par
+\lang4105\f0 2. \lang1049\f1  Navigate to /admin/manage/ page.\par
+\lang4105\f0 3. \lang1049\f1 Click Search for Video button.\par
+\lang4105\f0 4. \lang1049\f1 Enter a search term in the Search Video Sites edit field and click Search button.\par
+\lang4105\f0 5. \lang1049\f1 On the page with search results, click Save as a Source button.\par
+\lang4105\f0 6. \lang1049\f1 Navigate to /admin/manage/ page.\par
+\lang4105\f0 7. \lang1049\f1 Scroll down and click Only ShowVideo Site Searches link\par
+\fs24\par
+\lang4105\b\f0\fs22 # 7. /admin/manage - edit source \par
+\lang1049\b0\f1\fs24{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=479"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=479}}}\f1\fs24\par
+\lang4105\b\i\f0 testcases_manage.TestCase_EditSource\par
+\lang1049\b0\i0\f1\par
+\fs22 1. Login as admin.\par
+2. Navigate to /admin/manage/ page.\par
+3. Choose the desired source and click Edit link next to it.\par
+4. In the Editing pop-up, modify the values for feed Name, URL, Webpage, Thumbnail, Categories, and Authors.\par
+5. Click Save Changes button.\par
+6. Click View link next to the new feed name.\par
+\par
+\lang1033\b\f0\fs24 #\lang1049\f1  8. /admin/manage - Bulk Edit\lang4105\f0\fs22  \lang1049\f1\fs24\par
+\b0{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=264"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=264}}}\f1\fs24\par
+\lang4105\b\i\f0 testcases_manage.TestCase_BulkEditSources\par
+\lang1049\b0\i0\f1\par
+\fs22 1. Login as admin.\par
+2. Navigate to /admin/manage/ page.\par
+3. Mark a few sources by checking the appropriate checkboxes in the table.\par
+4. From the Bulk Actions drop-down list, select Edit and click Apply.\par
+5. On the Bulk Edit pop-up, change a few parameters and click Save Changes button.\par
+6. Verify that the changes were correctly saved.\par
+\par
+\lang1033\b\f0\fs24 #\lang1049\f1  9. /admin/manage - Bulk Delete\lang4105\f0\fs22  \lang1049\f1\fs24\par
+\b0{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=265"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=265}}}\f1\fs24\par
+\lang4105\b\i\f0 testcases_manage.TestCase_BulkDeleteSources\par
+\lang1049\b0\i0\f1\par
+\fs22 1. Login as admin.\par
+2. Navigate to /admin/manage/ page.\par
+3. Mark a few sources by checking the appropriate checkboxes in the table.\par
+4. From the Bulk Actions drop-down list select Remove and click Apply button.\par
+5. Verify that sources are deleted.\par
+\par
+\lang1033\b\f0\fs24 # \lang1049\f1 10. /admin/manage - Sort\lang4105\f0\fs22  \lang1049\f1\fs24\par
+\b0{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=266"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=266}}}\f1\fs24\par
+\lang4105\b\i\f0 testcases_manage.TestCase_SortSources\par
+\lang1049\b0\i0\f1\par
+\fs22 1. Login as admin.\par
+2. Navigate to /admin/manage/ page.\par
+3. Click on Source header.\par
+4. Click on Type header.\par
+5. Click on Type header again.\par
+6. Click on Auto Approve header.\par
+7. Click on Auto Approve header again.\par
+\par
+\lang1033\b\f0\fs24 #\lang1049\f1  11. /admin/manage - Search Complete View\lang4105\f0\fs22  \lang1049\f1\fs24\par
+\b0{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=267"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=267}}}\f1\fs24\par
+\lang4105\b\i\f0 testcases_manage.TestCase_SearchInSources\par
+\lang1049\b0\i0\f1\par
+\fs22 1. Login as admin.\par
+2. Navigate to /admin/manage/ page.\par
+3. Enter a search term in Search Sources edit box and click Search button.\par
+\fs24\par
+\lang1033\b\f0 #\lang1049\f1  12. /admin/manage - Search Category View\lang4105\f0\fs22  \lang1049\f1\fs24\par
+\b0{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=268"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=268}}}\f1\fs24\par
+\lang4105\b\i\f0 testcases_manage.TestCase_FilterSources\par
+\lang1049\b0\i0\f1\par
+\fs22 1. Login as admin.\par
+2. Navigate to /admin/manage/ page.\par
+3. Enter a search term in Search Sources edit box, select a category from Show All Categories drop-down list and click Search button.\par
+\fs24\par
+\lang1033\b\f0\fs22 #\lang1049\f1  13. /admin/manage - Search User Attribution View \par
+\cf3\b0\fs24  \cf0{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=269"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=269}}}\f1\fs24\par
+\lang4105\b\i\f0 testcases_manage.TestCase_FilterSources\par
+\lang1049\b0\i0\f1\par
+\pard\sl240\slmult1\fs22 1. Login as admin.\par
+2. Navigate to /admin/manage/ page.\par
+3. Enter a search term in Search Sources edit box, select a user from Show All Users drop-down list and click Search button.\par
+\pard\li1988\sa200\sl276\slmult1\par
+\pard\sa200\sl276\slmult1\b\fs36 Admin - Categories\par
+\pard\sl240\slmult1\fs22 #1. delete all categories\lang4105\f0  \lang1049\f1\fs24\par
+\b0{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=301"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=301}}}\f1\fs24\par
+\pard\sa200\sl276\slmult1\lang4105\b\i\f0 testcases_categories.TestCase_DeleteAllCategories\lang1049\f1\par
+\pard\sl240\slmult1\lang4105\b0\i0\f0\fs22 1. Log in as admin.\par
+\pard 2. Navigate to /admin/categories page.\lang1049\f1\fs24\par
+\lang4105\f0\fs22 3. Check the check box in the header of the category table.\lang1049\f1\fs24\par
+\lang4105\f0\fs22 4. Select 'Delete' from the drop-down list box above the table.\lang1049\f1\fs24\par
+\lang4105\f0\fs22 5. Click 'Apply' button.\lang1049\f1\fs24\par
+\lang4105\f0\fs22 6. Click 'View Main Page' link.\lang1049\f1\fs24\par
+\pard\sa200\sl276\slmult1\lang4105\f0\fs22 7. Hover the mouse over 'Categories' button to display the drop-down list of categories.\par
+\pard\sl276\slmult1\lang1049\b\f1 #2. add categories\lang4105\f0  \lang1049\f1\fs24\par
+\pard\sl240\slmult1\b0{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=296"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=296}}}\f1\fs24\par
+\pard\sa200\sl276\slmult1\lang4105\b\i\f0 testcases_categories.TestCase_AddCategories\lang1049\f1\par
+\pard\sl240\slmult1\lang4105\b0\i0\f0\fs22 1. Log in as admin.\par
+\pard 2. Navigate to /admin/categories/ page.\lang1049\f1\fs24\par
+\lang4105\f0\fs22 3. Click 'Add Category' button.\lang1049\f1\fs24\par
+\lang4105\f0\fs22 4. Fill in all the fields in 'Add a Category' pop-up with valid data (choose a unique category name and leave 'Category Parent' drop down list box blank).\lang1049\f1\fs24\par
+\lang4105\f0\fs22 5. Click 'Add Category' button.\lang1049\f1\fs24\par
+\lang4105\f0\fs22 6. Click 'View Main Page' link.\lang1049\f1\fs24\par
+\pard\sa200\sl240\slmult1\lang4105\f0\fs22 7. Hover the mouse over 'Categories' button to display the drop-down list of categories.\par
+\pard\sl276\slmult1\lang1049\b\f1 #3. add subcategories\lang4105\f0  \lang1049\f1\fs24\par
+\pard\sl240\slmult1\b0{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=297"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=297}}}\f1\fs24\par
+\pard\sa200\sl276\slmult1\lang4105\b\i\f0 testcases_categories.TestCase_AddSubCategories\lang1049\f1\par
+\pard\sl240\slmult1\b0\i0\fs22 1. Log in as admin.\par
+\pard 2. Navigate to /admin/categories/ page.\fs24\par
+\fs22 3. Click 'Add Category' button.\fs24\par
+\fs22 4. Fill in all the fields under 'Add a Category' with valid data. Choose any value from 'Category Parent' drop-down list.\fs24\par
+\fs22 5. Click 'Add Category' button.\fs24\par
+\fs22 6. Click 'View Main Page' link.\fs24\par
+\pard\sa200\sl240\slmult1\fs22 7. Hover the mouse over 'Categories' button to display the drop-down list of categories.\par
+\pard\sl276\slmult1\b #4. add non-ascii categories\lang4105\f0   \lang1049\f1\fs24\par
+\pard\sl240\slmult1\b0{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=477"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=477}}}\f1\fs24\par
+\pard\sa200\sl276\slmult1\lang4105\b\i\f0 testcases_categories.TestCase_AddNonASCIICategories\lang1049\f1\par
+\pard\sl240\slmult1\lang4105\b0\i0\f0\fs22 1. Log in as admin.\par
+\pard 2. Navigate to /admin/categories/ page.\lang1049\f1\fs24\par
+\lang4105\f0\fs22 3. Click 'Add Category' button.\lang1049\f1\fs24\par
+\lang4105\f0\fs22 4. Type a non-ascii string for Category Name and fill in all the other fields in 'Add a Category' pop-up with valid data (choose a unique category name and leave 'Category Parent' drop down list box blank).\lang1049\f1\fs24\par
+\lang4105\f0\fs22 5. Click 'Add Category' button.\lang1049\f1\fs24\par
+\lang4105\f0\fs22 6. Click 'View Main Page' link.\lang1049\f1\fs24\par
+\pard\sa200\sl276\slmult1\lang4105\f0\fs22 7. Hover the mouse over 'Categories' button to display the drop-down list of categories.\par
+\pard\sl276\slmult1\lang1049\b\f1 #5. add duplicate category\lang4105\f0   \lang1049\f1\fs24\par
+\pard\sl240\slmult1\b0{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=478"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=478}}}\f1\fs24\par
+\pard\sa200\sl276\slmult1\lang4105\b\i\f0 testcases_categories.TestCase_AddDuplicateCategory\lang1049\f1\par
+\pard\sl240\slmult1\lang4105\b0\i0\f0\fs22 1. Log in as admin.\par
+\pard 2. Navigate to /admin/categories/ page.\lang1049\f1\fs24\par
+\lang4105\f0\fs22 3. Click 'Add Category' button.\lang1049\f1\fs24\par
+\lang4105\f0\fs22 4. Type a Category Name matching the name of an already existing category and fill in all the other fields in 'Add a Category' pop-up with valid data.\lang1049\f1\fs24\par
+\pard\sa200\sl276\slmult1\lang4105\f0\fs22 5. Click 'Add Category' button.\par
+\pard\sl276\slmult1\lang1049\b\f1 #6. delete selected category\lang4105\f0   \lang1049\f1\fs24\par
+\b0{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=298"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=298}}}\f1\fs24\par
+\pard\sa200\sl276\slmult1\lang4105\b\i\f0 testcases_categories.TestCase_DeleteSingleCategory\lang1049\f1\par
+\pard\sl240\slmult1\b0\i0\fs22 1. Log in as admin.\par
+\pard 2. Navigate to /admin/categories/ page.\fs24\par
+\fs22 3. In the table of categories choose the category you want to delete and click 'Delete' link next to it.\fs24\par
+\fs22 4. Check the checkbox opposite the name of another category you want to delete.\fs24\par
+\fs22 5. Select 'Delete' from the list box above the table of categories.\fs24\par
+\fs22 6. Click 'Apply' button.\fs24\par
+\fs22 7. Click 'View Main Page' link.\fs24\par
+\pard\sa200\sl276\slmult1\fs22 8. Hover the mouse over 'Categories' button to display the drop-down list of categories.\par
+\pard\sl276\slmult1\b #7. edit category\lang4105\f0  \lang1049\f1\fs24\par
+\pard\sl240\slmult1\b0{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=299"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=299}}}\f1\fs24\par
+\pard\sa200\sl276\slmult1\lang4105\b\i\f0 testcases_categories.TestCase_EditCategory\lang1049\f1\par
+\pard\sl240\slmult1\lang4105\b0\i0\f0\fs22 1. Log in as admin.\par
+\pard 2. Navigate to /admin/categories page.\lang1049\f1\fs24\par
+\lang4105\f0\fs22 3. In the list of categories, choose the category you want to edit and click 'Edit' link.\lang1049\f1\fs24\par
+\lang4105\f0\fs22 4. Edit all the fields (Category Name, Category Slug, Thumbnail/Logo, Description, Category Parent).\lang1049\f1\fs24\par
+\lang4105\f0\fs22 5. Click 'Update Category' button.\lang1049\f1\fs24\par
+\lang4105\f0\fs22 6. Click 'View' link next to the category name.\lang1049\f1\fs24\par
+\pard\sa200\sl276\slmult1\lang4105\f0\fs22 7. Verify the changes are saved and displayed.\par
+\pard\sl276\slmult1\lang1049\b\f1 #8. bulk delete categories\lang4105\f0   \lang1049\f1\fs24\par
+\pard\sl240\slmult1\b0{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=301"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=301}}}\f1\fs24\par
+\pard\sa200\sl276\slmult1\lang4105\b\i\f0 testcases_categories.TestCase_BulkDeleteCategories\lang1049\f1\par
+\pard\sl240\slmult1\b0\i0\fs22 1. Log in as admin.\par
+\pard 2. Navigate to /admin/categories page.\fs24\par
+\fs22 3. Check the check box in the header of the category table.\fs24\par
+\fs22 4. Select 'Delete' from the drop-down list box above the table.\fs24\par
+\fs22 5. Click 'Apply' button.\fs24\par
+\fs22 6. Click 'View Main Page' link.\fs24\par
+\pard\sa200\sl276\slmult1\fs22 7. Hover the mouse over 'Categories' button to display the drop-down list of categories.\par
+\par
+\b\fs36 Admin - Bulk Edit \par
+\pard\sl276\slmult1\lang4105\f0\fs22 #1. bulk edit videos \par
+\lang1049\b0\f1\fs24{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=446"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=446}}}\f1\fs24\par
+\pard\sa200\sl276\slmult1\lang4105\b\i\f0 testcases_bulkedit.testcase_BulkEdit_BulkEdit\lang1049\f1\par
+\pard\sl240\slmult1\lang4105\b0\i0\f0\fs22 1) Login as admin\par
+\pard 2) Click on 'View Admin' link\lang1049\f1\fs24\par
+\lang4105\f0\fs22 3) Open 'Bulk Edit' page\lang1049\f1\fs24\par
+\lang4105\f0\fs22 4) Check couple videos from the list\lang1049\f1\fs24\par
+\lang4105\f0\fs22 5) Select 'Edit' from drop down list box 'Bulk Actions'\lang1049\f1\fs24\par
+\lang4105\f0\fs22 6) Click on 'Apply' button\lang1049\f1\fs24\par
+\lang4105\f0\fs22 7) Enter new title, thumb URL, Date, Description and Tags\lang1049\f1\fs24\par
+\pard\sa200\sl276\slmult1\lang4105\f0\fs22 8) Select Categories and Users\par
+\pard\sl276\slmult1\b #2. bulk delete videos \par
+\lang1049\b0\f1\fs24{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=447"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=447}}}\f1\fs24\par
+\pard\sa200\sl276\slmult1\lang4105\b\i\f0 testcases_bulkedit.testcase_BulkEdit_BulkDelete\lang1049\f1\par
+\pard\sl240\slmult1\lang4105\b0\i0\f0\fs22 1) Login as admin\par
+\pard 2) Click on 'View Admin' link\lang1049\f1\fs24\par
+\lang4105\f0\fs22 3) Open 'Bulk Edit' page\lang1049\f1\fs24\par
+\lang4105\f0\fs22 4) Check couple videos from the list\lang1049\f1\fs24\par
+\lang4105\f0\fs22 5) Select 'Delete' from drop down list box 'Bulk Actions'\lang1049\f1\fs24\par
+\pard\sa200\sl276\slmult1\lang4105\f0\fs22 6) Click on 'Apply' button\par
+\pard\sl276\slmult1\b #3. feature a video \par
+\lang1049\b0\f1\fs24{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=448"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=448}}}\f1\fs24\par
+\pard\sa200\sl276\slmult1\lang4105\b\i\f0 testcases_bulkedit.testcase_BulkEdit_BulkFeature\lang1049\f1\par
+\pard\sl240\slmult1\lang4105\b0\i0\f0\fs22 1) Login as admin\par
+\pard 2) Click on 'View Admin' link\lang1049\f1\fs24\par
+\lang4105\f0\fs22 3) Open 'Bulk Edit' page\lang1049\f1\fs24\par
+\lang4105\f0\fs22 4) Check couple videos from the list\lang1049\f1\fs24\par
+\lang4105\f0\fs22 5) Select 'Feature' from drop down list box 'Bulk Actions'\lang1049\f1\fs24\par
+\lang4105\f0\fs22 6) Click on 'Apply' button\lang1049\f1\fs24\par
+\pard\sa200\sl276\slmult1\fs22\par
+\pard\sl276\slmult1\lang4105\b\f0 #4. unfeature a video \par
+\lang1049\b0\f1\fs24{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=449"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=449}}}\f1\fs24\par
+\pard\sa200\sl276\slmult1\lang4105\b\i\f0 testcases_bulkedit.testcase_BulkEdit_BulkUnfeature\lang1049\f1\par
+\pard\sl240\slmult1\lang4105\b0\i0\f0\fs22 1) Login as admin\par
+\pard 2) Click on 'View Admin' link\lang1049\f1\fs24\par
+\lang4105\f0\fs22 3) Open 'Bulk Edit' page\lang1049\f1\fs24\par
+\lang4105\f0\fs22 4) Check couple videos from the list\lang1049\f1\fs24\par
+\lang4105\f0\fs22 5) Select 'Unfeature' from drop down list box 'Bulk Actions'\lang1049\f1\fs24\par
+\pard\sa200\sl276\slmult1\lang4105\f0\fs22 6) Click on 'Apply' button\par
+\pard\sl276\slmult1\b #5. unapprove a current video \par
+\lang1049\b0\f1\fs24{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=450"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=450}}}\f1\fs24\par
+\pard\sa200\sl276\slmult1\lang4105\b\i\f0 testcases_bulkedit.testcase_BulkEdit_UnapproveCurrent\lang1049\f1\par
+\pard\sl240\slmult1\lang4105\b0\i0\f0\fs22 1) Login as admin\par
+\pard 2) Click on 'View Admin' link\lang1049\f1\fs24\par
+\lang4105\f0\fs22 3) Open 'Bulk Edit' page\lang1049\f1\fs24\par
+\lang4105\f0\fs22 4) Check couple videos from the list\lang1049\f1\fs24\par
+\lang4105\f0\fs22 5) Select 'Unapprove' from drop down list box 'Bulk Actions'\lang1049\f1\fs24\par
+\pard\sa200\sl276\slmult1\lang4105\f0\fs22 6) Click on 'Apply' button\par
+\pard\sl276\slmult1\b #6. unapprove a featured video  \par
+\lang1049\b0\f1\fs24{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=451"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=451}}}\f1\fs24\par
+\pard\sa200\sl276\slmult1\lang4105\b\i\f0 testcases_bulkedit.testcase_BulkEdit_UnapproveFeatured\lang1049\f1\par
+\pard\sl240\slmult1\lang4105\b0\i0\f0\fs22 1) Login as admin\par
+\pard 2) Click on 'View Admin' link\lang1049\f1\fs24\par
+\lang4105\f0\fs22 3) Open 'Bulk Edit' page\lang1049\f1\fs24\par
+\lang4105\f0\fs22 4) Search for some featured videos\lang1049\f1\fs24\par
+\lang4105\f0\fs22 5) Check couple videos from the list\lang1049\f1\fs24\par
+\lang4105\f0\fs22 6) Select 'Unapprove' from drop down list box 'Bulk Actions'\lang1049\f1\fs24\par
+\pard\sa200\sl276\slmult1\lang4105\f0\fs22 7) Click on 'Apply' button\par
+\pard\sl276\slmult1\b #7. edit single video \par
+\lang1049\b0\f1\fs24{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=452"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=452}}}\f1\fs24\par
+\pard\sa200\sl276\slmult1\lang4105\b\i\f0 testcases_bulkedit.testcase_BulkEdit_EditSingleVideo\lang1049\f1\par
+\pard\sl240\slmult1\b0\i0\fs22 1) Login as admin\par
+\pard 2) Click on 'View Admin' link\fs24\par
+\fs22 3) Open 'Bulk Edit' page\fs24\par
+\fs22 4) Click 'Edit' link under a video\fs24\par
+\fs22 5) Enter new title, thumb URL, Date, Description and Tags\fs24\par
+\pard\sa200\sl276\slmult1\fs22 6) Select Categories and Users\par
+\pard\sl276\slmult1\lang4105\b\f0 #8. delete single video  \par
+\lang1049\b0\f1\fs24{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=453"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=453}}}\f1\fs24\par
+\pard\sa200\sl276\slmult1\lang4105\b\i\f0 testcases_bulkedit.testcase_BulkEdit_DeleteSingleVideo\lang1049\f1\par
+\pard\sl240\slmult1\lang4105\b0\i0\f0\fs22 1) Login as admin\par
+\pard 2) Click on 'View Admin' link\lang1049\f1\fs24\par
+\lang4105\f0\fs22 3) Open 'Bulk Edit' page\lang1049\f1\fs24\par
+\pard\sa200\sl276\slmult1\lang4105\f0\fs22 4) Click 'Delete' link under a video\par
+\pard\sl276\slmult1\b #9. Sort by 'Video Title' \par
+\lang1049\b0\f1\fs24{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=454"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=454}}}\f1\fs24\par
+\pard\sa200\sl276\slmult1\lang4105\b\i\f0 testcases_bulkedit.testcase_BulkEdit_SortByTitle\lang1049\f1\par
+\pard\sl240\slmult1\lang4105\b0\i0\f0\fs22 1) Login as admin\par
+\pard 2) Click on 'View Admin' link\lang1049\f1\fs24\par
+\lang4105\f0\fs22 3) Open 'Bulk Edit' page\lang1049\f1\fs24\par
+\lang4105\f0\fs22 4) Sort videos by 'Video Title'\lang1049\f1\fs24\par
+\pard\sa200\sl276\slmult1\lang4105\f0\fs22 5) Sort videos by 'Video Title' one more time\par
+\pard\sl276\slmult1\b #10. Sort by 'Source' \par
+\lang1049\b0\f1\fs24{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=455"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=455}}}\f1\fs24\par
+\pard\sa200\sl276\slmult1\lang4105\b\i\f0 testcases_bulkedit.testcase_BulkEdit_SortBySource\lang1049\f1\par
+\pard\sl240\slmult1\lang4105\b0\i0\f0\fs22 1) Login as admin\par
+\pard 2) Click on 'View Admin' link\lang1049\f1\fs24\par
+\lang4105\f0\fs22 3) Open 'Bulk Edit' page\lang1049\f1\fs24\par
+\lang4105\f0\fs22 4) Sort videos by 'Source'\lang1049\f1\fs24\par
+\pard\sa200\sl276\slmult1\lang4105\f0\fs22 5) Sort videos by 'Source' one more time\par
+\pard\sl276\slmult1\b #11. Sort by 'Date Published' \par
+\lang1049\b0\f1\fs24{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=456"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=456}}}\f1\fs24\par
+\pard\sa200\sl276\slmult1\lang4105\b\i\f0 testcases_bulkedit.testcase_BulkEdit_SortByDatePublished\lang1049\f1\par
+\pard\sl240\slmult1\lang4105\b0\i0\f0\fs22 1) Login as admin\par
+\pard 2) Click on 'View Admin' link\lang1049\f1\fs24\par
+\lang4105\f0\fs22 3) Open 'Bulk Edit' page\lang1049\f1\fs24\par
+\lang4105\f0\fs22 4) Sort videos by 'Date Published'\lang1049\f1\fs24\par
+\pard\sa200\sl276\slmult1\lang4105\f0\fs22 5) Sort videos by 'Date Published' one more time\par
+\pard\sl276\slmult1\b #12. Sort by 'Date Imported' \par
+\lang1049\b0\f1\fs24{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=457"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=457}}}\f1\fs24\par
+\pard\sa200\sl276\slmult1\lang4105\b\i\f0 testcases_bulkedit.testcase_BulkEdit_SortByDateImported\lang1049\f1\par
+\pard\sl240\slmult1\lang4105\b0\i0\f0\fs22 1) Login as admin\par
+\pard 2) Click on 'View Admin' link\lang1049\f1\fs24\par
+\lang4105\f0\fs22 3) Open 'Bulk Edit' page\lang1049\f1\fs24\par
+\lang4105\f0\fs22 4) Sort videos by 'Date Imported'\lang1049\f1\fs24\par
+\pard\sa200\sl276\slmult1\lang4105\f0\fs22 5) Sort videos by 'Date Imported' one more time\par
+\pard\li1988\sa200\sl276\slmult1\lang1049\f1\par
+\pard\sa200\sl276\slmult1\b\fs36 Admin - \lang4105\f0 Settings\lang1049\f1\par
+\pard\fs22 # 1. /admin/\lang4105\f0 settings\lang1049\f1  - upload logo image\lang4105\f0   \lang1049\f1\fs24\par
+\b0{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=243"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=243}}}\f1\fs24\par
+\pard\sa200\lang4105\b\i\f0 testcases_customize.TestCase_UploadLogo\lang1049\f1\par
+\pard\b0\i0\fs22    1. Login as admin.\par
+   2. Navigate to /admin/settings/ page.\par
+   3. Specify a Logo Image file from your disk.\par
+   4. Click Save button.\par
+   5. Click View Main Site link.\par
+   6. Click About button.\par
+   7. Repeat steps 5-6 for the following themes:\par
+          * List Theme\par
+          * Scrolling Theme\par
+          * Category Theme\par
+          * Blue Theme\par
+\fs24\par
+\b\fs22 # 2. /admin/\lang4105\f0 settings\lang1049\f1  - upload background image\lang4105\f0   \lang1049\f1\fs24\par
+\b0{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=244"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=244}}}\f1\fs24\par
+\pard\sa200\lang4105\b\i\f0 testcases_customize.TestCase_UploadBackground\lang1049\f1\par
+\pard\b0\i0\fs22    1. Login as admin.\par
+   2. Navigate to /admin/settings/ page.\par
+   3. Specify a Background Image file from your disk.\par
+   4. Click Save button.\par
+   5. Click View Main Site link.\par
+   6. Navigate the front pages of the site.\par
+   7. Repeat steps 5-6 for the following themes:\par
+          * List Theme\par
+          * Scrolling Theme\par
+          * Category Theme\par
+          * Blue Theme\par
+\fs24\par
+\b\fs22 # 3. /admin/\lang4105\f0 settings\lang1049\f1  - delete background image\lang4105\f0   \lang1049\f1\fs24\par
+\b0{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=245"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=245}}}\f1\fs24\par
+\pard\sa200\lang4105\b\i\f0 testcases_customize.TestCase_DeleteBackground\lang1049\f1\par
+\pard\b0\i0\fs22    1. Execute upload background image test case.\par
+   2. Navigate to /admin/settings/ page.\par
+   3. Click Delete Background button.\par
+   4. Click Save button.\par
+   5. Click View Main Site link.\par
+   6. Navigate the front pages of the site.\par
+   7. Repeat steps 5-6 for the following themes:\par
+          * List Theme\par
+          * Scrolling Theme\par
+          * Category Theme\par
+          * Blue Theme\par
+\fs24\par
+\b\fs22 # \lang4105\f0 4\lang1049\f1 . /admin/\lang4105\f0 settings\lang1049\f1  - submit vid nav item\lang4105\f0   \lang1049\f1\fs24\par
+\b0{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=249"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=249}}}\f1\fs24\par
+\pard\sa200\lang4105\b\i\f0 testcases_customize.TestCase_DisplaySubmitVideo\lang1049\f1\par
+\pard\b0\i0\fs22    1. Login as admin.\par
+   2. Navigate to /admin/settings/ page.\par
+   3. Uncheck the Display the 'submit a video' nav item checkbox and click Save button.\par
+   4. Navigate to the main site and verify that Submit a Video button is not displayed on the home page.\par
+   5. Return to /admin/settings/ page.\par
+   6. Check the Display the 'submit video' nav item checkbox and click Save button.\par
+   7. Navigate to the main site and verify that Submit a Video button is present on the home page.\par
+   8. Repeat for all the themes.\par
+\fs24\par
+\b\fs22 # \lang4105\f0 5\lang1049\f1 . /admin/\lang4105\f0 settings\lang1049\f1  - require login to submit video\lang4105\f0  \lang1049\f1\fs24\par
+\b0{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=250"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=250}}}\f1\fs24\par
+\pard\sa200\lang4105\b\i\f0 testcases_customize.TestCase_CheckRequireLoginToSubmitVideo\lang1049\f1\par
+\pard\b0\i0    1. Login as admin.\par
+   2. Navigate to /admin/settings/ page.\par
+   3. Uncheck the Require users to login to submit a video checkbox and click Save button.\par
+   4. Log out.\par
+   5. Go to main site.\par
+   6. Attempt to submit a video.\par
+   7. Login as Admin user.\par
+   8. Return to /admin/settings/ page.\par
+   9. Check the Require users to login to submit a video checkbox and click Save button.\par
+  10. Log out.\par
+  11. Go to main site.\par
+  12. Attempt to submit a video.\par
+\par
+\b\fs22 # \lang4105\f0 6\lang1049\f1 . /admin/\lang4105\f0 settings\lang1049\f1  - Customize css\lang4105\f0  \lang1049\f1\fs24\par
+\b0{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=251"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=251}}}\f1\fs24\par
+\pard\sa200\lang4105\b\i\f0 testcases_customize.TestCase_AddCustomCSS\lang1049\f1\par
+\pard\b0\i0    1. Login as admin.\par
+   2. Navigate to /admin/settings/ page.\par
+   3. In the Custom CSS box, enter customized CSS and click Save.\par
+   4. View the main site and verify CSS changes.\par
+   5. Repeat for all the themes.\par
+\par
+\b\fs22 # \lang4105\f0 7\lang1049\f1 . /admin/\lang4105\f0 settings\lang1049\f1  - edit Organization Information\lang4105\f0  \lang1049\f1\fs24\par
+\b0{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=253"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=253}}}\f1\fs24\par
+\pard\sa200\lang4105\b\i\f0 testcases_customize.TestCase_ChangeOrganization\lang1049\f1\par
+\pard\b0\i0    1. Login as admin.\par
+   2. Navigate to /admin/settings/ page.\par
+   3. Edit the Organization information Sidebar blurb.\par
+   4. Edit the Organization information footer blurb\par
+   5. Click Save button.\par
+   6. Click View Main Site\par
+   7. Verify the sidebar blurb (on List Theme only) and the footer blurb.\par
+   8. Repeat for all the themes.\par
+\par
+\b\fs22 # \lang4105\f0 8\lang1049\f1 . /admin/\lang4105\f0 settings\lang1049\f1  - edit Site Information-Site title, max space\lang4105\f0  \lang1049\f1\fs24\par
+\b0{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=304"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=304}}}\f1\fs24\par
+\pard\sa200\lang4105\b\i\f0 testcases_customize.TestCase_MaxLengthSiteTitle\lang1049\f1\par
+\pard\b0\i0\fs22    1. Login as admin.\par
+   2. Navigate to /admin/settings/ page.\par
+   3. Enter a text string with the maximum permitted length (50 characters) into Site Title edit box and click Save button.\par
+   4. Check the site title displayed on admin pages and on the front pages.\par
+   5. Return to /admin/settings/ page and attempt to type or paste 51 characters into Site Title edit box.\par
+\fs24\par
+\b\fs22 # \lang4105\f0 9\lang1049\f1 . /admin/\lang4105\f0 settings\lang1049\f1  - edit Site Information-Site title\lang4105\f0  \lang1049\f1\fs24\par
+\b0{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=303"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=303}}}\f1\fs24\par
+\pard\sa200\lang4105\b\i\f0 testcases_customize.TestCase_TestCase_EditSiteTitle\lang1049\f1\par
+\pard\b0\i0    1. Login as admin.\par
+   2. Navigate to /admin/settings/ page.\par
+   3. Enter a text string into Site Title edit box and click Save button.\par
+   4. Check the site title displayed on admin pages and on the front pages.\par
+\par
+\b\fs22 # 1\lang4105\f0 0\lang1049\f1 . /admin/\lang4105\f0 settings\lang1049\f1  - edit Site Information-Tagline\lang4105\f0  \lang1049\f1\fs24\par
+\b0{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=305"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=305}}}\f1\fs24\par
+\pard\sa200\lang4105\b\i\f0 testcases_customize.TestCase_EditSiteTagline\lang1049\f1\par
+\pard\b0\i0\fs22    1. Login as admin\par
+   2. Navigate to /admin/settings/ page.\par
+   3. Type a text string into Site Tagline field and click Save button.\par
+   4. Check the tagline on the admin pages and the front pages.\par
+\fs24\par
+\b\fs22 # 1\lang4105\f0 1\lang1049\f1 . /admin/\lang4105\f0 settings\lang1049\f1  - edit Site Information-Tagline, max space\lang4105\f0  \lang1049\f1\fs24\par
+\b0{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=306"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=306}}}\f1\fs24\par
+\pard\sa200\lang4105\b\i\f0 testcases_customize.TestCase_MaxLengthSiteTagline\lang1049\f1\par
+\pard\b0\i0\fs22    1. Login as admin.\par
+   2. Navigate to /admin/settings/ page.\par
+   3. Enter a text string with the maximum permitted length (\lang4105\f0 2\lang1049\f1 50 characters) into Site Tagline edit box and click Save button.\par
+   4. Check the site tagline displayed on admin pages and on the front pages.\par
+   5. Return to /admin/settings/ page and attempt to type or paste \lang4105\f0 2\lang1049\f1 51 characters into Site Tagline edit box.\par
+\par
+\b # \lang4105\f0 12\lang1049\f1 . /admin/\lang4105\f0 settings\lang1049\f1  - edit Site Information-About us page\lang4105\f0  \lang1049\f1\fs24\par
+\b0{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=307"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=307}}}\f1\fs24\par
+\pard\sa200\lang4105\b\i\f0 testcases_customize.TestCase_EditAboutUs\lang1049\f1\par
+\pard\b0\i0\fs22    1. Login as admin\par
+   2. Navigate to /admin/settings/ page.\par
+   3. Type a text string into About Us Page field and click Save button.\par
+   4. Navigate to /about/ page and check the text on it.\par
+\cf2\par
+\cf0\b # \lang4105\f0 13\lang1049\f1 . /admin/\lang4105\f0 settings\lang1049\f1  - edit Site Information-About us page, max space\lang4105\f0  \lang1049\f1\fs24\par
+\b0{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=308"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=308}}}\f1\fs24\par
+\lang4105\b\i\f0\fs22 NOT IMPLEMENTED\lang1049\f1\par
+\b0\i0    1. Login as admin\par
+   2. Navigate to /admin/settings/ page.\par
+   3. Type a text string with the maximum permitted length into About Us Page field and click Save button.\par
+   4. Navigate to /about/ page and check the text on it.\par
+\par
+\b # \lang4105\f0 14\lang1049\f1 . /admin/\lang4105\f0 settings\lang1049\f1  - edit Site Information-About us page,html \par
+\b0\fs24{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=309"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=309}}}\f1\fs24\par
+\lang4105\b\i\f0 testcases_customize.TestCase_AboutUsHTML\lang1049\f1\fs22\par
+\pard\sl240\slmult1\b0\i0    1. Login as admin\par
+   2. Navigate to /admin/settings/ page.\par
+   3. In the About Us Page field enter the following text:\i  "This is the testing site for Miro Community <b style="COLOR: red"> Title in bold </b> <h5 > Title in h5, </h5> <h8> Title in h8 </h8>"\i0 . Click Save button.\par
+   4. Navigate to /about/ page.\par
+\pard\b\par
+# \lang4105\f0 15\lang1049\f1 . /admin/\lang4105\f0 settings\lang1049\f1  - comments, \lang4105\f0 no moderation, no login \lang1049\f1\fs24\par
+\b0{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=254"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=254}}}\f1\fs24\par
+\pard\sa200\lang4105\b\i\f0 testcases_comments.testcase_Comments_NoModeration_NoLogin\lang1049\f1\par
+\pard\b0\i0\fs22    1. Login as admin\par
+   2. Navigate to /admin/settings/ page.\par
+   3. Uncheck the Hold comments for moderation and Require login checkboxes. Click Save Changes button.\par
+   4. Click View Main Site link.\par
+   5. Click any video on Home Page. On the video page, post a comment.\par
+   6. Log out.\par
+   7. Log in as a registered user.\par
+   8. Click any video on Home Page. On the video page, post a comment.\par
+   9. Log out.\par
+  10. Click any video on Home Page. On the video page, post a comment.\par
+  11. Repeat steps 1-10 for all the themes:\par
+          * List Theme\par
+          * Scrolling Theme\par
+          * Category Theme\par
+          * Blue Theme\par
+\fs24\par
+\b\fs22 # 1\lang4105\f0 6\lang1049\f1 . /admin/\lang4105\f0 settings\lang1049\f1  - comments, \lang4105\f0 no moderation, r\lang1049\f1 equire \lang4105\f0 l\lang1049\f1 ogin\lang4105\f0   \lang1049\f1\fs24\par
+\b0{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=256"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=256}}}\f1\fs24\par
+\pard\sa200\lang4105\b\i\f0 testcases_comments.testcase_Comments_NoModeration_LoginRequired\lang1049\f1\par
+\pard\b0\i0\fs22    1. Login as admin\par
+   2. Navigate to /admin/settings/ page.\par
+   3. Uncheck the Hold comments for moderation checkbox. Check Require login checkbox. Click Save Changes button.\par
+   4. Click View Main Site link.\par
+   5. Click any video on Home Page. On the video page, post a comment.\par
+   6. Log out.\par
+   7. Log in as a registered user.\par
+   8. Click any video on Home Page. On the video page, post a comment.\par
+   9. Log out.\par
+  10. Click any video on Home Page. On the video page, make sure that edit fields for posting a comment are not displayed.\par
+  11. Repeat steps 1-10 for all the themes:\par
+          * List Theme\par
+          * Scrolling Theme\par
+          * Category Theme\par
+          * Blue Theme\par
+\fs24\par
+\b\fs22 # 1\lang4105\f0 7\lang1049\f1 . /admin/\lang4105\f0 settings\lang1049\f1  - comments, \lang4105\f0 moderation on, no login \lang1049\f1\fs24\par
+\b0{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=\f0 541"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=\lang4105\f0 541}}}\lang1049\f1\fs24\par
+\pard\sa200\lang4105\b\i\f0 testcases_comments.testcase_Comments_ModerationRequired_NoLogin\lang1049\f1\par
+\pard\b0\i0\fs22    1. Login as admin\par
+   2. Navigate to /admin/settings/ page.\par
+   3. Check the Hold comments for moderation checkbox, uncheck Require login checkbox. Click Save Changes button.\par
+   4. Click View Main Site link.\par
+   5. Click any video on Home Page. On the video page, post a comment.\par
+   6. Log out.\par
+   7. Log in as a registered user.\par
+   8. Click any video on Home Page. On the video page, post a comment.\par
+   9. Log out.\par
+  10. Click any video on Home Page. On the video page, post a comment.\par
+  11. Log in as Admin.\par
+  12. Navigate to /comments/moderation-queue page.\par
+  13. Repeat steps 1-12 for all the themes:\par
+          * List Theme\par
+          * Scrolling Theme\par
+          * Category Theme\par
+          * Blue Theme\par
+\par
+\b # 1\lang4105\f0 8\lang1049\f1 . /admin/\lang4105\f0 settings\lang1049\f1  - comments, \lang4105\f0 moderation on, login required\lang1049\f1\fs24\par
+\b0{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=\f0 542"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=\lang4105\f0 542}}}\lang1049\f1\fs24\par
+\pard\sa200\lang4105\b\i\f0 testcases_comments.testcase_Comments_ModerationRequired_LoginRequired\lang1049\f1\par
+\pard\b0\i0\fs22    1. Login as admin.\par
+   2. Navigate to /admin/settings/ page.\par
+   3. Check the Hold comments for moderation and Require login checkbox. Click Save Changes button.\par
+   4. Click View Main Site link.\par
+   5. Click any video on Home Page. On the video page, post a comment.\par
+   6. Log out.\par
+   7. Log in as a registered user.\par
+   8. Click any video on Home Page. On the video page, post a comment.\par
+   9. Log out.\par
+  10. Click any video on Home Page.\par
+  11. Log in as Admin.\par
+  12. Navigate to /comments/moderation-queue page.\par
+  13. Repeat steps 1-12 for all the themes:\par
+          * List Theme\par
+          * Scrolling Theme\par
+          * Category Theme\par
+          * Blue Theme\par
+\b\par
+# \lang4105\f0 19\lang1049\f1 . /admin/\lang4105\f0 themes\lang1049\f1  - \lang4105\f0 C\lang1049\f1 ategor\lang4105\f0 y theme\lang1049\f1\par
+\b0\fs24{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=24\f0 6"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=24\lang4105\f0 6}}}\lang1049\f1\fs24\par
+\lang4105\b\i\f0\fs22 NOT IMPLEMENTED\lang1049\f1\par
+\b0\i0    1. Login as admin.\par
+   2. Navigate to /admin/themes/ page.\par
+   3. If Miro Community Category is not displayed in the Current Theme section, find it in the list of Additional Themes and click Activate link.\par
+   4. Click View Main Site link.\par
+\fs24\par
+\b\fs22 # \lang4105\f0 20\lang1049\f1 . /admin/\lang4105\f0 themes\lang1049\f1  - \lang4105\f0 L\lang1049\f1 ist \lang4105\f0 theme\lang1049\f1\par
+\b0\fs24{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=24\f0 7"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=24\lang4105\f0 7}}}\lang1049\f1\fs24\par
+\lang4105\b\i\f0\fs22 NOT IMPLEMENTED\lang1049\f1\par
+\b0\i0    1. Login as admin.\par
+   2. Navigate to /admin/themes/ page.\par
+   3. If Miro Community List is not displayed in the Current Theme section, find it in the list of Additional Themes and click Activate link.\par
+   4. Click View Main Site link.\par
+\fs24\par
+\b\fs22 # \lang4105\f0 21\lang1049\f1 . /admin/\lang4105\f0 themes\lang1049\f1  - \lang4105\f0 S\lang1049\f1 crolling \lang4105\f0 theme\lang1049\f1\par
+\b0\fs24{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=24\f0 8"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=24\lang4105\f0 8}}}\lang1049\f1\fs24\par
+\lang4105\b\i\f0\fs22 NOT IMPLEMENTED\lang1049\f1\par
+\b0\i0    1. Login as admin.\par
+   2. Navigate to /admin/themes/ page.\par
+   3. If Miro Community Scrolling is not displayed in the Current Theme section, find it in the list of Additional Themes and click Activate link.\par
+   4. Click View Main Site link.\par
+\b\par
+# \lang4105\f0 22\lang1049\f1 . /admin/\lang4105\f0 themes\lang1049\f1  - \lang4105\f0 Blue\lang1049\f1  \lang4105\f0 theme\lang1049\f1\par
+\b0\fs24{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=\f0 543"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=\lang4105\f0 543}}}\lang1049\f1\fs24\par
+\lang4105\b\i\f0\fs22 NOT IMPLEMENTED\lang1049\f1\par
+\b0\i0    1. Login as admin.\par
+   2. Navigate to /admin/themes/ page.\par
+   3. If Miro Community \lang4105\f0 Blue Theme\lang1049\f1  is not displayed in the Current Theme section, find it in the list of Additional Themes and click Activate link.\par
+   4. Click View Main Site link.\par
+\pard\li2556\sa200\sl276\slmult1\par
+\pard\sa200\sl276\slmult1\b\fs36 Admin - Settings - Flat Pages\par
+\pard\sl276\slmult1\lang4105\f0\fs22 #1. /admin/flatpages - add page\par
+\pard\sl240\slmult1\lang1049\b0\f1\fs24{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=514"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=514}}}\f1\fs24\par
+\pard\lang4105\b\i\f0\fs22 NOT IMPLEMENTED\lang1049\f1\par
+\pard\sl240\slmult1\lang4105\b0\i0\f0 1. Login as admin.\par
+\pard 2. Navigate to /admin/flatpages.\lang1049\f1\fs24\par
+\lang4105\f0\fs22 3. Click Add Page button.\lang1049\f1\fs24\par
+\lang4105\f0\fs22 4. On 'Add a Page' pop-up, type: \lang1049\f1\fs24\par
+\lang4105\f0\fs22 - /test for page URL (if necessary, add a number to make the URL unique for this site)\lang1049\f1\fs24\par
+\lang4105\f0\fs22 - 'Test' for Title\lang1049\f1\fs24\par
+\lang4105\f0\fs22 - The following HTML code for Content:\lang1049\f1\fs24\par
+\lang4105\i\f0\fs22 <br /><br />\par
+<p>This is a test flatpage for a Miro Community site.</p>\fs24\par
+\fs22 <br />\fs24\par
+\fs22 <img src="http://s3.mirocommunity.org.s3.amazonaws.com/dalmatia/localtv/site_logos/dalmatia1.jpg" href="http://dalmatia.mirocommunity.org">\fs24\par
+\pard\sl240\slmult1\i0\fs22 5. Click Save Changes button.\par
+\pard\sa200\sl240\slmult1 6. Click View link next to the new page in the list.\par
+\pard\sl240\slmult1\b #2. /admin/flatpages - add duplicate page\par
+\pard\sl276\slmult1\lang1049\b0\f1\fs24{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=515"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=515}}}\f1\fs24\par
+\pard\lang4105\b\i\f0\fs22 NOT IMPLEMENTED\lang1049\f1\par
+\pard\sl240\slmult1\lang4105\b0\i0\f0 1. Login as admin.\par
+\pard 2. Navigate to /admin/flatpages.\lang1049\f1\fs24\par
+\lang4105\f0\fs22 3. Click Add Page button.\lang1049\f1\fs24\par
+\lang4105\f0\fs22 4. On 'Add a Page' pop-up, enter a page URL duplicating an existing flatpage URL and any valid character string for Title. Click Save Changes button.\lang1049\f1\fs24\par
+\pard\sa200\sl240\slmult1\lang4105\f0\fs22 5. Close "Add a Page' pop-up.\par
+\pard\sl240\slmult1\b #3. /admin/flatpages - edit page\par
+\lang1049\b0\f1\fs24{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=516"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=516}}}\f1\fs24\par
+\pard\lang4105\b\i\f0\fs22 NOT IMPLEMENTED\lang1049\f1\par
+\pard\sl276\slmult1\lang4105\b0\i0\f0 1. Login as admin.\par
+\pard 2. Navigate to /admin/flatpages.\lang1049\f1\fs24\par
+\lang4105\f0\fs22 3. Choose a flat page to be edited and click Edit link next to it.\lang1049\f1\fs24\par
+\lang4105\f0\fs22 4. In 'Editing' pop-up, modify the values of the fields, adding more text to the content and/or editing existing text with the use of <b>, <i> and other HTML tags. Click Save Changes button.\lang1049\f1\fs24\par
+\pard\sa200\sl276\slmult1\lang4105\f0\fs22 5. Click View link next to the page title in the list.\par
+\pard\li396\sl276\slmult1\par
+\pard\sl240\slmult1\b #4. /admin/flatpages - delete page\par
+\lang1049\b0\f1\fs24{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=517"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=517}}}\f1\fs24\par
+\pard\lang4105\b\i\f0\fs22 NOT IMPLEMENTED\lang1049\f1\par
+\pard\sl240\slmult1\lang4105\b0\i0\f0 1. Login as admin.\par
+\pard 2. Navigate to /admin/flatpages.\lang1049\f1\fs24\par
+\pard\sa200\sl240\slmult1\lang4105\f0\fs22 3. Choose a flat page to be deleted and click Delete link next to it.\par
+\pard\li396\sl276\slmult1\par
+\pard\sl240\slmult1\b #5. /admin/flatpages - bulk delete pages\par
+\lang1049\b0\f1\fs24{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=518"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=518}}}\f1\fs24\par
+\pard\lang4105\b\i\f0\fs22 NOT IMPLEMENTED\lang1049\f1\par
+\pard\sl276\slmult1\b0\i0 1. Login as admin.\par
+\pard 2. Navigate to /admin/flatpages.\fs24\par
+\fs22 3. Check the checkboxes opposite a couple of pages in the list.\fs24\par
+\pard\sa200\sl276\slmult1\fs22 4. Select Delete from Bulk Actions drop-down list and click Apply button.\par
+\par
+\b\fs36 Admin - Users \par
+\pard\fs22 # 1. /admin/users-create new user\lang4105\f0  \lang1049\f1\fs24\par
+\b0{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=270"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=270}}}\f1\fs24\par
+\pard\sl360\slmult1\lang4105\b\i\f0 testcases_users.TestCase_AddNewUser\lang1049\f1\par
+\pard\b0\i0\fs22 1. Log in as admin\par
+2. Click 'View Admin' button on the Home page\fs24\par
+\fs22 3. Click 'Users' button on the Admin page\fs24\par
+\fs22 4. Fill in all fields under 'Add a user' with valid data (select 'user' in the field 'Role')\fs24\par
+\fs22 5. Click 'Add' button\fs24\par
+\fs22 6. Log out\fs24\par
+\fs22 7. Log in using just created User Name and Password\par
+\fs24\par
+\b\fs22 # 2. /admin/users-create new admin\lang4105\f0  \lang1049\f1\fs24\par
+\b0{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=271"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=271}}}\f1\fs24\par
+\pard\sl360\slmult1\lang4105\b\i\f0 testcases_users.TestCase_AddNewAdmin\lang1049\f1\par
+\pard\b0\i0\fs22 1. Log in as admin\par
+2. Click 'View Admin' button on the Home page\fs24\par
+\fs22 3. Click 'Users' button on the Admin page\fs24\par
+\fs22 4. Fill in all fields under 'Add a user' with valid data (select 'admin' in the field 'Role')\fs24\par
+\fs22 5. Click 'Add' button\fs24\par
+\fs22 6. Log out\fs24\par
+\fs22 7. Log in using just created User Name and Password\fs24\par
+\fs22 8. Click 'View Admin' button\par
+\fs24\par
+\b\fs22 # 3. /admin/users-delete user\lang4105\f0  \lang1049\f1\fs24\par
+\b0{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=272"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=272}}}\f1\fs24\par
+\pard\sl360\slmult1\lang4105\b\i\f0 testcases_users.TestCase_DeleteUser\lang1049\f1\par
+\pard\b0\i0\fs22 1. Log in as admin\par
+2. Click 'View Admin' button on the Home page\fs24\par
+\fs22 3. Click 'Users' button on the Admin page\fs24\par
+\fs22 4. In the table of users highlight the user you want to delete by setting cursor to the user's name\fs24\par
+\fs22 5. Click 'Delete' button\fs24\par
+\fs22 6. Log out\fs24\par
+\fs22 7. Log in using User Name and Password of just deleted user\par
+\fs24\par
+\b\fs22 # 4. /admin/users-create new user without password\lang4105\f0  \lang1049\f1\fs24\par
+\b0{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=273"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=273}}}\f1\fs24\par
+\pard\sl360\slmult1\lang4105\b\i\f0 testcases_users.TestCase_CreateNewUserWithoutPassword\lang1049\f1\par
+\pard\b0\i0\fs22 1. Log in as admin\par
+2. Click 'View Admin' button on the Home page.\par
+3. Click 'Users' button on the Admin page.\par
+4. Click 'Add a user' button.\par
+5. In the pop-up, populate all fields except 'Password' and click 'Add' button.\par
+6. Click Only Show All link.\par
+7. Log out\par
+8. Attempt to log in using just created User account.\par
+\par
+\b # 5. /admin/users-create new user without username\lang4105\f0  \lang1049\f1\fs24\par
+\b0{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=274"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=274}}}\f1\fs24\par
+\pard\sl360\slmult1\lang4105\b\i\f0 testcases_users.TestCase_CreateNewUserWithoutUsername\lang1049\f1\par
+\pard\b0\i0\fs22 1. Log in as admin\par
+2. Click 'View Admin' button on the Home page.\par
+3. Click 'Users' button on the Admin page.\par
+4. Click 'Add a user' button.\par
+5. In the pop-up, populate all fields except 'Username' and click 'Add' button.\par
+\par
+\b # 6. /admin/users-create new user. only username and p\\w\lang4105\f0  \lang1049\f1\fs24\par
+\b0{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=280"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=280}}}\f1\fs24\par
+\pard\sl360\slmult1\lang4105\b\i\f0 testcases_users.TestCase_CreateNewUserUsernameAndPassword\lang1049\f1\par
+\pard\b0\i0\fs22 1. Log in as admin\par
+2. Click 'View Admin' button on the Home page.\par
+3. Click 'Users' button on the Admin page.\par
+4. Click 'Add a user' button.\par
+5. Leave blank all fields under 'Add a user' except 'Username' and 'Password'.\par
+6. Click 'Add' button.\par
+7. Log out.\par
+8. Log in using just created User Name and Password.\par
+\par
+\b # 7. /admin/users-create new user with username max, max\\2, min chars\lang4105\f0  \lang1049\f1\fs24\par
+\b0{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=281"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=281}}}\f1\fs24\par
+\pard\sl360\slmult1\lang4105\b\i\f0 testcases_users.TestCase_NewUserUsernameMaxMax2MinChars\lang1049\f1\par
+\pard\b0\i0\fs22 1. Log in as admin\par
+2. Click 'View Admin' button on the Home page.\par
+3. Click 'Users' button on the Admin page.\par
+4. Click 'Add a user' button.\par
+5. Enter 30 characters in the 'Username' field.\par
+6. Populate all other fields with valid data and click 'Add' button.\par
+7. Log out.\par
+8. Log in using just created User Name and Password.\par
+9. Repeat all the steps above entering 15 chars in the 'Username' field.\par
+\lang4105\f0 1\lang1049\f1 0. Repeat all the steps above entering only 1 char in the 'Username' field.\par
+\par
+\b # 8. /admin/users-\lang4105\f0 view user \lang1049\f1\fs24\par
+\b0{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=290"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=290}}}\f1\fs24\par
+\pard\sl360\slmult1\lang4105\b\i\f0 testcases_users.TestCase_ViewUser\lang1049\f1\par
+\pard\b0\i0\fs22 1. Log in as admin\par
+2. Click 'View Admin' button on the Home page.\par
+3. Click 'Users' button on the Admin page.\par
+4. Choose a user account to view and click View link next to it.\par
+5. Check the user name, username, organization, website, description and logo.\par
+\par
+\b # 9. /admin/users-field 'username' does not \lang4105\f0 a\lang1049\f1 ccept max+1 chars\lang4105\f0  \lang1049\f1\fs24\par
+\b0{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=283"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=283}}}\f1\fs24\par
+\pard\sl360\slmult1\lang4105\b\i\f0 testcases_users.TestCase_UsernameDoesntAcceptMax1Chars\lang1049\f1\par
+\pard\b0\i0\fs22 1. Log in as admin.\par
+2. Click 'View Admin' button on the Home page.\par
+3. Click 'Users' button on the Admin page.\par
+4. Click 'Add a user' button.\par
+5. Attempt to type 31 alphanumeric characters in the 'Username' field.\par
+6. Copy and paste 31 alphanumeric characters to 'Username' edit field.\par
+\par
+\b # 10. /admin/users-edit user\lang4105\f0  \lang1049\f1\fs24\par
+\b0{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=291"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=291}}}\f1\fs24\par
+\pard\sl360\slmult1\lang4105\b\i\f0 testcases_users.TestCase_EditUser\lang1049\f1\par
+\pard\sl240\slmult1\b0\i0\fs22 1. Log in as admin.\par
+2. Click 'View Admin' button on the Home page.\par
+3. Click 'Users' button on the Admin page.\par
+4. Choose a user account to edit and click Edit link next to it.\par
+5. Modify values in all the fields and click Save Changes button.\par
+6. Click View link next to the updated user account.\par
+7. Log out.\par
+8. Log in using the updated user account.\par
+\pard\par
+\b # 1\lang4105\f0 1\lang1049\f1 . /\lang4105\f0 accounts/profile\lang1049\f1 -edit \lang4105\f0 profile \lang1049\f1\fs24\par
+\b0{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=\f0 539"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=\lang4105\f0 539}}}\lang1049\f1\fs24\par
+\pard\sl360\slmult1\lang4105\b\i\f0 testcases_users.TestCase_EditUserProfile\lang1049\f1\par
+\pard\sl240\slmult1\b0\i0\fs22 1. Log in as \lang4105\f0 user\lang1049\f1 .\par
+2. Click '\lang4105\f0 Your Profile\lang1049\f1 ' button \lang4105\f0 at the bottom of\lang1049\f1  the Home page.\par
+\lang4105\f0 3\lang1049\f1 . Modify values in all the fields and click Save Changes button.\par
+\lang4105\f0 4\lang1049\f1 . Click View \lang4105\f0 Profile\lang1049\f1  \lang4105\f0 button\lang1049\f1 .\par
+\pard\par
+\b # 1\lang4105\f0 2\lang1049\f1 . /\lang4105\f0 accounts/profile\lang1049\f1 -\lang4105\f0 view\lang1049\f1  \lang4105\f0 profile \lang1049\f1\fs24\par
+\b0{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=\f0 540"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=\lang4105\f0 540}}}\lang1049\f1\fs24\par
+\pard\sl360\slmult1\lang4105\b\i\f0 testcases_users.TestCase_ViewProfile\lang1049\f1\par
+\pard\sl240\slmult1\b0\i0\fs22 1. Log in as \lang4105\f0 user\lang1049\f1 .\par
+2. Click '\lang4105\f0 Your Profile\lang1049\f1 ' button \lang4105\f0 at the bottom of\lang1049\f1  the Home page.\par
+\lang4105\f0 3\lang1049\f1 . Click View \lang4105\f0 Profile\lang1049\f1  \lang4105\f0 button\lang1049\f1 .\par
+\pard\li2130\sa200\sl276\slmult1\par
+\pard\sa200\sl276\slmult1\b\fs36 Admin - Moderate Comments \par
+\pard\fs22 # 1. /admin/moderate-approve comment\lang4105\f0   \lang1049\f1\fs24\par
+\b0{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=294"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=294}}}\f1\fs24\par
+\lang4105\b\i\f0\fs22 NOT IMPLEMENTED\lang1049\f1\par
+\b0\i0 On the main page:\par
+\fs24    \fs22 1. Choose any video\fs24\par
+   \fs22 2. Post a comment\fs24\par
+\fs22 On the Admin/Moderate Comments page:\fs24\par
+   \fs22 1. Highlight just added comment by setting a cursor on it\fs24\par
+   \fs22 2. Click 'Approve' button\fs24\par
+   \fs22 3. Go back to the main page\fs24\par
+\fs22 On the main page:\fs24\par
+   \fs22 1. Verify that the comment has been posted\fs24\par
+\fs22\par
+\b # 2. /admin/moderate-remove comment \par
+\b0\fs24{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=295"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=295}}}\f1\fs24\par
+\lang4105\b\i\f0\fs22 NOT IMPLEMENTED\lang1049\f1\par
+\b0\i0 On the main page:\par
+\fs24    \fs22 1. Choose any video\fs24\par
+   \fs22 2. Post a comment\fs24\par
+\fs22 On the Admin/Moderate Comments page: \fs24\par
+\fs22 3. Highlight just added comment by setting a cursor on it \fs24\par
+\fs22 4. Click 'Remove' button \fs24\par
+\fs22 5. Go back to the main page\fs24\par
+\fs22 On the main page: \fs24\par
+\fs22 6. Verify that the comment has not been posted\fs24\par
+\pard\li2130\sa200\sl276\slmult1\fs22\par
+\pard\sa200\sl276\slmult1\b\fs36 Submit a Video \par
+\pard\sl276\slmult1\lang4105\f0\fs22 #1. Submit a video - As admin\par
+\pard\sl240\slmult1\lang1049\b0\f1\fs24{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=471"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=471}}}\f1\fs24\par
+\pard\sl276\slmult1\lang4105\b\i\f0 testcases_submit.TestCase_SubmitVideoAsAdmin\lang1049\f1\par
+\pard\sl240\slmult1\lang4105\b0\i0\f0\fs22 1. Log in as admin.\par
+\pard 2. Set theme to List Theme.\lang1049\f1\fs24\par
+\lang4105\f0\fs22 3. Navigate to /admin/settings page, check \ldblquote Display the \lquote Submit a Video\rquote  nav item\rdblquote  check box and save changes.\lang1049\f1\fs24\par
+\lang4105\f0\fs22 4. Choose a video from youtube.com and check that it is not present in the premoderation queue (/admin/queue) or the list of currently approved videos (/admin/bulk_edit). In case it is, reject or delete this video.\lang1049\f1\fs24\par
+\lang4105\f0\fs22 5. Click \lquote View Main Site\rquote  link.\lang1049\f1\fs24\par
+\lang4105\f0\fs22 6. Click \lquote Submit a Video\rquote  button.\lang1049\f1\fs24\par
+\lang4105\f0\fs22 7. Paste the URL of the chosen video and click \ldblquote Submit\rdblquote  button.\lang1049\f1\fs24\par
+\lang4105\f0\fs22 8. Click \lquote Submit\rquote  button.\lang1049\f1\fs24\par
+\pard\sa200\sl276\slmult1\lang4105\f0\fs22 9. Repeat steps 2-8 for Category theme, Scroll theme, Blue theme.\par
+\pard\sl276\slmult1\b #2. Submit a video - As a logged user\par
+\lang1049\b0\f1\fs24{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=472"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=472}}}\f1\fs24\par
+\lang4105\b\i\f0 testcases_submit.TestCase_SubmitVideoAsLoggedUser\lang1049\f1\par
+\pard\sl240\slmult1\b0\i0\fs22 1. Log in as admin.\par
+\pard 2. Set theme to List Theme.\fs24\par
+\fs22 3. Navigate to /admin/settings page, check \ldblquote Display the \lquote Submit a Video\rquote  nav item\rdblquote  check box and save changes.\fs24\par
+\fs22 4. Choose a video from vimeo.com and check that it is not present in the premoderation queue (/admin/queue) or the list of currently approved videos (/admin/bulk_edit). In case it is, reject or delete this video.\fs24\par
+\fs22 5. Log out and log in as a user with non-administration privileges.\fs24\par
+\fs22 6. Click \lquote Submit a Video\rquote  button.\fs24\par
+\fs22 7. Paste the URL of the chosen video and click \ldblquote Submit\rdblquote  button.\fs24\par
+\fs22 8. Click \lquote Submit\rquote  button.\fs24\par
+\fs22 9. Close the pop-up with the message.\fs24\par
+\lang4105\f0\fs22 1\lang1049\f1 0. Log out and log in as admin.\fs24\par
+\fs22 11. Navigate to the premoderation queue.\fs24\par
+\fs22 12. Repeat steps 2-11 for for Category theme, Scroll theme, Blue theme.\fs24\par
+\pard\sa200\sl276\slmult1\fs22\par
+\pard\sl276\slmult1\lang4105\b\f0 #3. Submit video - As an unlogged user\par
+\lang1049\b0\f1\fs24{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=473"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=473}}}\f1\fs24\par
+\lang4105\b\i\f0 testcases_submit.TestCase_SubmitVideoAsUnloggedUser\lang1049\f1\par
+\pard\sl240\slmult1\b0\i0\fs22 1. Log in as admin.\par
+\pard 2. Set theme to List Theme.\fs24\par
+\fs22 3. Navigate to /admin/settings page, check \ldblquote Display the \lquote Submit a Video\rquote  nav item\rdblquote  check box, uncheck \ldblquote Require users to login to submit a video\rdblquote  and save changes.\fs24\par
+\fs22 4. Choose a video from google.com and check that it is not present in the premoderation queue (/admin/queue) or the list of currently approved videos (/admin/bulk_edit). In case it is, reject or delete this video.\fs24\par
+\fs22 5. Log out.\fs24\par
+\fs22 6. Click \lquote Submit a Video\rquote  button.\fs24\par
+\fs22 7. Paste the URL of the chosen video and click \ldblquote Submit\rdblquote  button.\fs24\par
+\fs22 8. Click \lquote Submit\rquote  button.\fs24\par
+\fs22 9. Close the pop-up with the message.\fs24\par
+\lang4105\f0\fs22 1\lang1049\f1 0. Log out and log in as admin.\fs24\par
+\fs22 11. Navigate to the premoderation queue.\fs24\par
+\fs22 12. Repeat steps 2-11 for Category theme, Scroll theme, Blue theme.\fs24\par
+\pard\sa200\sl276\slmult1\fs22\par
+\pard\sl276\slmult1\lang4105\b\f0 #4. Submit video - From admin pages\par
+\lang1049\b0\f1\fs24{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=474"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=474}}}\f1\fs24\par
+\lang4105\b\i\f0 testcases_submit.TestCase_SubmitVideoFromAdminPage\lang1049\f1\par
+\pard\sl240\slmult1\b0\i0\fs22 1. Log in as admin.\par
+\pard 2. Choose a video from youtube.com and check that it is not present in the premoderation queue (/admin/queue) or the list of currently approved videos (/admin/bulk_edit). In case it is, reject or delete this video.\fs24\par
+\fs22 3. Click \lquote Submit a Video\rquote  button.\fs24\par
+\fs22 4. Paste the URL of the chosen video and click \ldblquote Submit\rdblquote  button.\fs24\par
+\fs22 5. Click \lquote Submit\rquote  button.\fs24\par
+\pard\sa200\sl276\slmult1\fs22\par
+\pard\sl276\slmult1\lang4105\b\f0 #5. Submit video \endash  Attempt duplicate submission\par
+\lang1049\b0\f1\fs24{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=475"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=475}}}\f1\fs24\par
+\lang4105\b\i\f0 testcases_submit.TestCase_SubmitDuplicateVideo\lang1049\f1\par
+\pard\sl240\slmult1\b0\i0\fs22 1. Log in as admin.\par
+\pard 2. Set theme to List Theme.\fs24\par
+\fs22 3. Navigate to /admin/settings page, check \ldblquote Display the \lquote Submit a Video\rquote  nav item\rdblquote  check box and save changes.\fs24\par
+\fs22 4. Choose a video that has already been submitted to the site (make sure it was not rejected \lang4105\f0 o\lang1049\f1 r deleted).\fs24\par
+\fs22 5. Click \lquote View Main Site\rquote  link.\fs24\par
+\fs22 6. Click \lquote Submit a Video\rquote  button.\fs24\par
+\fs22 7. Paste the URL of the chosen video and click \ldblquote Submit\rdblquote  button.\fs24\par
+\fs22 8. Close the pop-up.\fs24\par
+\fs22 9. Repeat steps 2-8 for for Category theme, Scroll theme, Blue theme.\fs24\par
+\pard\sa200\sl276\slmult1\fs22\par
+\pard\sl276\slmult1\lang4105\b\f0 #6. Submit video \endash  With embed code\par
+\lang1049\b0\f1\fs24{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=476"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=476}}}\f1\fs24\par
+\lang4105\b\i\f0 testcases_submit.TestCase_SubmitVideoWithEmbedCode\lang1049\f1\par
+\pard\sl240\slmult1\b0\i0\fs22 1. Log in as admin.\par
+\pard 2. Set theme to List Theme.\fs24\par
+\fs22 3. Navigate to /admin/settings page, check \ldblquote Display the \lquote Submit a Video\rquote  nav item\rdblquote  check box and save changes.\fs24\par
+\fs22 4. Choose a video from veoh.com or cnn.com and check that it is not present in the premoderation queue (/admin/queue) or the list of currently approved videos (/admin/bulk_edit). In case it is, reject or delete this video.\fs24\par
+\fs22 5. Click \lquote View Main Site\rquote  link.\fs24\par
+\fs22 6. Click \lquote Submit a Video\rquote  button.\fs24\par
+\fs22 7. Paste the URL of the chosen video and click \ldblquote Submit\rdblquote  button.\fs24\par
+\fs22 8. Type in the name of the video, embed code from the original web page, description and tags. Click \lquote Submit\rquote  button.\fs24\par
+\fs22 9. Repeat steps 2-8 for Category theme, Scroll theme, Blue theme.\fs24\par
+\pard\sa200\sl276\slmult1\fs22\par
+\lang4105\b\f0\fs36 Widget\lang1049\f1\par
+\pard\sl276\slmult1\lang4105\f0\fs22 #1. /admin/settings/widget - Edit title,icon,CSS, colours by admin\par
+\b0{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=544"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=544}}}\f0\fs22\par
+\b\i NOT IMPLEMENTED\par
+\pard\sl240\slmult1\b0\i0 1. Log in as admin.\par
+2. Navigate to /admin/settings/widget/ page.\par
+3. Type a new value into Title edit box.\par
+4. Choose an image file for an icon.\par
+5. Upload a CSS file.\par
+6. Type new values for background, border and text colours.\par
+7. Click Save Changes button.\par
+8. Navigate to /goodies/widget page to check that the changes have taken effect.\par
+\pard\sl276\slmult1\par
+\b #2. /admin/settings/widget - Make title,icon,CSS, colours editable by users\par
+\b0{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=545"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=545}}}\f0\fs22\par
+\b\i NOT IMPLEMENTED\par
+\pard\sl240\slmult1\b0\i0 1. Log in as admin.\par
+2. Navigate to /admin/settings/widget/ page.\par
+3. Mark checkboxes opposite Title, Icon, CSS, Background colour, Border colour and Text Colour fields. Click Save Changes button.\par
+4. Navigate to /goodies/widget/ page and check that it contains controls for editing Title, Icon, CSS, Background colour, Border colour and Text Colour fields.\par
+5. Return to /admin/settings/widget/ page and clear checkboxes opposite Title, Icon, CSS, Background colour, Border colour and Text Colour fields. Click Save Changes button.\par
+6. Go to /goodies/widget/ page and make sure that it does not contain controls for editing Title, Icon, CSS, Background colour, Border colour and Text Colour fields.\par
+\pard\sl276\slmult1\par
+\b #3. /goodies/widget - Edit title,icon,CSS, colours by user\par
+\b0{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=546"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=546}}}\f0\fs22\par
+\b\i NOT IMPLEMENTED\par
+\pard\sl240\slmult1\b0\i0 1. Log in as admin.\par
+2. Navigate to /admin/settings/widget/ page.\par
+3. Mark checkboxes opposite Title, Icon, CSS, Background colour, Border colour and Text Colour fields. Click Save Changes button.\par
+4. Log out.\par
+5. Log in as user.\par
+6. Navigate to /goodies/widget/ page and modify the values for Title, Icon URL, CSS URL, Background colour, Border colour and Text Colour. Click Update button.\par
+\pard\sl276\slmult1\par
+\b #4. /goodies/widget - Edit number of videos\par
+\b0{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=547"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=547}}}\f0\fs22\par
+\b\i NOT IMPLEMENTED\par
+\pard\sl240\slmult1\b0\i0 1. Navigate to /goodies/widget/ page.\par
+2. Modify the value in Number of Videos edit box and click Update button.\par
+\pard\sl276\slmult1\par
+\b #5. /goodies/widget - Edit widget size\par
+\b0{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=548"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=548}}}\f0\fs22\par
+\b\i NOT IMPLEMENTED\par
+\pard\sl240\slmult1\b0\i0 1. Navigate to /goodies/widget/ page.\par
+2. Check that Widget Size drop-down list contains values "Small", "Medium", and "Large", and the default value is Medium. \par
+3. Modify the value in Widget Size drop-down list and click Update button.\par
+\pard\sl276\slmult1\par
+\b #6. /goodies/widget - Edit video source\par
+\b0{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=549"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=549}}}\f0\fs22\par
+\b\i NOT IMPLEMENTED\par
+\pard\sl240\slmult1\b0\i0 1. Navigate to /goodies/widget/ page.\par
+2. Check that Video Source drop-down list contains values "New", "Popular", "Featured" and "Custom", and the default value is New. \par
+3. Modify the value in Video Source drop-down list and click Update button.\par
+\pard\sa200\sl276\slmult1\par
+\b\fs36 Playlists\lang1049\f1\par
+\pard\sl276\slmult1\lang4105\f0\fs22 #1. /admin/settings - disable playlists\par
+\b0{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=550"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=550}}}\f0\fs22\par
+\b\i NOT IMPLEMENTED\par
+\pard\sl240\slmult1\b0\i0 1. Log in as admin.\par
+2. Navigate to /admin/settings/ page.\par
+3. Select "No" from "Enable Playlists?" drop-down list and click "Save Changes" button.\par
+4. Navigate to /playlists page.\par
+5. Return to the main site and log out.\par
+6. Log in as a user.\par
+7. Navigate to /playlists page.\par
+8. Log out.\par
+9. Navigate to /playlists page.\par
+\pard\sl276\slmult1\par
+\b #2. /admin/settings - enable playlists, admins only\par
+\b0{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=551"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=551}}}\f0\fs22\par
+\b\i NOT IMPLEMENTED\par
+\pard\sl240\slmult1\b0\i0 1. Log in as admin.\par
+2. Navigate to /admin/settings/ page.\par
+3. Select "Admins Only" from "Enable Playlists?" drop-down list and click "Save Changes" button.\par
+4. Navigate to /playlists page.\par
+5. Return to the main site and log out.\par
+6. Log in as a user.\par
+7. Navigate to /playlists page.\par
+8. Log out.\par
+9. Navigate to /playlists page.\par
+\pard\sl276\slmult1\par
+\b #3. /admin/settings - enable playlists for everyone\par
+\b0{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=552"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=552}}}\f0\fs22\par
+\b\i NOT IMPLEMENTED\par
+\pard\sl240\slmult1\b0\i0 1. Log in as admin.\par
+2. Navigate to /admin/settings/ page.\par
+3. Select "Yes" from "Enable Playlists?" drop-down list and click "Save Changes" button.\par
+4. Navigate to /playlists page.\par
+5. Return to the main site and log out.\par
+6. Log in as a user.\par
+7. Navigate to /playlists page.\par
+8. Log out.\par
+9. Navigate to /playlists page.\par
+\pard\sl276\slmult1\par
+\b #4. /playlists - add playlist\par
+\b0{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=553"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=553}}}\f0\fs22\par
+\b\i NOT IMPLEMENTED\par
+\pard\sl240\slmult1\b0\i0 1. Log in as admin.\par
+2. Navigate to /admin/settings/ page.\par
+3. Select "Yes" from "Enable Playlists?" drop-down list and click "Save Changes" button.\par
+4. Navigate to /playlists page.\par
+5. Click "Add Playlist" button.\par
+6. Type the playlist name, slug (URL-friendly ASCII version of the name) and description and click "Add Playlist" button.\par
+\pard\sl276\slmult1\par
+\b #5. /playlists - view playlist\par
+\b0{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=554"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=554}}}\f0\fs22\par
+\b\i NOT IMPLEMENTED\par
+\pard\sl240\slmult1\b0\i0 1. Log in as admin.\par
+2. Navigate to /admin/settings/ page.\par
+3. Select "Yes" from "Enable Playlists?" drop-down list and click "Save Changes" button.\par
+4. Navigate to /playlists page.\par
+5. Choose a playlist from the list and click "View" link next to it.\par
+\pard\sl276\slmult1\par
+\b #6. /playlists - delete playlist\par
+\b0{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=555"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=555}}}\f0\fs22\par
+\b\i NOT IMPLEMENTED\par
+\pard\sl240\slmult1\b0\i0 1. Log in as admin.\par
+2. Navigate to /admin/settings/ page.\par
+3. Select "Yes" from "Enable Playlists?" drop-down list and click "Save Changes" button.\par
+4. Navigate to /playlists page.\par
+5. Choose a playlist from the list and click "View" link next to it.\par
+6. Copy the link to the playlist page.\par
+7. Return to the list of playlists and click "Delete" link next to the selected playlist.\par
+8. Paste the link to the deleted list into the address bar of the browser and click "Go".\par
+\pard\sl276\slmult1\par
+\b #7. /playlists - bulk delete playlists\par
+\b0{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=556"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=556}}}\f0\fs22\par
+\b\i NOT IMPLEMENTED\par
+\pard\sl240\slmult1\b0\i0 1. Log in as admin.\par
+2. Navigate to /admin/settings/ page.\par
+3. Select "Yes" from "Enable Playlists?" drop-down list and click "Save Changes" button.\par
+4. Navigate to /playlists page.\par
+5. Check checkboxes opposite a few playlists. Select "Delete" from "Bulk Actions" drop-down list and click "Apply" button.\par
+\pard\sl276\slmult1\b\par
+#8. /playlists - edit playlist\par
+\b0{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=557"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=557}}}\f0\fs22\par
+\b\i NOT IMPLEMENTED\par
+\pard\sl240\slmult1\b0\i0 1. Log in as admin.\par
+2. Navigate to /admin/settings/ page.\par
+3. Select "Yes" from "Enable Playlists?" drop-down list and click "Save Changes" button.\par
+4. Navigate to /playlists page.\par
+5. Choose a playlist from the list and click "Edit" link next to it.\par
+6. On the playlist editor page, click "Edit Playlist Info" link.\par
+7. Modify playlist name, slug (URL-friendly ASCII version of the name) and description and click "Save Changes" button.\par
+8. Navigate to the list of playlists.\par
+\pard\sl276\slmult1\par
+\b #9. /playlists - reorder playlist\par
+\b0{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=558"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=558}}}\f0\fs22\par
+\b\i NOT IMPLEMENTED\par
+\pard\sl240\slmult1\b0\i0 1. Log in as admin.\par
+2. Navigate to /admin/settings/ page.\par
+3. Select "Yes" from "Enable Playlists?" drop-down list and click "Save Changes" button.\par
+4. Navigate to /playlists page.\par
+5. Choose a playlist that has more than one videos from the list and click "Edit" link next to it.\par
+6. On the playlist editor page, rearrange videos with the use of arrow up/down buttons and by typing video ordinal numbers from the keyboard.\par
+7. Click "Save Changes" button.\par
+8. Click the link with the playlist name on the top of the playlist editor page to view it.\par
+\pard\sl276\slmult1\par
+\b #10. /playlists - delete a single video from a playlist\par
+\b0{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=559"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=559}}}\f0\fs22\par
+\b\i NOT IMPLEMENTED\par
+\pard\sl240\slmult1\b0\i0 1. Log in as admin.\par
+2. Navigate to /admin/settings/ page.\par
+3. Select "Yes" from "Enable Playlists?" drop-down list and click "Save Changes" button.\par
+4. Navigate to /playlists page.\par
+5. Choose a playlist that has multiple videos from the list and click "Edit" link next to it.\par
+6. On the playlist editor page, choose a video and click "Delete" link next to it.\par
+7. Click the link with the playlist name on the top of the playlist editor page to view it.\par
+\par
+\pard\sl276\slmult1\b #11. /playlists - bulk delete videos from a playlist\par
+\b0{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=560"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=560}}}\f0\fs22\par
+\b\i NOT IMPLEMENTED\par
+\pard\sl240\slmult1\b0\i0 1. Log in as admin.\par
+2. Navigate to /admin/settings/ page.\par
+3. Select "Yes" from "Enable Playlists?" drop-down list and click "Save Changes" button.\par
+4. Navigate to /playlists page.\par
+5. Choose a playlist that has multiple videos from the list and click "Edit" link next to it.\par
+6. On the playlist editor page, check checkboxes opposite a few videos. Select "Delete" from "Bulk Actions" drop-down list and click "Apply" button.\par
+7. Click the link with the playlist name on the top of the playlist editor page to view it.\par
+\pard\sl276\slmult1\par
+\b #12. /playlists - make playlist public/private\par
+\b0{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=561"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=561}}}\f0\fs22\par
+\b\i NOT IMPLEMENTED\par
+\pard\sl240\slmult1\b0\i0 1. Log in as admin.\par
+2. Navigate to /admin/settings/ page.\par
+3. Select "Yes" from "Enable Playlists?" drop-down list and click "Save Changes" button.\par
+4. Navigate to /playlists page.\par
+5. Choose a playlist from the list and click "Public" link in the "Status" column.\par
+6. Click "View" link next to the list made public.\par
+7. Copy the URL of the current page.\par
+8. Log out.\par
+9. Paste the copied URL of the playlist in the address bar of the browser and click "Go".\par
+10. Log in as admin.\par
+11. Navigate to /playlists page.\par
+12. Click "Private" link in the "Status" column for the selected playlist.\par
+13. Click "View" link next to the list made public.\par
+14. Copy the URL of the current page.\par
+15. Log out.\par
+16. Paste the copied URL of the playlist in the address bar of the browser and click "Go".\par
+\par
+\pard\sl276\slmult1\b #13. /playlists - make playlist public/private, bulk action\par
+\b0{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=562"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=562}}}\f0\fs22\par
+\b\i NOT IMPLEMENTED\par
+\pard\sl240\slmult1\b0\i0 1. Log in as admin.\par
+2. Navigate to /admin/settings/ page.\par
+3. Select "Yes" from "Enable Playlists?" drop-down list and click "Save Changes" button.\par
+4. Navigate to /playlists page.\par
+5. Check checkboxes opposite a few private and public playlists in the list. Select "Make Public" from "Bulk Actions" drop-down list and click "Apply" button.\par
+6. View the playlists made public.\par
+7. Check checkboxes opposite a few private and public playlists in the list. Select "Make Private" from "Bulk Actions" drop-down list and click "Apply" button.\par
+8. View the playlists made private.\par
+\pard\sl276\slmult1\b\par
+#14. /playlists - moderate playlists\par
+\b0{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=563"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=563}}}\f0\fs22\par
+\b\i NOT IMPLEMENTED\par
+\pard\sl240\slmult1\b0\i0 1. Log in as admin.\par
+2. Navigate to /admin/settings/ page.\par
+3. Select "Yes" from "Enable Playlists?" drop-down list and click "Save Changes" button.\par
+\pard\sl276\slmult1 4. Log out.\par
+5. Log in as a user.\par
+\pard\sl240\slmult1 6. Navigate to /playlists page.\par
+7. Click "Add Playlist" button. On the pop-up, type the name and click "Add Playlist" button.\par
+8. Click "Public" link in the "Status" column for the new playlist.\par
+9. Click "View" link next to the new playlist.\par
+10. Copy the URL of the current page. \par
+11. Log out.\par
+12. Paste the copied URL of the playlist in the address bar of the browser and click "Go".\par
+13. Log in as admin.\par
+14. Navigate to /playlists page.\par
+15. Click "Playlists Waiting for Moderation" link.\par
+16. Click "Public" link next to the new playlist.\par
+17. Repeat steps 4-15 to create another user playlist.\par
+18. Click "Private" link next to the new playlist.\par
+\par
+\pard\sl276\slmult1\b #15. /playlists - filter playlists\par
+\b0{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=564"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=564}}}\f0\fs22\par
+\b\i NOT IMPLEMENTED\par
+\pard\sl240\slmult1\b0\i0 1. Log in as admin.\par
+2. Navigate to /admin/settings/ page.\par
+3. Select "Yes" from "Enable Playlists?" drop-down list and click "Save Changes" button.\par
+4. Navigate to /playlists page.\par
+5. Click (Show:) "All Playlists" link.\par
+6. Click (Show:) "Playlists Waiting for Moderation" link.\par
+7. Click (Show:) "My Playlists" link.\par
+\par
+\pard\sl276\slmult1\b #16. /playlists - sort playlists\par
+\b0{\field{\*\fldinst{HYPERLINK "http://litmus.pculture.org/show_test.cgi?id=565"}}{\fldrslt{\ul\cf1 http://litmus.pculture.org/show_test.cgi?id=565}}}\f0\fs22\par
+\b\i NOT IMPLEMENTED\par
+\pard\sl240\slmult1\b0\i0 1. Log in as admin.\par
+2. Navigate to /admin/settings/ page.\par
+3. Select "Yes" from "Enable Playlists?" drop-down list and click "Save Changes" button.\par
+4. Navigate to /playlists page.\par
+5. Click on the header of "Playlists" column.\par
+6. Click on the header of "Playlists" column again.\par
+7. Click on the header of "Video Count" column.\par
+8. Click on the header of "Video Count" column again.\par
+\pard\sa200\sl276\slmult1\lang1049\f1\par
+\pard\fs24\par
+\pard\sa200\sl276\slmult1\b\fs52\par
+}
+ 
