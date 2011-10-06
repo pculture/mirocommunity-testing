@@ -7,6 +7,9 @@
 #                Returns True if the video is found in the set of videos with
 #                this status and False otherwise
 #                <action> can take "Feature" or "Unfeature" values
+#   * subroutine ChangeThumbnail(self,sel,theme,thumbURL,thumbFile) - modifies
+#                the video thumbnail through the video page to <thumbURL>, if it
+#                is not blank, or to <thumbFile> otherwise
 
 
 from selenium import selenium
@@ -79,3 +82,33 @@ def InlineManageVideo(self,sel,theme,action):
         
 
 
+# ==================================================================
+#                        CHANGE THUMBNAIL                          =
+# ==================================================================
+
+# This subroutine modifies the video thumbnail through the video page to
+# <thumbURL>, if it is not blank, or to <thumbFile> otherwise
+
+def ChangeThumbnail(self,sel,theme,thumbURL,thumbFile):
+    linkCaption = "Upload/Replace Thumbnail"
+    print "Looking for "+linkCaption+" ..."
+    linkUploadThumbnail = "link="+linkCaption
+    if sel.is_element_present(linkUploadThumbnail)==False:
+        mclib.AppendErrorMessage(self,sel,"Upload/Replace Thumbnail link not found")
+    else:
+        print "Clicking "+linkCaption+" ..."
+        sel.click(linkUploadThumbnail)
+        time.sleep(5)
+        overlayEditingThumbnail = "css=div.editable div.simple_overlay h2"
+        if sel.is_visible(overlayEditingThumbnail)==False:
+            mclib.AppendErrorMessage(self,sel,"Dialog for Editing Thumbnail was not found")
+        else:
+            print "OK"
+            print "Entering the new thumbnail..."
+            if thumbURL!="": sel.type("css=input#id_thumbnail_url", thumbURL)
+            elif thumbFile!="": sel.type("css=input#id_thumbnail", thumbFile)
+            else: mclib.AppendErrorMessage(self,sel,"New thumbnail was not provided")
+            sel.click("css=button.done")
+            time.sleep(5)
+            print "Done"
+            

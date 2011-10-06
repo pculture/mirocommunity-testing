@@ -51,7 +51,8 @@ def PickFirstVideo(self,sel,video_set):
     except AssertionError, e:
 #        self.verificationErrors.append("Not logged in as an Administrator")
         self.fail("Not logged in as an Administrator")
-    if video_set=="Featured":
+#    if video_set=="Featured":
+    if video_set!="Current":
         sel.select("name=filter", "label="+video_set+" Videos")
         sel.click("css=button.med_button")
         sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
