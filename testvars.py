@@ -24,6 +24,7 @@ MCTestVariables = {"Browser":"*chrome", \
                    "CategoryThemeLink":"/admin/themes/set_default/3", \
                    "BlueThemeLink":"/admin/themes/set_default/4", \
                    "ViewMainSiteLink":"//div[@id='header']/ul[1]/li/a/span", \
+                   "NewVideosListingPage":"/listing/new", \
                    "LoginPage":"/accounts/login/", \
                    "LogoutPage":"/accounts/logout/?next=/", \
                    "ReviewQueuePage":"/admin/approve_reject", \
