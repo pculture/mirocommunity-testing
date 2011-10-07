@@ -28,6 +28,7 @@
 #           shown only to logged users
 #   * subroutine UncheckRequireLoginToSubmitVideo(self,sel) - unchecks Require Users
 #           to Login to Submit a Video check box
+#   * subroutine CheckUseOriginalDate(self,sel) - checks Use Original Date check box
 
 
 
@@ -925,6 +926,28 @@ def UncheckRequireLoginToSubmitVideo(self,sel):
             sel.check("id_display_submit_button")
             sel.uncheck("id_submission_requires_login")
             sel.click("submit_settings")
+            print "Done"
             sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
             sel.open(testvars.MCTestVariables["SettingsPage"])
             sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
+
+
+
+# =========================================
+# =        CHECK USE ORIGINAL DATE        =
+# =========================================
+ 
+# This subroutine checks Use Original Date check box
+
+def CheckUseOriginalDate(self,sel):
+    NavigateToSettingsPage(self,sel)
+    print "Unchecking 'Use Original Date' check box..."
+    if sel.is_element_present("id_submission_requires_login")==False:
+        mclib.AppendErrorMessage(self,sel,"'Use Original Date' check box not found")
+    else:
+        sel.check("css=input#id_use_original_date")
+        sel.click("submit_settings")
+        print "Done"
+        sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
+        sel.open(testvars.MCTestVariables["SettingsPage"])
+        sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])

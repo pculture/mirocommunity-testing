@@ -10,6 +10,8 @@
 #     3. TestCase_RejectVideo_568
 #     4. TestCase_ApproveVideo_569
 #     5. TestCase_UpdateThumbnail_570
+#     6. TestCase_EditTitleInline_571
+#     7. TestCase_EditPublicationDate_572
 
 from selenium import selenium
 import unittest, os, time, re, mclib, testcase_base
@@ -160,14 +162,8 @@ class TestCase_ApproveVideo_569(testcase_base.testcase_BaseTestCase):
 class TestCase_UpdateThumbnail_570(testcase_base.testcase_BaseTestCase):
     
     def UpdateThumbnail(self, sel, theme):
-        videoNumber = str(theme+1) # Select video No. between 1 and 4
-        # Selecting the first video from the list of new videos
-        sel.open(testvars.MCTestVariables["NewVideosListingPage"])
-        sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
-        #"css = div#content div.video:nth(0) > a.thumbnail > img"
-        # Memorizing the video title
-        if theme!=4:  videoTitleLink ="//div[@id='content']/div["+videoNumber+"]/div/h3/a"
-        else:  videoTitleLink="css=ul.vid_list > li:nth-child("+videoNumber+")> div.item_details>h2>a"
+        # Selecting video No. <theme> from New Videos listing
+        videoTitleLink = videopage.PickVideoFromNewVideosListingPage(self, sel, theme)
         videoTitle=sel.get_text(videoTitleLink)
 
         print "Step A. Upload thumbnail from YouTube"
@@ -179,6 +175,8 @@ class TestCase_UpdateThumbnail_570(testcase_base.testcase_BaseTestCase):
         sel.click(videoTitleLink)
         sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
         YouTubeThumbURL = "http://img.youtube.com/vi/qzotQbR0GC0/0.jpg"
+        initialThumbURL = videopage.GetThumbnailURL(self,sel)
+        print initialThumbURL
         videopage.ChangeThumbnail(self,sel,theme,YouTubeThumbURL,"")
         sel.open(testvars.MCTestVariables["NewVideosListingPage"])
         sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
@@ -192,12 +190,19 @@ class TestCase_UpdateThumbnail_570(testcase_base.testcase_BaseTestCase):
         print "Opening the video page for video "+videoTitle+" ..."
         sel.click("link="+videoTitle)
         sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
-        fileNewImage = "background2.jpg"
+        fileNewImage = "background"+str(theme)+".jpg"
         thumbnailFile = os.path.join(testvars.MCTestVariables["GraphicFilesDirectory"],fileNewImage)
         videopage.ChangeThumbnail(self,sel,theme,"",thumbnailFile)
         print ""
-        
-        
+
+        if initialThumbURL!="":
+            print "Step C. Restore the initial thumbnail"
+            sel.open(testvars.MCTestVariables["NewVideosListingPage"])
+            sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
+            sel.click(videoTitleLink)
+            sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
+            videopage.ChangeThumbnail(self,sel,theme,initialThumbURL,"")
+            
 
     def test_UpdateThumbnail(self):
         sel = self.selenium
@@ -211,3 +216,75 @@ class TestCase_UpdateThumbnail_570(testcase_base.testcase_BaseTestCase):
             print "Changing theme..."
             sitesettings.ChangeTheme(self,sel,theme)
             TestCase_UpdateThumbnail_570.UpdateThumbnail(self,sel,theme)
+
+
+
+class TestCase_EditTitleInline_571(testcase_base.testcase_BaseTestCase):
+    
+    def EditTitle(self, sel, theme):
+        # Selecting video No. <theme> from New Videos listing
+        videoTitleLink = videopage.PickVideoFromNewVideosListingPage(self, sel, theme)
+        videoTitle=sel.get_text(videoTitleLink)
+        print "Opening video page for video "+videoTitle+"..."
+        sel.click(videoTitleLink)
+        sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
+        newTitle = "test title"
+        print "Replacing the existing title with "+newTitle
+        videopage.InlineEditTitle(self,sel,theme,newTitle)
+        if queue.CheckVideoStatus(self,sel,newTitle,"Approved")==True:
+            print "OK, test passed"
+            print "Restoring the original title..."
+            sel.open(testvars.MCTestVariables["NewVideosListingPage"])
+            sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
+            sel.click(videoTitleLink)
+            sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
+            videopage.InlineEditTitle(self,sel,theme,videoTitle)
+        else:
+            print "Oops, test failed"
+            mclib.AppendErrorMessage(self,sel,"Could not find the video in the list of approved videos")
+
+    def test_EditTitle(self):
+        sel = self.selenium
+#       Log in as Admin
+        loginlogout.LogInAsAdmin(self,sel)
+        for theme in range(1,5):
+            print ""
+            print "============================================"
+            print ""
+            print "Running Edit Title Inline test with theme: "+str(theme)
+            print "Changing theme..."
+            sitesettings.ChangeTheme(self,sel,theme)
+            TestCase_EditTitleInline_571.EditTitle(self,sel,theme)
+
+
+
+
+
+class TestCase_EditPublicationDate_572(testcase_base.testcase_BaseTestCase):
+    
+    def EditPublicationDate(self, sel, theme):
+        # Selecting video No. <theme> from New Videos listing
+        videoTitleLink = videopage.PickVideoFromNewVideosListingPage(self, sel, theme)
+        videoTitle=sel.get_text(videoTitleLink)
+        print "Opening video page for video "+videoTitle+"..."
+        sel.click(videoTitleLink)
+        sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
+        newDate = "2010-01-01 23:59:59"   #Format: yyyy-mm-dd hh:mm:ss
+        print "Replacing the existing date with "+newDate
+        videopage.InlineEditPublicationDate(self,sel,theme,newDate)
+
+    def test_EditPublicationDate(self):
+        sel = self.selenium
+#       Log in as Admin
+        loginlogout.LogInAsAdmin(self,sel)
+        # Check Use Original Date check box on Settings page
+        sitesettings.CheckUseOriginalDate(self,sel)
+        for theme in range(1,5):
+            print ""
+            print "============================================"
+            print ""
+            print "Running Edit Publication Date Inline test with theme: "+str(theme)
+            print "Changing theme..."
+            sitesettings.ChangeTheme(self,sel,theme)
+            TestCase_EditPublicationDate_572.EditPublicationDate(self,sel,theme)
+
