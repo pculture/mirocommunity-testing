@@ -145,6 +145,9 @@ class Test_HTMLTestRunner(unittest.TestCase):
             unittest.defaultTestLoader.loadTestsFromTestCase(testcases_videopage.TestCase_UpdateThumbnail_570),
             unittest.defaultTestLoader.loadTestsFromTestCase(testcases_videopage.TestCase_EditTitleInline_571),
             unittest.defaultTestLoader.loadTestsFromTestCase(testcases_videopage.TestCase_EditPublicationDate_572),
+            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_videopage.TestCase_EditAuthor_573),
+            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_videopage.TestCase_EditDescription_574),
+            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_videopage.TestCase_EditCategory_575),
 #-RESTORE-CATEGORIES---------------------------------------------
             unittest.defaultTestLoader.loadTestsFromTestCase(testcases_categories.TestCase_RestoreAllCategories),
 #-COMMENTS-------------------------------------------------------
