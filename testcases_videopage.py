@@ -12,6 +12,9 @@
 #     5. TestCase_UpdateThumbnail_570
 #     6. TestCase_EditTitleInline_571
 #     7. TestCase_EditPublicationDate_572
+#     8. TestCase_EditAuthor_573
+#     9. TestCase_EditDescription_574
+#     10. TestCase_EditCategory_575
 
 from selenium import selenium
 import unittest, os, time, re, mclib, testcase_base
@@ -288,3 +291,100 @@ class TestCase_EditPublicationDate_572(testcase_base.testcase_BaseTestCase):
             sitesettings.ChangeTheme(self,sel,theme)
             TestCase_EditPublicationDate_572.EditPublicationDate(self,sel,theme)
 
+
+
+class TestCase_EditAuthor_573(testcase_base.testcase_BaseTestCase):
+    
+    def EditAuthor(self, sel, theme):
+        # Selecting video No. <theme> from New Videos listing
+        videoTitleLink = videopage.PickVideoFromNewVideosListingPage(self, sel, theme)
+        videoTitle=sel.get_text(videoTitleLink)
+        print "Opening video page for video "+videoTitle+"..."
+        sel.click(videoTitleLink)
+        sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
+        # The current author for the video will be replaced with a test user
+        newAuthor = testvars.MCTestVariables["UserName"]
+        print "Replacing the existing date with "+newAuthor
+        videopage.InlineEditAuthor(self,sel,theme,newAuthor)
+
+    def test_EditAuthor(self):
+        sel = self.selenium
+#       Log in as Admin
+        loginlogout.LogInAsAdmin(self,sel)
+        for theme in range(1,5):
+            print ""
+            print "============================================"
+            print ""
+            print "Running Edit Author test with theme: "+str(theme)
+            print "Changing theme..."
+            sitesettings.ChangeTheme(self,sel,theme)
+            TestCase_EditAuthor_573.EditAuthor(self,sel,theme)
+
+
+
+class TestCase_EditDescription_574(testcase_base.testcase_BaseTestCase):
+    
+    def EditDescription(self, sel, theme):
+        # Selecting video No. <theme> from New Videos listing
+        videoTitleLink = videopage.PickVideoFromNewVideosListingPage(self, sel, theme)
+        videoTitle=sel.get_text(videoTitleLink)
+        print "Opening video page for video "+videoTitle+"..."
+        sel.click(videoTitleLink)
+        sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
+        
+        newDescription = r'<h1>Advantages of Miro Community</h1><ul><li>Run a beautiful video '
+        newDescription = newDescription + 'presentation website on your own domain, without having to maintain the software.</li>'
+        newDescription = newDescription + '<li>Works with your existing video hosting setup and workflow - no need to re-post '
+        newDescription = newDescription + 'videos.</li> <li>Works with free video hosting services, if you do not already have '
+        newDescription = newDescription + 'videos online.</li> <li>Lets you bring together videos from a wide-variety of hosts and '
+        newDescription = newDescription + 'sources, into one curated experience.</li><li>Automatically import and publish RSS feeds '
+        newDescription = newDescription + 'of videos from any source.</li> <li>Create a discussion space for video about your '
+        newDescription = newDescription + 'community; strengthen your relationships with your community.</li><li>Runs on open-source '
+        newDescription = newDescription + 'software.</li></ul>'
+#        newDescription = 'test Oct7'
+        print "Updating the description with the following text: "
+        print newDescription
+        videopage.InlineEditDescription(self,sel,theme,newDescription)
+
+    def test_EditDescription(self):
+        sel = self.selenium
+#       Log in as Admin
+        loginlogout.LogInAsAdmin(self,sel)
+        for theme in range(1,5):
+            print ""
+            print "============================================"
+            print ""
+            print "Running Edit Description test with theme: "+str(theme)
+            print "Changing theme..."
+            sitesettings.ChangeTheme(self,sel,theme)
+            TestCase_EditDescription_574.EditDescription(self,sel,theme)
+
+
+
+class TestCase_EditCategory_575(testcase_base.testcase_BaseTestCase):
+    
+    def EditCategory(self, sel, theme):
+        # Selecting video No. <theme> from New Videos listing
+        videoTitleLink = videopage.PickVideoFromNewVideosListingPage(self, sel, theme)
+        videoTitle=sel.get_text(videoTitleLink)
+        print "Opening video page for video "+videoTitle+"..."
+        sel.click(videoTitleLink)
+        sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
+        newCategory = testvars.newCategories[theme-1]
+        print "Changing the category to: "+newCategory
+        videopage.InlineEditCategory(self,sel,theme,newCategory)
+
+    def test_EditCategory(self):
+        sel = self.selenium
+#       Log in as Admin
+        loginlogout.LogInAsAdmin(self,sel)
+        for theme in range(1,5):
+            print ""
+            print "============================================"
+            print ""
+            print "Running Edit Category test with theme: "+str(theme)
+            print "Changing theme..."
+            sitesettings.ChangeTheme(self,sel,theme)
+            TestCase_EditCategory_575.EditCategory(self,sel,theme)
+
+            

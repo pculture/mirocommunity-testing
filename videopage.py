@@ -19,6 +19,10 @@
 #   * subroutine InlineEditPublicationDate(self,sel,theme,newdate) - updates the
 #                publication date of the video with <newdate> text
 #                Date format: Format: yyyy-mm-dd hh:mm:ss
+#   * subroutine InlineEditAuthor(self,sel,theme,newauthor) - replaces the current
+#                author of the video with <newauthor>
+#   * subroutine InlineEditDescription(self,sel,theme,newdescription) - replaces
+#                the current description of the video with <newdescription>
 
 
 from selenium import selenium
@@ -201,7 +205,7 @@ def InlineEditPublicationDate(self,sel,theme,newdate):
     sel.click(linkEditDate)
     time.sleep(5)
     if sel.is_visible(dialogEditDate)!=True:
-        mclib.AppendErrorMessage(self,sel,"Dialog for inline editing the video title was not found")
+        mclib.AppendErrorMessage(self,sel,"Dialog for inline editing the publication date was not found")
     else:
         sel.type("css=input#id_when_published", newdate)
         sel.click("css=button.done")
@@ -213,3 +217,119 @@ def InlineEditPublicationDate(self,sel,theme,newdate):
         else:
             mclib.AppendErrorMessage(self,sel,"The publication date has not been updated correctly")
         sel.click("css=a.close")
+
+
+
+# ==================================================================
+#                    INLINE EDIT THE VIDEO AUTHOR                  =
+# ==================================================================
+
+# This subroutine replaces the current author of the video with <newauthor>
+
+def InlineEditAuthor(self,sel,theme,newauthor):
+    if theme==4:
+        linkCurrentAuthor = "css=div.vid_author > div.posted_by > div.editable > div.display_data > a"
+        dialogEditAuthor = "css=div.vid_author > div.posted_by > div.editable > div.simple_overlay > h2"
+    else:
+        linkCurrentAuthor = "css=div.byline > div.editable > div.display_data > a"
+        dialogEditAuthor = "css=div.byline > div.editable > div.simple_overlay > h2"
+    linkEditAuthor = linkCurrentAuthor + ".edit_link"
+    currentAuthor = sel.get_text(linkCurrentAuthor)
+    print "The current author for this video is '"+currentAuthor+"'"
+    print "Updating the author..."
+    sel.click(linkEditAuthor)
+    time.sleep(5)
+    if sel.is_visible(dialogEditAuthor)!=True:
+        mclib.AppendErrorMessage(self,sel,"Dialog for inline editing the author was not found")
+    else:
+        sel.uncheck("//li/label[span='"+currentAuthor+"']/input[@name='authors']")
+        sel.check("//li/label[span='"+newauthor+"']/input[@name='authors']")
+        sel.click("css=button.done")
+        time.sleep(3)
+        print "Done"
+        print "Checking that the author has been updated correctly..."
+        updatedAuthor = sel.get_text(linkCurrentAuthor)
+        if updatedAuthor != newauthor:
+            mclib.AppendErrorMessage(self,sel,"The author has not been updated as expected")
+            print "Expected value: "+newauthor
+            print "- Actual value: "+updatedAuthor
+        else:
+            print "OK - test passed"
+
+
+
+# ==================================================================
+#                 INLINE EDIT THE VIDEO DESCRIPTION                =
+# ==================================================================
+
+# This subroutine replaces the current description of the video with <newdescription>
+
+def InlineEditDescription(self,sel,theme,newdescription):
+    if theme==4:
+        linkEditDescription = "css=div.editable > div.display_data > h4.meta_title > a.edit_link"
+        dialogEditDescription = "css=div.simple_overlay:contains('Editing Description')"
+    else:
+        linkEditDescription = "css=div.editable > div.display_data > h4.meta_title > a.edit_link"
+        dialogEditDescription = "css=div#main > div.editable > div.simple_overlay > h2"
+    print "Editing the description..."
+    sel.click(linkEditDescription)
+    time.sleep(5)
+    if sel.is_visible(dialogEditDescription)!=True:
+        mclib.AppendErrorMessage(self,sel,"Dialog for inline editing of the description was not found")
+    else:
+        sel.type("id=id_description", newdescription)
+        sel.click("css=button.done")
+        time.sleep(3)
+        print "Done"
+        print "Checking that the description has been updated correctly..."
+        linkDescription = "css=div.editable > div.display_data > div.description"
+        updatedDescription = sel.get_text(linkDescription)
+        if updatedDescription != mclib.remove_html_tags(newdescription):
+            mclib.AppendErrorMessage(self,sel,"The description has not been updated as expected")
+            print "Expected value: "+mclib.remove_html_tags(newdescription)
+            print "- Actual value: "+updatedDescription
+        else:
+            print "OK - test passed"
+
+
+
+
+# ==================================================================
+#                 INLINE EDIT THE VIDEO CATEGORY                   =
+# ==================================================================
+
+# This subroutine replaces the current category of the video with <newcategory>
+
+def InlineEditCategory(self,sel,theme,newcategory):
+    if theme==4:
+        linkEditCategory = "css=a#add_cat.edit_link"
+        dialogEditCategory = "css=div.sidebar > div.share_box > div.meta > div.editable > div.simple_overlay > h2:contains('Editing Categories')"
+    else:
+        linkEditCategory = "css=a#add_cat.edit_link"
+        dialogEditCategory = "css=div#tags > ul.meta_listing > li.item > div.editable > div.simple_overlay > h2"
+    print "Editing the description..."
+    sel.click(linkEditCategory)
+    time.sleep(5)
+    if sel.is_visible(dialogEditCategory)!=True:
+        mclib.AppendErrorMessage(self,sel,"Dialog for inline editing of the category was not found")
+    else:
+        sel.check("//li/label[span='"+newcategory+"']/input[@name='categories']")
+        sel.click("css=button.done")
+        time.sleep(3)
+        print "Done"
+        print "Checking that the category has been added correctly..."
+#        if sel.is_element_present("css=ul.meta_listing > li.item > div.editable > div.display_data > div.floatleft > ul > li[a="+newcategory+"]") == False:
+        if theme!=4: categoryCSS = "css=ul.meta_listing > li.item > div.editable > div.display_data > div.floatleft > ul > li:contains("+newcategory+")"
+        else: categoryCSS = "css=div.meta > div.editable > div.display_data > div.floatleft > ul > li:contains("+newcategory+")"
+        if sel.is_element_present(categoryCSS) == False:
+            mclib.AppendErrorMessage(self,sel,"The category has not been updated as expected")
+            print "Expected category: "+newcategory
+            if theme!=4: ActualList = "css=ul.meta_listing > li.item > div.editable > div.display_data > div.floatleft > ul"
+            else: ActualList = "css=div.meta > div.editable > div.display_data > div.floatleft > ul"
+            print "Actual list of categories: "+sel.get_text(ActualList)
+        else:
+            print "OK - test passed"
+
+
+
+    
