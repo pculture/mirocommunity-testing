@@ -15,6 +15,9 @@
 #     8. TestCase_EditAuthor_573
 #     9. TestCase_EditDescription_574
 #     10. TestCase_EditCategory_575
+#     11. TestCase_EditTags_576
+#     12. TestCase_EditWebsite_577
+#     13. TestCase_AddEditorsComment_578
 
 from selenium import selenium
 import unittest, os, time, re, mclib, testcase_base
@@ -387,4 +390,92 @@ class TestCase_EditCategory_575(testcase_base.testcase_BaseTestCase):
             sitesettings.ChangeTheme(self,sel,theme)
             TestCase_EditCategory_575.EditCategory(self,sel,theme)
 
-            
+
+
+class TestCase_EditTags_576(testcase_base.testcase_BaseTestCase):
+    
+    def EditTags(self, sel, theme):
+        # Selecting video No. <theme> from New Videos listing
+        videoTitleLink = videopage.PickVideoFromNewVideosListingPage(self, sel, theme)
+        videoTitle=sel.get_text(videoTitleLink)
+        print "Opening video page for video "+videoTitle+"..."
+        sel.click(videoTitleLink)
+        sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
+        newTag = "TestWithTheme"+str(theme)
+        print "Changing the tag to: "+newTag
+        videopage.InlineEditTags(self,sel,theme,newTag)
+
+    def test_EditTags(self):
+        sel = self.selenium
+#       Log in as Admin
+        loginlogout.LogInAsAdmin(self,sel)
+        for theme in range(1,5):
+            print ""
+            print "============================================"
+            print ""
+            print "Running Edit Tags test with theme: "+str(theme)
+            print "Changing theme..."
+            sitesettings.ChangeTheme(self,sel,theme)
+            TestCase_EditTags_576.EditTags(self,sel,theme)
+
+
+class TestCase_EditWebsite_577(testcase_base.testcase_BaseTestCase):
+    
+    def EditWebsite(self, sel, theme):
+        # Selecting video No. <theme> from New Videos listing
+        videoTitleLink = videopage.PickVideoFromNewVideosListingPage(self, sel, theme)
+        videoTitle=sel.get_text(videoTitleLink)
+        print "Opening video page for video "+videoTitle+"..."
+        sel.click(videoTitleLink)
+        sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
+        newWebsite = "http://www.mirocommunity.org/"
+        print "Changing the website to: "+newWebsite
+        videopage.InlineEditWebsite(self,sel,theme,newWebsite)
+
+    def test_EditWebsite(self):
+        sel = self.selenium
+#       Log in as Admin
+        loginlogout.LogInAsAdmin(self,sel)
+        for theme in range(1,5):
+            print ""
+            print "============================================"
+            print ""
+            print "Running Edit Website test with theme: "+str(theme)
+            print "Changing theme..."
+            sitesettings.ChangeTheme(self,sel,theme)
+            TestCase_EditWebsite_577.EditWebsite(self,sel,theme)
+
+
+
+class TestCase_AddEditorsComment_578(testcase_base.testcase_BaseTestCase):
+    
+    def test_AddEditorsComment(self):
+        sel = self.selenium
+#       Log in as Admin
+        loginlogout.LogInAsAdmin(self,sel)
+        theme = 4 # The feature is available for Blue theme only
+        print "Changing theme..."
+        sitesettings.ChangeTheme(self,sel,theme)
+        # Selecting video No. <theme> from New Videos listing
+        videoTitleLink = videopage.PickVideoFromNewVideosListingPage(self, sel, theme)
+        videoTitle=sel.get_text(videoTitleLink)
+        print "Opening video page for video "+videoTitle+"..."
+        sel.click(videoTitleLink)
+        sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
+#        newEditorsComment = "<b>TEST</b>"
+        newEditorsComment = r"<p><b>Why use MiroCommunity?</b></p>"
+        newEditorsComment = newEditorsComment + "<p><b><i>Leverage Existing Video</i></b> Your community already has "
+        newEditorsComment = newEditorsComment + "a LOT of relevant video floating around on the internet. "
+        newEditorsComment = newEditorsComment + "<b>Miro Community</b> can aggregate it all in one central location. "
+        newEditorsComment = newEditorsComment + "Videos can be created by you or your organization, but can also easily "
+        newEditorsComment = newEditorsComment + "be brought in from a broader pool of creators. Videos can come from "
+        newEditorsComment = newEditorsComment + "YouTube, blip.tv, Vimeo, or almost any video blog or site powered by "
+        newEditorsComment = newEditorsComment + "drupal, plone, or other CMS that creates a media RSS feed.</p>"
+        newEditorsComment = newEditorsComment + "<b><i>A Video-Centric Approach</i></b> Put video front and center. The most successful "
+        newEditorsComment = newEditorsComment + "video sites are centered around the videos; for example, <a href='www.youtube."
+        newEditorsComment = newEditorsComment + "com'>YouTube</a>, Hulu, and the TED conference. These sites have regular "
+        newEditorsComment = newEditorsComment + "viewers/visitors who come expecting entertainment, enrichment, and engagement. "
+        newEditorsComment = newEditorsComment + "Miro Community makes video easy to find, and lets you point people directly "
+        newEditorsComment = newEditorsComment + "to the content they are looking for.</p>"
+        print "Posting the Editor's comment: "+newEditorsComment
+        videopage.PostEditorsComment(self,sel,newEditorsComment)

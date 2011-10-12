@@ -23,6 +23,14 @@
 #                author of the video with <newauthor>
 #   * subroutine InlineEditDescription(self,sel,theme,newdescription) - replaces
 #                the current description of the video with <newdescription>
+#   * subroutine InlineEditCategory(self,sel,theme,newcategory) - adds the video to
+#                category <newcategory>
+#   * subroutine InlineEditTags(self,sel,theme,newtag) - adds a new tag <newtag> to
+#                the video
+#   * subroutine InlineEditWebsite(self,sel,theme,newwebsite) - replaces the current
+#                website URL for the video with <newwebsite>
+#   * subroutine PostEditorsComment(self,sel,editorscomment) - posts <editorscomment>.
+#                Theme 4 (Blue Theme) only
 
 
 from selenium import selenium
@@ -298,7 +306,7 @@ def InlineEditDescription(self,sel,theme,newdescription):
 #                 INLINE EDIT THE VIDEO CATEGORY                   =
 # ==================================================================
 
-# This subroutine replaces the current category of the video with <newcategory>
+# This subroutine adds the video to category <newcategory>
 
 def InlineEditCategory(self,sel,theme,newcategory):
     if theme==4:
@@ -320,16 +328,118 @@ def InlineEditCategory(self,sel,theme,newcategory):
         print "Checking that the category has been added correctly..."
 #        if sel.is_element_present("css=ul.meta_listing > li.item > div.editable > div.display_data > div.floatleft > ul > li[a="+newcategory+"]") == False:
         if theme!=4: categoryCSS = "css=ul.meta_listing > li.item > div.editable > div.display_data > div.floatleft > ul > li:contains("+newcategory+")"
-        else: categoryCSS = "css=div.meta > div.editable > div.display_data > div.floatleft > ul > li:contains("+newcategory+")"
+        else: categoryCSS = "css=div.meta > div.editable:nth-child(2) > div.display_data > div.floatleft > ul > li:contains("+newcategory+")"
         if sel.is_element_present(categoryCSS) == False:
             mclib.AppendErrorMessage(self,sel,"The category has not been updated as expected")
             print "Expected category: "+newcategory
             if theme!=4: ActualList = "css=ul.meta_listing > li.item > div.editable > div.display_data > div.floatleft > ul"
-            else: ActualList = "css=div.meta > div.editable > div.display_data > div.floatleft > ul"
+            else: ActualList = "css=div.meta > div.editable:nth-child(2) > div.display_data > div.floatleft > ul"
             print "Actual list of categories: "+sel.get_text(ActualList)
         else:
             print "OK - test passed"
 
 
 
+# ==================================================================
+#                   INLINE EDIT THE VIDEO TAGS                     =
+# ==================================================================
+
+# This subroutine adds a new tag <newtag> to the video
+
+def InlineEditTags(self,sel,theme,newtag):
+    if theme==4:
+        linkEditTags = "css=a#add_tag.edit_link"
+        dialogEditTags = "css=div.meta > div.editable > div.simple_overlay > h2:contains('Editing Tags')"
+    else:
+        linkEditTags = "css=a#add_tag.edit_link"
+        dialogEditTags = "css=div#tags > ul.meta_listing > li.item > div.editable > div.simple_overlay > h2:contains('Editing Tags')"
+    print "Editing the tags..."
+    sel.click(linkEditTags)
+    time.sleep(5)
+    if sel.is_visible(dialogEditTags)!=True:
+        mclib.AppendErrorMessage(self,sel,"Dialog for inline editing of the tags was not found")
+    else:
+        sel.type("id=id_tags", newtag)
+        sel.click("css=button.done")
+        time.sleep(3)
+        print "Done"
+        print "Checking that the tags have been updated correctly..."
+        if theme!=4: tagCSS = "css=ul.meta_listing > li.item > div.editable:nth-child(1) > div.display_data > div.floatleft > ul > li:contains("+newtag.lower()+")"
+        else: tagCSS = "css=div.meta > div.editable:nth-child(1) > div.display_data > div.floatleft > ul > li:contains("+newtag.lower()+")"
+        if sel.is_element_present(tagCSS) == False:
+            mclib.AppendErrorMessage(self,sel,"The tags have not been updated as expected")
+            print "Expected tag: "+newtag.lower()
+            if theme!=4: ActualList = "css=ul.meta_listing > li.item > div.editable:nth-child(1) > div.display_data > div.floatleft > ul"
+            else: ActualList = "css=div.meta > div.editable:nth-child(1) > div.display_data > div.floatleft > ul"
+            print "Actual list of tags: "+sel.get_text(ActualList)
+        else:
+            print "OK - test passed"
+
+
+
+
+# ==================================================================
+#                INLINE EDIT THE VIDEO WEBSITE URL                 =
+# ==================================================================
+
+# This subroutine replaces the current website URL for the video with <newwebsite> 
+
+def InlineEditWebsite(self,sel,theme,newwebsite):
+    if theme==4:
+        print "Website URL for a video cannot be edited in Blue Theme. Test skipped."
+        return
+    else:
+        linkEditWebsite = "css=div#main > div#tags > ul.meta_listing > li.item > div.editable > div.display_data > div.floatleft > h3 > a.edit_link"
+        dialogEditWebsite = "css=div#main > div#tags > ul.meta_listing > li.item:nth-child(3) > div.editable > div.simple_overlay > h2"
+        print "Editing the website URL..."
+        sel.click(linkEditWebsite)
+        time.sleep(5)
+        if sel.is_visible(dialogEditWebsite)!=True:
+            mclib.AppendErrorMessage(self,sel,"Dialog for inline editing of the website URL was not found")
+        else:
+            sel.type("id=id_website_url", newwebsite)
+            sel.click("css=button.done")
+            time.sleep(3)
+            print "Done"
+            print "Checking that the website URL has been updated correctly..."
+            linkWebsite = "css=span.url"
+            updatedWebsite = sel.get_text(linkWebsite)
+            if updatedWebsite != newwebsite:
+                mclib.AppendErrorMessage(self,sel,"The website URL has not been updated as expected")
+                print "Expected value: "+newwebsite
+                print "- Actual value: "+updatedWebsite
+            else:
+                print "OK - test passed"
+
+
+# ==================================================================
+#                        POST EDITORS COMMENT                      =
+# ==================================================================
+
+# This subroutine posts <editorscomment>. Theme 4 (Blue Theme) only
+
+def PostEditorsComment(self,sel,editorscomment):
+    linkEditorsComment = "css=div.main > div.editable > div.display_data > a.edit_link"
+    dialogEditorsComment = "css=div.main > div.editable > div.simple_overlay > h2:contains('Editing Editors comment')"
+    sel.click(linkEditorsComment)
+    time.sleep(5)
+    if sel.is_visible(dialogEditorsComment)!=True:
+        mclib.AppendErrorMessage(self,sel,"Dialog for posting the editors comment was not found")
+    else:
+        sel.type("id=id_editors_comment", editorscomment)
+        sel.click("css=button.done")
+        time.sleep(3)
+        print "Done"
+        print "Checking that the website URL has been updated correctly..."
+#        linkEditorsComment = "css=div.description:nth-child(1)"
+        linkEditorsComment = "css=div.editors_notes"
+        str = sel.get_text(linkEditorsComment)
+        postedComment = re.split("writes: ",str.replace("\n",""))
+#        print postedComment
+        if postedComment[1] != mclib.remove_html_tags(editorscomment):
+            mclib.AppendErrorMessage(self,sel,"The Editor's Comment has not been updated as expected")
+            print "Expected value: "+mclib.remove_html_tags(editorscomment)
+            print "- Actual value: "+postedComment[1]
+        else:
+            print "OK - test passed"
     
