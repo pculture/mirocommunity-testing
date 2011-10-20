@@ -18,6 +18,9 @@
 #     11. TestCase_EditTags_576
 #     12. TestCase_EditWebsite_577
 #     13. TestCase_AddEditorsComment_578
+#     14. TestCase_PostToFacebook_579
+#     15. TestCase_PostToTwitter_580
+
 
 from selenium import selenium
 import unittest, os, time, re, mclib, testcase_base
@@ -479,3 +482,78 @@ class TestCase_AddEditorsComment_578(testcase_base.testcase_BaseTestCase):
         newEditorsComment = newEditorsComment + "to the content they are looking for.</p>"
         print "Posting the Editor's comment: "+newEditorsComment
         videopage.PostEditorsComment(self,sel,newEditorsComment)
+
+
+
+class TestCase_PostToFacebook_579(testcase_base.testcase_BaseTestCase):
+    
+    def PostToFacebook(self, sel, theme):
+        # Selecting video No. <theme> from New Videos listing
+        videoTitleLink = videopage.PickVideoFromNewVideosListingPage(self, sel, theme)
+        videoTitle=sel.get_text(videoTitleLink)
+        print "Opening video page for video "+videoTitle+"..."
+        sel.click(videoTitleLink)
+        sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
+        print "Posting the video on Facebook..."
+        videopage.PostToFacebook(self,sel,theme, videoTitle)
+
+    def test_PostToFacebook(self):
+        sel = self.selenium
+#       Log in to Facebook
+        loginlogout.LogInToFacebook(self,sel)
+#       Log in as Admin
+        loginlogout.LogInAsAdmin(self,sel)
+        for theme in range(1,5):
+            print ""
+            print "============================================"
+            print ""
+            print "Running Post to Facebook test with theme: "+str(theme)
+            print "Changing theme..."
+            sitesettings.ChangeTheme(self,sel,theme)
+            TestCase_PostToFacebook_579.PostToFacebook(self,sel,theme)
+
+
+
+class TestCase_PostToTwitter_580(testcase_base.testcase_BaseTestCase):
+    
+    def PostToTwitter(self, sel, theme):
+        # Selecting video No. <theme> from New Videos listing
+        videoTitleLink = videopage.PickVideoFromNewVideosListingPage(self, sel, theme)
+        videoTitle=sel.get_text(videoTitleLink)
+        print "Opening video page for video "+videoTitle+"..."
+        sel.click(videoTitleLink)
+        sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
+        print "Posting the video on Twitter..."
+        videopage.PostToTwitter(self,sel,theme)
+
+    def test_PostToTwitter(self):
+        sel = self.selenium
+        print "Logging in to Twitter..."
+        loginlogout.LogInToTwitter(self,sel)
+#        sel.click("link=PCFQA")
+        sel.open("https://twitter.com/#!/PCFQA")
+        time.sleep(15)
+        print "OK"
+        buttonDelete = "css=div.js-stream-item:nth-child(1) div.stream-item-content div.tweet-content div.tweet-row span.tweet-actions a.delete-action"
+        # Twitter forbids repetitive identical tweets, so older test tweets will be erased before the test starts to avoid duplication
+        print "Searching for old test tweets..."
+        while sel.is_text_present("TEST TWEET"):
+            sel.click(buttonDelete)
+            time.sleep(1)
+            if sel.is_visible("css=div.twttr-prompt"):
+                sel.click("css=div.js-prompt-ok")
+                time.sleep(3)
+                print "Deleted old test tweet"
+                sel.refresh()
+                time.sleep(5)
+        print "Done"
+#       Log in as Admin
+        loginlogout.LogInAsAdmin(self,sel)
+        for theme in range(1,5):
+            print ""
+            print "============================================"
+            print ""
+            print "Running Post to Twitter test with theme: "+str(theme)
+            print "Changing theme..."
+            sitesettings.ChangeTheme(self,sel,theme)
+            TestCase_PostToTwitter_580.PostToTwitter(self,sel,theme)

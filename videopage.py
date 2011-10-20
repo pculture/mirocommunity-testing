@@ -31,11 +31,15 @@
 #                website URL for the video with <newwebsite>
 #   * subroutine PostEditorsComment(self,sel,editorscomment) - posts <editorscomment>.
 #                Theme 4 (Blue Theme) only
+#   * subroutine PostToFacebook(self,sel,theme) - posts the currently selected video
+#                on Facebook
+#   * subroutine PostToTwitter(self,sel,theme) - posts the currently selected video
+#                on Twitter
 
 
 from selenium import selenium
 
-import unittest, time, re, urllib
+import unittest, time, re, urllib, HTMLParser
 import testvars, mclib, loginlogout, queue, bulkedit
 
 
@@ -442,4 +446,122 @@ def PostEditorsComment(self,sel,editorscomment):
             print "- Actual value: "+postedComment[1]
         else:
             print "OK - test passed"
+
+
+
+# ==================================================================
+#                        POST VIDEO ON FACEBOOK                    =
+# ==================================================================
+
+# This subroutine posts the currently selected video on Facebook
+
+def PostToFacebook(self,sel,theme,videotitle):
+    currentpageURL = sel.get_location()
+    linkPostFacebook = "css=span.FBConnectButton_Text_Simple"
+    sel.click(linkPostFacebook)
+    sel.wait_for_pop_up("sharer", testvars.MCTestVariables["TimeOut"])
+    sel.select_window("title=Facebook")
+    sel.click("css=textarea.uiTextareaNoResize")
+    sel.type("css=textarea.uiTextareaNoResize", "TEST POST, theme "+str(theme))
+    title = sel.get_text("css=a.UIShareStage_InlineEdit")
+    if title!=videotitle:
+        mclib.AppendErrorMessage(self,sel,"Video title passed to Facebook does not match the real one")
+        print "Expected to find: "+videotitle
+        print "-Actually passed: "+title
+    videoURL = sel.get_text("css=div.UIShareStage_Subtitle")
+#    if videoURL!=currentpageURL:
+#        mclib.AppendErrorMessage(self,sel,"Video URL passed to Facebook does not match the real URL")
+#        print "Expected to find: "+currentpageURL
+#        print "-Actually passed: "+videoURL
+    sel.click("css=label.uiButtonConfirm")
+    time.sleep(15)
+    # Check that the Facebook popup is closed
+    if (u'Facebook') in sel.get_all_window_titles():
+        mclib.AppendErrorMessage(self,sel,"Facebook sharing popup did not close as expected")
+    else:
+        sel.select_window("null")
+        sel.open("http://www.facebook.com")
+        sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
+        sel.click("link=Pat Culture")
+        time.sleep(5)
+        if sel.is_text_present(title)==False:
+            mclib.AppendErrorMessage(self,sel,"New post with the video title not found")
+        else:
+            if sel.is_element_present("link="+title)==False:
+                mclib.AppendErrorMessage(self,sel,"Link to the posted video not found")
+            else:
+                postedURL = sel.get_attribute('//a[text()="'+title+'"]@href')
+                print postedURL
+#                sel.click("link="+title)
+#                sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
+                if postedURL!=currentpageURL:
+                    mclib.AppendErrorMessage(self,sel,"Facebook post links to the wrong page")
+                    print "Expected to find: "+currentpageURL
+                    print "- Actually found: "+postedURL
+                else:
+                    print "OK. Test passed"
+
+
+# ==================================================================
+#                        POST VIDEO ON TWITTER                    =
+# ==================================================================
+
+# This subroutine posts the currently selected video on Twitter
+
+def PostToTwitter(self,sel,theme):
+    print "Clicking Tweet This Video link..."
+    linkPostTwitter = "css=a.twitter"
+    sel.click(linkPostTwitter)
+    time.sleep(5)
+#    print sel.get_all_window_titles()
+    if (u'Sign in to Twitter') in sel.get_all_window_titles():
+        print "Logging in to Twitter"
+        sel.select_window("title=Sign in to Twitter")
+        sel.type("css=form#login-form fieldset.sign-in div.row input#username_or_email.text",testvars.MCTestVariables["TwitterLogin"])
+        sel.type("css=form#login-form fieldset.sign-in div.row input#password.password",testvars.MCTestVariables["TwitterPassword"])
+        sel.click("css=form#login-form div.row input.submit")
+        sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
+    else:
+        sel.select_window("title=Post a Tweet on Twitter")
+    #print sel.get_all_window_titles()
+    print "Posting the following tweet:"
+    defaultTweet = sel.get_value("css=span.field > textarea#status")
+    newTweet = "TEST TWEET: theme" + str(theme) + ". " + defaultTweet
+    h = HTMLParser.HTMLParser()
+    newTweetTrimmed = h.unescape(newTweet)
+    print newTweet
+    sel.type("css=span.field > textarea#status",newTweet)
+    sel.click("css=input.button.submit")
+    time.sleep(10)
+ #   print sel.get_all_window_titles()
+ #   print sel.get_title()
+#    sel.select_window("title=Twitter / Home")
+#    print sel.get_all_window_titles()
+#    print sel.get_location()
+    sel.open("http://twitter.com/#!/PCFQA")
+    time.sleep(15)
+#    sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
+#    print sel.get_title()
+    print "Checking that the tweet was posted successfully..."
+#    print sel.is_element_present("css=div.stream-manager")
+#    print sel.is_element_present("css=div.stream div#stream-items-id.stream-items div.js-stream-item:nth-child(1)")
+#    xxx = sel.get_text("css=div.stream div#stream-items-id.stream-items div.js-stream-item:nth-child(1) div.stream-item-content div.tweet-content div.tweet-row div.tweet-text")
+#    print xxx
+    if sel.is_text_present(newTweetTrimmed.replace("http://",""))==False:
+        mclib.AppendErrorMessage(self,sel,"New tweet not found")
+        print "Expected text: "+newTweetTrimmed.replace("http://","")
+        if sel.is_element_present("css=div.stream div#stream-items-id.stream-items div.js-stream-item:nth-child(1) div.stream-item-content div.tweet-content div.tweet-row div.tweet-text")==True:
+            print "- Actual text: "+sel.get_text("css=div.stream div#stream-items-id.stream-items div.js-stream-item:nth-child(1) div.stream-item-content div.tweet-content div.tweet-row div.tweet-text")
+            print sel.is_text_present(newTweetTrimmed.replace("http://",""))==sel.get_text("css=div.stream div#stream-items-id.stream-items div.js-stream-item:nth-child(1) div.stream-item-content div.tweet-content div.tweet-row div.tweet-text")
+        else:
+            print "- Actual text: ***NOT FOUND***"
+    else:
+        print "OK. Test passed"
+    print "Closing Twitter, switching back to MiroCommunity..."    
+    sel.close()
+    sel.select_window("null")
+    print "OK"
+    
+        
+
     
