@@ -19,6 +19,10 @@ MCTestVariables = {"Browser":"*chrome", \
                    "UserPassword":"selenium", \
                    "UserName":"selene test-user", \
                    "LogoutFootlink":"//ul[@id='footer_links']/li[5]/a", \
+                   "FBLogin":"pculture.qa@gmail.com", \
+                   "FBPassword":"MiroCommunity", \
+                   "TwitterLogin":"PCFQA", \
+                   "TwitterPassword":"MiroCommunity", \
                    "ListThemeLink":"/admin/themes/set_default/1", \
                    "ScrollingThemeLink":"/admin/themes/set_default/2", \
                    "CategoryThemeLink":"/admin/themes/set_default/3", \
@@ -27,6 +31,7 @@ MCTestVariables = {"Browser":"*chrome", \
                    "NewVideosListingPage":"/listing/new", \
                    "LoginPage":"/accounts/login/", \
                    "LogoutPage":"/accounts/logout/?next=/", \
+                   "FacebookLoginPage":"/accounts/facebook_login/", \
                    "ReviewQueuePage":"/admin/approve_reject", \
                    "ManageSourcesPage":"/admin/manage", \
                    "BulkEditPage":"/admin/bulk_edit", \
