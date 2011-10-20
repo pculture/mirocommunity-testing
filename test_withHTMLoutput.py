@@ -151,6 +151,8 @@ class Test_HTMLTestRunner(unittest.TestCase):
             unittest.defaultTestLoader.loadTestsFromTestCase(testcases_videopage.TestCase_EditTags_576),
             unittest.defaultTestLoader.loadTestsFromTestCase(testcases_videopage.TestCase_EditWebsite_577),
             unittest.defaultTestLoader.loadTestsFromTestCase(testcases_videopage.TestCase_AddEditorsComment_578),
+            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_videopage.TestCase_PostToFacebook_579),
+            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_videopage.TestCase_PostToTwitter_580),
 #-RESTORE-CATEGORIES---------------------------------------------
             unittest.defaultTestLoader.loadTestsFromTestCase(testcases_categories.TestCase_RestoreAllCategories),
 #-COMMENTS-------------------------------------------------------
