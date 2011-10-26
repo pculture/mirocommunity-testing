@@ -20,9 +20,11 @@ MCTestVariables = {"Browser":"*chrome", \
                    "UserName":"selene test-user", \
                    "LogoutFootlink":"//ul[@id='footer_links']/li[5]/a", \
                    "FBLogin":"pculture.qa@gmail.com", \
-                   "FBPassword":"MiroCommunity", \
+                   "FBPassword":"TWlyb0NvbW11bml0eQ==", \
                    "TwitterLogin":"PCFQA", \
-                   "TwitterPassword":"MiroCommunity", \
+                   "TwitterPassword":"TWlyb0NvbW11bml0eQ==", \
+                   "TestEmail":"pculture.qa@gmail.com", \
+                   "TestEmailPassword":"TWlyb0NvbW11bml0eQ==", \
                    "ListThemeLink":"/admin/themes/set_default/1", \
                    "ScrollingThemeLink":"/admin/themes/set_default/2", \
                    "CategoryThemeLink":"/admin/themes/set_default/3", \
