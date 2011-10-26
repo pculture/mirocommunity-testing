@@ -35,6 +35,8 @@
 #                on Facebook
 #   * subroutine PostToTwitter(self,sel,theme) - posts the currently selected video
 #                on Twitter
+#   * subroutine EmailToFriends(self,sel,theme,email) - sends the link to the currently
+#                selected video to <email> address
 
 
 from selenium import selenium
@@ -518,7 +520,7 @@ def PostToTwitter(self,sel,theme):
         print "Logging in to Twitter"
         sel.select_window("title=Sign in to Twitter")
         sel.type("css=form#login-form fieldset.sign-in div.row input#username_or_email.text",testvars.MCTestVariables["TwitterLogin"])
-        sel.type("css=form#login-form fieldset.sign-in div.row input#password.password",testvars.MCTestVariables["TwitterPassword"])
+        sel.type("css=form#login-form fieldset.sign-in div.row input#password.password",testvars.MCTestVariables["TwitterPassword"].decode('base64'))
         sel.click("css=form#login-form div.row input.submit")
         sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
     else:
@@ -564,4 +566,29 @@ def PostToTwitter(self,sel,theme):
     
         
 
+# ==================================================================
+#                        EMAIL VIDEO TO FRIENDS                    =
+# ==================================================================
+
+# This subroutine sends the link to the currently selected video to <email> address
+
+def EmailToFriends(self,sel,theme,email):
+    print "Clicking Email To Friends link..."
+    linkEmailFriends = "css=a.email"
+    sel.click(linkEmailFriends)
+    time.sleep(5)
+    if sel.is_element_present("css=form#share_form")==False:
+        mclib.AppendErrorMessage(self,sel,"Email dialog not found")
+    else:
+        if sel.get_value("css=input#id_sender_email")=="":
+            sel.type("css=input#id_sender_email","pcf.subwriter@gmail.com")
+        sel.type("css=input#id_recipient_email",email)
+        sel.type("css=textarea#id_message","TEST with theme "+str(theme))
+        sel.click("css=input[type='submit'][value='Share!']")
+        time.sleep(5)
+        if (sel.is_element_present("css=div#share_thanks")==False or sel.is_text_present("Thanks!")==False):
+            mclib.AppendErrorMessage(self,sel,"Confirmation message on sending off the email not found")
+        else:
+            sel.click("css=a.close")
+    
     

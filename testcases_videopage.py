@@ -20,9 +20,12 @@
 #     13. TestCase_AddEditorsComment_578
 #     14. TestCase_PostToFacebook_579
 #     15. TestCase_PostToTwitter_580
+#     16. TestCase_EmailToFriends_581
 
 
 from selenium import selenium
+from email.parser import HeaderParser
+import imaplib
 import unittest, os, time, re, mclib, testcase_base
 # import urllib, Image, ImageChop
 import loginlogout, sitesettings, testvars, categories, submitvideos, sitesettings, queue, videopage,  bulkedit
@@ -557,3 +560,62 @@ class TestCase_PostToTwitter_580(testcase_base.testcase_BaseTestCase):
             print "Changing theme..."
             sitesettings.ChangeTheme(self,sel,theme)
             TestCase_PostToTwitter_580.PostToTwitter(self,sel,theme)
+
+
+
+class TestCase_EmailToFriends_581(testcase_base.testcase_BaseTestCase):
+    
+    def EmailToFriends(self, sel, theme):
+        # Selecting video No. <theme> from New Videos listing
+        videoTitleLink = videopage.PickVideoFromNewVideosListingPage(self, sel, theme)
+        videoTitle=sel.get_text(videoTitleLink)
+        print "Opening video page for video "+videoTitle+"..."
+        sel.click(videoTitleLink)
+        sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
+        videoPageURL = sel.get_location()
+        print "Mailing the link to video to friends..."
+        videopage.EmailToFriends(self,sel,theme,testvars.MCTestVariables["TestEmail"])
+        time.sleep(10)
+        print "Checking the last email in the inbox..."
+        mailUser = testvars.MCTestVariables["TestEmail"]
+        mailPassword = testvars.MCTestVariables["TestEmailPassword"].decode('base64')
+        mail = imaplib.IMAP4_SSL('imap.gmail.com', 993)
+        mail.login(mailUser, mailPassword)
+        mail.select('Inbox')
+        result, data = mail.search(None, "ALL")
+        ids = data[0] # data is a list.
+        id_list = ids.split() # ids is a space separated string
+        latest_email_id = id_list[-1] # get the latest
+        result, data = mail.fetch(latest_email_id, "(RFC822)") # fetch the email body (RFC822) for the given ID
+        emailHeader = HeaderParser().parsestr(data[0][1])
+        print "Email sender: " + emailHeader['From']
+        print "Email subject: " + emailHeader['Subject']
+        if emailHeader['From'] != "Miro Community <mirocommunity@pculture.org>":
+            mclib.AppendErrorMessage(self,sel,"Unexpected mail sender found")
+        elif not(videoTitle in data[0][1]):
+            mclib.AppendErrorMessage(self,sel,"Video title not found in email")
+            print "Video title: "+videoTitle
+            print data[0][1]
+#        elif not('href=3D"'+videoPageURL+'"' in data[0][1]):
+#        elif not(videoPageURL in data[0][1]):
+#            mclib.AppendErrorMessage(self,sel,"Link to video not found")
+#            print "Link to video: "+videoPageURL
+#            print data[0][1]
+        else:
+            print "OK"
+#        print 'Message %s\n%s\n' % (latest_email_id, data[0][1])
+        mail.close()
+        mail.logout()        
+        
+    def test_EmailToFriends(self):
+        sel = self.selenium
+#       Log in as Admin
+        loginlogout.LogInAsAdmin(self,sel)
+        for theme in range(1,5):
+            print ""
+            print "============================================"
+            print ""
+            print "Running Email To Friends test with theme: "+str(theme)
+            print "Changing theme..."
+            sitesettings.ChangeTheme(self,sel,theme)
+            TestCase_EmailToFriends_581.EmailToFriends(self,sel,theme)
