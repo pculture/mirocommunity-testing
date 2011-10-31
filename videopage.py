@@ -29,6 +29,8 @@
 #                the video
 #   * subroutine InlineEditWebsite(self,sel,theme,newwebsite) - replaces the current
 #                website URL for the video with <newwebsite>
+#   * subroutine PostComment(self,sel,theme,comment) - posts <comment>
+#   * subroutine DeleteComment(self,sel,theme,comment) - deletes <comment>
 #   * subroutine PostEditorsComment(self,sel,editorscomment) - posts <editorscomment>.
 #                Theme 4 (Blue Theme) only
 #   * subroutine PostToFacebook(self,sel,theme) - posts the currently selected video
@@ -37,6 +39,8 @@
 #                on Twitter
 #   * subroutine EmailToFriends(self,sel,theme,email) - sends the link to the currently
 #                selected video to <email> address
+#   * subroutine AddToPlaylist(self,sel,theme,playlist) - adds the currently selected
+#                video to <playlist>. Creates a new <playlist> if an existing one is not found
 
 
 from selenium import selenium
@@ -418,6 +422,59 @@ def InlineEditWebsite(self,sel,theme,newwebsite):
                 print "OK - test passed"
 
 
+
+
+# ==================================================================
+#                            POST COMMENT                          =
+# ==================================================================
+
+# This subroutine posts <comment>
+
+def PostComment(self,sel,theme,comment):
+    if theme==4:
+        textareaComment = "css=textarea#id_comment"
+        buttonComment = "css=button.post_comment"
+    else:
+        textareaComment = "css=textarea#id_comment"
+        buttonComment = "css=input.submit-post"
+    sel.type(textareaComment,comment)
+    sel.click(buttonComment)
+    print "Done"
+    time.sleep(15)
+    # Checking that the comment has actually been posted
+    if sel.is_text_present(comment)==False:
+        mclib.AppendErrorMessage(self,sel,"The comment has not been posted properly")
+
+
+        
+# ==================================================================
+#                          DELETE COMMENT                          =
+# ==================================================================
+
+# This subroutine deletes <comment>
+
+def DeleteComment(self,sel,theme,comment):
+    # Searching for comment on the page
+    if sel.is_text_present(comment)==False:
+        mclib.AppendErrorMessage(self,sel,"The desired comment not found")
+    else:
+        print "Deleting comment "+comment+"..."
+        if theme==4:
+            buttonDelete = "//ul[@id='comments']/li[contains(./div[@class='item_details']/div[@class='comment'],'"+comment+"')]/div[@class='comment-moderation']/form[1]/button[@type='submit']"
+        else:
+            buttonDelete = "//li[contains(./div[@class='comment-body'],'"+comment+"')]/div[@class='comment-poster']/div[@class='comment-moderation']/form[1]/button[text()='delete']"
+        print sel.is_element_present(buttonDelete)
+        sel.click(buttonDelete)
+        sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
+#        time.sleep(3)
+        print "Checking that the comment has been deleted correctly..."
+        if sel.is_text_present(comment):
+            mclib.AppendErrorMessage(self,sel,"The comment has not been deleted properly")
+        else:
+            print "OK"
+
+
+
 # ==================================================================
 #                        POST EDITORS COMMENT                      =
 # ==================================================================
@@ -590,5 +647,43 @@ def EmailToFriends(self,sel,theme,email):
             mclib.AppendErrorMessage(self,sel,"Confirmation message on sending off the email not found")
         else:
             sel.click("css=a.close")
+    
+
+
+# ==================================================================
+#                        ADD VIDEO TO PLAYLISTS                    =
+# ==================================================================
+
+# This subroutine adds the currently selected video to <playlist>
+# Creates a new <playlist> if an existing one is not found
+
+def AddToPlaylist(self,sel,theme,playlist):
+    if sel.is_element_present("css=div.playlist_title > a:contains('"+playlist+"')"):
+        mclib.AppendErrorMessage(self,sel,"This video has alreday been added to playlist "+playlist+". Cannot proceed with the test")
+    if sel.is_element_present("css=select#id_playlist > option:contains('"+playlist+"')"):
+        print "Playlist "+playlist+" found, adding video..."
+        sel.select("id=id_playlist", "label="+playlist)
+        time.sleep(2)
+        sel.click("css=input[type=\"submit\"]")
+        sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
+    else:
+        # Create new playlist
+        print "Playlist "+playlist+" not found, creating new playlist..."
+        sel.select("id=id_playlist", "label=New Playlist...")
+        time.sleep(2)
+        sel.answer_on_next_prompt(playlist)
+        sel.click("css=input[type=\"submit\"]")
+        time.sleep(2)
+        self.assertEqual("Enter the name for the new playlist:", sel.get_prompt())
+        time.sleep(5)
+    print "Checking that the video has been added to playlist"
+#    if sel.is_element_present("css=div.playlist_title > a:contains('"+playlist+"')")==False:
+    if sel.is_text_present(playlist)==False:
+#        print sel.get_text("css=div#playlists div ul li")
+        mclib.AppendErrorMessage(self,sel,"The marker of playlist "+playlist+" has not been found")
+    else:
+        print "OK"
+            
+
     
     

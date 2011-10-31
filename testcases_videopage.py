@@ -21,6 +21,8 @@
 #     14. TestCase_PostToFacebook_579
 #     15. TestCase_PostToTwitter_580
 #     16. TestCase_EmailToFriends_581
+#     17. TestCase_AddToPlaylist_582
+#     18. TestCase_DeleteComment_583
 
 
 from selenium import selenium
@@ -28,7 +30,7 @@ from email.parser import HeaderParser
 import imaplib
 import unittest, os, time, re, mclib, testcase_base
 # import urllib, Image, ImageChop
-import loginlogout, sitesettings, testvars, categories, submitvideos, sitesettings, queue, videopage,  bulkedit
+import loginlogout, sitesettings, testvars, categories, submitvideos, sitesettings, queue, videopage,  bulkedit, testcases_comments
 import sys
 
 # ----------------------------------------------------------------------
@@ -619,3 +621,62 @@ class TestCase_EmailToFriends_581(testcase_base.testcase_BaseTestCase):
             print "Changing theme..."
             sitesettings.ChangeTheme(self,sel,theme)
             TestCase_EmailToFriends_581.EmailToFriends(self,sel,theme)
+
+
+
+class TestCase_AddToPlaylist_582(testcase_base.testcase_BaseTestCase):
+    
+    def AddToPlaylist(self, sel, theme):
+        # Selecting video No. <theme> from New Videos listing
+        videoTitleLink = videopage.PickVideoFromNewVideosListingPage(self, sel, theme)
+        videoTitle=sel.get_text(videoTitleLink)
+        print "Opening video page for video "+videoTitle+"..."
+        sel.click(videoTitleLink)
+        sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
+        playlist = "Test "+str(theme)+" "+time.strftime("%d-%m-%Y %H:%M:%S", time.localtime())
+        print "Adding the video to playlist "+playlist+"..."
+        videopage.AddToPlaylist(self,sel,theme, playlist)
+
+    def test_AddToPlaylist(self):
+        sel = self.selenium
+#       Log in as Admin
+        loginlogout.LogInAsAdmin(self,sel)
+        # Ensure that playlists are enabled
+        sitesettings.EnablePlaylists(self,sel,"Yes")
+        for theme in range(1,5):
+            print ""
+            print "============================================"
+            print ""
+            print "Running Add to Playlist test with theme: "+str(theme)
+            print "Changing theme..."
+            sitesettings.ChangeTheme(self,sel,theme)
+            TestCase_AddToPlaylist_582.AddToPlaylist(self,sel,theme)
+
+
+class TestCase_DeleteComment_583(testcase_base.testcase_BaseTestCase):
+    
+    def DeleteComment(self, sel, theme):
+        # Selecting video No. <theme> from New Videos listing
+        videoTitleLink = videopage.PickVideoFromNewVideosListingPage(self, sel, theme)
+        videoTitle=sel.get_text(videoTitleLink)
+        print "Opening video page for video "+videoTitle+"..."
+        sel.click(videoTitleLink)
+        sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
+        temp_comment = testcases_comments.generateComment()
+        print "Posting a test comment..."
+        videopage.PostComment(self,sel,theme,temp_comment)
+        print "Deleting the test comment"
+        videopage.DeleteComment(self,sel,theme,temp_comment)
+
+    def test_DeleteComment(self):
+        sel = self.selenium
+#       Log in as Admin
+        loginlogout.LogInAsAdmin(self,sel)
+        for theme in range(1,5):
+            print ""
+            print "============================================"
+            print ""
+            print "Running Delete Comment test with theme: "+str(theme)
+            print "Changing theme..."
+            sitesettings.ChangeTheme(self,sel,theme)
+            TestCase_DeleteComment_583.DeleteComment(self,sel,theme)

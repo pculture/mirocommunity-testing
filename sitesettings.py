@@ -29,6 +29,8 @@
 #   * subroutine UncheckRequireLoginToSubmitVideo(self,sel) - unchecks Require Users
 #           to Login to Submit a Video check box
 #   * subroutine CheckUseOriginalDate(self,sel) - checks Use Original Date check box
+#   * subroutine EnablePlaylists(self,sel,option) - enables or disables playlists
+#           <option> can take values "Yes", "No", or "Admins Only"
 
 
 
@@ -941,8 +943,8 @@ def UncheckRequireLoginToSubmitVideo(self,sel):
 
 def CheckUseOriginalDate(self,sel):
     NavigateToSettingsPage(self,sel)
-    print "Unchecking 'Use Original Date' check box..."
-    if sel.is_element_present("id_submission_requires_login")==False:
+    print "Checking 'Use Original Date' check box..."
+    if sel.is_element_present("css=input#id_use_original_date")==False:
         mclib.AppendErrorMessage(self,sel,"'Use Original Date' check box not found")
     else:
         sel.check("css=input#id_use_original_date")
@@ -951,3 +953,33 @@ def CheckUseOriginalDate(self,sel):
         sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
         sel.open(testvars.MCTestVariables["SettingsPage"])
         sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
+
+
+
+
+# =========================================
+# =              ENABLE PLAYLISTS         =
+# =========================================
+ 
+# This subroutine enables or disables playlists
+# <option> can take values "Yes", "No", or "Admins Only"
+
+def EnablePlaylists(self,sel,option):
+    if option!='Yes' and option!='No' and option!='Admins Only':
+        mclib.AppendErrorMessage(self,sel,"Wrong parameter passed to EnablePlaylists subroutine")
+    else:
+        NavigateToSettingsPage(self,sel)
+        print "Selecting '"+option+"' from 'Enable Playlists?' drop-down list..."
+        if sel.is_element_present("id_playlists_enabled")==False:
+            mclib.AppendErrorMessage(self,sel,"'Enable Playlists?' drop-down list not found")
+        else:
+            sel.select("css=select#id_playlists_enabled","label="+option)
+            sel.click("submit_settings")
+            print "Done"
+            sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
+            sel.open(testvars.MCTestVariables["SettingsPage"])
+            sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
+
+
+
+
