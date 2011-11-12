@@ -58,6 +58,9 @@ class Test_HTMLTestRunner(unittest.TestCase):
         # suite of TestCases
         self.suite = unittest.TestSuite()
         self.suite.addTests([
+#-LOGIN-------------------------------------------------------------------------------------------------------
+            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_login.TestCase_LoginWithFacebookAccount_596),
+            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_login.TestCase_LoginWithTwitterAccount_597),
 #-USERS-------------------------------------------------------------------------------------------------------
             unittest.defaultTestLoader.loadTestsFromTestCase(testcases_users.TestCase_AddNewAdmin_271),
             unittest.defaultTestLoader.loadTestsFromTestCase(testcases_users.TestCase_AddNewUser_270),
