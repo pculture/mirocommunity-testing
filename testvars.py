@@ -23,6 +23,8 @@ MCTestVariables = {"Browser":"*chrome", \
                    "FBPassword":"TWlyb0NvbW11bml0eQ==", \
                    "TwitterLogin":"PCFQA", \
                    "TwitterPassword":"TWlyb0NvbW11bml0eQ==", \
+                   "OpenIDLogin":"PCFQA", \
+                   "OpenIDPassword":"TWlyb0NvbW11bml0eQ==", \
                    "TestEmail":"pculture.qa@gmail.com", \
                    "TestEmailPassword":"TWlyb0NvbW11bml0eQ==", \
                    "ListThemeLink":"/admin/themes/set_default/1", \
