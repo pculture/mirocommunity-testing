@@ -242,6 +242,108 @@ def LogInAsTwitterUser(self,sel,username,password):
                             print "OK"
 
 
+# ===================================
+# =      LOG IN AS OPENID USER      =
+# ===================================
+
+# This subroutine logs in to MC site as an OpenID user with <username>-<password> credentials
+
+def LogInAsOpenIDUser(self,sel,username,password):
+    sel.open(testvars.MCTestVariables["LoginPage"])
+    sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
+    sel.window_maximize()
+    time.sleep(1)
+    tabOpenID = "link=OpenID"
+    print "Checking that OpenID tab on Login page exists..."
+    if sel.is_element_present(tabOpenID)==False:
+        self.fail("OpenID tab not found")
+    else:
+        print "OK"
+        sel.click(tabOpenID)
+        time.sleep(7)
+        inputOpenID = "css=input.openid"
+        if sel.is_element_present(inputOpenID)==False:
+            mclib.AppendErrorMessage(self,sel,"Could not find the input field for OpenID")
+        else:
+            sel.type(inputOpenID,username+'.myopenid.com')
+            sel.click("css=div#login_tab_openid.inactive div.left form p input.button")
+            sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
+            if sel.is_element_present("css=input#password")==False:
+                mclib.AppendErrorMessage(self,sel,"Edit box for OpenID password not found")
+            else:
+                sel.type("css=input#password",password)
+                sel.click("css=input#signin_button")
+                sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
+                if sel.is_element_present("css=button#continue-button"):
+                    sel.click("css=button#continue-button")
+                # Navigating to user profile to check the user's account parameters
+                print "Checking the user's profile"
+                linkYourProfile = "link=Your Profile"
+                if sel.is_element_present(linkYourProfile)==False:
+                    mclib.AppendErrorMessage(self,sel,"'Your profile' link on Home page not found")
+                else:
+                    sel.click("link=Your Profile")
+                    sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
+                    print "Checking OpenID user's name on Profile page..."
+                    if sel.is_element_present("id_username")==False:
+                        mclib.AppendErrorMessage(self,sel,"User Name field on Profile page not found")
+                    else:
+                        print "OpenID user has signed in and is known in the system as "+sel.get_value("id_username")
+
+
+# ===================================
+# =      LOG IN AS GOOGLE USER      =
+# ===================================
+
+# This subroutine logs in to MC site as a Google user with <username>-<password> credentials
+
+def LogInAsGoogleUser(self,sel,email,password):
+    sel.open(testvars.MCTestVariables["LoginPage"])
+    sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
+    sel.window_maximize()
+    time.sleep(1)
+    tabGoogle = "link=Google"
+    print "Checking that Google tab on Login page exists..."
+    if sel.is_element_present(tabGoogle)==False:
+        self.fail("Google tab not found")
+    else:
+        print "OK"
+        sel.click(tabGoogle)
+        time.sleep(7)
+        buttonSignIn = "css=div#login_tab_google.inactive div.left form p input.button"
+        if sel.is_text_present("Sign in with your Google Account")==False or sel.is_element_present(buttonSignIn)==False:
+            mclib.AppendErrorMessage(self,sel,"Could not find Sign In button")
+        else:
+            sel.click(buttonSignIn)
+            sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
+            if sel.is_element_present("css=input#Email")==False:
+                mclib.AppendErrorMessage(self,sel,"Edit box for Google email not found")
+            else:
+                sel.type("css=input#Email",email)
+                sel.type("css=input#Passwd",password)
+                sel.click("css=input#signIn.g-button")
+                sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
+                if sel.is_element_present("css=input#approve_button.lsobtn"):
+                    sel.click("css=input#approve_button.lsobtn")
+                # Navigating to user profile to check the user's account parameters
+                print "Checking the user's profile"
+                linkYourProfile = "link=Your Profile"
+                if sel.is_element_present(linkYourProfile)==False:
+                    mclib.AppendErrorMessage(self,sel,"'Your profile' link on Home page not found")
+                else:
+                    sel.click("link=Your Profile")
+                    sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
+                    if sel.get_value("id_email")!=email:
+                        mclib.AppendErrorMessage(self,sel,"Unexpected user email encountered in User Profile")
+                        print "Expected email: "+email
+                        print "- Actual email: "+sel.get_value("id_email")
+                    print "Checking Google user's name on Profile page..."
+                    if sel.is_element_present("id_username")==False:
+                        mclib.AppendErrorMessage(self,sel,"User Name field on Profile page not found")
+                    else:
+                        print "OpenID user has signed in and is known in the system as "+sel.get_value("id_username")
+
+
 
 # ===================================
 # =    LOG IN TO FACEBOOK SITE      =
