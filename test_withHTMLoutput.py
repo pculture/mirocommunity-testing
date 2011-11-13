@@ -61,6 +61,8 @@ class Test_HTMLTestRunner(unittest.TestCase):
 #-LOGIN-------------------------------------------------------------------------------------------------------
             unittest.defaultTestLoader.loadTestsFromTestCase(testcases_login.TestCase_LoginWithFacebookAccount_596),
             unittest.defaultTestLoader.loadTestsFromTestCase(testcases_login.TestCase_LoginWithTwitterAccount_597),
+            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_login.TestCase_LoginWithOpenIDAccount_598),
+            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_login.TestCase_LoginWithGoogleAccount_599),
 #-USERS-------------------------------------------------------------------------------------------------------
             unittest.defaultTestLoader.loadTestsFromTestCase(testcases_users.TestCase_AddNewAdmin_271),
             unittest.defaultTestLoader.loadTestsFromTestCase(testcases_users.TestCase_AddNewUser_270),
