@@ -43,6 +43,7 @@ MCTestVariables = {"Browser":"*chrome", \
                    "SettingsPage":"/admin/settings/", \
                    "UserPage":"/admin/users/", \
                    "ProfilePage":"/accounts/profile/", \
+                   "PlaylistsPage":"/playlists/", \
                    "ViewAdmin":"//div[@id='header']/a[2]/span", \
                    "ViewAdminBlueTheme":"//div[@id='wrapper']/div[1]/div/ul[2]/li/a/span", \
                    "SaveChanges":"//div[@id='labels']/form/table/tbody/tr[2]/td[1]/div/button", \
