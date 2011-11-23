@@ -169,6 +169,10 @@ class Test_HTMLTestRunner(unittest.TestCase):
             unittest.defaultTestLoader.loadTestsFromTestCase(testcases_comments.testcase_Comments_NoModeration_LoginRequired_256),
             unittest.defaultTestLoader.loadTestsFromTestCase(testcases_comments.testcase_Comments_ModerationRequired_NoLogin_541),
             unittest.defaultTestLoader.loadTestsFromTestCase(testcases_comments.testcase_Comments_ModerationRequired_LoginRequired_542),
+#-PLAYLISTS------------------------------------------------------
+            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_playlists.TestCase_DisablePlaylists_550),
+            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_playlists.TestCase_EnablePlaylistsForAdmins_551),
+            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_playlists.TestCase_EnablePlaylistsForEveryone_552),
             ])
 
         # Invoke TestRunner
