@@ -9,6 +9,7 @@
 #     2. TestCase_LoginWithTwitterAccount_597
 #     3. TestCase_LoginWithOpenIDAccount_598
 #     4. TestCase_LoginWithGoogleAccount_599
+#     5. TestCase_SignUpAndLogin_600
 
 
 from selenium import selenium
@@ -112,3 +113,48 @@ class TestCase_LoginWithGoogleAccount_599(testcase_base.testcase_BaseTestCase):
             sel.click("id=gbgs4")
             sel.click("id=gb_71")
             sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
+
+
+class TestCase_SignUpAndLogin_600(testcase_base.testcase_BaseTestCase):
+    
+    def test_SignUpAndLogin(self):
+        sel = self.selenium
+#       Log in as Admin
+        loginlogout.LogInAsAdmin(self,sel)
+        print "Starting tests..."
+        for theme in range(1,5):
+            print ""
+            print "============================================"
+            print ""
+            print "Running Sign Up and Login test with theme: "+str(theme)
+            print "Changing theme..."
+            sitesettings.ChangeTheme(self,sel,theme)
+            loginlogout.LogOut(self,sel)
+            newUsername = "test_"+time.strftime("%d_%m_%Y__%H_%M", time.localtime())+"_theme"+str(theme)
+            newPassword = "testpassword"
+            print "Signing up as user "+newUsername
+            loginlogout.SignUp(self,sel,newUsername,newPassword,testvars.MCTestVariables["TestEmail"])
+            loginlogout.ActivateUserAccount(self,sel,testvars.MCTestVariables["TestEmail"],testvars.MCTestVariables["TestEmailPassword"].decode('base64'))
+            loginlogout.LogInBasic(self,sel,newUsername,newPassword)
+            # Navigating to user profile to check the user's account parameters
+            print "Checking the user's profile..."
+            linkYourProfile = "link=Your Profile"
+            if sel.is_element_present(linkYourProfile)==False:
+                mclib.AppendErrorMessage(self,sel,"'Your profile' link on Home page not found")
+            else:
+                sel.click("link=Your Profile")
+                sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
+                if sel.get_value("id_email")!=testvars.MCTestVariables["TestEmail"]:
+                    mclib.AppendErrorMessage(self,sel,"Unexpected user email encountered in User Profile")
+                    print "Expected email: "+testvars.MCTestVariables["TestEmail"]
+                    print "- Actual email: "+sel.get_value("id_email")
+                    print "Checking user's name on Profile page..."
+                if sel.is_element_present("id_username")==False:
+                    mclib.AppendErrorMessage(self,sel,"User Name field on Profile page not found")
+                else:
+                    if sel.get_value("id_username")!=newUsername:
+                        mclib.AppendErrorMessage(self,sel,"Unexpected user name found")
+                        print "Expected user name: "+newUsername
+                        print "- Actual user name: "+sel.get_value("id_username")
+                    else:
+                        print "OK"

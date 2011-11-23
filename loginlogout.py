@@ -11,6 +11,12 @@
 #   * subroutine LogInAsFacebookUser(self,sel,username,email,password) - logs in
 #            to MC site as a Facebook user with <email>-<password> credentials
 #            The user becomes known to the system as <username>
+#   * subroutine LogInAsTwitterUser(self,sel,username,password) - logs in to MC
+#            site as a Twitter user with <username>-<password> credentials
+#   * subroutine LogInAsOpenIDUser(self,sel,username,password) - logs in to MC
+#            site as an OpenID user with <username>-<password> credentials
+#   * subroutine LogInAsGoogleUser(self,sel,email,password) - logs in to MC site
+#            as a Google user with <email>-<password> credentials
 #   * subroutine LogInToFacebook(self,sel) - logs in to Facebook with the use
 #            of PCF test account
 #   * subroutine LogInToTwitter(self,sel) - logs in to Twitter with the use
@@ -18,6 +24,7 @@
 
 from selenium import selenium
 
+import imaplib
 import unittest, time, re, testvars, mclib
 
 # ===================================
@@ -98,6 +105,85 @@ def LogOut(self,sel):
     sel.open(testvars.MCTestVariables["LogoutPage"])
     sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
     self.assertFalse(sel.is_text_present("View Admin"))
+
+
+# ===================================
+# =             SIGN UP             =
+# ===================================
+
+# This subroutine signs up to MC site 
+
+def SignUp(self,sel,username,password,email):
+    sel.open(testvars.MCTestVariables["LoginPage"])
+    sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
+    sel.window_maximize()
+    time.sleep(1)
+    sel.type("//div[@id='login_tab_user']/div[2]/form/p/label/input", username)
+    sel.type("id=id_email", email)
+    sel.type("id=id_password1", password)
+    sel.type("id=id_password2", password)
+    sel.click("//input[@value='Sign Up']")
+    sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
+    currentURL = sel.get_location()
+    if currentURL != testvars.MCTestVariables["TestSite"]+"accounts/register/complete/":
+        mclib.AppendErrorMessage(self,sel,"Unexpected page URL encountered")
+        print "Expected URL: "+testvars.MCTestVariables["TestSite"]+"/accounts/register/complete/"
+        print "- Actual URL: "+currentURL
+    print "Now trying to login with the use of the new user account..."
+    sel.open(testvars.MCTestVariables["LoginPage"])
+    sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
+    time.sleep(1)
+    sel.click("id_username")
+    sel.type("id_username", username)
+    time.sleep(1)
+    sel.click("id_password")
+    sel.type("id_password", password)
+    time.sleep(1)
+    sel.click("//input[@value='Log In']")
+    time.sleep(7)
+    if sel.is_text_present("This account is inactive.")==False:
+        mclib.AppendErrorMessage(self,sel,"The expected error message (account inactive) was not found.")
+    else:
+        print "OK - Login failed as expected, because the account has not been activated."
+        
+
+
+    
+# ===================================
+# =     ACTIVATE USER ACCOUNT       =
+# ===================================
+
+# This subroutine activates a new user account
+
+def ActivateUserAccount(self,sel,email,password):
+    print "Checking email for activation link"
+    mailUser = email
+    mailPassword = password
+    mail = imaplib.IMAP4_SSL('imap.gmail.com', 993)
+    mail.login(mailUser, mailPassword)
+    mail.select('Inbox')
+    result, data = mail.uid('search', None, '(HEADER Subject "Finish Signing Up at")')
+    latest_email_uid = data[0].split()[-1]
+    result, data = mail.uid('fetch', latest_email_uid, '(RFC822)')
+    raw_email = data[0][1]
+    leadIn = "To activate the account click on the following link or copy-&-paste it in y=\r\nour browser:\r\n"
+    temp1 = raw_email.split(leadIn)
+#    print temp1[1]
+#    print "***************"
+    leadOut = "\r\n\r\nAfter activation you may login"
+    temp2 = temp1[1].split(leadOut)
+#    print temp2[0]
+    activationURL = temp2[0].replace('=\r\n','')
+    print "Activation link:"
+    print activationURL
+    print "Now attempting to activate the account..."
+    sel.open(activationURL)
+    sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
+    if sel.is_text_present("Your account has been activated! Please log in using the link at the bottom of this page."):
+        print "OK"
+    else:
+        mclib.AppendErrorMessage(self,sel,"Account activation failed")
+        
 
 
 # ===================================
@@ -295,7 +381,7 @@ def LogInAsOpenIDUser(self,sel,username,password):
 # =      LOG IN AS GOOGLE USER      =
 # ===================================
 
-# This subroutine logs in to MC site as a Google user with <username>-<password> credentials
+# This subroutine logs in to MC site as a Google user with <email>-<password> credentials
 
 def LogInAsGoogleUser(self,sel,email,password):
     sel.open(testvars.MCTestVariables["LoginPage"])
@@ -341,7 +427,7 @@ def LogInAsGoogleUser(self,sel,email,password):
                     if sel.is_element_present("id_username")==False:
                         mclib.AppendErrorMessage(self,sel,"User Name field on Profile page not found")
                     else:
-                        print "OpenID user has signed in and is known in the system as "+sel.get_value("id_username")
+                        print "Google user has signed in and is known in the system as "+sel.get_value("id_username")
 
 
 
