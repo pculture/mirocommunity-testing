@@ -142,9 +142,10 @@ def AddCategory(self,sel,cat,slug,description,sub,parent):
         return 0
     else:
         print "Adding a new category "+testCat
-        sel.open(testvars.MCTestVariables["CategoriesPage"])
-        sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
-        buttonAddCategory = "//div[@id='content']/a/span"
+#        sel.open(testvars.MCTestVariables["CategoriesPage"])
+#        sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
+#        buttonAddCategory = "//div[@id='content']/a/span"
+        buttonAddCategory = "css=a.add"
         if sel.is_element_present(buttonAddCategory)==True:
             sel.click(buttonAddCategory)
             time.sleep(3)
@@ -193,6 +194,7 @@ def AddCategory(self,sel,cat,slug,description,sub,parent):
                 buttonSubmit = "submit"
                 if sel.is_element_present(buttonSubmit)==True:
                     sel.click("submit")
+                    time.sleep(5)
                 else:
                     mclib.AppendErrorMessage(self,sel,"Save button on Add Category pop-up not found")
         sel.refresh()
@@ -434,6 +436,7 @@ def EditCategory(self,sel,cat,newname,newslug,newdescription,newlogo):
                 else:
                     sel.click(buttonUpdate)
                     print "OK"
+                    time.sleep(5)
                     sel.refresh()
                     sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
 

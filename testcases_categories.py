@@ -189,7 +189,14 @@ class TestCase_EditCategory_299(unittest.TestCase):
                     mclib.AppendErrorMessage(self,sel,"Category description is not displayed on category page for "+cat)
                 # Checking category logo
                 print "Checking category logo on category page"
-                logoText = "//img[contains(@src,'"+testvars.MCTestVariables["CategoriesLogoURL"]+"/"+"fish_logo.gif')]"
+                siteURL = testvars.MCTestVariables["TestSite"]
+                sitename1 = siteURL.replace("http://","")
+                print sitename1
+                sitename = sitename1.replace(".mirocommunity.org/","")
+                print sitename
+                CategoriesLogoURL = "http://s3.amazonaws.com/s3.mirocommunity.org/"+sitename+"/localtv/category_logos"
+#                logoText = "//img[contains(@src,'"+testvars.MCTestVariables["CategoriesLogoURL"]+"/"+"fish_logo.gif')]"
+                logoText = "//img[contains(@src,'"+CategoriesLogoURL+"/"+"fish_logo.gif')]"
                 if sel.is_element_present("//div[@id='category_info']/img")==True:
                     if sel.get_text(logoText)!="":
                         mclib.AppendErrorMessage(self,sel,"Wrong logo image on category page for "+cat)

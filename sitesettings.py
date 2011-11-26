@@ -633,8 +633,15 @@ def UploadBackgroundImage(self,sel,theme,background):
     # We truncate the last 4 chars from the file name because an umpteenth copy of the same
     # file uploaded to the server contains trailing underscores after file name
     # Example: logo.jpg -> logo______.jpg
+    siteURL = testvars.MCTestVariables["TestSite"]
+    sitename1 = siteURL.replace("http://","")
+    print sitename1
+    sitename = sitename1.replace(".mirocommunity.org/","")
+    print sitename
+    SiteBackgroundURL = "http://s3.mirocommunity.org.s3.amazonaws.com/"+sitename+"/localtv/site_backgrounds"
+
     bbb = background[:(len(background)-4)]
-    queryText = "background: url(\""+testvars.MCTestVariables["SiteBackgroundURL"]+"/"+bbb
+    queryText = "background: url(\""+SiteBackgroundURL+"/"+bbb
     if stringSource.find(queryText)==-1:
         mclib.AppendErrorMessage(self,sel,"Desired background not uploaded correctly")
 

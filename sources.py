@@ -242,21 +242,15 @@ def SearchForVideos(self,sel,searchterm,sortby):
 # This subroutine checks the check box for the desired category on the source feed submission page
 
 def AttributeCategoryToSource(self,sel,category):
-    if sel.is_element_present("//div[@id='content']/form/div[3]/ul/li[1]/ul")==True:
-        catCaption = "//div[@id='content']/form/div[3]/ul/li[1]/ul/li[1]/label/span"
-        no=1
-        catBox=""
-        while sel.is_element_present(catCaption)==True:
-            if sel.get_text(catCaption)==category:
-                catBox = "id_auto_categories_"+str(no-1)
-                sel.check(catBox)
-                break
-            no = no+1
-            catCaption = "//div[@id='content']/form/div[3]/ul/li[1]/ul/li["+str(no)+"]/label/span"
-        if catBox=="":
-            mclib.AppendErrorMessage(self,sel,"Category not found: "+category)
-    else:
+#    if sel.is_element_present("//div[@id='content']/form/div[3]/ul/li[1]/ul")==True:
+    if sel.is_element_present("css=div.input_field ul li.scrollable:nth-child(1)")==False:
         mclib.AppendErrorMessage(self,sel,"List of categories not found")
+    else:
+        catCheckbox = "//div[@class='input_field']/ul/li[1]/ul/li[contains(./label/span,'"+category+"')]/label/input[@name='auto_categories']"
+        if sel.is_element_present(catCheckbox) == False:
+            mclib.AppendErrorMessage(self,sel,"Category not found: "+category)
+        else:
+            sel.check(catCheckbox)
 
 
 
@@ -267,26 +261,15 @@ def AttributeCategoryToSource(self,sel,category):
 # This subroutine checks the check box for the desired user on the source feed submission page
 
 def AttributeUserToSource(self,sel,username):
-    if sel.is_element_present("//div[@id='content']/form/div[3]/ul/li[2]/ul")==True:
+#    if sel.is_element_present("//div[@id='content']/form/div[3]/ul/li[2]/ul")==False:
+    if sel.is_element_present("css=div.input_field ul li.scrollable:nth-child(2)")==False:
+        mclib.AppendErrorMessage(self,sel,"List of users not found")
+    else:
         userBox = "//li/label[span='"+username+"']/input[@name='auto_authors']"
-        if sel.is_element_present(userBox)==0:
+        if sel.is_element_present(userBox)==False:
             mclib.AppendErrorMessage(self,sel,"Checkbox for user "+username+" not found")
         else:
             sel.check(userBox)
-#        userCaption = "//div[@id='content']/form/div[3]/ul/li[2]/ul/li[1]/label/span"
-#        no=1
-#        userBox=""
-#        while sel.is_element_present(userCaption)==True:
-#            if sel.get_text(userCaption)==username:
-#                userBox = "id_auto_authors_"+str(no-1)
-#                sel.check(userBox)
-#                break
-#            no = no+1
-#            userCaption = "//div[@id='content']/form/div[3]/ul/li[2]/ul/li["+str(no)+"]/label/span"
-#        if userBox=="":
-#            mclib.AppendErrorMessage(self,sel,"User not found: "+username)
-    else:
-        mclib.AppendErrorMessage(self,sel,"List of users not found")
 
 
 
@@ -328,7 +311,7 @@ def DeleteSource(self,sel,source):
         else:
             mclib.AppendErrorMessage(self,sel,"Could not find Delete link for source: "+source)
     else:
-        mclib.AppendErrorMessage(self,sel,"Could not find source: "+source)
+        mclib.AppendErrorMessage(self,sel,"Could not find source to be deleted: "+source)
         
     
 
@@ -364,14 +347,15 @@ def AddSource(self,sel,sourceURL,autoApprove,category,user):
                 mclib.AppendErrorMessage(self,sel,"Review Feed Before Adding page not found at step 2")
             else:
                 # Get the title of the feed
-                feedName = "//div[@id='content']/form/div[2]/h3"
+                feedName = "css=div#content form div.floatleft h3"
                 if sel.is_element_present(feedName)==True:
                     sourceName = sel.get_text(feedName)
                     print "Preparing to import feed: "+sourceName
                 else:
                     mclib.AppendErrorMessage(self,sel,"Feed name is not displayed at Review Feed page")
                 # Get the estimated number of videos
-                print "Pre-import estimate: "+sel.get_text("//div[@id='content']/form/div[2]/div/span")
+                #print "Pre-import estimate: "+sel.get_text("//div[@id='content']/form/div[2]/div/span")
+                print "Pre-import estimate: "+sel.get_text("css=div#content form div.floatleft div.video_count span")
                 # Set Approve All, if appropriate
                 if autoApprove==1:
                     if sel.is_element_present("id_auto_approve_0")==True:
@@ -394,11 +378,13 @@ def AddSource(self,sel,sourceURL,autoApprove,category,user):
                     nextLink = "See these videos"
                 else:
                     nextLink = "Review these videos"
-                while sel.is_text_present(nextLink)==False and sel.is_text_present("Just a Moment")==True:
-                    time.sleep(1)
-                    timeElapsed = timeElapsed + 1
-                    if timeElapsed > 3600: # more than 60 mins
-                        break
+#                while sel.is_text_present(nextLink)==False and sel.is_text_present("Just a Moment")==True:
+#                    time.sleep(1)
+#                    timeElapsed = timeElapsed + 1
+#                    if timeElapsed > 3600: # more than 60 mins
+#                        break
+#                sel.wait_for_condition('selenium.isTextPresent("'+nextLink+'")','3600000')
+                sel.wait_for_condition('selenium.isElementPresent("link='+nextLink+'")','3600000')
                 if sel.is_text_present(nextLink)==False:
                     mclib.AppendErrorMessage(self,sel,"Import was not successfully finished in 60 minutes")
                     return -1
@@ -571,7 +557,7 @@ def EditSource(self,sel,sourceName,sourceNewname,sourceURL,sourceSite,category,u
     NavigateToManageSources(self,sel)
     sourceLoc = SourceLocation(self,sel,sourceName)
     if sourceLoc==[0,0]:
-        mclib.AppendErrorMessage(self,sel,"Could not find source: "+source)
+        mclib.AppendErrorMessage(self,sel,"Could not find source to be edited: "+source)
     else:
         page = sourceLoc[0]
         rowNo = sourceLoc[1]
