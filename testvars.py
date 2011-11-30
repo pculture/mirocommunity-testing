@@ -37,7 +37,7 @@ MCTestVariables = {"Browser":"*chrome", \
                    "LogoutPage":"/accounts/logout/?next=/", \
                    "FacebookLoginPage":"/accounts/facebook_login/", \
                    "ReviewQueuePage":"/admin/approve_reject", \
-                   "ManageSourcesPage":"/admin/manage", \
+                   "ManageSourcesPage":"admin/manage", \
                    "BulkEditPage":"/admin/bulk_edit", \
                    "CategoriesPage":"/admin/categories", \
                    "SettingsPage":"/admin/settings/", \
