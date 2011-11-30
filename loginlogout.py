@@ -362,6 +362,7 @@ def LogInAsOpenIDUser(self,sel,username,password):
                 sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
                 if sel.is_element_present("css=button#continue-button"):
                     sel.click("css=button#continue-button")
+                    time.sleep(5)
                 # Navigating to user profile to check the user's account parameters
                 print "Checking the user's profile"
                 linkYourProfile = "link=Your Profile"
@@ -411,6 +412,7 @@ def LogInAsGoogleUser(self,sel,email,password):
                 sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
                 if sel.is_element_present("css=input#approve_button.lsobtn"):
                     sel.click("css=input#approve_button.lsobtn")
+                    time.sleep(5)
                 # Navigating to user profile to check the user's account parameters
                 print "Checking the user's profile"
                 linkYourProfile = "link=Your Profile"

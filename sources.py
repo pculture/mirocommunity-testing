@@ -85,12 +85,16 @@ def SourceLocation(self,sel,source):
         sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
     except: pass
     while sel.is_text_present("Page not found")==False:
+#        if sel.is_element_present("css=span.overflow:contains("+source+")"):
+#            row = Evaluate("count(//tr[td/span[contains(text(),'Croatia')]]/preceding-sibling::*)")+1
+#            break
         row = 0   # row number
         tempSource=""
         # Only one source on the page? If not, go ahead
         sourceTableCell="//div[@id='labels']/form[2]/table/tbody/tr/td[2]/span"  # no row number in the link
         if sel.is_element_present(sourceTableCell):
             if sel.get_text(sourceTableCell)==source:
+                row = 1
                 return [page,row]
         # Name of the first source in the list - for multiple rows on the page
         row = 1
@@ -114,6 +118,38 @@ def SourceLocation(self,sel,source):
         return [page,row] 
     else:
         return [0,0]
+
+
+        
+#        row = 0   # row number
+#        tempSource=""
+        # Only one source on the page? If not, go ahead
+#        sourceTableCell="//div[@id='labels']/form[2]/table/tbody/tr/td[2]/span"  # no row number in the link
+#        if sel.is_element_present(sourceTableCell):
+#            if sel.get_text(sourceTableCell)==source:
+#                return [page,row]
+        # Name of the first source in the list - for multiple rows on the page
+#        row = 1
+#        sourceTableCell="//div[@id='labels']/form[2]/table/tbody/tr[1]/td[2]/span"
+#        while sel.is_element_present(sourceTableCell):
+#            tempSource = sel.get_text(sourceTableCell)
+#            if tempSource==source:
+#                break
+#            row=row+1
+#            sourceTableCell="//div[@id='labels']/form[2]/table/tbody/tr["+str(row)+"]/td[2]/span"
+#        if tempSource==source:
+#            break
+        # End of page reached?
+#        page = page+1
+#        try:
+#            sel.open(testvars.MCTestVariables["ManageSourcesPage"]+"/?page="+str(page))
+#            sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
+#        except: pass
+    # Return results
+#    if tempSource==source:
+#        return [page,row] 
+#    else:
+#        return [0,0]
 
 
 # =======================================
@@ -213,7 +249,7 @@ def SearchForVideos(self,sel,searchterm,sortby):
 #                expectedURL = "http://dalmatia.mirocommunity.org/admin/manage/search/?query="+urllib.quote(searchtermSlug.encode('utf-8'))
 #                print urllib.quote(searchtermSlug.encode('utf-8'))
                 searchtermSlug = urllib.quote(searchterm.encode('utf-8'))
-                expectedURL = "http://dalmatia.mirocommunity.org/admin/manage/search/?query="+searchtermSlug.replace("%20","+")
+                expectedURL = testvars.MCTestVariables["TestSite"]+"admin/manage/search/?query="+searchtermSlug.replace("%20","+")
                 print expectedURL
                 actualURL = sel.get_location()
                 if actualURL!=expectedURL:
@@ -1094,7 +1130,7 @@ def FilterSources(self,sel,filter):
             sel.click("link=All")
             sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
             actualURL = sel.get_location()
-            expectedURL = "http://dalmatia.mirocommunity.org"+testvars.MCTestVariables["ManageSourcesPage"]+"/"
+            expectedURL = testvars.MCTestVariables["TestSite"]+testvars.MCTestVariables["ManageSourcesPage"]+"/"
             print "Checking the URL of the result page..."
             if actualURL!=expectedURL:
                 mclib.AppendErrorMessage(self,sel,"The URL of the result page is different from expected URL")
@@ -1109,7 +1145,7 @@ def FilterSources(self,sel,filter):
             sel.click("link=Video Site Users")
             sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
             actualURL = sel.get_location()
-            expectedURL = "http://dalmatia.mirocommunity.org"+testvars.MCTestVariables["ManageSourcesPage"]+"/?filter=user"
+            expectedURL = testvars.MCTestVariables["TestSite"]+testvars.MCTestVariables["ManageSourcesPage"]+"/?filter=user"
             print "Checking the URL of the result page..."
             if actualURL!=expectedURL:
                 mclib.AppendErrorMessage(self,sel,"The URL of the result page is different from expected URL")
@@ -1138,7 +1174,7 @@ def FilterSources(self,sel,filter):
             sel.click("link=Video Site Searches")
             sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
             actualURL = sel.get_location()
-            expectedURL = "http://dalmatia.mirocommunity.org"+testvars.MCTestVariables["ManageSourcesPage"]+"/?filter=search"
+            expectedURL = testvars.MCTestVariables["TestSite"]+testvars.MCTestVariables["ManageSourcesPage"]+"/?filter=search"
             print "Checking the URL of the result page..."
             if actualURL!=expectedURL:
                 mclib.AppendErrorMessage(self,sel,"The URL of the result page is different from expected URL")
@@ -1167,7 +1203,7 @@ def FilterSources(self,sel,filter):
             sel.click("link=RSS Feeds")
             sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
             actualURL = sel.get_location()
-            expectedURL = "http://dalmatia.mirocommunity.org"+testvars.MCTestVariables["ManageSourcesPage"]+"/?filter=feed"
+            expectedURL = testvars.MCTestVariables["TestSite"]+testvars.MCTestVariables["ManageSourcesPage"]+"/?filter=feed"
             print "Checking the URL of the result page..."
             if actualURL!=expectedURL:
                 mclib.AppendErrorMessage(self,sel,"The URL of the result page is different from expected URL")
