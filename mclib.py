@@ -36,3 +36,19 @@ def split_by_punctuation_char(data):
 def AppendErrorMessage(self,sel,msg):
     self.verificationErrors.append(msg)
     print testvars.preE+msg
+
+
+def wait_for_element_present(self, sel, input_field):
+    """
+    Description: Waits 60 seconds for element to present itself.
+    Requires: valid element identifier, can be css, xpath
+    """
+    
+    for i in range(30):
+        
+        try:
+            if sel.is_element_present(input_field): break
+        except: pass
+        time.sleep(1)
+    else:
+        self.fail("time out waiting 30s for element " +input_field)

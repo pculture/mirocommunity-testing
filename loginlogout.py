@@ -48,6 +48,8 @@ def LogInBasic(self,sel,username,password):
     sel.click("//input[@value='Log In']")
     time.sleep(7)
 #    sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
+    mclib.wait_for_element_present(self, sel, testvars.MCTestVariables["LogoutFootlink"])
+ 
     if sel.is_element_present(testvars.MCTestVariables["LogoutFootlink"])==True:
         currentUser = sel.get_text(testvars.MCTestVariables["LogoutFootlink"])
         if currentUser.find(username)!=-1:
@@ -235,8 +237,9 @@ def LogInAsFacebookUser(self,sel,username,email,password):
                 # Check that "Logout <username>" link is present at the bottom of the page
                 print "Checking that user "+username+" is logged on"
                 linkLogout = "link=Logout "+username
-                if sel.is_element_present(linkLogout)==False:
-                    mclib.AppendErrorMessage(self,sel,"'Logout "+username+"' link on Home page not found")
+                mclib.wait_for_element_present(self, sel, linkLogout)
+                #if sel.is_element_present(linkLogout)==False:
+                #    mclib.AppendErrorMessage(self,sel,"'Logout "+username+"' link on Home page not found")
                 # Navigating to user profile to check the user's account parameters
                 print "Checking the user's profile"
                 linkYourProfile = "link=Your Profile"
@@ -306,8 +309,10 @@ def LogInAsTwitterUser(self,sel,username,password):
                 # Check that "Logout <username>" link is present at the bottom of the page
                 print "Checking that user "+username+" is logged on"
                 linkLogout = "link=Logout "+username
-                if sel.is_element_present(linkLogout)==False:
-                    mclib.AppendErrorMessage(self,sel,"'Logout "+username+"' link on Home page not found")
+                mclib.wait_for_element_present(self, sel, linkLogout)
+
+#                if sel.is_element_present(linkLogout)==False:
+#                    mclib.AppendErrorMessage(self,sel,"'Logout "+username+"' link on Home page not found")
                 # Navigating to user profile to check the user's account parameters
                 print "Checking the user's profile"
                 linkYourProfile = "link=Your Profile"
