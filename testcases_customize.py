@@ -22,6 +22,7 @@
 
 from selenium import selenium
 import unittest, time, re, loginlogout, sitesettings, testvars
+import mclib
 import sys
 
 # ----------------------------------------------------------------------
