@@ -383,6 +383,7 @@ def AddSource(self,sel,sourceURL,autoApprove,category,user):
                 mclib.AppendErrorMessage(self,sel,"Review Feed Before Adding page not found at step 2")
             else:
                 # Get the title of the feed
+                mclib.wait_for_element_present(self, sel, "css=div#content form div.floatleft h3")
                 feedName = "css=div#content form div.floatleft h3"
                 if sel.is_element_present(feedName)==True:
                     sourceName = sel.get_text(feedName)
