@@ -197,7 +197,7 @@ def AddCategory(self,sel,cat,slug,description,sub,parent):
                     time.sleep(5)
                 else:
                     mclib.AppendErrorMessage(self,sel,"Save button on Add Category pop-up not found")
-        sel.refresh()
+#        sel.refresh()
         sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
 # Check if the new category is present in the list
         rowNo = CategoryRow(self,sel,testCat)
