@@ -123,7 +123,7 @@ def SubmitVideo(self, sel, video_url, theme, role):
                     # Checking that the video was submitted correctly
                     print "Checking that the video was submitted correctly..."
                     if role!="Admin":
-                        mclib.wait_for_element_present(self, self 'css=div.contentWrap') 
+                        mclib.wait_for_element_present(self, self, 'css=div.contentWrap') 
                         #checkMessage = CheckTextPresent(self, sel, "Thanks for submitting a video, our moderators will review it soon.", 30, "Moderation message not found")
                         if sel.is_text_present("Thanks for submitting a video, our moderators will review it soon.")==False:
                             mclib.AppendErrorMessage(self,sel,"Could not find the message: 'Thanks for submitting a video, our moderators will review it soon'")
