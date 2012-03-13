@@ -11,6 +11,7 @@ import loginlogout, sitesettings, testvars
 import testcases_users, testcases_customize, testcases_categories, testcases_manage, testcases_bulkedit, testcases_queue, testcases_comments, testcases_submit
 import testcases_login
 import testcases_videopage
+import testcases_playlists
 
 #================================
 from optparse import OptionParser
