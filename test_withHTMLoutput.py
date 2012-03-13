@@ -10,7 +10,7 @@ import HTMLTestRunner
 import loginlogout, sitesettings, testvars
 import testcases_users, testcases_customize, testcases_categories, testcases_manage, testcases_bulkedit, testcases_queue, testcases_comments, testcases_submit
 import testcases_login
-import testcaess_videopage
+import testcases_videopage
 
 #================================
 from optparse import OptionParser
