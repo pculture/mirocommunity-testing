@@ -10,6 +10,7 @@
 #                into verificationErrors list and into output log
 
 import re, testvars
+import time
 
 def remove_html_tags(data):
     p = re.compile(r'<.*?>')
