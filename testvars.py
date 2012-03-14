@@ -19,7 +19,7 @@ MCTestVariables = {"Browser":"*chrome", \
                    "UserPassword":"selenium", \
                    "UserName":"selene test-user", \
                    "LogoutFootlink":"//ul[@id='footer_links']/li[5]/a", \
-                   "FBUsername": "Pat Culture"
+                   "FBUsername": "Pat Culture", \
                    "FBLogin":"pculture.qa@gmail.com", \
                    "FBPassword":"TWlyb0NvbW11bml0eQ==", \
                    "TwitterLogin":"PCFQA", \
