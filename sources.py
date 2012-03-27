@@ -249,12 +249,14 @@ def SearchForVideos(self,sel,searchterm,sortby):
 #                expectedURL = "http://dalmatia.mirocommunity.org/admin/manage/search/?query="+urllib.quote(searchtermSlug.encode('utf-8'))
 #                print urllib.quote(searchtermSlug.encode('utf-8'))
                 searchtermSlug = urllib.quote(searchterm.encode('utf-8'))
-                expectedURL = testvars.MCTestVariables["TestSite"]+"admin/manage/search/?query="+searchtermSlug.replace("%20","+")
-                print expectedURL
+#                expectedURL = testvars.MCTestVariables["TestSite"]+"admin/manage/search/?category=&author=&q="+searchtermSlug.replace("%20","+")
+                expectedSearch = searchtermSlug.replace("%20","+")
+                print expectedSearch
                 actualURL = sel.get_location()
-                if actualURL!=expectedURL:
+#                if actualURL!=expectedURL:
+                if expectedSearch not in actualURL:
                     mclib.AppendErrorMessage(self,sel,"Wrong page URL encountered")
-                    print "Expected URL: "+expectedURL
+                    print "Expected URL: "+expectedSearch
                     print "- Actual URL: "+actualURL
                 else:
                     print "OK"
@@ -1000,7 +1002,7 @@ def SortSources(self,sel,parameter,order):
                     else: pass
     elif parameter=="AutoApprove":
         print "Sorting the list of sources by AUTOAPPROVE in order: "+order+"..."
-        header = baseHeader+"th[6]/a"
+        header = baseHeader+"th[7]/a"
         if sel.is_element_present(header)==True:
             link=sel.get_attribute(header+"@href")
 #            print link

@@ -456,6 +456,7 @@ def EditVideoInQueue(self,sel,page,number,title,user,posted,thumbnail,descriptio
                 print "Author "+user+" is already associated with this video. Skipping update."
             else:
                 print "Adding new author..."
+                
                 sel.click("//div[@id='admin_rightpane']/div/div[2]/div[1]/div[1]/a[@class='edit_link']")
                 time.sleep(3)
                 rowNo=1
@@ -468,8 +469,6 @@ def EditVideoInQueue(self,sel,page,number,title,user,posted,thumbnail,descriptio
                     authorCaption = "//div[@id='admin_rightpane']/div/div[2]/div[1]/div[2]/form/ul/li/ul/li["+str(rowNo)+"]/label/span"
                 if tempAuth==user:
                     sel.click("id_authors_"+str(rowNo-1))
-                else:
-                    mclib.AppendErrorMessage(self,sel,"Author "+author+" not found")
                 sel.click("//button[@type='submit']")
                 time.sleep(8)
                 sel.refresh()
