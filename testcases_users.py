@@ -563,7 +563,7 @@ class TestCase_ViewProfile_540(unittest.TestCase):
         website = "http://www.seleniumhq.org/" 
         image = "nest-test.jpg"
         print "Viewing user profile in different themes"
-        for theme in range(1,5):
+        for theme in range(1,4):
             print ""
             print "====== theme "+str(theme)
             # Change theme

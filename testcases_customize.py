@@ -49,7 +49,7 @@ class TestCase_EditSiteTitle_303(unittest.TestCase):
 #       Log in as Admin
         loginlogout.LogInAsAdmin(self,sel)
 #       Repeat for each theme from No.1 to No.4
-        for theme in range(1,5):
+        for theme in range(1,4):
             sitesettings.ChangeTheme(self,sel,theme)
             TestCase_EditSiteTitle_303.EditSiteTitle_303(self,sel,theme)
         
@@ -79,7 +79,7 @@ class TestCase_MaxLengthSiteTitle_304(unittest.TestCase):
 #       Log in as Admin
         loginlogout.LogInAsAdmin(self,sel)
 #       Repeat for each theme from No.1 to No.4
-        for theme in range(1,5):
+        for theme in range(1,4):
             sitesettings.ChangeTheme(self,sel,theme)
             # Create a title with a timestamp
             timestamp = time.strftime("%d-%m-%Y %H:%M:%S", time.localtime())
@@ -137,7 +137,7 @@ class TestCase_EditSiteTagline_305(unittest.TestCase):
 #       Log in as Admin
         loginlogout.LogInAsAdmin(self,sel)
 #       Repeat for each theme from No.1 to No.4
-        for theme in range(1,5):
+        for theme in range(1,4):
             sitesettings.ChangeTheme(self,sel,theme)
             TestCase_EditSiteTagline_305.EditSiteTagline_305(self,sel,theme)
         
@@ -168,7 +168,7 @@ class TestCase_MaxLengthSiteTagline_306(unittest.TestCase):
 #       Log in as Admin
         loginlogout.LogInAsAdmin(self,sel)
 #       Repeat for each theme from No.1 to No.4
-        for theme in range(1,5):
+        for theme in range(1,4):
             sitesettings.ChangeTheme(self,sel,theme)
             # Create a title with a timestamp
             valid_tagline = 'MC Theme' + str(theme)+' 123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 1234567890'
@@ -225,7 +225,7 @@ class TestCase_EditAboutUs_307(unittest.TestCase):
 #       Log in as Admin
         loginlogout.LogInAsAdmin(self,sel)
 #       Repeat for each theme from No.1 to No.4
-        for theme in range(1,5):
+        for theme in range(1,4):
             sitesettings.ChangeTheme(self,sel,theme)
             TestCase_EditAboutUs_307.EditAboutUs_307(self,sel,theme)
         
@@ -256,7 +256,7 @@ class TestCase_AboutUsHTML_309(unittest.TestCase):
 #       Log in as Admin
         loginlogout.LogInAsAdmin(self,sel)
 #       Repeat for each theme from No.1 to No.4
-        for theme in range(1,5):
+        for theme in range(1,4):
             sitesettings.ChangeTheme(self,sel,theme)
             # Create a title with a timestamp
             timestamp = time.strftime("%d-%m-%Y %H:%M:%S", time.localtime())
@@ -291,7 +291,7 @@ class TestCase_ChangeSiteSettings_303(unittest.TestCase):
 #       Log in as Admin
         loginlogout.LogInAsAdmin(self,sel)
 #       Repeat for each theme from No.1 to No.4
-        for theme in range(1,5):
+        for theme in range(1,4):
             sitesettings.ChangeTheme(self,sel,theme)
             TestCase_ChangeSiteSettings_303.ChangeSiteSettings(self,sel,theme)
         
@@ -321,7 +321,7 @@ class TestCase_ChangeOrganization_253(unittest.TestCase):
 #       Log in as Admin
         loginlogout.LogInAsAdmin(self,sel)
 #       Repeat for each theme from No.1 to No.4
-        for theme in range(1,5):
+        for theme in range(1,4):
             sitesettings.ChangeTheme(self,sel,theme)
             # Change site settings
             TestCase_ChangeOrganization_253.ChangeOrganizationSettings(self,sel,theme)
@@ -360,7 +360,7 @@ class TestCase_UploadLogo_243(unittest.TestCase):
 #       Log in as Admin
         loginlogout.LogInAsAdmin(self,sel)
 #       Repeat for each theme from No.1 to No.4
-        for theme in range(1,5):
+        for theme in range(1,4):
             sitesettings.ChangeTheme(self,sel,theme)
             TestCase_UploadLogo_243.UploadLogo(self,sel,theme)
         
@@ -393,7 +393,7 @@ class TestCase_UploadBackground_244(unittest.TestCase):
 #       Log in as Admin
         loginlogout.LogInAsAdmin(self,sel)
 #       Repeat for each theme from No.1 to No.4
-        for theme in range(1,5):
+        for theme in range(1,4):
             sitesettings.ChangeTheme(self,sel,theme)
             TestCase_UploadBackground_244.UploadBackground(self,sel,theme)
         
@@ -490,7 +490,7 @@ class TestCase_DisplaySubmitVideo_249(unittest.TestCase):
 #       Log in as Admin
         loginlogout.LogInAsAdmin(self,sel)
 #       Repeat for each theme from No.1 to No.4
-        for theme in range(1,5):
+        for theme in range(1,4):
             sitesettings.ChangeTheme(self,sel,theme)
             TestCase_DisplaySubmitVideo_249.DisplaySubmitVideo(self,sel,theme)
 
@@ -518,7 +518,7 @@ class TestCase_CheckRequireLoginToSubmitVideo_250(unittest.TestCase):
     def test_CheckRequireLoginToSubmitVideo_250(self):
         sel = self.selenium
 #       Repeat for each theme from No.1 to No.4
-        for theme in range(1,5):
+        for theme in range(1,4):
             print ""
             print ""
             # Log in as Admin

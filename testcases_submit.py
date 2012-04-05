@@ -99,7 +99,7 @@ class TestCase_SubmitVideoAsLoggedUser_472(unittest.TestCase):
         # Check if the video is in the current ("Approved") set of videos
         # If yes, delete it
         submitvideos.RejectVideoFromApproved(self,sel,testVideoTitle)
-        for theme in range(1,5):
+        for theme in range(1,4):
             print ""
             print "The current theme is "+str(theme)
             # Set the theme
@@ -160,7 +160,7 @@ class TestCase_SubmitVideoAsUnloggedUser_473(unittest.TestCase):
         # Check if the video is in the current ("Approved") set of videos
         # If yes, delete it
         submitvideos.RejectVideoFromApproved(self,sel,testVideoTitle)
-        for theme in range(1,5):
+        for theme in range(1,4):
             print ""
             print "The current theme is "+str(theme)
             # Set the theme
@@ -261,7 +261,7 @@ class TestCase_SubmitDuplicateVideo_475(unittest.TestCase):
         print "Looking for the video "+testVideoTitle+" in the premoderation queue"
         if queue.FindVideoInQueue(self,sel,testVideoTitle)!=[0,0]:
             print "Found the video in the premoderation queue"
-            for theme in range(1,5):
+            for theme in range(1,4):
                 TestCase_SubmitDuplicateVideo_475.ChangeThemeAndSubmitDuplicateVideo(self,sel,theme,testVideoURL)
         else:
             print "Could not find the video in the premoderation queue"
@@ -271,7 +271,7 @@ class TestCase_SubmitDuplicateVideo_475(unittest.TestCase):
                 self.fail("The test case demands that a copy of the video already existed in the system. Cannot continue now.")
             else:
                 print "Found the video among the approved videos"
-                for theme in range(1,5):
+                for theme in range(1,4):
                     TestCase_SubmitDuplicateVideo_475.ChangeThemeAndSubmitDuplicateVideo(self,sel,theme,testVideoURL)
 
 # Close the browser, log errors, perform cleanup    
@@ -330,7 +330,7 @@ class TestCase_SubmitVideoWithEmbedCode_476(unittest.TestCase):
 #        sel.click(testvars.MCTestVariables["ViewMainSiteLink"])
         sel.open(testvars.MCTestVariables["TestSite"])
         sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
-        for theme in range(1,5):
+        for theme in range(1,4):
             print ""
             print "The current theme is "+str(theme)
             # Check if the video is in the current ("Approved") set of videos

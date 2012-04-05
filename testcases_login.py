@@ -27,7 +27,7 @@ class TestCase_LoginWithFacebookAccount_596(testcase_base.testcase_BaseTestCase)
 #       Log in as Admin
         loginlogout.LogInAsAdmin(self,sel)
         print "Starting tests..."
-        for theme in range(1,5):
+        for theme in range(1,4):
             print ""
             print "============================================"
             print ""
@@ -51,7 +51,7 @@ class TestCase_LoginWithTwitterAccount_597(testcase_base.testcase_BaseTestCase):
 #       Log in as Admin
         loginlogout.LogInAsAdmin(self,sel)
         print "Starting tests..."
-        for theme in range(1,5):
+        for theme in range(1,4):
             print ""
             print "============================================"
             print ""
@@ -75,7 +75,7 @@ class TestCase_LoginWithOpenIDAccount_598(testcase_base.testcase_BaseTestCase):
 #       Log in as Admin
         loginlogout.LogInAsAdmin(self,sel)
         print "Starting tests..."
-        for theme in range(1,5):
+        for theme in range(1,4):
             print ""
             print "============================================"
             print ""
@@ -98,7 +98,7 @@ class TestCase_LoginWithGoogleAccount_599(testcase_base.testcase_BaseTestCase):
 #       Log in as Admin
         loginlogout.LogInAsAdmin(self,sel)
         print "Starting tests..."
-        for theme in range(1,5):
+        for theme in range(1,4):
             print ""
             print "============================================"
             print ""
@@ -122,7 +122,7 @@ class TestCase_SignUpAndLogin_600(testcase_base.testcase_BaseTestCase):
 #       Log in as Admin
         loginlogout.LogInAsAdmin(self,sel)
         print "Starting tests..."
-        for theme in range(1,5):
+        for theme in range(1,4):
             print ""
             print "============================================"
             print ""
