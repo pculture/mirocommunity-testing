@@ -103,7 +103,7 @@ class TestCase_LoginWithGoogleAccount_599(testcase_base.testcase_BaseTestCase):
             print "Running Login with Google account test with theme: "+str(theme)
             print "Changing theme..."
             sitesettings.ChangeTheme(self,sel,theme)
-            loginlogout.LogInAsGoogleUser(self,sel,testvars.MCTestVariables["FBLogin"],testvars.MCTestVariables["FBPassword"].decode('base64'))
+            loginlogout.LogInAsGoogleUser(self,sel,testvars.MCTestVariables["TestEmail"],testvars.MCTestVariables["TestEmailPassword"].decode('base64'))
             loginlogout.LogOut(self,sel)
 
 class TestCase_SignUpAndLogin_600(testcase_base.testcase_BaseTestCase):

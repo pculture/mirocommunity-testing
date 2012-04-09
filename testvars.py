@@ -27,7 +27,7 @@ MCTestVariables = {"Browser":"*chrome", \
                    "OpenIDLogin":"PCFQA", \
                    "OpenIDPassword":"TWlyb0NvbW11bml0eQ==", \
                    "TestEmail":"pculture.qa@gmail.com", \
-                   "TestEmailPassword":"TWlyb0NvbW11bml0eQ==", \
+                   "TestEmailPassword":"VW5pdmVyc0BsU3VidGl0bGVz\n", \
                    "ListThemeLink":"/admin/themes/set_default/1", \
                    "ScrollingThemeLink":"/admin/themes/set_default/2", \
                    "CategoryThemeLink":"/admin/themes/set_default/3", \
