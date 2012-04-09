@@ -222,7 +222,7 @@ class TestCase_UpdateThumbnail_570(testcase_base.testcase_BaseTestCase):
         sel = self.selenium
 #       Log in as Admin
         loginlogout.LogInAsAdmin(self,sel)
-        for theme in range(1,4):
+        for theme in range(1,3):
             print ""
             print "============================================"
             print ""

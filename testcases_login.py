@@ -63,10 +63,8 @@ class TestCase_LoginWithTwitterAccount_597(testcase_base.testcase_BaseTestCase):
             print "Logging out from Twitter..."
             sel.open("http://www.twitter.com")
             sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
-            sel.click("css=form#signout-form a.signout-button")
-            sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
-
-
+            sel.click("css=span.caret")
+            sel.click("css=a#signout-button")
 
 class TestCase_LoginWithOpenIDAccount_598(testcase_base.testcase_BaseTestCase):
     
@@ -107,13 +105,6 @@ class TestCase_LoginWithGoogleAccount_599(testcase_base.testcase_BaseTestCase):
             sitesettings.ChangeTheme(self,sel,theme)
             loginlogout.LogInAsGoogleUser(self,sel,testvars.MCTestVariables["FBLogin"],testvars.MCTestVariables["FBPassword"].decode('base64'))
             loginlogout.LogOut(self,sel)
-            print "Logging out from Google..."
-            sel.open("http://www.gmail.com")
-            sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
-            sel.click("id=gbgs4")
-            sel.click("id=gb_71")
-            sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
-
 
 class TestCase_SignUpAndLogin_600(testcase_base.testcase_BaseTestCase):
     

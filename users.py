@@ -476,10 +476,7 @@ def ViewUserCheck(self,sel,theme,username,name,location,website,description,imag
     # Check website
     if website!="":
         print "Checking website URL..."
-        if theme == 4:
-            elementWebsite="//div[@id='link']/a"
-        else:
-            elementWebsite="//div[@id='link']/a"
+        elementWebsite="css=div#author_info div#link"
         if sel.is_element_present(elementWebsite)==False:
             mclib.AppendErrorMessage(self,sel,"Website URL not found")
         else:
@@ -496,7 +493,7 @@ def ViewUserCheck(self,sel,theme,username,name,location,website,description,imag
         if theme == 4:
             elementDescription="//div[@id='category_sidebar']/div[3]"
         else:
-            elementDescription="//div[@id='author_info']/div[3]"
+            elementDescription="css=div#author_info div:last-child"
         if sel.is_element_present(elementDescription)==False:
             mclib.AppendErrorMessage(self,sel,"User profile description not found")
         else:    
@@ -513,7 +510,7 @@ def ViewUserCheck(self,sel,theme,username,name,location,website,description,imag
         if theme == 4:
             elementImage="//div[@id='category_sidebar']/img"
         else:
-            elementImage="//div[@id='author_info']/img"
+            elementImage="css=div#author_info img"
         if sel.is_element_present(elementImage)==False:
             mclib.AppendErrorMessage(self,sel,"The image in the user profile not found")
         else:    
