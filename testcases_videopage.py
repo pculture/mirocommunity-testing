@@ -580,7 +580,7 @@ class TestCase_EmailToFriends_581(testcase_base.testcase_BaseTestCase):
         time.sleep(10)
         print "Checking the last email in the inbox..."
         mailUser = testvars.MCTestVariables["TestEmail"]
-        mailPassword = testvars.MCTestVariables["TestEmailPassword"].decode('base64')
+        mailPassword = testvars.MCTestVariables["TestEmailPassword"]
         mail = imaplib.IMAP4_SSL('imap.gmail.com', 993)
         mail.login(mailUser, mailPassword)
         mail.select('Inbox')

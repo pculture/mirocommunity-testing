@@ -21,13 +21,13 @@ MCTestVariables = {"Browser":"*chrome", \
                    "LogoutFootlink":"//ul[@id='footer_links']/li[5]/a", \
                    "FBUsername": "Pat Culture", \
                    "FBLogin":"pculture.qa@gmail.com", \
-                   "FBPassword":"TWlyb0NvbW11bml0eQ==", \
+                   "FBPassword":"MiroCommunity", \
                    "TwitterLogin":"PCFQA", \
-                   "TwitterPassword":"TWlyb0NvbW11bml0eQ==", \
+                   "TwitterPassword":"MiroCommunity", \
                    "OpenIDLogin":"PCFQA", \
-                   "OpenIDPassword":"TWlyb0NvbW11bml0eQ==", \
+                   "OpenIDPassword":"MiroCommunity", \
                    "TestEmail":"pculture.qa@gmail.com", \
-                   "TestEmailPassword":"VW5pdmVyc0BsU3VidGl0bGVz\n", \
+                   "TestEmailPassword":"Univers@lSubtitles", \
                    "ListThemeLink":"/admin/themes/set_default/1", \
                    "ScrollingThemeLink":"/admin/themes/set_default/2", \
                    "CategoryThemeLink":"/admin/themes/set_default/3", \

@@ -450,7 +450,7 @@ def LogInToFacebook(self,sel):
     sel.window_maximize()
     time.sleep(1)
     sel.type("id=email", testvars.MCTestVariables["FBLogin"])
-    sel.type("id=pass", testvars.MCTestVariables["FBPassword"].decode('base64'))
+    sel.type("id=pass", testvars.MCTestVariables["FBPassword"])
     sel.click("css=input[value='Log In']")
     sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
 
@@ -470,7 +470,7 @@ def LogInToTwitter(self,sel):
 #    sel.type("css=div.username > span.holder", testvars.MCTestVariables["TwitterLogin"])
 #    sel.type("css=div.password > span.holder", testvars.MCTestVariables["TwitterPassword"])
     sel.type("css=div.username > input", testvars.MCTestVariables["TwitterLogin"])
-    sel.type("css=div.password > input", testvars.MCTestVariables["TwitterPassword"].decode('base64'))
+    sel.type("css=div.password > input", testvars.MCTestVariables["TwitterPassword"])
     sel.click("css=div.front-signin > form.signin > fieldset.subchck > button.submit.button")
     sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
 

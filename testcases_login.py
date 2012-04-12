@@ -34,7 +34,7 @@ class TestCase_LoginWithFacebookAccount_596(testcase_base.testcase_BaseTestCase)
             print "Running Login with Facebook account test with theme: "+str(theme)
             print "Changing theme..."
             sitesettings.ChangeTheme(self,sel,theme)
-            loginlogout.LogInAsFacebookUser(self,sel,testvars.MCTestVariables["FBUsername"],testvars.MCTestVariables["FBLogin"],testvars.MCTestVariables["FBPassword"].decode('base64'))
+            loginlogout.LogInAsFacebookUser(self,sel,testvars.MCTestVariables["FBUsername"],testvars.MCTestVariables["FBLogin"],testvars.MCTestVariables["FBPassword"])
             loginlogout.LogOut(self,sel)
             print "Logging out from Facebook..."
             sel.open("http://www.facebook.com")
@@ -58,7 +58,7 @@ class TestCase_LoginWithTwitterAccount_597(testcase_base.testcase_BaseTestCase):
             print "Running Login with Twitter account test with theme: "+str(theme)
             print "Changing theme..."
             sitesettings.ChangeTheme(self,sel,theme)
-            loginlogout.LogInAsTwitterUser(self,sel,testvars.MCTestVariables["TwitterLogin"],testvars.MCTestVariables["TwitterPassword"].decode('base64'))
+            loginlogout.LogInAsTwitterUser(self,sel,testvars.MCTestVariables["TwitterLogin"],testvars.MCTestVariables["TwitterPassword"])
             loginlogout.LogOut(self,sel)
             print "Logging out from Twitter..."
             sel.open("http://www.twitter.com")
@@ -80,7 +80,7 @@ class TestCase_LoginWithOpenIDAccount_598(testcase_base.testcase_BaseTestCase):
             print "Running Login with OpenID account test with theme: "+str(theme)
             print "Changing theme..."
             sitesettings.ChangeTheme(self,sel,theme)
-            loginlogout.LogInAsOpenIDUser(self,sel,testvars.MCTestVariables["OpenIDLogin"],testvars.MCTestVariables["OpenIDPassword"].decode('base64'))
+            loginlogout.LogInAsOpenIDUser(self,sel,testvars.MCTestVariables["OpenIDLogin"],testvars.MCTestVariables["OpenIDPassword"])
             loginlogout.LogOut(self,sel)
             print "Logging out from myopenid.com..."
             sel.open("http://www.myopenid.com")
@@ -103,7 +103,7 @@ class TestCase_LoginWithGoogleAccount_599(testcase_base.testcase_BaseTestCase):
             print "Running Login with Google account test with theme: "+str(theme)
             print "Changing theme..."
             sitesettings.ChangeTheme(self,sel,theme)
-            loginlogout.LogInAsGoogleUser(self,sel,testvars.MCTestVariables["TestEmail"],testvars.MCTestVariables["TestEmailPassword"].decode('base64'))
+            loginlogout.LogInAsGoogleUser(self,sel,testvars.MCTestVariables["TestEmail"],testvars.MCTestVariables["TestEmailPassword"])
             loginlogout.LogOut(self,sel)
 
 class TestCase_SignUpAndLogin_600(testcase_base.testcase_BaseTestCase):
@@ -125,7 +125,7 @@ class TestCase_SignUpAndLogin_600(testcase_base.testcase_BaseTestCase):
             newPassword = "testpassword"
             print "Signing up as user "+newUsername
             loginlogout.SignUp(self,sel,newUsername,newPassword,testvars.MCTestVariables["TestEmail"])
-            loginlogout.ActivateUserAccount(self,sel,testvars.MCTestVariables["TestEmail"],testvars.MCTestVariables["TestEmailPassword"].decode('base64'))
+            loginlogout.ActivateUserAccount(self,sel,testvars.MCTestVariables["TestEmail"],testvars.MCTestVariables["TestEmailPassword"])
             loginlogout.LogInBasic(self,sel,newUsername,newPassword)
             # Navigating to user profile to check the user's account parameters
             print "Checking the user's profile..."

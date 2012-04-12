@@ -577,7 +577,7 @@ def PostToTwitter(self,sel,theme):
         print "Logging in to Twitter"
         sel.select_window("title=Sign in to Twitter")
         sel.type("css=form#login-form fieldset.sign-in div.row input#username_or_email.text",testvars.MCTestVariables["TwitterLogin"])
-        sel.type("css=form#login-form fieldset.sign-in div.row input#password.password",testvars.MCTestVariables["TwitterPassword"].decode('base64'))
+        sel.type("css=form#login-form fieldset.sign-in div.row input#password.password",testvars.MCTestVariables["TwitterPassword"]'))
         sel.click("css=form#login-form div.row input.submit")
         sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
     else:
