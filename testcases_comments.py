@@ -30,8 +30,6 @@ gPostCommentButton = "//p[@class='submit']/input[@name='submit']"
 global gTestPosterName
 gTestPosterName = '//input[@id="id_name"]'
 
-global gLogInButtonInPopUpWindow
-gLogInButtonInPopUpWindow = "//input[@value='Log In']"
 
 global gUserLogin
 gUserLogin = 'seleniumTestUser'
@@ -48,8 +46,6 @@ gSeleniumServerPort = testvars.MCTestVariables["Port"]
 global gTimeOut
 gTimeOut = 20
 
-global gLoginButtonInLoginPopUpWindow
-gLoginButtonInLoginPopUpWindow = "//input[@value='Log In']"
 
 
 class ThemeStruct:
@@ -134,20 +130,8 @@ def generateComment():
     return comment
 
 #function which performs login with given Login and Password
-def LogIn(sel, Login, Password):
-    sel.open("/")
-    sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
-    sel.click("link=Login")
-    if (not WaitUntilElementOnTheScreen(sel, gLoginButtonInLoginPopUpWindow, gTimeOut)):
-        return False
-    sel.window_maximize()
-    sel.click("id_username")
-    sel.type("id_username", Login)
-    sel.click("id_password")
-    sel.type("id_password", Password)
-    sel.click(gLoginButtonInLoginPopUpWindow)
-    sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
-    sel.open("/")
+def LogIn(sel, username, password):
+    loginlogout.LogInBasic(self,sel, username, password)
     return True
 
 #changes additional setting(page has to be opened prior to function's call)

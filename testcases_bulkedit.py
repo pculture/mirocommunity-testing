@@ -336,20 +336,9 @@ def WaitUntilElementOnTheScreen(sel, inElement, inTime):
     return False
 
 #function which performs login with given Login and Password
-def LogIn(sel, Login, Password):
-    sel.open("/")
-    sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
-    sel.click(gLinkLogin)
-    if (not WaitUntilElementOnTheScreen(sel, gLoginButtonInLoginPopUpWindow, gTimeOut)):
-        return False
-    sel.window_maximize()
-    sel.type("id_username", Login)
-    sel.type("id_password", "")
-    sel.type("id_password", Password)
-    sel.click(gLoginButtonInLoginPopUpWindow)
-    sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
+def LogIn(sel, username, password):
+    loginlogout.LogInBasic(self,sel, username, password)
     return True
-    
 
 #as setUp() and tearDown() are the same for all test cases we have a good reason to inlude them into one base class
 class testcase_BaseTestCase(unittest.TestCase):
