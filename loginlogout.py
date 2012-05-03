@@ -33,7 +33,7 @@ import unittest, time, re, testvars, mclib
 
 # This subroutine logs in to MC site with <username>-<password> credentials
 
-def LogInBasic(self,sel,username,password):
+def LogInBasic(sel, username, password):
     sel.set_timeout(testvars.MCTestVariables["TimeOut"])
     sel.open(testvars.MCTestVariables["LoginPage"])
     sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])

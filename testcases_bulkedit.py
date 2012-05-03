@@ -337,7 +337,7 @@ def WaitUntilElementOnTheScreen(sel, inElement, inTime):
 
 #function which performs login with given Login and Password
 def LogIn(sel, username, password):
-    loginlogout.LogInBasic(self,sel, username, password)
+    loginlogout.LogInBasic(sel, username, password)
     return True
 
 #as setUp() and tearDown() are the same for all test cases we have a good reason to inlude them into one base class
