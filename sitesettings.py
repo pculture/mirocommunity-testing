@@ -1,7 +1,6 @@
 # Module SITESETTINGS.PY
 # includes:
 #   * subroutine ChangeTheme(self,sel,theme) - sets the desired theme
-#   * function ThemeScanner(self,sel,theme) - detects the currently set theme
 #   * subroutine EditSiteTitle(self,sel,theme,newtitle) - changes the site title to <newtitle>
 #   * subroutine EditSiteTagline(self,sel,theme,newtagline) - changes the site tagline to <newtagline>
 #   * subroutine EditAboutUs(self,sel,theme,newabouttext) - changes About Us text to <newabouttext>
@@ -57,16 +56,8 @@ def NavigateToSettingsPage(self,sel):
 # 4 - blue theme
 
 def ChangeTheme(self,sel,theme):
-    if theme==1:
-        sel.open(testvars.MCTestVariables["ListThemeLink"])
-    elif theme==2:
-        sel.open(testvars.MCTestVariables["ScrollingThemeLink"])
-    elif theme==3:
-        sel.open(testvars.MCTestVariables["CategoryThemeLink"])
-    elif theme==4:
-        sel.open(testvars.MCTestVariables["BlueThemeLink"])
-    else:
-        self.verificationErrors.append("Incorrect theme passed to ChangeTheme subroutine. theme="+str(theme))
+    #only testing with the default theme from now on.
+    sel.open(testvars.MCTestVariables["ListThemeLink"])
 
 
 # =======================================
@@ -80,19 +71,6 @@ def ChangeTheme(self,sel,theme):
 # 3 - category theme
 # 4 - blue theme
 
-def ThemeScanner(self,sel):
-    res=0
-    if sel.is_element_present("//div[@id='slider2']")==True:
-        if sel.get_text("//div[@id='content']/div[2]/div")=="Categories":
-            res=3
-        else:
-            res=2
-    elif sel.is_element_present("//div[@id='chained']")==True:
-        res=4
-    else:
-        res=1
-    return res
-    
 # ===================================
 # =          EDIT SITE TITLE        =
 # ===================================
@@ -505,42 +483,16 @@ time.strftime("%d-%m-%Y %H:%M:%S", time.localtime())
     sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
     #SideBarBlurb is displayed only on List Theme (No.1)
     elementSideBarBlurb="about"
-    if theme==1:
-        if sel.is_element_present(elementSideBarBlurb)==True:
-            if mclib.remove_html_tags(sel.get_text(elementSideBarBlurb))!=mclib.remove_html_tags(vSideBarBlurb):
-                self.verificationErrors.append("Wrong SideBar blurb text on the Main site.")
-                print testvars.preE+"Wrong SideBar blurb text the Main site"
-                print "Expected text is " + mclib.remove_html_tags(vSideBarBlurb)
-                print "- Actual text is "+mclib.remove_html_tags(sel.get_text(elementSideBarBlurb))
-        else:
-            self.verificationErrors.append("SideBar blurb is not present on the Main site")
-            print testvars.preE+"SideBar blurb is not present on the Main site"
-
-    #SideBarBlurb is displayed only on Blue Theme (No.4)
-    elementFooterBlurb="//div[@id='footer']/div[1]"
-    if theme==4:
-        if sel.is_element_present(elementFooterBlurb)==True:
-            if mclib.remove_html_tags(sel.get_text(elementFooterBlurb))!=mclib.remove_html_tags(vFooterBlurb):
-                self.verificationErrors.append("Wrong Footer blurb text on the Main site.")
-                print testvars.preE+"Wrong Footer blurb text the Main site"
-                print "Expected text is " + mclib.remove_html_tags(vFooterBlurb)
-                print "- Actual text is "+mclib.remove_html_tags(sel.get_text(elementFooterBlurb))
-        else:
-            self.verificationErrors.append("Footer blurb is not present on the Main site")
-            print testvars.preE+"Footer blurb is not present on the Main site"
-    
+    if sel.is_element_present(elementSideBarBlurb)==True:
+        if mclib.remove_html_tags(sel.get_text(elementSideBarBlurb))!=mclib.remove_html_tags(vSideBarBlurb):
+            self.verificationErrors.append("Wrong SideBar blurb text on the Main site.")
+            print testvars.preE+"Wrong SideBar blurb text the Main site"
+            print "Expected text is " + mclib.remove_html_tags(vSideBarBlurb)
+            print "- Actual text is "+mclib.remove_html_tags(sel.get_text(elementSideBarBlurb))
 # Check at the About page
     sel.open("/about/")
-    if theme==4:
-        if sel.is_element_present(elementFooterBlurb)==True:
-            if mclib.remove_html_tags(sel.get_text(elementFooterBlurb))!=mclib.remove_html_tags(vFooterBlurb):
-                self.verificationErrors.append("Wrong Footer blurb text on About page.")
-                print testvars.preE+"Wrong Footer blurb text on About page"
-                print "Expected text is About " + mclib.remove_html_tags(vFooterBlurb)
-                print "- Actual text is "+mclib.remove_html_tags(sel.get_text(elementFooterBlurb))
-        else:
-            self.verificationErrors.append("Footer blurb is not present on About page")
-            print testvars.preE+"Footer blurb is not present on About page"
+    self.verificationErrors.append("Footer blurb is not present on About page")
+    print testvars.preE+"Footer blurb is not present on About page"
 
 
 # ===================================
@@ -583,15 +535,8 @@ def UploadSiteLogo(self,sel,theme,newlogo):
     sel.open(testvars.MCTestVariables["TestSite"])
     sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
     # This image is not available in Blue Theme (No.4)
-    if theme!=4:
-        if sel.is_element_present("//div[@id='logo']/a/img")==False:
-            mclib.AppendErrorMessage(self,sel,"Site logo on Home page not found")
-        else:
-            logoAttr = sel.get_attribute("//div[@id='logo']/a/img@src")
-            if logoAttr.find(lll)==-1:
-                mclib.AppendErrorMessage(self,sel,"Wrong site logo image on Home page")
-                print "Expected image source:"+testvars.MCTestVariables["SiteLogoURL"]+"/"+newlogo
-                print "- Actual image source:"+logoAttr
+    if sel.is_element_present("//div[@id='logo']/a/img")==False:
+        mclib.AppendErrorMessage(self,sel,"Site logo on Home page not found")
     # Navigate to About page
     print "Checking site logo image on About page"
     sel.open("/about")

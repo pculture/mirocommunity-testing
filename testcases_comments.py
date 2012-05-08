@@ -537,37 +537,19 @@ class testcase_BaseComments(testcase_BaseTestCase):
         sel=self.selenium
         self.SetParams()
         self.ChangeSiteSettings()
-        for item in gAllThemes:
-            print ""
-            if item==gListTheme:
-                theme="LIST"
-                themeNo=1
-            elif item==gScrollingTheme:
-                theme="SCROLLING"
-                themeNo=2
-            elif item==gCategoryTheme:
-                theme="CATEGORY"
-                themeNo=3
-            elif item==gBlueTheme:
-                theme="BLUE"
-                themeNo=4
-            else:
-                theme="Unknown"
-                themeNo=1
-            print "Running test case in theme: "+theme
-            self.themeToTest=item
-            loginlogout.LogInAsAdmin(self,sel)
-            sitesettings.ChangeTheme(self,sel,themeNo)
-            loginlogout.LogOut(self,sel)
-            if self.NotLoggetTest:
-                print "Starting test for UNLOGGED USER"
-                self.NotLoggetTest()
-            if self.UserTest:
-                print "Starting test for LOGGED USER"
-                self.UserTest()
-            if self.AdminTest:
-                print "Starting test for ADMIN"
-                self.AdminTest()
+        theme="LIST"
+        themeNo=1
+        print "Running test case in theme: "+theme
+        self.themeToTest=item
+        if self.NotLoggetTest:
+            print "Starting test for UNLOGGED USER"
+            self.NotLoggetTest()
+        if self.UserTest:
+            print "Starting test for LOGGED USER"
+            self.UserTest()
+        if self.AdminTest:
+            print "Starting test for ADMIN"
+            self.AdminTest()
 
 
     def logTestDescription(self):

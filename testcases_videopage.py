@@ -66,7 +66,7 @@ class TestCase_FeatureVideo_566(testcase_base.testcase_BaseTestCase):
         print "Unfeaturing all the videos..."
         TestCase_FeatureVideo_566.UnfeatureAllVideos(self,sel)
         print "Starting tests..."
-        for theme in range(1,4):
+        for theme in range(1,2):
             print ""
             print "============================================"
             print ""
@@ -107,7 +107,7 @@ class TestCase_UnfeatureVideo_567(testcase_base.testcase_BaseTestCase):
         print "Featuring a few videos..."
         TestCase_UnfeatureVideo_567.FeatureSomeVideos(self,sel)
         print "Starting tests..."
-        for theme in range(1,4):
+        for theme in range(1,2):
             print ""
             print "============================================"
             print ""
@@ -135,7 +135,7 @@ class TestCase_RejectVideo_568(testcase_base.testcase_BaseTestCase):
         sel = self.selenium
 #       Log in as Admin
         loginlogout.LogInAsAdmin(self,sel)
-        for theme in range(1,4):
+        for theme in range(1,2):
             print ""
             print "============================================"
             print ""
@@ -162,7 +162,7 @@ class TestCase_ApproveVideo_569(testcase_base.testcase_BaseTestCase):
         sel = self.selenium
 #       Log in as Admin
         loginlogout.LogInAsAdmin(self,sel)
-        for theme in range(1,4):
+        for theme in range(1,2):
             print ""
             print "============================================"
             print ""
@@ -261,7 +261,7 @@ class TestCase_EditTitleInline_571(testcase_base.testcase_BaseTestCase):
         sel = self.selenium
 #       Log in as Admin
         loginlogout.LogInAsAdmin(self,sel)
-        for theme in range(1,4):
+        for theme in range(1,2):
             print ""
             print "============================================"
             print ""
@@ -293,7 +293,7 @@ class TestCase_EditPublicationDate_572(testcase_base.testcase_BaseTestCase):
         loginlogout.LogInAsAdmin(self,sel)
         # Check Use Original Date check box on Settings page
         sitesettings.CheckUseOriginalDate(self,sel)
-        for theme in range(1,4):
+        for theme in range(1,2):
             print ""
             print "============================================"
             print ""
@@ -322,7 +322,7 @@ class TestCase_EditAuthor_573(testcase_base.testcase_BaseTestCase):
         sel = self.selenium
 #       Log in as Admin
         loginlogout.LogInAsAdmin(self,sel)
-        for theme in range(1,4):
+        for theme in range(1,2):
             print ""
             print "============================================"
             print ""
@@ -361,7 +361,7 @@ class TestCase_EditDescription_574(testcase_base.testcase_BaseTestCase):
         sel = self.selenium
 #       Log in as Admin
         loginlogout.LogInAsAdmin(self,sel)
-        for theme in range(1,4):
+        for theme in range(1,2):
             print ""
             print "============================================"
             print ""
@@ -389,7 +389,7 @@ class TestCase_EditCategory_575(testcase_base.testcase_BaseTestCase):
         sel = self.selenium
 #       Log in as Admin
         loginlogout.LogInAsAdmin(self,sel)
-        for theme in range(1,4):
+        for theme in range(1,2):
             print ""
             print "============================================"
             print ""
@@ -417,7 +417,7 @@ class TestCase_EditTags_576(testcase_base.testcase_BaseTestCase):
         sel = self.selenium
 #       Log in as Admin
         loginlogout.LogInAsAdmin(self,sel)
-        for theme in range(1,4):
+        for theme in range(1,2):
             print ""
             print "============================================"
             print ""
@@ -444,7 +444,7 @@ class TestCase_EditWebsite_577(testcase_base.testcase_BaseTestCase):
         sel = self.selenium
 #       Log in as Admin
         loginlogout.LogInAsAdmin(self,sel)
-        for theme in range(1,4):
+        for theme in range(1,2):
             print ""
             print "============================================"
             print ""
@@ -508,7 +508,7 @@ class TestCase_PostToFacebook_579(testcase_base.testcase_BaseTestCase):
         loginlogout.LogInToFacebook(self,sel)
 #       Log in as Admin
         loginlogout.LogInAsAdmin(self,sel)
-        for theme in range(1,4):
+        for theme in range(1,2):
             print ""
             print "============================================"
             print ""
@@ -554,7 +554,7 @@ class TestCase_PostToTwitter_580(testcase_base.testcase_BaseTestCase):
         print "Done"
 #       Log in as Admin
         loginlogout.LogInAsAdmin(self,sel)
-        for theme in range(1,4):
+        for theme in range(1,2):
             print ""
             print "============================================"
             print ""
@@ -613,7 +613,7 @@ class TestCase_EmailToFriends_581(testcase_base.testcase_BaseTestCase):
         sel = self.selenium
 #       Log in as Admin
         loginlogout.LogInAsAdmin(self,sel)
-        for theme in range(1,4):
+        for theme in range(1,2):
             print ""
             print "============================================"
             print ""
@@ -643,7 +643,7 @@ class TestCase_AddToPlaylist_582(testcase_base.testcase_BaseTestCase):
         loginlogout.LogInAsAdmin(self,sel)
         # Ensure that playlists are enabled
         sitesettings.EnablePlaylists(self,sel,"Yes")
-        for theme in range(1,4):
+        for theme in range(1,2):
             print ""
             print "============================================"
             print ""
@@ -672,7 +672,7 @@ class TestCase_DeleteComment_583(testcase_base.testcase_BaseTestCase):
         sel = self.selenium
 #       Log in as Admin
         loginlogout.LogInAsAdmin(self,sel)
-        for theme in range(1,4):
+        for theme in range(1,2):
             print ""
             print "============================================"
             print ""
