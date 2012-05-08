@@ -33,7 +33,7 @@ import unittest, time, re, testvars, mclib
 
 # This subroutine logs in to MC site with <username>-<password> credentials
 
-def LogInBasic(sel, username, password):
+def LogInBasic(self, sel, username, password):
     sel.set_timeout(testvars.MCTestVariables["TimeOut"])
     sel.open(testvars.MCTestVariables["LoginPage"])
     sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
@@ -70,7 +70,7 @@ def LogInBasic(sel, username, password):
 # This subroutine logs in to MC site with AdminLogin and AdminPassword
 
 def LogInAsAdmin(self,sel):
-    LogInBasic(self,sel,testvars.MCTestVariables["AdminLogin"],testvars.MCTestVariables["AdminPassword"])
+    LogInBasic(sel, testvars.MCTestVariables["AdminLogin"],testvars.MCTestVariables["AdminPassword"])
 #    self.assertTrue(sel.is_text_present("View Admin"))
     try: self.failUnless(sel.is_text_present("View Admin"))
     except AssertionError, e:
@@ -87,7 +87,7 @@ def LogInAsAdmin(self,sel):
 # This subroutine logs in to MC site with UserLogin and UserPassword
 
 def LogInAsUser(self,sel):
-    bLoggedIn = LogInBasic(self,sel,testvars.MCTestVariables["UserLogin"],testvars.MCTestVariables["UserPassword"])
+    bLoggedIn = LogInBasic(sel,testvars.MCTestVariables["UserLogin"],testvars.MCTestVariables["UserPassword"])
 #    self.assertTrue(sel.is_text_present("View Admin"))
     try: self.failUnless(bLoggedIn==True)
     except AssertionError, e:
