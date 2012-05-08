@@ -45,22 +45,12 @@ def LogInBasic(self, sel, username, password):
     sel.click("id_password")
     sel.type("id_password", password)
     time.sleep(1)
-    sel.click("css=.title:contains('Please Sign In')")
+    sel.click("css=form div.controls button")
     time.sleep(7)
 #    sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
     mclib.wait_for_element_present(self, sel, testvars.MCTestVariables["LogoutFootlink"])
- 
-    if sel.is_element_present(testvars.MCTestVariables["LogoutFootlink"])==True:
-        currentUser = sel.get_text(testvars.MCTestVariables["LogoutFootlink"])
-        if currentUser.find(username)!=-1:
-            print "Logged in as "+username
-            return True
-        else:
-            mclib.AppendErrorMessage(self,sel,"Attempted to login as "+username+". Could not verify successful logon")
-            return False
-    else:
-        mclib.AppendErrorMessage(self,sel,"Could not find Logout link on page.")
-        return True
+    if sel.is_element_present(testvars.MCTestVariables["LogoutFootlink"]):
+        return True 
 
 
 # ===================================
@@ -70,9 +60,9 @@ def LogInBasic(self, sel, username, password):
 # This subroutine logs in to MC site with AdminLogin and AdminPassword
 
 def LogInAsAdmin(self,sel):
-    LogInBasic(sel, testvars.MCTestVariables["AdminLogin"],testvars.MCTestVariables["AdminPassword"])
+    LogInBasic(self, sel, testvars.MCTestVariables["AdminLogin"],testvars.MCTestVariables["AdminPassword"])
 #    self.assertTrue(sel.is_text_present("View Admin"))
-    try: self.failUnless(sel.is_text_present("View Admin"))
+    try: self.failUnless(sel.is_text_present("Admin"))
     except AssertionError, e:
         self.verificationErrors.append("Not logged in as Selenium Test Administrator")
         self.failIf(True)
@@ -87,7 +77,7 @@ def LogInAsAdmin(self,sel):
 # This subroutine logs in to MC site with UserLogin and UserPassword
 
 def LogInAsUser(self,sel):
-    bLoggedIn = LogInBasic(sel,testvars.MCTestVariables["UserLogin"],testvars.MCTestVariables["UserPassword"])
+    bLoggedIn = LogInBasic(self, sel,testvars.MCTestVariables["UserLogin"],testvars.MCTestVariables["UserPassword"])
 #    self.assertTrue(sel.is_text_present("View Admin"))
     try: self.failUnless(bLoggedIn==True)
     except AssertionError, e:

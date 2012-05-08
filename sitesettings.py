@@ -99,7 +99,7 @@ def EditSiteTitle(self,sel,theme,newtitle):
     # --------- End of workaround insert
             print "Changed site title to: "+newtitle
            # Check that the TITLE in the admin interface is present, visible and correct
-            elementTitle="//div[@id='logo']/a/span"
+            elementTitle="css=.site_name"
             print "Checking site title in the administrator interface..."
             if sel.is_element_present(elementTitle)==False:
                 mclib.AppendErrorMessage(self,sel,"Title is not present in the Administrator interface")
@@ -113,14 +113,10 @@ def EditSiteTitle(self,sel,theme,newtitle):
                 print "OK"
         
 # Click View Main Site
-            #sel.click(testvars.MCTestVariables["ViewMainSiteLink"])
+            elementTitle="css=.site-name"
             sel.open(testvars.MCTestVariables["TestSite"])
             sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
 # Check that the TITLE on the main site is present, visible and correct
-            if theme==4:
-                elementTitle="//div[@id='wrapper']/div[1]/div/div[1]/h1/a"
-            else:
-                elementTitle="//div[@id='logo']/h1/a/span"
             if sel.is_element_present(elementTitle)==False:
                 mclib.AppendErrorMessage(self,sel,"Title is not present on the main site")
             elif sel.is_visible(elementTitle)==False:
