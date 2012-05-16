@@ -18,7 +18,7 @@ MCTestVariables = {"Browser":"*chrome", \
                    "UserLogin":"seleniumTestUser", \
                    "UserPassword":"selenium", \
                    "UserName":"selene test-user", \
-                   "LogoutFootlink":"css=li.footer-nav-item.nav-logout", \
+                   "LogoutFootlink":"css=ul#footer_links li[href*='/accounts/logout']", \
                    "FBUsername": "Pat Culture", \
                    "FBLogin":"pculture.qa@gmail.com", \
                    "FBPassword":"MiroCommunity", \
