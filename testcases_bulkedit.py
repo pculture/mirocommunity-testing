@@ -335,10 +335,6 @@ def WaitUntilElementOnTheScreen(sel, inElement, inTime):
         ltime = ltime + 1
     return False
 
-#function which performs login with given Login and Password
-def LogIn(sel, username, password):
-    loginlogout.LogInBasic(sel, username, password)
-    return True
 
 #as setUp() and tearDown() are the same for all test cases we have a good reason to inlude them into one base class
 class testcase_BaseTestCase(unittest.TestCase):
@@ -348,9 +344,6 @@ class testcase_BaseTestCase(unittest.TestCase):
         self.selenium = selenium("localhost", gSeleniumServerPort, testvars.MCTestVariables["Browser"], testvars.MCTestVariables["TestSite"])
         self.selenium.start()
         self.selenium.set_timeout(testvars.MCTestVariables["TimeOut"])
-
-    def test_case(self):
-        return 1
 
     def tearDown(self):
         self.selenium.stop()
@@ -362,7 +355,7 @@ class testcase_BaseClassForBulkEdit(testcase_BaseTestCase):
     #Logins as Admin and goes to View Admin page
     def LoginAsAdminSetThemeGoToViewAdmin(self):
         sel = self.selenium
-        LogIn(sel, testvars.MCTestVariables["AdminLogin"], testvars.MCTestVariables["AdminPassword"])
+        loginlogout.LogInBasic(self, sel, testvars.MCTestVariables["AdminLogin"], testvars.MCTestVariables["AdminPassword"])
         sel.open(testvars.MCTestVariables["ListThemeLink"])
         sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
 #        sel.click(gVideosSectionOnAdminPage)
@@ -1147,7 +1140,7 @@ class testcase_BulkEdit_SortByTitle_454(testcase_BaseClassForBulkEdit):
         
         sel = self.selenium
         print "Loging in..."
-        LogIn(sel, testvars.MCTestVariables["AdminLogin"], testvars.MCTestVariables["AdminPassword"])
+        loginlogout.LogInBasic(self, sel, testvars.MCTestVariables["AdminLogin"], testvars.MCTestVariables["AdminPassword"])
         WaitUntilElementOnTheScreen(sel, gViewAdmin, gTimeOut)
         print "Cliking 'View Admin' link..."
         sel.click(gViewAdmin)
