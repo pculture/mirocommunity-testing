@@ -45,7 +45,7 @@ def LogInBasic(self, sel, username, password):
     sel.click("id_password")
     sel.type("id_password", password)
     time.sleep(1)
-    sel.click("css=div.left input.button")
+    sel.click("css=div.controls button")
     time.sleep(7)
 #    sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
     mclib.wait_for_element_present(self, sel, testvars.MCTestVariables["LogoutFootlink"])
