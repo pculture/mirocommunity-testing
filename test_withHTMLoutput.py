@@ -167,10 +167,10 @@ class Test_HTMLTestRunner(unittest.TestCase):
 #-RESTORE-CATEGORIES---------------------------------------------
             unittest.defaultTestLoader.loadTestsFromTestCase(testcases_categories.TestCase_RestoreAllCategories),
 #-COMMENTS-------------------------------------------------------
-            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_comments.testcase_Comments_NoModeration_NoLogin_254),
-            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_comments.testcase_Comments_NoModeration_LoginRequired_256),
-            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_comments.testcase_Comments_ModerationRequired_NoLogin_541),
-            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_comments.testcase_Comments_ModerationRequired_LoginRequired_542),
+#            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_comments.testcase_Comments_NoModeration_NoLogin_254),
+#            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_comments.testcase_Comments_NoModeration_LoginRequired_256),
+#            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_comments.testcase_Comments_ModerationRequired_NoLogin_541),
+#            unittest.defaultTestLoader.loadTestsFromTestCase(testcases_comments.testcase_Comments_ModerationRequired_LoginRequired_542),
 #-PLAYLISTS------------------------------------------------------
             unittest.defaultTestLoader.loadTestsFromTestCase(testcases_playlists.TestCase_DisablePlaylists_550),
             unittest.defaultTestLoader.loadTestsFromTestCase(testcases_playlists.TestCase_EnablePlaylistsForAdmins_551),
