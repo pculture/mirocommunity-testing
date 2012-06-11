@@ -311,7 +311,8 @@ class TestCase_CreateNewUserWithoutPassword_273(unittest.TestCase):
             sel.click("id_username")
             sel.type("id_username", username)
             time.sleep(1)
-            sel.click("css=.title:contains('Please Sign In')")
+            sel.click("css=input.button[type='submit']")
+
             sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
             if sel.is_text_present("This field is required.") and sel.is_element_present(testvars.MCTestVariables["LogoutFootlink"])==False:
                 print "Could not login as a 'non-human' (passwordless) user. TEST PASSED"

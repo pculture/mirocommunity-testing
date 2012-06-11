@@ -134,7 +134,7 @@ def SignUp(self,sel,username,password,email):
     sel.click("id_password")
     sel.type("id_password", password)
     time.sleep(1)
-    sel.click("css=.title:contains('Please Sign In')")
+    sel.click("css=input.button[type='submit']")
     time.sleep(7)
     if sel.is_text_present("This account is inactive.")==False:
         mclib.AppendErrorMessage(self,sel,"The expected error message (account inactive) was not found.")
@@ -444,7 +444,7 @@ def LogInToFacebook(self,sel):
     time.sleep(1)
     sel.type("id=email", testvars.MCTestVariables["FBLogin"])
     sel.type("id=pass", testvars.MCTestVariables["FBPassword"])
-    sel.click("css=.title:contains('Please Sign In')")
+    sel.click("css=input.button[type='submit']")
 
     sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
 
