@@ -154,11 +154,7 @@ class TestCase_RejectPage_484(unittest.TestCase):
 #                sel.click(testvars.MCTestVariables["ViewMainSiteLink"])
                 sel.open(testvars.MCTestVariables["TestSite"])
                 sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
-                theme = sitesettings.ThemeScanner(self,sel)
-                if theme==4:
-                    sel.click(testvars.MCTestVariables["ViewAdminBlueTheme"])
-                else:
-                    sel.click(testvars.MCTestVariables["ViewAdmin"])
+                sel.click(testvars.MCTestVariables["ViewAdmin"])
                 sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
             else:
                 print "None__________None"
@@ -208,11 +204,7 @@ class TestCase_ClearQueue_511(unittest.TestCase):
 #                sel.click(testvars.MCTestVariables["ViewMainSiteLink"])
                 sel.open(testvars.MCTestVariables["TestSite"])
                 sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
-                theme = sitesettings.ThemeScanner(self,sel)
-                if theme==4:
-                    sel.click(testvars.MCTestVariables["ViewAdminBlueTheme"])
-                else:
-                    sel.click(testvars.MCTestVariables["ViewAdmin"])
+                sel.click(testvars.MCTestVariables["ViewAdmin"])
                 sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
             else:
                 print "None__________None"

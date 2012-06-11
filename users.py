@@ -415,7 +415,6 @@ def ViewUser(self,sel,username,name,location,website,description,image):
 #    sel.click(testvars.MCTestVariables["ViewMainSiteLink"])
     sel.open(testvars.MCTestVariables["TestSite"])
     sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
-    theme = sitesettings.ThemeScanner(self,sel)
     # Return back to /admin/users page and attempt to view the user's page
     sel.open(testvars.MCTestVariables["UserPage"])
     sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
@@ -430,7 +429,7 @@ def ViewUser(self,sel,username,name,location,website,description,image):
             sel.click(elementView)
             sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
             # Check that username and proper name are correct
-            ViewUserCheck(self,sel,theme,username,name,location,website,description,image)
+            ViewUserCheck(self,sel,username,name,location,website,description,image)
     else:
         mclib.AppendErrorMessage(self,sel,"Could not find user "+username)
 
@@ -441,14 +440,11 @@ def ViewUser(self,sel,username,name,location,website,description,image):
 #
 # <image> should be a file name without a path
 
-def ViewUserCheck(self,sel,theme,username,name,location,website,description,image):
+def ViewUserCheck(self,sel,username,name,location,website,description,image):
 #    print "***********DEBUG: theme "+str(theme)
     # Check username
     print "Checking username and proper name..."
-    if theme == 4:
-        elementName="//div[@id='category_sidebar']/h1"
-    else:
-        elementName="//div[@id='author_info']/h1"
+    elementName="//div[@id='author_info']/h1"
     if sel.is_element_present(elementName)==False:
         mclib.AppendErrorMessage(self,sel,"Username not found")
     else:
@@ -490,10 +486,7 @@ def ViewUserCheck(self,sel,theme,username,name,location,website,description,imag
     # Check profile description
     if description!="":
         print "Checking user profile description..."
-        if theme == 4:
-            elementDescription="//div[@id='category_sidebar']/div[3]"
-        else:
-            elementDescription="css=div#author_info div:last-child"
+        elementDescription="css=div#author_info div:last-child"
         if sel.is_element_present(elementDescription)==False:
             mclib.AppendErrorMessage(self,sel,"User profile description not found")
         else:    
@@ -507,10 +500,7 @@ def ViewUserCheck(self,sel,theme,username,name,location,website,description,imag
     # Check profile image
     if image!="":
         print "Checking the image in the user profile..."
-        if theme == 4:
-            elementImage="//div[@id='category_sidebar']/img"
-        else:
-            elementImage="css=div#author_info img"
+        elementImage="css=div#author_info img"
         if sel.is_element_present(elementImage)==False:
             mclib.AppendErrorMessage(self,sel,"The image in the user profile not found")
         else:    

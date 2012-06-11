@@ -526,18 +526,11 @@ class TestCase_EditUserProfile_539(unittest.TestCase):
         description = "Miro Community QA"
         photo = "photo5.jpg"
         email = "user2@test.com"
-        # Detect current theme
-#        sel.click(testvars.MCTestVariables["ViewMainSiteLink"])
-        sel.open(testvars.MCTestVariables["TestSite"])
-        sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
-        theme = sitesettings.ThemeScanner(self,sel)
-        print "Logging out..."
-        loginlogout.LogOut(self,sel)
         print "Log in as "+username
         loginlogout.LogInBasic(self,sel,username,password)
         print "Editing the profile for "+username
         users.EditUserProfile(self,sel,name,newusername,email,location,website,os.path.join(testvars.MCTestVariables["GraphicFilesDirectory"],photo),description)
-        users.ViewUserCheck(self,sel,theme,username,name,location,website,description,photo)
+        users.ViewUserCheck(self,sel,username,name,location,website,description,photo)
 # Close the browser, log errors, perform cleanup   
     def tearDown(self):
         self.selenium.stop()
@@ -562,19 +555,10 @@ class TestCase_ViewProfile_540(unittest.TestCase):
         location = "PCF" 
         website = "http://www.seleniumhq.org/" 
         image = "nest-test.jpg"
-        print "Viewing user profile in different themes"
-        for theme in range(1,2):
-            print ""
-            print "====== theme "+str(theme)
-            # Change theme
-            loginlogout.LogInAsAdmin(self,sel)
-            sitesettings.ChangeTheme(self,sel,theme)
-            loginlogout.LogOut(self,sel)
-            # Log in as user
             loginlogout.LogInAsUser(self,sel)
             print "Checking profile"
             users.ViewProfile(self,sel)
-            users.ViewUserCheck(self,sel,theme,username,name,location,website,description,image)
+            users.ViewUserCheck(self,sel,username,name,location,website,description,image)
             loginlogout.LogOut(self,sel)
 # Close the browser, log errors, perform cleanup   
     def tearDown(self):
