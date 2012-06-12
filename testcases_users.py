@@ -556,11 +556,11 @@ class TestCase_ViewProfile_540(unittest.TestCase):
         location = "PCF" 
         website = "http://www.seleniumhq.org/" 
         image = "nest-test.jpg"
-            loginlogout.LogInAsUser(self,sel)
-            print "Checking profile"
-            users.ViewProfile(self,sel)
-            users.ViewUserCheck(self,sel,username,name,location,website,description,image)
-            loginlogout.LogOut(self,sel)
+        loginlogout.LogInAsUser(self,sel)
+        print "Checking profile"
+        users.ViewProfile(self,sel)
+        users.ViewUserCheck(self,sel,username,name,location,website,description,image)
+        loginlogout.LogOut(self,sel)
 # Close the browser, log errors, perform cleanup   
     def tearDown(self):
         self.selenium.stop()
