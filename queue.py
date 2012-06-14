@@ -290,7 +290,7 @@ def RejectVideoPage(self,sel,page):
 #            if newResult==False:
 #                mclib.AppendErrorMessage(self,sel,"Could not find video "+item+" in the list of rejected videos.")
 #            sel.click(testvars.MCUI["AdminReviewQueue"])
-#            sel.open("http://dalmatia.mirocommunity.org/admin/bulk_edit")
+#            sel.open("http://dalmatia.dev.mirocommunity.org/admin/bulk_edit")
 #            sel.click(testvars.MCTestVariables["ViewMainSiteLink"])
 #            sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
 #            loginlogout.LogOut(self,sel)

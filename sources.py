@@ -246,7 +246,7 @@ def SearchForVideos(self,sel,searchterm,sortby):
                 print "Checking the URL of the page with query results..."
 #                searchtermSlug = searchterm.replace(" ","+")
 #                print searchtermSlug
-#                expectedURL = "http://dalmatia.mirocommunity.org/admin/manage/search/?query="+urllib.quote(searchtermSlug.encode('utf-8'))
+#                expectedURL = "http://dalmatia.dev.mirocommunity.org/admin/manage/search/?query="+urllib.quote(searchtermSlug.encode('utf-8'))
 #                print urllib.quote(searchtermSlug.encode('utf-8'))
                 searchtermSlug = urllib.quote(searchterm.encode('utf-8'))
 #                expectedURL = testvars.MCTestVariables["TestSite"]+"admin/manage/search/?category=&author=&q="+searchtermSlug.replace("%20","+")
