@@ -113,7 +113,7 @@ def SignUp(self,sel,username,password,email):
     sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
     sel.window_maximize()
     time.sleep(1)
-    sel.type("css=div.right #id_username")
+    sel.type("css=div.right #id_username", username )
     sel.type("css=div.right #id_email", email)
     sel.type("css=div.right #id_password1", password)
     sel.type("css=div.right #id_password2", password)
