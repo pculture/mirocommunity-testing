@@ -41,8 +41,8 @@ class TestCase_AddSourceFeed_257(unittest.TestCase):
         # Check if the source exists. If yes, delete it
         # source = "Al Jazeera Arts World - Video"
         # sourceURL = "http://feeds2.feedburner.com/video/artsworld"
-        source = "Alaska HDTV | Discover the Great Land"
-        sourceURL = "http://feeds.feedburner.com/alaskapodshow"
+        source = "Reel Science"
+        sourceURL = "http://blip.tv/reelscience"
         currentSourceLocation = sources.SourceLocation(self,sel,source)
 #        if currentSourceLocation!=[0,0]:
         sources.DeleteSource(self,sel,source)
@@ -70,7 +70,7 @@ class TestCase_AddDuplicateFeed_258(unittest.TestCase):
         sel = self.selenium
         loginlogout.LogInAsAdmin(self,sel)
         #sourceURL = "http://feeds2.feedburner.com/video/artsworld"
-        sourceURL = "http://feeds.feedburner.com/alaskapodshow"
+        sourceURL = "http://blip.tv/reelscience"
         sources.AddDuplicateSource(self,sel,sourceURL)
 
 # Close the browser, log errors, perform cleanup    
@@ -143,8 +143,8 @@ class TestCase_EditSource_479(unittest.TestCase):
         sel = self.selenium
         loginlogout.LogInAsAdmin(self,sel)
         #oldSourceName = "Al Jazeera Arts World - Video"
-        oldSourceName = "Alaska HDTV | Discover the Great Land"
-        oldSourceURL = "http://feeds.feedburner.com/alaskapodshow"
+        oldSourceName = "Reel Science"
+        oldSourceURL = "http://blip.tv/reelscience"
         # Does source to be edited exist? If not, add it
         if sources.SourceLocation(self,sel,oldSourceName)==[0,0]:
             print oldSourceName+" feed not found - adding it..."
