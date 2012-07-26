@@ -361,14 +361,8 @@ class TestCase_EditDescription_574(testcase_base.testcase_BaseTestCase):
         sel = self.selenium
 #       Log in as Admin
         loginlogout.LogInAsAdmin(self,sel)
-        for theme in range(1,2):
-            print ""
-            print "============================================"
-            print ""
-            print "Running Edit Description test with theme: "+str(theme)
-            print "Changing theme..."
-            sitesettings.ChangeTheme(self,sel,theme)
-            TestCase_EditDescription_574.EditDescription(self,sel,theme)
+        sitesettings.ChangeTheme(self,sel,theme=1)
+        TestCase_EditDescription_574.EditDescription(self,sel,theme)
 
 
 
@@ -376,7 +370,7 @@ class TestCase_EditCategory_575(testcase_base.testcase_BaseTestCase):
     
     def EditCategory(self, sel, theme):
         # Selecting video No. <theme> from New Videos listing
-        videoTitleLink = videopage.PickVideoFromNewVideosListingPage(self, sel, theme)
+        videoTitleLink = videopage.PickVideoFromNewVideosListingPage(self, sel, theme=1)
         videoTitle=sel.get_text(videoTitleLink)
         print "Opening video page for video "+videoTitle+"..."
         sel.click(videoTitleLink)
@@ -389,14 +383,8 @@ class TestCase_EditCategory_575(testcase_base.testcase_BaseTestCase):
         sel = self.selenium
 #       Log in as Admin
         loginlogout.LogInAsAdmin(self,sel)
-        for theme in range(1,2):
-            print ""
-            print "============================================"
-            print ""
-            print "Running Edit Category test with theme: "+str(theme)
-            print "Changing theme..."
-            sitesettings.ChangeTheme(self,sel,theme)
-            TestCase_EditCategory_575.EditCategory(self,sel,theme)
+        sitesettings.ChangeTheme(self,sel,theme=1)
+        TestCase_EditCategory_575.EditCategory(self,sel,theme=1)
 
 
 
