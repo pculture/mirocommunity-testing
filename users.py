@@ -316,78 +316,73 @@ def EditUserProfile(self,sel,name,username,email,location,website,photo,descript
     #Check if the edit profile page can be opened
     sel.open(testvars.MCTestVariables["TestSite"])
     buttonEditProfile = "link=Your Profile"
+    mclib.wait_for_element_present(self, sel, buttonEditProfile)
     print "Opening user profile page..."
-    if sel.is_element_present(buttonEditProfile)==False:
-        mclib.AppendErrorMessage(self,sel,"'Your Profile' link on home page is missing")
-    else:
-        sel.click(buttonEditProfile)
-        sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
-        print "OK"
-        # Enter name
-        if name!="":
-            print "Updating user name: "+name
-            if sel.is_element_present("id_name")==False:
-                mclib.AppendErrorMessage(self,sel,"Edit field for user's NAME not found")
-            else:
-                sel.click("id_name")
-                sel.type("id_name",name)
-        # Enter username
-        if username!="":
-            print "Updating username: "+username
-            if sel.is_element_present("id_username")==False:
-                mclib.AppendErrorMessage(self,sel,"Edit field for user's USERNAME not found")
-            else:
-                sel.click("id_username")
-                sel.type("id_username",username)
-        # Enter user's email address
-        if email!="":
-            print "Updating user email: "+email
-            if sel.is_element_present("id_email")==False:
-                mclib.AppendErrorMessage(self,sel,"Edit field for user's EMAIL not found")
-            else:
-                sel.click("id_email")
-                sel.type("id_email",email)
-        # Enter user's location
-        if location!="":
-            print "Updating user location: "+location
-            if sel.is_element_present("id_location")==False:
-                mclib.AppendErrorMessage(self,sel,"Edit field for user's LOCATION not found")
-            else:
-                sel.click("id_location")
-                sel.type("id_location",location)
-        # Enter user's website
-        if website!="":
-            print "Updating user website: "+website
-            if sel.is_element_present("id_website")==False:
-                mclib.AppendErrorMessage(self,sel,"Edit field for user's WEBSITE not found")
-            else:
-                sel.click("id_website")
-                sel.type("id_website",website)
-        # Upload user's photo
-        if photo!="":
-            print "Uploading user's photo..."
-            if sel.is_element_present("id_logo")==False:
-                mclib.AppendErrorMessage(self,sel,"Edit field for user's PHOTO FILE not found")
-            else:
-                sel.click("id_logo")
-                sel.type("id_logo",photo)
-        # Enter user's description
-        if description!="":
-            print "Updating user description: "+description
-            if sel.is_element_present("id_description")==False:
-                mclib.AppendErrorMessage(self,sel,"Edit field for user's DESCRIPTION not found")
-            else:
-                sel.click("id_description")
-                sel.type("id_description",description)
-        # Save changes
-        buttonSave = "submit_settings"
-        if sel.is_element_present(buttonSave)==False:
-            mclib.AppendErrorMessage(self,sel,"Save Changes button on Edit Profile page not found")
+    sel.click(buttonEditProfile)
+    sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
+    print "OK"
+    # Enter name
+    if name!="":
+        print "Updating user name: "+name
+        if sel.is_element_present("id_name")==False:
+            mclib.AppendErrorMessage(self,sel,"Edit field for user's NAME not found")
         else:
-            sel.click(buttonSave)
-            sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
-            sel.click("//div[@id='content']/form/div/a/span")
-            sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
+            sel.click("id_name")
+            sel.type("id_name",name)
+    # Enter username
+    if username!="":
+        print "Updating username: "+username
+        if sel.is_element_present("id_username")==False:
+            mclib.AppendErrorMessage(self,sel,"Edit field for user's USERNAME not found")
+        else:
+            sel.click("id_username")
+            sel.type("id_username",username)
+    # Enter user's email address
+    if email!="":
+        print "Updating user email: "+email
+        if sel.is_element_present("id_email")==False:
+            mclib.AppendErrorMessage(self,sel,"Edit field for user's EMAIL not found")
+        else:
+            sel.click("id_email")
+            sel.type("id_email",email)
+    # Enter user's location
+    if location!="":
+        print "Updating user location: "+location
+        if sel.is_element_present("id_location")==False:
+            mclib.AppendErrorMessage(self,sel,"Edit field for user's LOCATION not found")
+        else:
+            sel.click("id_location")
+            sel.type("id_location",location)
+    # Enter user's website
+    if website!="":
+        print "Updating user website: "+website
+        if sel.is_element_present("id_website")==False:
+            mclib.AppendErrorMessage(self,sel,"Edit field for user's WEBSITE not found")
+        else:
+            sel.click("id_website")
+            sel.type("id_website",website)
+    # Upload user's photo
+    if photo!="":
+        print "Uploading user's photo..."
+        if sel.is_element_present("id_logo")==False:
+            mclib.AppendErrorMessage(self,sel,"Edit field for user's PHOTO FILE not found")
+        else:
+            sel.click("id_logo")
+            sel.type("id_logo",photo)
+    # Enter user's description
+    if description!="":
+        print "Updating user description: "+description
+        if sel.is_element_present("id_description")==False:
+            mclib.AppendErrorMessage(self,sel,"Edit field for user's DESCRIPTION not found")
+        else:
+            sel.click("id_description")
+            sel.type("id_description",description)
+    # Save changes
+    buttonSave = "submit_settings"
+    sel.click(buttonSave)
+    sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
+    sel.click("//div[@id='content']/form/div/a/span")
+    sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
 
     
 # =======================================

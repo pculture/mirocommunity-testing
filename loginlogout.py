@@ -412,22 +412,19 @@ def LogInAsGoogleUser(self,sel,email,password):
                     sel.click("css=input#approve_button.lsobtn")
                     time.sleep(5)
                 # Navigating to user profile to check the user's account parameters
-                print "Checking the user's profile"
                 linkYourProfile = "link=Your Profile"
-                if sel.is_element_present(linkYourProfile)==False:
-                    mclib.AppendErrorMessage(self,sel,"'Your profile' link on Home page not found")
+                mclib.wait_for_element_present(self, sel, linkYourProfile)
+                sel.click("link=Your Profile")
+                sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
+                if sel.get_value("id_email")!=email:
+                    mclib.AppendErrorMessage(self,sel,"Unexpected user email encountered in User Profile")
+                    print "Expected email: "+email
+                    print "- Actual email: "+sel.get_value("id_email")
+                print "Checking Google user's name on Profile page..."
+                if sel.is_element_present("id_username")==False:
+                    mclib.AppendErrorMessage(self,sel,"User Name field on Profile page not found")
                 else:
-                    sel.click("link=Your Profile")
-                    sel.wait_for_page_to_load(testvars.MCTestVariables["TimeOut"])
-                    if sel.get_value("id_email")!=email:
-                        mclib.AppendErrorMessage(self,sel,"Unexpected user email encountered in User Profile")
-                        print "Expected email: "+email
-                        print "- Actual email: "+sel.get_value("id_email")
-                    print "Checking Google user's name on Profile page..."
-                    if sel.is_element_present("id_username")==False:
-                        mclib.AppendErrorMessage(self,sel,"User Name field on Profile page not found")
-                    else:
-                        print "Google user has signed in and is known in the system as "+sel.get_value("id_username")
+                    print "Google user has signed in and is known in the system as "+sel.get_value("id_username")
 
 
 
