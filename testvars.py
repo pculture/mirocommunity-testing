@@ -27,7 +27,7 @@ MCTestVariables = {"Browser":"*chrome", \
                    "OpenIDLogin":"PCFQA", \
                    "OpenIDPassword":"MiroCommunity", \
                    "TestEmail":"pculture.qa@gmail.com", \
-                   "TestEmailPassword":"Univers@lSubtitles", \
+                   "TestEmailPassword":"Amara@lSubtitles", \
                    "ListThemeLink":"/admin/themes/set_default/1", \
                    "ScrollingThemeLink":"/admin/themes/set_default/2", \
                    "CategoryThemeLink":"/admin/themes/set_default/3", \
